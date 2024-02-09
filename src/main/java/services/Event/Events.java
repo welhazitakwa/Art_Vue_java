@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Events implements Evènements<Evènement>{
 
-    private Connection connection;
+    private Connection  connection;
     public Events(){
         connection= MyDataBase.getInstance().getConnection();
     }

@@ -9,7 +9,7 @@ public class Evènement {
     private static String lieu;
     private static LocalDate date;
 
-    public  Evènement() {
+    public   Evènement() {
     }
 
     public Evènement(int id , String nom, String lieu, LocalDate date) {
