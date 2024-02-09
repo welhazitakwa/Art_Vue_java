@@ -2,12 +2,12 @@ package models;
 
 import java.util.Date;
 
-public class utilisateur {
+public class Utilisateur {
     private int id, numTel;
     private Date dateNaissance ;
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
-    public utilisateur(int id, int numTel, Date dateNaissance, String nom, String prenom,
+    public Utilisateur(int id, int numTel, Date dateNaissance, String nom, String prenom,
                        String login, String mdp, String email, String adresse, String image, String genre) {
         this.id = id;
         this.numTel = numTel;
@@ -22,7 +22,7 @@ public class utilisateur {
         this.genre = genre;
     }
 
-    public utilisateur(int numTel, Date dateNaissance, String nom, String prenom, String login, String mdp,
+    public Utilisateur(int numTel, Date dateNaissance, String nom, String prenom, String login, String mdp,
                        String email, String adresse, String image, String genre) {
         this.numTel = numTel;
         this.dateNaissance = dateNaissance;
