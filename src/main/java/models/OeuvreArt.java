@@ -5,29 +5,38 @@ import java.util.Date;
 public class OeuvreArt {
     public int id;
     public String image;
-    public String nom;
+    public String titre;
     public String description;
     public Date dateAjout;
-    public float prix;
+    public float prixVente;
+    public Categorie categorie;
+    public StatusOeuvre status;
     public int QuantitéStock;
+    public String artiste;
 
-    public OeuvreArt(int id, String image, String nom, String description, Date dateAjout, float prix, int quantitéStock) {
+    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, StatusOeuvre status, int quantitéStock, String artiste) {
         this.id = id;
         this.image = image;
-        this.nom = nom;
+        this.titre = titre;
         this.description = description;
         this.dateAjout = dateAjout;
-        this.prix = prix;
+        this.prixVente = prixVente;
+        this.categorie = categorie;
+        this.status = status;
         QuantitéStock = quantitéStock;
+        this.artiste = artiste;
     }
 
-    public OeuvreArt(String image, String nom, String description, Date dateAjout, float prix, int quantitéStock) {
+    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, StatusOeuvre status, int quantitéStock, String artiste) {
         this.image = image;
-        this.nom = nom;
+        this.titre = titre;
         this.description = description;
         this.dateAjout = dateAjout;
-        this.prix = prix;
+        this.prixVente = prixVente;
+        this.categorie = categorie;
+        this.status = status;
         QuantitéStock = quantitéStock;
+        this.artiste = artiste;
     }
 
     public int getId() {
@@ -46,12 +55,12 @@ public class OeuvreArt {
         this.image = image;
     }
 
-    public String getNom() {
-        return nom;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getDescription() {
@@ -70,12 +79,28 @@ public class OeuvreArt {
         this.dateAjout = dateAjout;
     }
 
-    public float getPrix() {
-        return prix;
+    public float getPrixVente() {
+        return prixVente;
     }
 
-    public void setPrix(float prix) {
-        this.prix = prix;
+    public void setPrixVente(float prixVente) {
+        this.prixVente = prixVente;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public StatusOeuvre getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusOeuvre status) {
+        this.status = status;
     }
 
     public int getQuantitéStock() {
@@ -84,5 +109,13 @@ public class OeuvreArt {
 
     public void setQuantitéStock(int quantitéStock) {
         QuantitéStock = quantitéStock;
+    }
+
+    public String getArtiste() {
+        return artiste;
+    }
+
+    public void setArtiste(String artiste) {
+        this.artiste = artiste;
     }
 }
