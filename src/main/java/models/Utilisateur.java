@@ -1,13 +1,13 @@
 package models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Utilisateur {
     private int id, numTel;
-    private String dateNaissance ;
+    private Date dateNaissance ;
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
-    public Utilisateur(int id, int numTel, String dateNaissance, String nom, String prenom,
+    public Utilisateur(int id, int numTel, Date dateNaissance, String nom, String prenom,
                        String login, String mdp, String email, String adresse, String image, String genre) {
         this.id = id;
         this.numTel = numTel;
@@ -24,7 +24,7 @@ public class Utilisateur {
 
     public Utilisateur(
             String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
-            String dateNaissance, String adresse
+            Date dateNaissance, String adresse
                          ) {
         this.numTel = numTel;
         this.dateNaissance = dateNaissance;
@@ -54,11 +54,11 @@ public class Utilisateur {
         this.numTel = numTel;
     }
 
-    public String getDateNaissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
