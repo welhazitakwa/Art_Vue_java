@@ -57,7 +57,10 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
     @Override
     public void supprimer(int id) throws SQLException {
-
+    String sql = "DELETE FROM `utilisateur` WHERE id=?";
+    PreparedStatement preparedStatement = connection.prepareStatement(sql) ;
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
     }
 
     @Override
