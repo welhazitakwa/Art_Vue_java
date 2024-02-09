@@ -7,8 +7,8 @@ public class Utilisateur {
     private Date dateNaissance ;
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
-    public Utilisateur(int id, int numTel, Date dateNaissance, String nom, String prenom,
-                       String login, String mdp, String email, String adresse, String image, String genre) {
+    public Utilisateur(int id,  String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
+                       Date dateNaissance, String adresse) {
         this.id = id;
         this.numTel = numTel;
         this.dateNaissance = dateNaissance;
