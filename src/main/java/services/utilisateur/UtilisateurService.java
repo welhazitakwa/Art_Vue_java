@@ -2,10 +2,8 @@ package services.utilisateur;
 
 import models.Utilisateur;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import utils.MyDataBase;
 
@@ -65,6 +63,25 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
     @Override
     public List<Utilisateur> listAll() throws SQLException {
-        return null;
+        String sql = "select * from utilisateur " ;
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql) ;
+        List <Utilisateur> list = new ArrayList<>();
+        while (rs.next()) {
+            Utilisateur user = new Utilisateur();
+            user.setId(rs.getInt("id"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setEmail(rs.getString("email"));
+            user.setNumTel(rs.getInt("numTel"));
+            user.setLogin(rs.getString("login"));
+            user.setMdp(rs.getString("mdp"));
+            user.setImage(rs.getString("image"));
+            user.setGenre(rs.getString("genre"));
+            user.setDateNaissance(rs.getDate("dateNaissance"));
+            user.setAdresse(rs.getString("adresse"));
+            list.add(user) ;
+        }
+        return list;
     }
 }

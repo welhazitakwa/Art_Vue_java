@@ -31,8 +31,14 @@ public class UtilisateurTest {
             System.out.println(s.getMessage());
         }*/
 
-        try {
+       /* try {
             user1.supprimer(4);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } */
+
+        try {
+            System.out.println(user1.listAll());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
