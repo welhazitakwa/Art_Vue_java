@@ -2,11 +2,17 @@ package services.utilisateur;
 
 import models.Utilisateur;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import utils.MyDataBase;
 
 public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
+    private Connection connection;
+    public UtilisateurService (){
+        connection = MyDataBase
+    }
     @Override
     public void ajouter(Utilisateur utilisateur) throws SQLException {
 
