@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Utilisateur {
     private int id, numTel;
-    private Date dateNaissance ;
+    private String dateNaissance ;
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
-    public Utilisateur(int id, int numTel, Date dateNaissance, String nom, String prenom,
+    public Utilisateur(int id, int numTel, String dateNaissance, String nom, String prenom,
                        String login, String mdp, String email, String adresse, String image, String genre) {
         this.id = id;
         this.numTel = numTel;
@@ -22,8 +22,10 @@ public class Utilisateur {
         this.genre = genre;
     }
 
-    public Utilisateur(int numTel, Date dateNaissance, String nom, String prenom, String login, String mdp,
-                       String email, String adresse, String image, String genre) {
+    public Utilisateur(
+            String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
+            String dateNaissance, String adresse
+                         ) {
         this.numTel = numTel;
         this.dateNaissance = dateNaissance;
         this.nom = nom;
@@ -52,11 +54,11 @@ public class Utilisateur {
         this.numTel = numTel;
     }
 
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
