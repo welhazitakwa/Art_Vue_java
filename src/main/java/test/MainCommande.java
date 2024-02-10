@@ -10,13 +10,13 @@ import java.time.LocalDate.*;
 public class MainCommande {
     public static void main(String[] args) {
 
-        /*MyDataBase d = MyDataBase.getInstance();
+        MyDataBase d = MyDataBase.getInstance();
         CommandeService cmd1 = new CommandeService();
         CommandeService cmd2 = new CommandeService();
         CommandeService cmd3 = new CommandeService();
         CommandeService cmd4 = new CommandeService();
 
-        try {
+      /*  try {
             cmd1.AjouterCommande(new Commande(12, LocalDate.of(2024, 1, 1), "recu"));
             cmd2.AjouterCommande(new Commande(10, LocalDate.of(2024, 1, 2), "nonrecu"));
             cmd3.AjouterCommande(new Commande(13, LocalDate.of(2024, 1, 3), "recu"));
@@ -36,11 +36,11 @@ public class MainCommande {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-        /*try {
+        try {
             System.out.println(cmd1.AfficherCommande());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
 
     }
 
