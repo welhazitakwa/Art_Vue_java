@@ -23,7 +23,7 @@ public class mainEvent {
         try {
             Evènement even;
             even =
-                    new Evènement(1,"amira", "evente", LocalDate.of(2022, 1, 5));
+                    new Evènement(1,"event", "tunis", LocalDate.of(2022, 1, 5));
             es.modifier(even);
         } catch (SQLException e) {
             System.out.println((e.getMessage()));
