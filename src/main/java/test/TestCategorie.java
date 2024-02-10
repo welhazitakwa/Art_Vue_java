@@ -6,7 +6,7 @@ import utils.MyDataBase;
 
 import java.sql.SQLException;
 
-/*public class main {
+public class main {
     public static void main(String[] args) {
 
         // MyDataBase d = MyDataBase.getInstance();
@@ -49,5 +49,5 @@ import java.sql.SQLException;
 
 
 
-    /*}
-}*/
+    }
+}

@@ -10,10 +10,10 @@ import java.text.ParseException;
 
 public class mainexpo {
     public static void main(String[] args) {
-        MyDataBase d = MyDataBase.getInstance();
+        /*MyDataBase d = MyDataBase.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         ExpositionService cmd1 = new ExpositionService();
-        /*ExpositionService cmd2 = new ExpositionService();
+        ExpositionService cmd2 = new ExpositionService();
         ExpositionService cmd3 = new ExpositionService();
         ExpositionService cmd4 = new ExpositionService();
         try {
@@ -36,10 +36,10 @@ public class mainexpo {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-        try {
+        /*try {
             System.out.println(cmd1.AfficherExposition());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }
