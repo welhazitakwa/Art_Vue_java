@@ -2,15 +2,14 @@ package test;
 
 import models.Categorie;
 import services.categorie.CategorieService;
-import utils.MyDataBase;
 
 import java.sql.SQLException;
 
-public class main {
+public class TestCategorie {
     public static void main(String[] args) {
 
-         MyDataBase d = MyDataBase.getInstance();
-    /*    CategorieService Cs1 = new CategorieService();
+         //MyDataBase d = MyDataBase.getInstance();
+        CategorieService Cs1 = new CategorieService();
         CategorieService Cs2 = new CategorieService();
         CategorieService Cs3 = new CategorieService();
         CategorieService Cs4 = new CategorieService();
@@ -45,7 +44,7 @@ public class main {
             System.out.println(Cs1.AfficherCategorie());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
 
 
 
