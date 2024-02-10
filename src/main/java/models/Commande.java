@@ -55,4 +55,14 @@ public class Commande {
     public void setEtat(String etat) {
         this.etat = etat;
     }
+
+    @Override
+    public String toString() {
+        return "Commande{" +
+                "id=" + id +
+                ", montant=" + montant +
+                ", date=" + date +
+                ", etat='" + etat + '\'' +
+                '}';
+    }
 }

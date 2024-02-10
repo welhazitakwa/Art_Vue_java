@@ -36,11 +36,11 @@ public class MainCommande {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-      /*  try {
+        try {
             System.out.println(cmd1.AfficherCommande());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
 
     }
 
