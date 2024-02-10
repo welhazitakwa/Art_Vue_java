@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import utils.MyDataBase;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
@@ -22,7 +23,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                     "'" + utilisateur.getEmail() + "'," +
                     "'" + utilisateur.getNumTel() + "'," +
                     "'" + utilisateur.getLogin() + "'," +
-                    "'" + utilisateur.getMdp() + "'," +
+                    "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
                     "'" + utilisateur.getImage() + "'," +
                     "'" + utilisateur.getGenre() + "'," +
                     "'" + utilisateur.getDateNaissance() + "'," +

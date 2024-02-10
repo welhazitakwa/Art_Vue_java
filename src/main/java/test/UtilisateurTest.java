@@ -13,14 +13,14 @@ public class UtilisateurTest {
     public static void main(String[] args) {
         // MyDataBase d =  MyDataBase.getInstance();
         UtilisateurService user1 = new UtilisateurService();
-        /*try {
+       try {
             user1.ajouter(new Utilisateur(
-                    "Ouelhazi", "Takwa","test@gmail.com",
+                    "crypted", "pwd","check@gmail.com",
                     12365479, "233AFT", "123.","imaage ", "genre",
                     new java.sql.Date(28022005), "addddd"));
         } catch (SQLException s){
             System.out.println(s.getMessage());
-        }*/
+        }
 
 /*
         try {
@@ -37,10 +37,10 @@ public class UtilisateurTest {
             System.out.println(e.getMessage());
         } */
 
-        try {
+       /* try {
             System.out.println(user1.listAll());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }
