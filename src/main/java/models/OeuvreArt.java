@@ -9,12 +9,11 @@ public class OeuvreArt {
     public String description;
     public Date dateAjout;
     public float prixVente;
-    public Categorie categorie;
-    public StatusOeuvre status;
-    public int QuantitéStock;
+    public String categorie;
+    public String status;
     public String artiste;
 
-    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, StatusOeuvre status, int quantitéStock, String artiste) {
+    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, String categorie, String status, String artiste) {
         this.id = id;
         this.image = image;
         this.titre = titre;
@@ -23,11 +22,11 @@ public class OeuvreArt {
         this.prixVente = prixVente;
         this.categorie = categorie;
         this.status = status;
-        QuantitéStock = quantitéStock;
+
         this.artiste = artiste;
     }
 
-    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, StatusOeuvre status, int quantitéStock, String artiste) {
+    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, String categorie, String status, String artiste) {
         this.image = image;
         this.titre = titre;
         this.description = description;
@@ -35,8 +34,22 @@ public class OeuvreArt {
         this.prixVente = prixVente;
         this.categorie = categorie;
         this.status = status;
-        QuantitéStock = quantitéStock;
         this.artiste = artiste;
+    }
+
+    public OeuvreArt(int id, String image, String titre, String description, float prixVente, String categorie, String status, String artiste) {
+        this.id = id ;
+        this.image = image;
+        this.titre = titre;
+        this.description = description;
+        this.prixVente = prixVente;
+        this.categorie = categorie;
+        this.status = status;
+        this.artiste = artiste;
+    }
+
+    public OeuvreArt() {
+
     }
 
     public int getId() {
@@ -87,28 +100,20 @@ public class OeuvreArt {
         this.prixVente = prixVente;
     }
 
-    public Categorie getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(Categorie categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
 
-    public StatusOeuvre getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusOeuvre status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getQuantitéStock() {
-        return QuantitéStock;
-    }
-
-    public void setQuantitéStock(int quantitéStock) {
-        QuantitéStock = quantitéStock;
     }
 
     public String getArtiste() {
@@ -117,5 +122,20 @@ public class OeuvreArt {
 
     public void setArtiste(String artiste) {
         this.artiste = artiste;
+    }
+
+    @Override
+    public String toString() {
+        return "OeuvreArt{" +
+                "id=" + id +
+                ", image='" + image + '\'' +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", dateAjout=" + dateAjout +
+                ", prixVente=" + prixVente +
+                ", categorie='" + categorie + '\'' +
+                ", status='" + status + '\'' +
+                ", artiste='" + artiste + '\'' +
+                '}';
     }
 }
