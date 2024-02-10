@@ -43,7 +43,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         preparedStatement.setString(3, utilisateur.getEmail());
         preparedStatement.setInt(4, utilisateur.getNumTel());
         preparedStatement.setString(5, utilisateur.getLogin());
-        preparedStatement.setString(6, utilisateur.getMdp());
+        preparedStatement.setString(6, BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt()));
         preparedStatement.setString(7, utilisateur.getImage());
         preparedStatement.setString(8, utilisateur.getGenre());
         preparedStatement.setDate(9, utilisateur.getDateNaissance());
