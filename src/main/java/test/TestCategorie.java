@@ -6,7 +6,7 @@ import utils.MyDataBase;
 
 import java.sql.SQLException;
 
-public class main {
+public class TestCategorie {
     public static void main(String[] args) {
 
          MyDataBase d = MyDataBase.getInstance();
