@@ -1,11 +1,9 @@
 package services.Commande;
-import models.Categorie;
 import models.Commande;
 import utils.MyDataBase;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 public class CommandeService implements ICommande<Commande> {
     private Connection connection;
@@ -15,9 +13,12 @@ public class CommandeService implements ICommande<Commande> {
     {
         connection = MyDataBase.getInstance().getConnection();
     }
+
     public void AjouterCommande(Commande commande) throws SQLException {
-        String sql = "insert into commande (montant,date,etat) " +
-                "values('" + commande.getMontant()+ "' " + commande.getEtat() + " " + commande.getDate() + ")";
+        String sql = "insert into commande (montant, date, etat) values ('" +
+                commande.getMontant() + "', '" +
+                commande.getDate() + "', '" +
+                commande.getEtat() + "')";
 
         Statement statement = connection.createStatement();
         statement.executeUpdate(sql);
@@ -26,7 +27,7 @@ public class CommandeService implements ICommande<Commande> {
         String sql = "update commande set montant = ? ,date = ? , etat = ? where id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setFloat(1, commande.getMontant());
-            preparedStatement.setDate(2, new java.sql.Date(commande.getDate().getTime()));
+            preparedStatement.setDate(2, Date.valueOf(commande.getDate()));
             preparedStatement.setString(3, commande.getEtat());
             preparedStatement.setInt(4, commande.getId());
             preparedStatement.executeUpdate();
@@ -53,7 +54,7 @@ public class CommandeService implements ICommande<Commande> {
                 Commande cmd = new Commande();
                 cmd.setId(rs.getInt("id"));
                 cmd.setMontant(rs.getFloat("montant"));
-                cmd.setDate(rs.getDate("date"));
+                cmd.setDate(rs.getDate("date").toLocalDate());
                 cmd.setEtat(rs.getString("etat"));
                 listeCommandes.add(cmd);
             }

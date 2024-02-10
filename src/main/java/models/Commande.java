@@ -1,20 +1,20 @@
 package models;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Commande {
     public int id;
     public float montant;
-    public Date date;
+    public LocalDate date;
     public String etat;
 
-    public Commande(int id, float montant, Date date, String etat) {
+    public Commande(int id, float montant, LocalDate date, String etat) {
         this.id = id;
         this.montant = montant;
         this.date = date;
         this.etat = etat;
     }
 
-    public Commande(float montant, Date date, String etat) {
+    public Commande(float montant, LocalDate date, String etat) {
         this.montant = montant;
         this.date = date;
         this.etat = etat;
@@ -40,11 +40,11 @@ public class Commande {
         this.montant = montant;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
