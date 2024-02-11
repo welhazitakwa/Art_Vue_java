@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 public class OffreEnchere {
     private int id;
     private float montant;
