@@ -1,7 +1,9 @@
 package test;
 import models.Exposition;
+import models.OffreEnchere;
 import models.VenteEncheres;
 import services.Exposition.ExpositionService;
+import services.offreenchere.OffreEnchereService;
 import services.venteencheres.VenteEncheresService;
 import utils.MyDataBase;
 
@@ -49,8 +51,8 @@ public class mainexpo {
 
         //table VenteEncheres
 
-        VenteEncheresService cmd1 = new VenteEncheresService();
-        /*VenteEncheresService cmd2 = new VenteEncheresService();
+        /*VenteEncheresService cmd1 = new VenteEncheresService();
+        VenteEncheresService cmd2 = new VenteEncheresService();
         VenteEncheresService cmd3 = new VenteEncheresService();
         VenteEncheresService cmd4 = new VenteEncheresService();
         try {
@@ -72,10 +74,41 @@ public class mainexpo {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-        try {
+        /*try {
             System.out.println(cmd1.AfficherVenteEncheres());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }*/
+
+        //table offreenchere
+
+        OffreEnchereService cmd1 = new OffreEnchereService();
+        /*OffreEnchereService cmd2 = new OffreEnchereService();
+        OffreEnchereService cmd3 = new OffreEnchereService();
+        OffreEnchereService cmd4 = new OffreEnchereService();
+        try {
+            cmd1.AjouterOffreEnchere(new OffreEnchere(1,6.5f,dateFormat.parse("2000-05-25")));
+            cmd2.AjouterOffreEnchere(new OffreEnchere(2,6.5f,dateFormat.parse("2000-05-25")));
+            cmd3.AjouterOffreEnchere(new OffreEnchere(3,6.5f,dateFormat.parse("2000-05-25")));
+            cmd4.AjouterOffreEnchere(new OffreEnchere(4,6.5f,dateFormat.parse("2000-05-25")));
+        } catch (SQLException | ParseException e) {
+            System.out.println(e.getMessage());
+        }*/
+        /*try {
+            cmd1.ModifierOffreEnchere( new OffreEnchere(1,8.6f,dateFormat.parse("2005-05-25")));
+        } catch (SQLException | ParseException e) {
+            System.out.println(e.getMessage());
+        }*/
+        /*try{
+            cmd1.SupprimerOffreEnchere(3);
         }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }*/
+        /*try {
+            System.out.println(cmd1.AfficherOffreEnchere());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }*/
     }
 }
