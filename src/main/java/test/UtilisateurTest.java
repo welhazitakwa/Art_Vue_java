@@ -2,6 +2,7 @@ package test;
 
 import com.mysql.cj.util.TimeUtil;
 import models.Utilisateur;
+import org.mindrot.jbcrypt.BCrypt;
 import services.utilisateur.UtilisateurService;
 import utils.MyDataBase;
 
@@ -10,21 +11,20 @@ import java.util.Date;
 
 
 public class UtilisateurTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // MyDataBase d =  MyDataBase.getInstance();
         UtilisateurService user1 = new UtilisateurService();
-        /*try {
+   /*  try {
             user1.ajouter(new Utilisateur(
-                    "Ouelhazi", "Takwa","test@gmail.com",
-                    12365479, "233AFT", "123.","imaage ", "genre",
+                    "crypted", "pwd","chelck@gmail.com",
+                    22309479, "login", "123","imaage ", "genre",
                     new java.sql.Date(28022005), "addddd"));
         } catch (SQLException s){
             System.out.println(s.getMessage());
         }*/
-
-/*
+        /*
         try {
-            user1.modifier(new Utilisateur(7, "ahahahahah", "Taaaaa","tcccest@gmail.com",
+            user1.modifier(new Utilisateur(1, "edit", "test","cryptage@gmail.com",
                     12367009, "2cvcv3AFT", "88123.","imcaage ", "gencvre",
                     new java.sql.Date(280922005), "acvcvddd"));
         } catch (SQLException s){
@@ -37,10 +37,24 @@ public class UtilisateurTest {
             System.out.println(e.getMessage());
         } */
 
-        try {
+       /* try {
             System.out.println(user1.listAll());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
+
+      /*  if (user1.checkExistingUser("123.","$2a$10$ykx8XEfAW1RprUgCdGrA1.kASs9vVlTcLzcIej8kpGYajq2ll9pFy")) {
+            System.out.println("Password is correct!");
+        } else {
+            System.out.println("Incorrect password!");
+        }*/
+
+    user1.validateLogin("2330AFT","123.");
+   // user1.validateLogin("2330AFT","1888823.");
+
+
+
+
+
     }
-}
+      }

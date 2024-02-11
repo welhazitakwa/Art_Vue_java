@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import utils.MyDataBase;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
@@ -22,7 +23,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                     "'" + utilisateur.getEmail() + "'," +
                     "'" + utilisateur.getNumTel() + "'," +
                     "'" + utilisateur.getLogin() + "'," +
-                    "'" + utilisateur.getMdp() + "'," +
+                    "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
                     "'" + utilisateur.getImage() + "'," +
                     "'" + utilisateur.getGenre() + "'," +
                     "'" + utilisateur.getDateNaissance() + "'," +
@@ -30,7 +31,44 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         Statement satatement = connection.createStatement();
         satatement.executeUpdate(req);
     }
+    /*public void creerCompte (Utilisateur utilisateur) throws SQLException {
+        String nomInterface ="" ;
+        String prenomInterface ="" ;
+        if ("".equals(nomInterface)) {
+            System.out.println("le nom d'utilisateur est vide !!!");
+        } else if (prenomInterface.equals("")) {
 
+        }
+    }*/
+    public void validateLogin (String loginFourni, String mdpFourni )throws SQLException{
+
+        String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(reqVerif) ;
+        while (rs.next()) {
+            if ( rs.getInt(1) == 1 ){
+
+                String reqmdp = "SELECT mdp from utilisateur WHERE login = '"+ loginFourni +"'";
+                Statement statement1 = connection.createStatement();
+                ResultSet rs1 = statement1.executeQuery(reqmdp) ;
+                String mdpfromdatabase = "";
+                while (rs1.next()) {
+                    mdpfromdatabase = rs1.getString("mdp");
+                }
+                boolean mdphashed = checkExistingUser(mdpFourni , mdpfromdatabase );
+                if (mdphashed == true ) {
+                    System.out.println("welcome !!" );
+                }
+            }else{
+                System.out.println("verifiez vos parametres d'authentification !! ");
+            }
+        }
+
+
+
+
+
+    }
     @Override
     public void modifier(Utilisateur utilisateur) throws SQLException {
         int varrr = utilisateur.getId();
@@ -42,7 +80,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         preparedStatement.setString(3, utilisateur.getEmail());
         preparedStatement.setInt(4, utilisateur.getNumTel());
         preparedStatement.setString(5, utilisateur.getLogin());
-        preparedStatement.setString(6, utilisateur.getMdp());
+        preparedStatement.setString(6, BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt()));
         preparedStatement.setString(7, utilisateur.getImage());
         preparedStatement.setString(8, utilisateur.getGenre());
         preparedStatement.setDate(9, utilisateur.getDateNaissance());
@@ -83,5 +121,9 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             list.add(user) ;
         }
         return list;
+    }
+
+    public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
+        return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);
     }
 }
