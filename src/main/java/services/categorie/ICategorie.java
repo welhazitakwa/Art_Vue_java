@@ -1,5 +1,7 @@
 package services.categorie;
 
+import models.Categorie;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,5 +10,6 @@ public interface ICategorie <T> {
     void ModifierCategorie (T t ) throws SQLException;
     void SupprimerCategorie (int id ) throws SQLException;
     List<T> AfficherCategorie ( ) throws SQLException;
+    public boolean getCategorie(T t);
 
 }

@@ -10,14 +10,14 @@ public class TestCategorie {
     public static void main(String[] args) {
 
         // MyDataBase d = MyDataBase.getInstance();
-    /*    CategorieService Cs1 = new CategorieService();
+        CategorieService Cs1 = new CategorieService();
         CategorieService Cs2 = new CategorieService();
         CategorieService Cs3 = new CategorieService();
         CategorieService Cs4 = new CategorieService();
         CategorieService Cs5 = new CategorieService();
         CategorieService Cs6 = new CategorieService();
 
-
+/*
         try {
             Cs1.AjouterCategorie(new Categorie("Peinture"));
             Cs2.AjouterCategorie(new Categorie("Sculpture"));
@@ -47,7 +47,17 @@ public class TestCategorie {
             System.out.println(e.getMessage());
         }*/
 
-
-
+        Categorie categorie = new Categorie("peinture");
+        try {
+            boolean categorieExiste = Cs1.getCategorie(categorie);
+            if (categorieExiste) {
+                System.out.println("La catégorie existe.");
+            } else {
+                System.out.println("La catégorie n'existe pas.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la vérification de la catégorie : " + e.getMessage());
+        }
     }
+
 }

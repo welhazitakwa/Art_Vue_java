@@ -9,11 +9,11 @@ public class OeuvreArt {
     public String description;
     public Date dateAjout;
     public float prixVente;
-    public String categorie;
+    public Categorie categorie;
     public String status;
     public String artiste;
 
-    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, String categorie, String status, String artiste) {
+    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, String artiste) {
         this.id = id;
         this.image = image;
         this.titre = titre;
@@ -26,7 +26,7 @@ public class OeuvreArt {
         this.artiste = artiste;
     }
 
-    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, String categorie, String status, String artiste) {
+    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, String artiste) {
         this.image = image;
         this.titre = titre;
         this.description = description;
@@ -37,7 +37,7 @@ public class OeuvreArt {
         this.artiste = artiste;
     }
 
-    public OeuvreArt(int id, String image, String titre, String description, float prixVente, String categorie, String status, String artiste) {
+    public OeuvreArt(int id, String image, String titre, String description, float prixVente, Categorie categorie, String status, String artiste) {
         this.id = id ;
         this.image = image;
         this.titre = titre;
@@ -100,11 +100,11 @@ public class OeuvreArt {
         this.prixVente = prixVente;
     }
 
-    public String getCategorie() {
+    public Categorie getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 

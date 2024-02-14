@@ -11,4 +11,5 @@ public interface IOeuvreArt <T>{
     void SupprimerOeuvreArt (int id ) throws SQLException;
     List<T> AfficherOeuvreArt ( ) throws SQLException;
     OeuvreArt AfficherOeuvreArtById(int id) throws SQLException;
+    List<OeuvreArt> getAllOeuvreArtWithCategories() throws SQLException;
 }

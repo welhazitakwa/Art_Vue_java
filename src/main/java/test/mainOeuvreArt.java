@@ -1,5 +1,7 @@
 package test;
+import models.Categorie;
 import models.OeuvreArt;
+import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
 import java.sql.SQLException;
@@ -12,20 +14,22 @@ public class mainOeuvreArt {
     public static void main(String[] args) {
 
         OeuvreArtService Oa1 = new OeuvreArtService();
+        Categorie Cs1 = new Categorie(8,"Dessin");
+        Categorie Cs2 = new Categorie(5,"Peinture");
 
-       /* try {
+        /*try {
             Oa1.AjouterOeuvreArt(new OeuvreArt("chemin/image.jpg","Peinture murale",
                     "Avec noir et blanc",java.sql.Date.valueOf(LocalDate.now()), 
-                    100.0f,"Peinture", "Disponible","Nourhen Ferjeni"));
+                    100.0f,Cs1, "Disponible","Nourhen Ferjeni"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
 
-        /*try {
-            Oa1.ModifierOeuvreArt(new OeuvreArt(4,"chemin/image33.jpg","Peinture murale","Avec noir et blanc",100.0f,"Peinture","Vendu","Nourhen Ferjeni"));
+        try {
+            Oa1.ModifierOeuvreArt(new OeuvreArt(3,"chemin/image33.jpg","Peinture murale","Avec noir et blanc",100.0f,Cs2,"Vendu","Nourhen Ferjeni"));
         } catch (SQLException s){
             System.out.println(s.getMessage());
-        }*/
+        }
 
         /*try {
             Oa1.SupprimerOeuvreArt(2);
@@ -38,7 +42,7 @@ public class mainOeuvreArt {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-        int idOeuvreArt = 6;
+       /* int idOeuvreArt = 6;
         try {
             OeuvreArt oeuvre = Oa1.AfficherOeuvreArtById(idOeuvreArt);
             if (oeuvre != null) {
@@ -55,6 +59,6 @@ public class mainOeuvreArt {
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération de l'œuvre d'art : " + e.getMessage());
-        }
+        }*/
     }
 }

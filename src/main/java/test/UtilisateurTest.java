@@ -14,14 +14,14 @@ public class UtilisateurTest {
     public static void main(String[] args) throws SQLException {
         // MyDataBase d =  MyDataBase.getInstance();
         UtilisateurService user1 = new UtilisateurService();
-   /*  try {
+    try {
             user1.ajouter(new Utilisateur(
                     "crypted", "pwd","chelck@gmail.com",
                     22309479, "login", "123","imaage ", "genre",
                     new java.sql.Date(28022005), "addddd"));
         } catch (SQLException s){
             System.out.println(s.getMessage());
-        }*/
+        }
         /*
         try {
             user1.modifier(new Utilisateur(1, "edit", "test","cryptage@gmail.com",
@@ -49,7 +49,7 @@ public class UtilisateurTest {
             System.out.println("Incorrect password!");
         }*/
 
-    user1.validateLogin("2330AFT","123.");
+    //user1.validateLogin("2330AFT","123.");
    // user1.validateLogin("2330AFT","1888823.");
 
 

@@ -20,9 +20,9 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
 
     @Override
     public void AjouterOeuvreArt(OeuvreArt oeuvreArt) throws SQLException {
-        String sql = "INSERT INTO oeuvreart (image, titre, description, dateAjout, prixVente, categorie, status, artiste) "
+        String sql = "INSERT INTO oeuvreart (image, titre, description, dateAjout, prixVente, id_Categorie, status, artiste) "
                 +"VALUES ('" + oeuvreArt.getImage() + "', '" + oeuvreArt.getTitre() + "', '" + oeuvreArt.getDescription() +
-                "', '" + oeuvreArt.getDateAjout() + "', '" + oeuvreArt.getPrixVente() + "', '" + oeuvreArt.getCategorie() +
+                "', '" + oeuvreArt.getDateAjout() + "', '" + oeuvreArt.getPrixVente() + "', '" + oeuvreArt.getCategorie().getIdCategorie() +
                 "', '" + oeuvreArt.getStatus() + "', '" + oeuvreArt.getArtiste() + "')";
 
         Statement statement = connection.createStatement();
@@ -33,19 +33,22 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
 
     @Override
     public void ModifierOeuvreArt(OeuvreArt oeuvreArt) throws SQLException {
-            String sql= "update oeuvreart set image= ?, titre = ? ,description = ?, prixVente = ? , " +
-                    "categorie = ? ,status = ?, artiste = ? where idOeuvreArt = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, oeuvreArt.getImage());
-            preparedStatement.setString(2, oeuvreArt.getTitre());
-            preparedStatement.setString(3, oeuvreArt.getDescription());
-            preparedStatement.setFloat(4, oeuvreArt.getPrixVente());
-            preparedStatement.setString(5,oeuvreArt.getCategorie());
-            preparedStatement.setString(6, oeuvreArt.getStatus());
-            preparedStatement.setString(7, oeuvreArt.getArtiste());
-            preparedStatement.setInt(8, oeuvreArt.getId());
-            preparedStatement.executeUpdate();
+        // Récupérer l'ID de la catégorie à partir de l'objet Categorie
+        int idCategorie = oeuvreArt.getCategorie().getIdCategorie();
+
+        String sql = "UPDATE oeuvreart SET image = ?, titre = ?, description = ?, prixVente = ?, id_Categorie = ?, status = ?, artiste = ? WHERE idOeuvreArt = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, oeuvreArt.getImage());
+        preparedStatement.setString(2, oeuvreArt.getTitre());
+        preparedStatement.setString(3, oeuvreArt.getDescription());
+        preparedStatement.setFloat(4, oeuvreArt.getPrixVente());
+        preparedStatement.setInt(5, idCategorie);
+        preparedStatement.setString(6, oeuvreArt.getStatus());
+        preparedStatement.setString(7, oeuvreArt.getArtiste());
+        preparedStatement.setInt(8, oeuvreArt.getId());
+        preparedStatement.executeUpdate();
     }
+
 
     @Override
     public void SupprimerOeuvreArt(int id) throws SQLException {
@@ -69,7 +72,7 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
             Oa.setDescription(rs.getString("description"));
             Oa.setDateAjout(rs.getDate("dateAjout"));
             Oa.setPrixVente(rs.getFloat("prixVente"));
-            Oa.setCategorie(rs.getString("categorie"));
+            Oa.setCategorie(rs.getInt("id_categorie"));
             Oa.setStatus(rs.getString("status"));
             Oa.setArtiste(rs.getString("artiste"));
             list.add(Oa) ;
@@ -102,5 +105,12 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
         statement.close();
         return Oa;
     }
+
+    //public List<OeuvreArt> getAllOeuvreArtWithCategories() throws SQLException {}
+   //public List<OeuvreArt> getAllOeuvreArtWithArtistes() throws SQLException {}
+
+
+
+
 
 }

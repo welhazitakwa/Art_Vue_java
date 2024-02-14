@@ -64,4 +64,24 @@ public class CategorieService implements ICategorie<Categorie>{
         }
         return listeCategories;
     }
+
+    @Override
+    public boolean getCategorie(Categorie c) {
+        try {
+            PreparedStatement ps;
+            ps = connection.prepareStatement("SELECT * FROM categorie WHERE nomCategorie = ?");
+            ps.setString(1, c.getNomCategorie());
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                System.out.println(rs.getString("nomCategorie"));
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
 }
