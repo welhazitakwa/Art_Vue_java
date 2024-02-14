@@ -3,7 +3,7 @@ package models;
 import java.sql.Date;
 
 public class Utilisateur {
-    private int id, numTel;
+    private int id, numTel, profil, etat_compte, date_inscription, cin;
     private Date dateNaissance ;
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
@@ -127,10 +127,47 @@ public class Utilisateur {
         this.genre = genre;
     }
 
+    public int getProfil() {
+        return profil;
+    }
+
+    public void setProfil(int profil) {
+        this.profil = profil;
+    }
+
+    public int getEtat_compte() {
+        return etat_compte;
+    }
+
+    public void setEtat_compte(int etat_compte) {
+        this.etat_compte = etat_compte;
+    }
+
+    public int getDate_inscription() {
+        return date_inscription;
+    }
+
+    public void setDate_inscription(int date_inscription) {
+        this.date_inscription = date_inscription;
+    }
+
+    public int getCin() {
+        return cin;
+    }
+
+    public void setCin(int cin) {
+        this.cin = cin;
+    }
+
     @Override
     public String toString() {
-        return "utilisateur avec id =" + id +
+        return "Utilisateur{" +
+                "id=" + id +
                 ", numTel=" + numTel +
+                ", profil=" + profil +
+                ", etat_compte=" + etat_compte +
+                ", date_inscription=" + date_inscription +
+                ", cin=" + cin +
                 ", dateNaissance=" + dateNaissance +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
