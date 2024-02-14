@@ -1,2 +1,4 @@
-package models;public class Admin {
+package models;
+
+public class Admin {
 }

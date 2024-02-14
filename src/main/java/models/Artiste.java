@@ -1,2 +1,5 @@
-package models;public class Artiste {
+package models;
+
+public class Artiste {
+    private String domaine ;
 }
