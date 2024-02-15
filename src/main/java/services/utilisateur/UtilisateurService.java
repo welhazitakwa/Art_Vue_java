@@ -69,7 +69,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                 profilUser = 3;
             }
         }
-        System.out.println("rahou artiste l'id te3ou 1 : " + profilUser );
+        //System.out.println("rahou artiste l'id te3ou 1 : " + profilUser );
         return profilUser ;
 
     }
