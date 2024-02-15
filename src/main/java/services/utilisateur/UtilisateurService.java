@@ -78,24 +78,8 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                 "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
                 "'" + 0 + "')";
         Statement statement = connection.createStatement();
-        statement.executeQuery(req) ;
-        /*
-        /* jbedt ekher id dakheltou fel table utilisateur
-        String req2 = "SELECT id FROM utilisateur ORDER BY id DESC LIMIT 1";
-        Statement statement2 = connection.createStatement();
-        ResultSet rs2 = statement2.executeQuery(req2) ;
-        int lastId = 0;
-        while (rs2.next()) {
-            lastId = rs2.getInt(1);
-        }
-       /*chnda5el l'id li jbedtou fel cle etrangere fel table artiste
-        String req3 =  "INSERT INTO artiste(description, id_user)" +
-                        /*values lezm nkamlha
-                "values('" + "desc " + "'," +
-                "'" + lastId + "')";
-        Statement satatement3 = connection.createStatement();
-        satatement3.executeUpdate(req3);
-        */
+        statement.executeUpdate(req) ;
+
     }
     @Override
     public void modifier(Utilisateur utilisateur) throws SQLException {

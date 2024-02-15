@@ -50,7 +50,11 @@ public class UtilisateurTest {
     //user1.validateLogin("2330AFT","123.");
    // user1.validateLogin("2330AFT","1888823.");
 
-
+        try {
+            user1.register(new Utilisateur( "hamza","ouelhazi","hamza@gmail.com", "hamza", "123."));
+        } catch (SQLException s){
+            System.out.println(s.getMessage());
+        }
 
 
 
