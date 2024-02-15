@@ -3,6 +3,7 @@ package services.utilisateur;
 import models.Utilisateur;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import utils.MyDataBase;
@@ -18,7 +19,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     public void ajouter(Utilisateur utilisateur) throws SQLException {
             String req= "INSERT INTO utilisateur(nom, prenom, email, numTel, login,cin, mdp,profil, image, genre, dateNaissance, " +
                     "adresse,date_inscription, etat_compte)" +
-
                     "values('" + utilisateur.getNom() + "'," +
                     "'" + utilisateur.getPrenom() + "'," +
                     "'" + utilisateur.getEmail() + "'," +
@@ -31,20 +31,12 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                     "'" + utilisateur.getGenre() + "'," +
                     "'" + utilisateur.getDateNaissance() + "'," +
                     "'" + utilisateur.getAdresse() + "'," +
-                    "'" + utilisateur.getDate_inscription() + "'," +
+                    "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
                     "'" + utilisateur.getEtat_compte() + "')";
         Statement satatement = connection.createStatement();
         satatement.executeUpdate(req);
     }
-    /*public void creerCompte (Utilisateur utilisateur) throws SQLException {
-        String nomInterface ="" ;
-        String prenomInterface ="" ;
-        if ("".equals(nomInterface)) {
-            System.out.println("le nom d'utilisateur est vide !!!");
-        } else if (prenomInterface.equals("")) {
 
-        }
-    }*/
     public void validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
         String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";

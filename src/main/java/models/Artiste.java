@@ -6,10 +6,10 @@ public class Artiste extends Utilisateur {
     private int id ;
     private String description ;
 
-    public Artiste(String nom, String prenom, String email, int numTel, String login, String mdp,
-                   String image, String genre, Date dateNaissance, String adresse,  String description) {
-        super(nom, prenom, email, numTel, login, mdp, image, genre, dateNaissance, adresse);
-        this.description = description;
+    private String id_user;
+
+    public Artiste(String id_user) {
+              this.id_user = id_user;
     }
 
     public int getId() {

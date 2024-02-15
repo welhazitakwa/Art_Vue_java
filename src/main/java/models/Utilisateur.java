@@ -3,8 +3,8 @@ package models;
 import java.sql.Date;
 
 public class Utilisateur {
-    private int id, numTel, profil, etat_compte, date_inscription, cin;
-    private Date dateNaissance ;
+    private int id, numTel, profil, etat_compte, cin;
+    private Date dateNaissance, date_inscription ;
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
     public Utilisateur (){}
@@ -22,15 +22,20 @@ public class Utilisateur {
         this.image = image;
         this.genre = genre;
     }*/
-
-    public Utilisateur(int id, int numTel, int profil, int etat_compte, int date_inscription, int cin,
-                       Date dateNaissance, String nom, String prenom, String login, String mdp, String email,
-                       String adresse, String image, String genre) {
+    public Utilisateur(String nom, String prenom,String email, String login, String mdp){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email ;
+        this.login = login ;
+        this.mdp= mdp;
+    }
+    public Utilisateur(int id,String nom, String prenom,String email, int numTel, String login, int cin,String mdp, int profil,String image,
+                       String genre,Date dateNaissance,String adresse,  int etat_compte) {
         this.id = id;
         this.numTel = numTel;
         this.profil = profil;
         this.etat_compte = etat_compte;
-        this.date_inscription = date_inscription;
+       // this.date_inscription = date_inscription;
         this.cin = cin;
         this.dateNaissance = dateNaissance;
         this.nom = nom;
@@ -58,13 +63,12 @@ public class Utilisateur {
         this.image = image;
         this.genre = genre;
     }*/
-    public Utilisateur( int numTel, int profil, int etat_compte, int date_inscription, int cin,
-                       Date dateNaissance, String nom, String prenom, String login, String mdp, String email,
-                       String adresse, String image, String genre) {
+    public Utilisateur( String nom, String prenom,String email, int numTel, String login, int cin,String mdp, int profil,String image,
+                        String genre,Date dateNaissance,String adresse,  int etat_compte ) {
         this.numTel = numTel;
         this.profil = profil;
         this.etat_compte = etat_compte;
-        this.date_inscription = date_inscription;
+       // this.date_inscription = date_inscription;
         this.cin = cin;
         this.dateNaissance = dateNaissance;
         this.nom = nom;
@@ -181,11 +185,11 @@ public class Utilisateur {
         this.etat_compte = etat_compte;
     }
 
-    public int getDate_inscription() {
+    public Date getDate_inscription() {
         return date_inscription;
     }
 
-    public void setDate_inscription(int date_inscription) {
+    public void setDate_inscription(Date date_inscription) {
         this.date_inscription = date_inscription;
     }
 
