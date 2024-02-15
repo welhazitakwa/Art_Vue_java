@@ -47,15 +47,18 @@ public class UtilisateurTest {
             System.out.println("Incorrect password!");
         }*/
 
-    //user1.validateLogin("2330AFT","123.");
-   // user1.validateLogin("2330AFT","1888823.");
-
+        System.out.println(user1.validateLogin("hamzaa","123."));
+    user1.validateLogin("hamza2","1888823.");
+/*
         try {
-            user1.register(new Utilisateur( "hamza","ouelhazi","hamza@gmail.com", "hamza", "123."));
+            user1.register(new Utilisateur( "hamza","ouelhazi","hamzaa@gmail.com", "hamzaa", "123."),"artiste");
+            user1.register(new Utilisateur( "hamza","ouelhazi","hamza2@gmail.com", "hamza2", "123."),"client");
+
         } catch (SQLException s){
             System.out.println(s.getMessage());
         }
 
+*/
 
 
     }
