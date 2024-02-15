@@ -72,7 +72,7 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
             Oa.setDescription(rs.getString("description"));
             Oa.setDateAjout(rs.getDate("dateAjout"));
             Oa.setPrixVente(rs.getFloat("prixVente"));
-            Oa.setCategorie(rs.getInt("id_categorie"));
+            //Oa.setCategorie(rs.getInt("id_categorie"));
             Oa.setStatus(rs.getString("status"));
             Oa.setArtiste(rs.getString("artiste"));
             list.add(Oa) ;
@@ -96,7 +96,7 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
             Oa.setDescription(rs.getString("description"));
             Oa.setDateAjout(rs.getDate("dateAjout"));
             Oa.setPrixVente(rs.getFloat("prixVente"));
-            Oa.setCategorie(rs.getString("categorie"));
+            //Oa.setCategorie(rs.getString("categorie"));
             Oa.setStatus(rs.getString("status"));
             Oa.setArtiste(rs.getString("artiste"));
         }
