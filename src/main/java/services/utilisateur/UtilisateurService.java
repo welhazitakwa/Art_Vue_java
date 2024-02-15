@@ -16,18 +16,23 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     }
     @Override
     public void ajouter(Utilisateur utilisateur) throws SQLException {
-            String req= "INSERT INTO utilisateur(nom, prenom, email, numTel, login, mdp, image, genre, dateNaissance, adresse)"
-                                        +
+            String req= "INSERT INTO utilisateur(nom, prenom, email, numTel, login,cin, mdp,profil, image, genre, dateNaissance, " +
+                    "adresse,date_inscription, etat_compte)" +
+
                     "values('" + utilisateur.getNom() + "'," +
                     "'" + utilisateur.getPrenom() + "'," +
                     "'" + utilisateur.getEmail() + "'," +
                     "'" + utilisateur.getNumTel() + "'," +
                     "'" + utilisateur.getLogin() + "'," +
+                    "'" + utilisateur.getCin() + "'," +
                     "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
+                    "'" + utilisateur.getProfil() + "'," +
                     "'" + utilisateur.getImage() + "'," +
                     "'" + utilisateur.getGenre() + "'," +
                     "'" + utilisateur.getDateNaissance() + "'," +
-                    "'" + utilisateur.getAdresse() + "')";
+                    "'" + utilisateur.getAdresse() + "'," +
+                    "'" + utilisateur.getDate_inscription() + "'," +
+                    "'" + utilisateur.getEtat_compte() + "')";
         Statement satatement = connection.createStatement();
         satatement.executeUpdate(req);
     }

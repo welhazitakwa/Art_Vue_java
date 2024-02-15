@@ -8,7 +8,7 @@ public class Utilisateur {
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
     public Utilisateur (){}
-    public Utilisateur(int id,  String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
+   /* public Utilisateur(int id,  String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
                        Date dateNaissance, String adresse) {
         this.id = id;
         this.numTel = numTel;
@@ -21,13 +21,51 @@ public class Utilisateur {
         this.adresse = adresse;
         this.image = image;
         this.genre = genre;
+    }*/
+
+    public Utilisateur(int id, int numTel, int profil, int etat_compte, int date_inscription, int cin,
+                       Date dateNaissance, String nom, String prenom, String login, String mdp, String email,
+                       String adresse, String image, String genre) {
+        this.id = id;
+        this.numTel = numTel;
+        this.profil = profil;
+        this.etat_compte = etat_compte;
+        this.date_inscription = date_inscription;
+        this.cin = cin;
+        this.dateNaissance = dateNaissance;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.login = login;
+        this.mdp = mdp;
+        this.email = email;
+        this.adresse = adresse;
+        this.image = image;
+        this.genre = genre;
     }
 
-    public Utilisateur(
+    /*public Utilisateur(
             String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
             Date dateNaissance, String adresse
                          ) {
         this.numTel = numTel;
+        this.dateNaissance = dateNaissance;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.login = login;
+        this.mdp = mdp;
+        this.email = email;
+        this.adresse = adresse;
+        this.image = image;
+        this.genre = genre;
+    }*/
+    public Utilisateur( int numTel, int profil, int etat_compte, int date_inscription, int cin,
+                       Date dateNaissance, String nom, String prenom, String login, String mdp, String email,
+                       String adresse, String image, String genre) {
+        this.numTel = numTel;
+        this.profil = profil;
+        this.etat_compte = etat_compte;
+        this.date_inscription = date_inscription;
+        this.cin = cin;
         this.dateNaissance = dateNaissance;
         this.nom = nom;
         this.prenom = prenom;

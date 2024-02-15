@@ -1,8 +1,16 @@
 package models;
 
-public class Artiste {
+import java.sql.Date;
+
+public class Artiste extends Utilisateur {
     private int id ;
     private String description ;
+
+    public Artiste(String nom, String prenom, String email, int numTel, String login, String mdp,
+                   String image, String genre, Date dateNaissance, String adresse,  String description) {
+        super(nom, prenom, email, numTel, login, mdp, image, genre, dateNaissance, adresse);
+        this.description = description;
+    }
 
     public int getId() {
         return id;
