@@ -1,5 +1,6 @@
 package services.oeuvreArt;
 
+import models.Categorie;
 import models.OeuvreArt;
 import models.Utilisateur;
 import utils.MyDataBase;
@@ -106,8 +107,79 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
         return Oa;
     }
 
-    //public List<OeuvreArt> getAllOeuvreArtWithCategories() throws SQLException {}
-   //public List<OeuvreArt> getAllOeuvreArtWithArtistes() throws SQLException {}
+    @Override
+    public List<OeuvreArt> getAllOeuvreArt() throws SQLException {
+        String sql = "SELECT O.*, C.idCategorie, C.nomCategorie " +
+                "FROM oeuvreart O " +
+                "JOIN categorie C ON O.id_Categorie = C.idCategorie";
+
+        List<OeuvreArt> oeuvres = new ArrayList<>();
+        try (Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(sql)) {
+            while (rs.next()) {
+                OeuvreArt oeuvre = new OeuvreArt();
+                oeuvre.setId(rs.getInt("idOeuvreArt"));
+                oeuvre.setImage(rs.getString("image"));
+                oeuvre.setTitre(rs.getString("titre"));
+                oeuvre.setDescription(rs.getString("description"));
+                oeuvre.setDateAjout(rs.getDate("dateAjout"));
+                oeuvre.setPrixVente(rs.getFloat("prixVente"));
+
+                // Créer un objet Categorie
+                Categorie categorie = new Categorie();
+                categorie.setIdCategorie(rs.getInt("idCategorie"));
+                categorie.setNomCategorie(rs.getString("nomCategorie"));
+
+                // Définir la catégorie de l'œuvre d'art
+                oeuvre.setCategorie(categorie);
+
+                oeuvre.setStatus(rs.getString("status"));
+                oeuvre.setArtiste(rs.getString("artiste"));
+
+                oeuvres.add(oeuvre);
+            }
+        }
+
+        return oeuvres;
+    }
+
+    @Override
+    public List<OeuvreArt> getAllOeuvreArtByCategorie(String categorie) throws SQLException {
+        String sql = "SELECT O.*, C.idCategorie, C.nomCategorie " +
+                "FROM oeuvreart O " +
+                "JOIN categorie C ON O.id_Categorie = C.idCategorie " +
+                "WHERE C.nomCategorie = ?";
+
+        List<OeuvreArt> oeuvres = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, categorie);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    OeuvreArt oeuvre = new OeuvreArt();
+                    oeuvre.setId(rs.getInt("idOeuvreArt"));
+                    oeuvre.setImage(rs.getString("image"));
+                    oeuvre.setTitre(rs.getString("titre"));
+                    oeuvre.setDescription(rs.getString("description"));
+                    oeuvre.setDateAjout(rs.getDate("dateAjout"));
+                    oeuvre.setPrixVente(rs.getFloat("prixVente"));
+
+                    Categorie categorieObj = new Categorie();
+                    categorieObj.setIdCategorie(rs.getInt("idCategorie"));
+                    categorieObj.setNomCategorie(rs.getString("nomCategorie"));
+
+                    oeuvre.setCategorie(categorieObj);
+                    oeuvre.setStatus(rs.getString("status"));
+                    oeuvre.setArtiste(rs.getString("artiste"));
+
+                    oeuvres.add(oeuvre);
+                }
+            }
+        }
+        return oeuvres;
+    }
+
+
+    //public List<OeuvreArt> getAllOeuvreArtWithArtistes() throws SQLException {}
 
 
 
