@@ -51,7 +51,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <PasswordField layoutX="484.0" layoutY="338.0" prefHeight="46.0" prefWidth="302.0" promptText="Mot de passe" styleClass="password-field">
+      <PasswordField layoutX="484.0" layoutY="338.0" prefHeight="46.0" prefWidth="302.0" promptText="  Mot de passe" styleClass="password-field">
          <font>
             <Font size="20.0" />
          </font>
