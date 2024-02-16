@@ -3,6 +3,7 @@ package services.utilisateur;
 import models.Utilisateur;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import utils.MyDataBase;
@@ -18,7 +19,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     public void ajouter(Utilisateur utilisateur) throws SQLException {
             String req= "INSERT INTO utilisateur(nom, prenom, email, numTel, login,cin, mdp,profil, image, genre, dateNaissance, " +
                     "adresse,date_inscription, etat_compte)" +
-
                     "values('" + utilisateur.getNom() + "'," +
                     "'" + utilisateur.getPrenom() + "'," +
                     "'" + utilisateur.getEmail() + "'," +
@@ -31,28 +31,20 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                     "'" + utilisateur.getGenre() + "'," +
                     "'" + utilisateur.getDateNaissance() + "'," +
                     "'" + utilisateur.getAdresse() + "'," +
-                    "'" + utilisateur.getDate_inscription() + "'," +
+                    "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
                     "'" + utilisateur.getEtat_compte() + "')";
         Statement satatement = connection.createStatement();
         satatement.executeUpdate(req);
     }
-    /*public void creerCompte (Utilisateur utilisateur) throws SQLException {
-        String nomInterface ="" ;
-        String prenomInterface ="" ;
-        if ("".equals(nomInterface)) {
-            System.out.println("le nom d'utilisateur est vide !!!");
-        } else if (prenomInterface.equals("")) {
 
-        }
-    }*/
-    public void validateLogin (String loginFourni, String mdpFourni )throws SQLException{
+    public int validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
         String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(reqVerif) ;
+        int profilUser = 0 ;
         while (rs.next()) {
             if ( rs.getInt(1) == 1 ){
-
                 String reqmdp = "SELECT mdp from utilisateur WHERE login = '"+ loginFourni +"'";
                 Statement statement1 = connection.createStatement();
                 ResultSet rs1 = statement1.executeQuery(reqmdp) ;
@@ -64,13 +56,50 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                 if (mdphashed == true ) {
                     System.out.println("welcome !!" );
                 }
+                String reqprofil = "SELECT profil from utilisateur WHERE login = '"+ loginFourni +"'";
+                Statement statement3 = connection.createStatement();
+                ResultSet rs3 = statement3.executeQuery(reqprofil) ;
+
+                while (rs3.next()) {
+                    profilUser = rs3.getInt(1);
+                }
+
             }else{
                 System.out.println("verifiez vos parametres d'authentification !! ");
+                profilUser = 3;
             }
         }
+        //System.out.println("rahou artiste l'id te3ou 1 : " + profilUser );
+        return profilUser ;
 
-
-
+    }
+    public void register(Utilisateur utilisateur, String role) throws SQLException {
+         if (role.equals("artiste")) {
+             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
+                     "values('" + utilisateur.getNom() + "'," +
+                     "'" + utilisateur.getPrenom() + "'," +
+                     "'" + utilisateur.getEmail() + "'," +
+                     "'" + utilisateur.getLogin() + "'," +
+                     "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
+                     "'" + 1 + "'," +
+                     "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
+                     "'" + 0 + "')";
+             Statement statement = connection.createStatement();
+             statement.executeUpdate(req) ;
+         }
+         if (role.equals("client")) {
+             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
+                     "values('" + utilisateur.getNom() + "'," +
+                     "'" + utilisateur.getPrenom() + "'," +
+                     "'" + utilisateur.getEmail() + "'," +
+                     "'" + utilisateur.getLogin() + "'," +
+                     "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
+                     "'" + 2 + "'," +
+                     "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
+                     "'" + 0 + "')";
+             Statement statement = connection.createStatement();
+             statement.executeUpdate(req) ;
+         }
 
 
     }

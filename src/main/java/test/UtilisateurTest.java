@@ -6,22 +6,20 @@ import org.mindrot.jbcrypt.BCrypt;
 import services.utilisateur.UtilisateurService;
 import utils.MyDataBase;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Date;
 
 
 public class UtilisateurTest {
     public static void main(String[] args) throws SQLException {
         // MyDataBase d =  MyDataBase.getInstance();
         UtilisateurService user1 = new UtilisateurService();
-    try {
-            user1.ajouter(new Utilisateur(
-                    "crypted", "pwd","chelck@gmail.com",
-                    22309479, "login", "123","imaage ", "genre",
-                    new java.sql.Date(28022005), "addddd"));
+   /* try {
+         user1.ajouter(new Utilisateur( "Ouelhazi", "jalila","jalila@gmail.com",67458920,
+                 "jalila", 12852360,"123.",1,"imaage ", "femme",new java.sql.Date(28022005), "addddd",0));
         } catch (SQLException s){
             System.out.println(s.getMessage());
-        }
+        }*/
         /*
         try {
             user1.modifier(new Utilisateur(1, "edit", "test","cryptage@gmail.com",
@@ -49,11 +47,18 @@ public class UtilisateurTest {
             System.out.println("Incorrect password!");
         }*/
 
-    //user1.validateLogin("2330AFT","123.");
-   // user1.validateLogin("2330AFT","1888823.");
+        System.out.println(user1.validateLogin("hamdzaa","123."));
+    user1.validateLogin("hamza2","1888823.");
+/*
+        try {
+            user1.register(new Utilisateur( "hamza","ouelhazi","hamzaa@gmail.com", "hamzaa", "123."),"artiste");
+            user1.register(new Utilisateur( "hamza","ouelhazi","hamza2@gmail.com", "hamza2", "123."),"client");
 
+        } catch (SQLException s){
+            System.out.println(s.getMessage());
+        }
 
-
+*/
 
 
     }
