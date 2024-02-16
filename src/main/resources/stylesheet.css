@@ -1,0 +1,28 @@
+.parent {
+  -fx-background-color: #cdc2be;
+}
+.sidebar {
+  -fx-background-color: #408080;
+}
+.forgetBtn {
+  -fx-text-fill: #ff00ff;
+  -fx-underline-color: true;
+}
+
+/* Hover effect for the forget button */
+.forgetBtn:hover {
+  -fx-text-fill: #008040;
+}
+
+.loginBtn {
+  -fx-background-color: #cdc2be;
+  -fx-text-fill: #593a37;
+}
+
+.loginBtn:hover {
+  -fx-background-color: transparent;
+  -fx-text-fill: #bc5f6a; ;
+  -fx-border-color: #bc5f6a ;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+}
