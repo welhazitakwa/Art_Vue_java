@@ -54,7 +54,7 @@ public class Login {
             alert.show();
 
         } else {
-            labelError.setText("Merci de vérifier vos données.");
+            labelError.setText("Merci de vérifier vos données !");
         }
     }
 
