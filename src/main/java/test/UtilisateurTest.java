@@ -67,9 +67,10 @@ public class UtilisateurTest {
             System.out.println("Incorrect password!");
         }*/
 
-       /* System.out.println(user1.validateLogin("hamdzaa","123."));
-    user1.validateLogin("hamza2","1888823.");*/
-/*
+
+      //  System.out.println(user1.validateLogin("hamdzaa","123."));
+    user1.validateLogin("hamza2","1888823.");
+
         try {
             user1.register(new Utilisateur( "hamza","ouelhazi","hamzaa@gmail.com", "hamzaa", "123."),"artiste");
             user1.register(new Utilisateur( "hamza","ouelhazi","hamza2@gmail.com", "hamza2", "123."),"client");
