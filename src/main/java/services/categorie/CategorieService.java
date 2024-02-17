@@ -66,22 +66,36 @@ public class CategorieService implements ICategorie<Categorie>{
     }
 
     @Override
-    public boolean getCategorie(Categorie c) {
-        try {
-            PreparedStatement ps;
-            ps = connection.prepareStatement("SELECT * FROM categorie WHERE nomCategorie = ?");
-            ps.setString(1, c.getNomCategorie());
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                System.out.println(rs.getString("nomCategorie"));
-                return true;
-            } else {
-                return false;
+    public Categorie getCategorieByNom(String nomCategorie) throws SQLException {
+        String sql = "SELECT * FROM categorie WHERE nomCategorie = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, nomCategorie);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    Categorie categorie = new Categorie();
+                    categorie.setIdCategorie(rs.getInt("idCategorie"));
+                    categorie.setNomCategorie(rs.getString("nomCategorie"));
+                    return categorie;
+                }
             }
-        } catch (SQLException ex) {
-            System.out.println(ex);
         }
-        return false;
+        return null;
+    }
+
+    @Override
+    public Categorie getCategorieById(int id) throws SQLException {
+        String sql = "SELECT * FROM categorie WHERE idCategorie = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    Categorie categorie = new Categorie();
+                    categorie.setIdCategorie(rs.getInt("idCategorie"));
+                    categorie.setNomCategorie(rs.getString("nomCategorie"));
+                    return categorie;
+                }
+            }
+        }
+        return null; // Si aucune catégorie correspondante n'est trouvée
     }
 }

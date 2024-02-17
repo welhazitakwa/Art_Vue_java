@@ -11,9 +11,9 @@ public class OeuvreArt {
     public float prixVente;
     public Categorie categorie;
     public String status;
-    public String artiste;
+    public Utilisateur artiste;
 
-    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, String artiste) {
+    public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, Utilisateur artiste) {
         this.id = id;
         this.image = image;
         this.titre = titre;
@@ -26,7 +26,7 @@ public class OeuvreArt {
         this.artiste = artiste;
     }
 
-    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, String artiste) {
+    public OeuvreArt(String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, Utilisateur artiste) {
         this.image = image;
         this.titre = titre;
         this.description = description;
@@ -37,7 +37,7 @@ public class OeuvreArt {
         this.artiste = artiste;
     }
 
-    public OeuvreArt(int id, String image, String titre, String description, float prixVente, Categorie categorie, String status, String artiste) {
+    public OeuvreArt(int id, String image, String titre, String description, float prixVente, Categorie categorie, String status, Utilisateur artiste) {
         this.id = id ;
         this.image = image;
         this.titre = titre;
@@ -116,11 +116,11 @@ public class OeuvreArt {
         this.status = status;
     }
 
-    public String getArtiste() {
+    public Utilisateur getArtiste() {
         return artiste;
     }
 
-    public void setArtiste(String artiste) {
+    public void setArtiste(Utilisateur artiste) {
         this.artiste = artiste;
     }
 

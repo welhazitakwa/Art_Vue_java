@@ -45,18 +45,39 @@ public class TestCategorie {
             System.out.println(Cs1.AfficherCategorie());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
-
-        Categorie categorie = new Categorie("peinture");
+        }
+*/
         try {
-            boolean categorieExiste = Cs1.getCategorie(categorie);
-            if (categorieExiste) {
-                System.out.println("La catégorie existe.");
+            // Nom de la catégorie à récupérer
+            String nomCategorie = "Peinture";
+            // Récupérer une catégorie par son nom
+            Categorie categorie = Cs1.getCategorieByNom(nomCategorie);
+
+            if (categorie != null) {
+                System.out.println("Catégorie trouvée :");
+                System.out.println("ID : " + categorie.getIdCategorie());
+                System.out.println("Nom : " + categorie.getNomCategorie());
             } else {
-                System.out.println("La catégorie n'existe pas.");
+                System.out.println("Aucune catégorie trouvée pour le nom : " + nomCategorie);
             }
-        } catch (Exception e) {
-            System.out.println("Erreur lors de la vérification de la catégorie : " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de la catégorie : " + e.getMessage());
+        }
+
+        try {
+            // Récupérer une catégorie par son ID
+            int idCategorie = 8; // ID de la catégorie à récupérer
+            Categorie categorie = Cs1.getCategorieById(idCategorie);
+
+            if (categorie != null) {
+                System.out.println("Catégorie trouvée :");
+                System.out.println("ID : " + categorie.getIdCategorie());
+                System.out.println("Nom : " + categorie.getNomCategorie());
+            } else {
+                System.out.println("Aucune catégorie trouvée pour l'ID : " + idCategorie);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de la catégorie : " + e.getMessage());
         }
     }
 
