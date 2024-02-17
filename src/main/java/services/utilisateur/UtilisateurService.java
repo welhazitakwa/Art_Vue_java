@@ -42,7 +42,10 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(reqVerif) ;
-        int profilUser = 0 ;
+        int profilUser = 3 ;
+
+
+
         while (rs.next()) {
             if ( rs.getInt(1) == 1 ){
                 String reqmdp = "SELECT mdp from utilisateur WHERE login = '"+ loginFourni +"'";
@@ -55,21 +58,26 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                 boolean mdphashed = checkExistingUser(mdpFourni , mdpfromdatabase );
                 if (mdphashed == true ) {
                     System.out.println("welcome !!" );
-                }
-                String reqprofil = "SELECT profil from utilisateur WHERE login = '"+ loginFourni +"'";
-                Statement statement3 = connection.createStatement();
-                ResultSet rs3 = statement3.executeQuery(reqprofil) ;
+                    String reqprofil = "SELECT profil from utilisateur WHERE login = '"+ loginFourni +"'";
+                    Statement statement3 = connection.createStatement();
+                    ResultSet rs3 = statement3.executeQuery(reqprofil) ;
 
-                while (rs3.next()) {
-                    profilUser = rs3.getInt(1);
+                    while (rs3.next()) {
+                        profilUser = rs3.getInt(1);
+                    }
                 }
+                if (mdphashed == false ) {
+                    System.out.println("mawelcomch !!" );
+                    profilUser = 3 ;
+                }
+
+
 
             }else{
                 System.out.println("verifiez vos parametres d'authentification !! ");
                 profilUser = 3;
             }
         }
-        //System.out.println("rahou artiste l'id te3ou 1 : " + profilUser );
         return profilUser ;
 
     }
