@@ -1,5 +1,6 @@
 package services.utilisateur;
 
+import models.Categorie;
 import models.Utilisateur;
 
 import java.sql.*;
@@ -164,6 +165,33 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         }
         return list;
     }
+
+    @Override
+    public  Utilisateur getUtilisateurById(int id) throws SQLException {
+        String sql = "SELECT * FROM utilisateur WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if (rs.next()) {
+            Utilisateur utilisateur = new Utilisateur();
+            utilisateur.setId(rs.getInt("id"));
+            utilisateur.setNom(rs.getString("nom"));
+            utilisateur.setPrenom(rs.getString("prenom"));
+            utilisateur.setEmail(rs.getString("email"));
+            utilisateur.setNumTel(rs.getInt("numTel"));
+            utilisateur.setLogin(rs.getString("login"));
+            utilisateur.setMdp(rs.getString("mdp"));
+            utilisateur.setImage(rs.getString("image"));
+            utilisateur.setGenre(rs.getString("genre"));
+            utilisateur.setDateNaissance(rs.getDate("dateNaissance"));
+            utilisateur.setAdresse(rs.getString("adresse"));
+            return utilisateur;
+        } else {
+            return null;
+        }
+    }
+
 
     public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
         return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);

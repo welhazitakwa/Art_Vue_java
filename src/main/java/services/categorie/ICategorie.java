@@ -10,6 +10,7 @@ public interface ICategorie <T> {
     void ModifierCategorie (T t ) throws SQLException;
     void SupprimerCategorie (int id ) throws SQLException;
     List<T> AfficherCategorie ( ) throws SQLException;
-    public boolean getCategorie(T t);
+    Categorie getCategorieById(int id) throws SQLException;
+    Categorie getCategorieByNom(String nomCategorie) throws SQLException;
 
 }
