@@ -2,7 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -31,11 +31,15 @@
                         <Image url="@../image/dashboard-76-128.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Dashboard">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Dashboard">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="15.0">
@@ -48,11 +52,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Utilisateurs">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Utilisateurs">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
                <padding>
                   <Insets left="9.0" />
@@ -68,11 +76,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Catégorie d'art">
+                  <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageCategorie" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Catégorie d'art">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
                <padding>
                   <Insets left="9.0" />
@@ -88,11 +100,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Oeuvre d'art">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Oeuvre d'art">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
                <padding>
                   <Insets left="9.0" />
@@ -108,11 +124,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Evénement">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Evenements">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
                <padding>
                   <Insets left="9.0" />
@@ -128,11 +148,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Jeux Concours">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Jeux Concours">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
                <padding>
                   <Insets left="9.0" />
@@ -148,11 +172,15 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="18.0" prefWidth="171.0" text="Statistique">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Statistiques">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
                </children>
                <padding>
                   <Insets left="9.0" />
@@ -211,280 +239,10 @@
                   </HBox>
                </children>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="primary-color" stylesheets="@../css/StyleMenu.css" VBox.vgrow="ALWAYS">
+            <VBox fx:id="contentArea" prefHeight="200.0" prefWidth="100.0" styleClass="primary-color" stylesheets="@../css/StyleMenu.css" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox spacing="20.0">
-                     <children>
-                        <Label text="Dashboard">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <HBox prefHeight="113.0" prefWidth="659.0" spacing="20.0">
-                           <children>
-                              <VBox prefHeight="112.0" prefWidth="240.0" styleClass="card" stylesheets="@../css/StyleMenu.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="30.0" prefWidth="118.0" text="Artiste">
-                                             <padding>
-                                                <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../image/121-art-64.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="66.0" prefWidth="243.0" text="100">
-                                       <padding>
-                                          <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </opaqueInsets>
-                              </VBox>
-                              <VBox prefHeight="112.0" prefWidth="240.0" styleClass="card2" stylesheets="@../css/StyleMenu.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="30.0" prefWidth="118.0" text="Client">
-                                             <padding>
-                                                <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../image/user-118-128.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="66.0" prefWidth="243.0" text="200">
-                                       <padding>
-                                          <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </opaqueInsets>
-                              </VBox>
-                              <VBox prefHeight="112.0" prefWidth="240.0" styleClass="card" stylesheets="@../css/StyleMenu.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="30.0" prefWidth="197.0" text="Oeuvre d'art">
-                                             <padding>
-                                                <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../image/121-art-64.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="66.0" prefWidth="243.0" text="150">
-                                       <padding>
-                                          <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </opaqueInsets>
-                              </VBox>
-                              <VBox prefHeight="112.0" prefWidth="240.0" styleClass="card2" stylesheets="@../css/StyleMenu.css">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="240.0">
-                                       <children>
-                                          <Label prefHeight="30.0" prefWidth="241.0" text="Catégorie d'art">
-                                             <padding>
-                                                <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../image/category.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="66.0" prefWidth="243.0" text="9">
-                                       <padding>
-                                          <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </opaqueInsets>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <HBox prefHeight="170.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                     <children>
-                        <VBox prefHeight="226.0" prefWidth="385.0" styleClass="card" stylesheets="@../css/StyleMenu.css">
-                           <children>
-                              <Label text="Meilleurs artistes">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox prefHeight="39.0" prefWidth="379.0">
-                                 <children>
-                                    <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../image/233AFT0551.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <VBox alignment="CENTER" prefHeight="51.0" prefWidth="167.0">
-                                       <children>
-                                          <Label prefHeight="18.0" prefWidth="151.0" text="Nourhen Ferjeni">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Label prefHeight="17.0" prefWidth="150.0" text="nourhen.ferjeni@gmail.com">
-                                             <font>
-                                                <Font size="11.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="20.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="39.0" prefWidth="379.0">
-                                 <children>
-                                    <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../image/oumeyma.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <VBox alignment="CENTER" prefHeight="51.0" prefWidth="167.0">
-                                       <children>
-                                          <Label prefHeight="18.0" prefWidth="151.0" text="Oumeyma Benkram">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Label prefHeight="17.0" prefWidth="150.0" text="oumeyma33@gmail.com">
-                                             <font>
-                                                <Font size="11.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" top="10.0" />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#initialize" text="Exit" />
+               </children></VBox>
          </children>
       </VBox>
    </center>

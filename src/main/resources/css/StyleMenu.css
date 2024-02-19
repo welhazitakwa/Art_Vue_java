@@ -9,7 +9,7 @@
     -fx-border-color: #6F6F6F;
     -fx-border-radius: 30;
 }
-.transparent {
+.Btn {
     -fx-background-color: rgba(0,0,0,0);
 }
 .primary-color{
@@ -20,7 +20,18 @@
     -fx-background-color: #fff;
     -fx-background-radius: 10;
 }
+.transparent {
+    -fx-background-color: transparent;
+}
 .card2 {
     -fx-background-color: #CDC2BE;
     -fx-background-radius: 10;
+}
+.Btn:hover, .Btn:pressed {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bc5f6a;
+    -fx-border-color: #bc5f6a;
+    -fx-border-width: 0px;
+    -fx-font-weight: bold;
+
 }
