@@ -34,7 +34,7 @@ public class AdminDashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnExit.setOnMouseClicked(e->{
+        /*btnExit.setOnMouseClicked(e->{
             System.exit(0);
         });
         try {
@@ -44,18 +44,31 @@ public class AdminDashboard implements Initializable {
         }
         catch (IOException ex){
             Logger.getLogger(ModuleLayer.Controller.class.getName()).log(Level.SEVERE , null , ex);
-        }
+        }*/
     }
 
     @FXML
     void pageCategorie(ActionEvent event) {
         try {
-            Parent fxml = FXMLLoader.load(getClass().getResource("pageCategoie.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriePage.fxml"));
+            Parent categoriePage = loader.load();
+            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
+            CategoriePage categorieController = loader.getController();
+
+            // Effacez le contenu existant et affichez la page de catégorie
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(categoriePage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll();
+    }
+
+
+
+    public void pageDashboard(ActionEvent actionEvent) {
+        // Charger le contenu de la page 2
+        contentArea.getChildren().clear();
+        contentArea.getChildren().add(new Button("Contenu de la page 2"));
     }
 }
 

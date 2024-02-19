@@ -30,23 +30,23 @@ public class TestCategorie {
         }
 
         try {
-            Cs6.ModifierCategorie(new Categorie(10, "NouveauMusique"));
+            Cs6.ModifierCategorie(new Categorie(19, "NouveauMusique"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
         try {
-            Cs6.SupprimerCategorie(10);
+            Cs6.SupprimerCategorie(19);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         try {
             System.out.println(Cs1.AfficherCategorie());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-*/
+/*
         try {
             // Nom de la catégorie à récupérer
             String nomCategorie = "Peinture";
@@ -78,7 +78,7 @@ public class TestCategorie {
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération de la catégorie : " + e.getMessage());
-        }
+        }*/
     }
 
 }

@@ -1,0 +1,33 @@
+/* styles.css */
+.main-container {
+    -fx-background-color: #ffffff; /* Blanc */
+}
+
+.form-container {
+    -fx-background-color: #ffffff; /* Blanc */
+    -fx-border-color: #bc5f6a; /* Rouge */
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+}
+
+.table-view-black {
+    -fx-background-color: #ffffff; /* Blanc */
+}
+
+.label-white {
+    -fx-text-fill: #ffffff; /* Blanc */
+}
+
+.text-field-black {
+    -fx-background-color: #ffffff; /* Blanc */
+    -fx-text-fill: #000000; /* Noir */
+}
+
+.button-black {
+    -fx-background-color: #593a37; /* Noir */
+    -fx-text-fill: #ffffff; /* Blanc */
+}
+
+.spacing {
+    -fx-padding: 20px;
+}

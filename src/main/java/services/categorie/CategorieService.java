@@ -17,6 +17,7 @@ public class CategorieService implements ICategorie<Categorie>{
         connection = MyDataBase.getInstance().getConnection();
     }
 
+//-------------------------Ajout Catégorie -----------------------------------------------
 
     @Override
     public void AjouterCategorie(Categorie categorie) throws SQLException {
@@ -27,9 +28,10 @@ public class CategorieService implements ICategorie<Categorie>{
             statement.executeUpdate(sql);
     }
 
+    //---------------------------------Modifier categorie---------------------------------
     @Override
     public void ModifierCategorie(Categorie categorie) throws SQLException {
-            String sql = "update categorie set nomCategorie = ? where id = ?";
+            String sql = "update categorie set nomCategorie = ? where idCategorie = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, categorie.getNomCategorie());
                 preparedStatement.setInt(2, categorie.getIdCategorie());
@@ -38,9 +40,11 @@ public class CategorieService implements ICategorie<Categorie>{
 
     }
 
+//-----------------------------Supprimer catégorie-------------------------------------------
+
     @Override
     public void SupprimerCategorie(int id) throws SQLException {
-        String req = "DELETE FROM `categorie` WHERE id=?";
+        String req = "DELETE FROM `categorie` WHERE idCategorie=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(req)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -57,7 +61,7 @@ public class CategorieService implements ICategorie<Categorie>{
 
             while (rs.next()) {
                 Categorie cat = new Categorie();
-                cat.setIdCategorie(rs.getInt("id"));
+                cat.setIdCategorie(rs.getInt("idCategorie"));
                 cat.setNomCategorie(rs.getString("nomCategorie"));
                 listeCategories.add(cat);
             }

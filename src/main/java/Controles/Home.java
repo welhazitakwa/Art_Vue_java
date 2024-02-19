@@ -18,9 +18,10 @@ public class Home extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        //Parent root= FXMLLoader.load(getClass().getResource("/fxml/ajouterCat.fxml"));
-        Parent root= FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        //Parent root= FXMLLoader.load(getClass().getResource("/fxml/AdminDashboard.fxml"));
+
+        //Parent root= FXMLLoader.load(getClass().getResource("/fxml/ajouterCategorie.fxml"));
+        //Parent root= FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/fxml/AdminDashboard.fxml"));
         //primaryStage.initStyle(StageStyle.UNDECORATED);
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
