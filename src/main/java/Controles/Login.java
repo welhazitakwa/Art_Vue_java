@@ -57,6 +57,15 @@ public class Login {
             labelError.setText("Merci de vérifier vos données !");
         }
     }
+    @FXML
+    void forgetBtn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void registerBtn(ActionEvent event) {
+
+    }
 
     @FXML
     void initialize() {

@@ -47,24 +47,14 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </TextField>
-      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="659.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="forget" text="Mot de passe oublié" wrappingWidth="132.803466796875">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
       <PasswordField fx:id="mdpTextField" layoutX="484.0" layoutY="338.0" prefHeight="46.0" prefWidth="302.0" promptText="  Mot de passe" styleClass="password-field">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="602.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel utilisateur ? ">
+      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="590.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel utilisateur ? ">
          <font>
             <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#eeae92" fontSmoothingType="LCD" layoutX="725.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'inscrire">
-         <font>
-            <Font name="System Bold" size="14.0" />
          </font>
       </Text>
       <Label fx:id="labelError" alignment="CENTER" layoutX="484.0" layoutY="180.0" prefHeight="46.0" prefWidth="302.0" text=" " textFill="#e10303">
@@ -72,6 +62,16 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
+      <Button layoutX="703.0" layoutY="488.0" mnemonicParsing="false" onAction="#registerBtn" styleClass="register" text="S'inscrire">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="645.0" layoutY="394.0" mnemonicParsing="false" onAction="#forgetBtn" styleClass="forget" text="Mot de  passe oublié">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets top="10.0" />
