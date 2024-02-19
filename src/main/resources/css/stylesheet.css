@@ -7,6 +7,7 @@
 .forget {
   -fx-underline: true;
   -fx-underline-color: #593a37;
+  -fx-background-color: rgba(0,0,0,0);
 }
 
 /* Hover effect for the forget button */
@@ -17,6 +18,10 @@
 .loginBtn {
   -fx-background-color: #cdc2be;
   -fx-text-fill: #593a37;
+}
+.register {
+  -fx-background-color: rgba(0,0,0,0);
+  -fx-text-fill: #eeae92;
 }
 
 .loginBtn:hover {
