@@ -23,6 +23,9 @@
   -fx-background-color: rgba(0,0,0,0);
   -fx-text-fill: #eeae92;
 }
+.register:hover {
+  -fx-text-fill: #bc5f6a;
+}
 
 .loginBtn:hover {
   -fx-background-color: transparent;
