@@ -82,7 +82,7 @@ public class mainexpo {
 
         //table offreenchere
 
-        OffreEnchereService cmd1 = new OffreEnchereService();
+        //OffreEnchereService cmd1 = new OffreEnchereService();
         /*OffreEnchereService cmd2 = new OffreEnchereService();
         OffreEnchereService cmd3 = new OffreEnchereService();
         OffreEnchereService cmd4 = new OffreEnchereService();

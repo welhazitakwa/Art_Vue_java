@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--fx:controller="Controles.AfficherExposition"-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<!--<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AfficherExposition">
+    <TableView fx:id="tableView" layoutX="28.0" layoutY="32.0" prefHeight="336.0" prefWidth="544.0">
+        <columns>
+            --><!-- Définir les colonnes sans spécifier les types de données -->
+            <!--<TableColumn text="ID" />
+            <TableColumn text="Nom" />
+            <TableColumn text="Date début" />
+            <TableColumn text="Date fin" />
+            <TableColumn text="Nombre d'oeuvres" />
+        </columns>
+    </TableView>
+</AnchorPane>-->
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AfficherExposition">
+    <center>
+        <!-- Contenu changeant de la page -->
+        <VBox fx:id="contentBox">
+            <!-- Contenu de la première page -->
+            <Button text="Page 1" onAction="#loadPage1"/>
+        </VBox>
+    </center>
+
+    <left>
+        <!-- Menu -->
+        <VBox style="-fx-background-color: lightgray;" spacing="10" prefWidth="200">
+            <Button text="Page 1" onAction="#loadPage1"/>
+            <Button text="Page 2" onAction="#loadPage2"/>
+            <Button text="Page 3" onAction="#loadPage3"/>
+            <Button text="Page 4" onAction="#loadPage4"/>
+        </VBox>
+    </left>
+
+</BorderPane>
