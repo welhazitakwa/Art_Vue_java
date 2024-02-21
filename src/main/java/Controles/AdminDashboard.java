@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class AdminDashboard implements Initializable {
@@ -29,6 +30,8 @@ public class AdminDashboard implements Initializable {
 
     @FXML
     private Button idBTNCategorie;
+    @FXML
+    private Label parametreField;
     @FXML
     private Button btnExit;
 
@@ -46,7 +49,9 @@ public class AdminDashboard implements Initializable {
             Logger.getLogger(ModuleLayer.Controller.class.getName()).log(Level.SEVERE , null , ex);
         }*/
     }
-
+    public void setParametre(String parametre) {
+        parametreField.setText(parametre);
+    }
     @FXML
     void pageCategorie(ActionEvent event) {
         try {
@@ -68,7 +73,9 @@ public class AdminDashboard implements Initializable {
     public void pageDashboard(ActionEvent actionEvent) {
         // Charger le contenu de la page 2
         contentArea.getChildren().clear();
-        contentArea.getChildren().add(new Button("Contenu de la page 2"));
+        contentArea.getChildren().add(new Button("Contenu de la page 2"+ "   l'id de l'utilisateur connecté "+parametreField.getText()));
     }
+
+
 }
 
