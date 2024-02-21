@@ -12,7 +12,6 @@
 .forget:hover {
   -fx-text-fill: #bc5f6a;
 }
-
 .loginBtn {
   -fx-background-color: #cdc2be;
   -fx-text-fill: #593a37;
@@ -22,7 +21,6 @@
   -fx-background-color: rgba(0,0,0,0);
   -fx-text-fill: #eeae92;
 }
-
 .loginBtn:hover {
   -fx-background-color: transparent;
   -fx-text-fill: #bc5f6a;
@@ -31,7 +29,6 @@
   -fx-border-style: solid;
   /*-fx-font-weight: bold;*/
 }
-
 .textField {
   -fx-background-color: rgba(0,0,0,0);
   -fx-background-insets: 0, 0 0 0 0;
@@ -39,12 +36,10 @@
   -fx-label-float: true;
   -fx-border-color: transparent transparent #bc5f6a transparent;
 }
-
 .textField:focused {
   -fx-border-color: transparent transparent #bc5f6a transparent;
   -fx-background-color: -fx-focus-color, -fx-background;
 }
-
 .password-field {
   -fx-background-color: transparent;
   -fx-padding: 0 0 -1 0;
@@ -53,17 +48,13 @@
   -fx-label-float: true;
   -fx-border-color: transparent transparent #bc5f6a transparent;
 }
-
 .password-field:focused {
   -fx-background-insets:0, 0 0 0 0;
   -fx-border-color: transparent transparent #bc5f6a transparent;
 -fx-background-color: transparent;}
-
-
 {
   -fx-darkest-grey-color: #bc5f6a;
 }
-
 .radio-button .radio {
   -fx-border-width: 1px;
   -fx-border-color: #593a37;
