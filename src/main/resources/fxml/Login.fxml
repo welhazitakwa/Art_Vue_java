@@ -37,7 +37,7 @@
             <Font name="Calibri" size="19.0" />
          </font>
       </Text>
-      <Button layoutX="484.0" layoutY="444.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="43.0" prefWidth="302.0" style="-fx-background-color: CDC2BE;" styleClass="loginBtn" text="Se Connecter" textAlignment="RIGHT" textFill="#593a37">
+      <Button layoutX="484.0" layoutY="444.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="43.0" prefWidth="302.0" styleClass="loginBtn" text="Se Connecter" textAlignment="RIGHT" textFill="#593a37">
          <font>
             <Font size="20.0" />
          </font>
