@@ -58,6 +58,21 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         return existinlogin ;
     }
 
+    public int getIdUserConnected(String login, String pwd) throws SQLException {
+        int userLogin = 0;
+        if (validateLogin(login,pwd)==0 || validateLogin(login,pwd)==1 ||validateLogin(login,pwd)==2) {
+
+
+            String getID = "SELECT id from utilisateur WHERE login = '" + login + "'";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(getID);
+
+            while (rs.next()) {
+                userLogin = rs.getInt("id");
+            }
+        }
+        return userLogin ;
+    }
     public int validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
         String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";

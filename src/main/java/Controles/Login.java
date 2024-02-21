@@ -38,7 +38,7 @@ public class Login {
     private Label labelError;
 
     @FXML
-    void seConnecter(ActionEvent event) {
+    void seConnecter(ActionEvent event) throws SQLException {
         UtilisateurService user1 = new UtilisateurService();
         int validLogin = 5;
         try {
@@ -50,23 +50,22 @@ public class Login {
             alert2.setContentText(e.getMessage());
             alert2.show();
             labelError.setText(" ");
-
         }
         if (validLogin == 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("c'est un admin");
+            alert.setContentText("c'est un admin"+" l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
             alert.show();
             labelError.setText(" ");
 
         } else if (validLogin == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("c'est un artiste");
+            alert.setContentText("c'est un artiste"+ " l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
             alert.show();
             labelError.setText(" ");
 
         }else if (validLogin == 2) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("c'est un client");
+            alert.setContentText("c'est un client"+ " l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
             alert.show();
             labelError.setText(" ");
         } else {
