@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Login">
+<AnchorPane fx:id="contentArea" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Login">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -37,7 +37,7 @@
             <Font name="Calibri" size="19.0" />
          </font>
       </Text>
-      <Button layoutX="484.0" layoutY="444.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="43.0" prefWidth="302.0" style="-fx-background-color: CDC2BE;" styleClass="loginBtn" text="Se Connecter" textAlignment="RIGHT" textFill="#593a37">
+      <Button layoutX="484.0" layoutY="447.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="43.0" prefWidth="302.0" styleClass="loginBtn" text="Se Connecter" textAlignment="RIGHT" textFill="#593a37">
          <font>
             <Font size="20.0" />
          </font>
@@ -47,24 +47,14 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </TextField>
-      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="659.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="forget" text="Mot de passe oublié" wrappingWidth="132.803466796875">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <PasswordField fx:id="mdpTextField" layoutX="484.0" layoutY="338.0" prefHeight="46.0" prefWidth="302.0" promptText="  Mot de passe" styleClass="password-field">
+      <PasswordField fx:id="mdpTextField" layoutX="484.0" layoutY="336.0" prefHeight="46.0" prefWidth="302.0" promptText="  Mot de passe" styleClass="password-field">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="602.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel utilisateur ? ">
+      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="590.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel utilisateur ? ">
          <font>
             <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#eeae92" fontSmoothingType="LCD" layoutX="725.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'inscrire">
-         <font>
-            <Font name="System Bold" size="14.0" />
          </font>
       </Text>
       <Label fx:id="labelError" alignment="CENTER" layoutX="484.0" layoutY="180.0" prefHeight="46.0" prefWidth="302.0" text=" " textFill="#e10303">
@@ -72,6 +62,16 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
+      <Button layoutX="703.0" layoutY="499.0" mnemonicParsing="false" onAction="#registerBtn" styleClass="register" text="S'inscrire">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="645.0" layoutY="394.0" mnemonicParsing="false" onAction="#forgetBtn" styleClass="forget" text="Mot de  passe oublié">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets top="10.0" />
