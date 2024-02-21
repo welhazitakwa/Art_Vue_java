@@ -37,6 +37,26 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         Statement satatement = connection.createStatement();
         satatement.executeUpdate(req);
     }
+    public int validateRegisterLoginMail(String login,String mail) throws SQLException {
+        String reqVerif = "SELECT count(*) from utilisateur WHERE login = '" + login + "'";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(reqVerif);
+        int existinlogin = 0;
+        while (rs.next()) {
+            if (rs.getInt(1) == 1) {
+                existinlogin = 1;
+            } }
+
+
+        String reqVerif2 = "SELECT count(*) from utilisateur WHERE email = '" + mail + "'";
+        Statement statement2 = connection.createStatement();
+        ResultSet rs2 = statement2.executeQuery(reqVerif2);
+        while (rs2.next()) {
+            if (rs2.getInt(1) == 1) {
+                existinlogin = 2;
+            } }
+        return existinlogin ;
+    }
 
     public int validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
@@ -44,7 +64,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(reqVerif) ;
         int profilUser = 3 ;
-
 
 
         while (rs.next()) {

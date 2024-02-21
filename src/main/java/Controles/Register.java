@@ -74,55 +74,57 @@ public class Register {
 
         } else {
             regerror.setText(" ");
-            if (pwdd.getText().equals(confirmpwd.getText())) {
-                try {
-                    user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),selectedValue);
-                } catch (SQLException e) {
-                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                    alert2.setContentText(e.getMessage());
-                    alert2.show();
+            int validLogin = 0;
+            try {
+                validLogin = user1.validateRegisterLoginMail(login.getText(),email.getText());
+                System.out.println("haw dkhal lel tryy");
+                System.out.println("w raw lvariable li ntasti beha "+validLogin);
+
+                if (validLogin == 1) {
+                    regerror.setText("Ce login est déjà utilisé !");
+                }
+                else if (validLogin == 2) {
+                    regerror.setText("Cette adresse mail est déjà utilisé !");
+                }
+                else {
+
+                    if (pwdd.getText().equals(confirmpwd.getText())) {
+                        try {
+                            user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),selectedValue);
+                        } catch (SQLException e) {
+                            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                            alert2.setContentText(e.getMessage());
+                            alert2.show();
+                        }
+                        regerror.setTextFill(Color.GREEN);
+                        regerror.setText(" Vous pouvez connecter maintenant ! ");
+                    }
+
+
+                    else {
+                        regerror.setText(" Essayez de reconfirmer votre mot de passe !");
+
+                    }
+
+
+
+
+
+
+
                 }
 
-                regerror.setTextFill(Color.GREEN);
-                regerror.setText(" Vous pouvez connecter maintenant ! ");
-            } else {
-                regerror.setText(" Essayez de reconfirmer votre mot de passe !");
+                } catch (SQLException e) {
+                throw new RuntimeException(e);}
 
-            }
 
         }
         } else {
             System.out.println("Aucun RadioButton sélectionné.");
             regerror.setText("Vous êtes un Artiste ou un Client ?");
 
-            //label ta3 erreuuur
         }
-        int registeruser = 5;
-//        try {
-//            user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),"artiste");
-//            //  System.out.println(loginTextField.getText());
-//            //  System.out.println(mdpTextField.getText());
-//        } catch (SQLException e) {
-//            Alert alert2 = new Alert(Alert.AlertType.ERROR);
-//            alert2.setContentText(e.getMessage());
-//            alert2.show();
-//        }
-//        if (validLogin == 0) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setContentText("c'est un admin");
-//            alert.show();
-//        } else if (validLogin == 1) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setContentText("c'est un artiste");
-//            alert.show();
-//        }else if (validLogin == 2) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setContentText("c'est un client");
-//            alert.show();
-//
-//        } else {
-//            labelError.setText("Merci de vérifier vos données !");
-//        }
+
     }
 
 }
