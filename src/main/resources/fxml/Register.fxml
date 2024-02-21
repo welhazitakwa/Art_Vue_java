@@ -1,11 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Register">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../css/stylesheetRegister.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="400.0" prefWidth="268.0" styleClass="sidebar" stylesheets="@../css/stylesheetRegister.css" />
-   </children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: CDC2BE;" styleClass="sidebar">
+               <children>
+                  <ImageView fitHeight="363.0" fitWidth="362.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/artVue.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Label layoutX="457.0" layoutY="39.0" text="Formulaire d'inscription" textFill="#593a37">
+         <font>
+            <Font name="Calibri Bold" size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="478.0" layoutY="79.0" text="Remplir le formulaire d’inscription" textFill="#593a37">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+
+      <RadioButton layoutX="467.0" layoutY="218.0" mnemonicParsing="false" text="Je suis un artiste">
+         <toggleGroup>
+            <ToggleGroup fx:id="toggleGroup" />
+         </toggleGroup>
+         <font>
+            <Font size="15.0" />
+         </font></RadioButton>
+      <RadioButton layoutX="646.0" layoutY="218.0" mnemonicParsing="false" text="Je suis un client" toggleGroup="$toggleGroup">
+         <font>
+            <Font name="Calibri" size="15.0" />
+         </font></RadioButton>
+      <TextField layoutX="441.0" layoutY="291.0" prefHeight="39.0" prefWidth="182.0" promptText="prenom" styleClass="textField">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font></TextField>
+      <TextField layoutX="659.0" layoutY="291.0" prefHeight="39.0" prefWidth="182.0" promptText="Nom" styleClass="textField">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font></TextField>
+      <TextField layoutX="440.0" layoutY="359.0" prefHeight="39.0" prefWidth="182.0" promptText="email" styleClass="textField">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font></TextField>
+      <TextField layoutX="658.0" layoutY="359.0" prefHeight="39.0" prefWidth="182.0" promptText="login" styleClass="textField">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font></TextField>
+      <PasswordField layoutX="441.0" layoutY="420.0" prefHeight="44.0" prefWidth="400.0" promptText="Mot de passe">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </PasswordField>
+      <PasswordField layoutX="441.0" layoutY="484.0" prefHeight="44.0" prefWidth="400.0" promptText="Confirmer mot de passe">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="442.0" layoutY="551.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" styleClass="loginBtn" text="S'inscrire">
+         <font>
+            <Font name="Calibri" size="25.0" />
+         </font>
+      </Button>   </children>
 </AnchorPane>
