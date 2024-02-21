@@ -49,20 +49,26 @@ public class Login {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setContentText(e.getMessage());
             alert2.show();
+            labelError.setText(" ");
+
         }
         if (validLogin == 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("c'est un admin");
             alert.show();
+            labelError.setText(" ");
+
         } else if (validLogin == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("c'est un artiste");
             alert.show();
+            labelError.setText(" ");
+
         }else if (validLogin == 2) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("c'est un client");
             alert.show();
-
+            labelError.setText(" ");
         } else {
             labelError.setText("Merci de vérifier vos données !");
         }

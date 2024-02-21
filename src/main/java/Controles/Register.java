@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
 
 import java.io.IOException;
@@ -41,6 +42,8 @@ public class Register {
 
     @FXML
     private ToggleGroup toggleGroup;
+    @FXML
+    private Label regerror;
 
     @FXML
     void connecterButton(ActionEvent event) {
@@ -56,10 +59,39 @@ public class Register {
 
     @FXML
     void sinscrireButton(ActionEvent event) {
-//        UtilisateurService user1 = new UtilisateurService();
-//        //int validLogin = 5;
+        UtilisateurService user1 = new UtilisateurService();
+        Toggle selectedToggle = toggleGroup.getSelectedToggle();
+        if (selectedToggle != null) {
+            RadioButton selectedRadioButton = (RadioButton) selectedToggle;
+            String selectedValue = selectedRadioButton.getText();
+
+        if ( nom.getText().equals("") || prenom.getText().equals("") || pwdd.equals("")||login.getText().equals("") ||
+                email.getText().equals("")|| confirmpwd.getText().equals("") ) {
+            regerror.setText("Vous devez remplir tous les données ");
+
+        } else {
+            regerror.setText(" ");
+
+
+        }
+//            try {
+//            user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),"artiste");
+//            //  System.out.println(loginTextField.getText());
+//            //  System.out.println(mdpTextField.getText());
+//        } catch (SQLException e) {
+//            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+//            alert2.setContentText(e.getMessage());
+//            alert2.show();
+//        }
+        } else {
+            System.out.println("Aucun RadioButton sélectionné.");
+            regerror.setText("Vous êtes un artiste ou un client ?");
+
+            //label ta3 erreuuur
+        }
+        int registeruser = 5;
 //        try {
-//            validLogin = user1.validateLogin(loginTextField.getText(), mdpTextField.getText());
+//            user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),"artiste");
 //            //  System.out.println(loginTextField.getText());
 //            //  System.out.println(mdpTextField.getText());
 //        } catch (SQLException e) {
