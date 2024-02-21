@@ -6,11 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import static java.awt.Color.green;
 
 public class Register {
     @FXML
@@ -67,25 +70,30 @@ public class Register {
 
         if ( nom.getText().equals("") || prenom.getText().equals("") || pwdd.equals("")||login.getText().equals("") ||
                 email.getText().equals("")|| confirmpwd.getText().equals("") ) {
-            regerror.setText("Vous devez remplir tous les données ");
+            regerror.setText("Assurez-vous de remplir toutes les données !");
 
         } else {
             regerror.setText(" ");
+            if (pwdd.getText().equals(confirmpwd.getText())) {
+                try {
+                    user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),selectedValue);
+                } catch (SQLException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.setContentText(e.getMessage());
+                    alert2.show();
+                }
 
+                regerror.setTextFill(Color.GREEN);
+                regerror.setText(" Vous pouvez connecter maintenant ! ");
+            } else {
+                regerror.setText(" Essayez de reconfirmer votre mot de passe !");
+
+            }
 
         }
-//            try {
-//            user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),"artiste");
-//            //  System.out.println(loginTextField.getText());
-//            //  System.out.println(mdpTextField.getText());
-//        } catch (SQLException e) {
-//            Alert alert2 = new Alert(Alert.AlertType.ERROR);
-//            alert2.setContentText(e.getMessage());
-//            alert2.show();
-//        }
         } else {
             System.out.println("Aucun RadioButton sélectionné.");
-            regerror.setText("Vous êtes un artiste ou un client ?");
+            regerror.setText("Vous êtes un Artiste ou un Client ?");
 
             //label ta3 erreuuur
         }

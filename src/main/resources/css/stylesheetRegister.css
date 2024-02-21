@@ -87,3 +87,6 @@
   -fx-background-color: #50b1b0;
   -fx-background-insets: 0;
 }
+.error-text {
+  -fx-fill: green; /* Couleur du texte en vert */
+}

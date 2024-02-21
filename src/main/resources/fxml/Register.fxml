@@ -27,65 +27,65 @@
             </VBox>
          </children>
       </VBox>
-      <Label layoutX="457.0" layoutY="73.0" text="Formulaire d'inscription" textFill="#593a37">
+      <Label layoutX="457.0" layoutY="78.0" text="Formulaire d'inscription" textFill="#593a37">
          <font>
             <Font name="Calibri Bold" size="38.0" />
          </font>
       </Label>
-      <Label layoutX="478.0" layoutY="113.0" text="Remplir le formulaire d’inscription" textFill="#593a37">
+      <Label layoutX="478.0" layoutY="118.0" text="Remplir le formulaire d’inscription" textFill="#593a37">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Label>
 
-      <RadioButton fx:id="artisteRadio" layoutX="493.0" layoutY="241.0" mnemonicParsing="false" text="Je suis un artiste">
+      <RadioButton fx:id="artisteRadio" layoutX="493.0" layoutY="225.0" mnemonicParsing="false" text="Je suis un artiste">
          <toggleGroup>
             <ToggleGroup fx:id="toggleGroup" />
          </toggleGroup>
          <font>
             <Font size="15.0" />
          </font></RadioButton>
-      <RadioButton fx:id="clientRadio" layoutX="653.0" layoutY="241.0" mnemonicParsing="false" text="Je suis un client" toggleGroup="$toggleGroup">
+      <RadioButton fx:id="clientRadio" layoutX="653.0" layoutY="225.0" mnemonicParsing="false" text="Je suis un client" toggleGroup="$toggleGroup">
          <font>
             <Font name="Calibri" size="15.0" />
          </font></RadioButton>
-      <TextField fx:id="prenom" layoutX="441.0" layoutY="285.0" prefHeight="39.0" prefWidth="182.0" promptText="prenom" styleClass="textField">
+      <TextField fx:id="prenom" layoutX="441.0" layoutY="280.0" prefHeight="39.0" prefWidth="182.0" promptText="prenom" styleClass="textField">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></TextField>
-      <TextField fx:id="nom" layoutX="659.0" layoutY="285.0" prefHeight="39.0" prefWidth="182.0" promptText="Nom" styleClass="textField">
+      <TextField fx:id="nom" layoutX="659.0" layoutY="280.0" prefHeight="39.0" prefWidth="182.0" promptText="Nom" styleClass="textField">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></TextField>
-      <TextField fx:id="email" layoutX="440.0" layoutY="357.0" prefHeight="39.0" prefWidth="182.0" promptText="email" styleClass="textField">
+      <TextField fx:id="email" layoutX="440.0" layoutY="352.0" prefHeight="39.0" prefWidth="182.0" promptText="email" styleClass="textField">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></TextField>
-      <TextField fx:id="login" layoutX="658.0" layoutY="357.0" prefHeight="39.0" prefWidth="182.0" promptText="login" styleClass="textField">
+      <TextField fx:id="login" layoutX="658.0" layoutY="352.0" prefHeight="39.0" prefWidth="182.0" promptText="login" styleClass="textField">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></TextField>
-      <PasswordField fx:id="pwdd" layoutX="441.0" layoutY="421.0" prefHeight="44.0" prefWidth="400.0" promptText="Mot de passe">
+      <PasswordField fx:id="pwdd" layoutX="441.0" layoutY="416.0" prefHeight="44.0" prefWidth="400.0" promptText="Mot de passe">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </PasswordField>
-      <PasswordField fx:id="confirmpwd" layoutX="441.0" layoutY="485.0" prefHeight="44.0" prefWidth="400.0" promptText="Confirmer mot de passe">
+      <PasswordField fx:id="confirmpwd" layoutX="441.0" layoutY="480.0" prefHeight="44.0" prefWidth="400.0" promptText="Confirmer mot de passe">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </PasswordField>
-      <Button layoutX="442.0" layoutY="555.0" mnemonicParsing="false" onAction="#sinscrireButton" prefHeight="50.0" prefWidth="400.0" styleClass="loginBtn" text="S'inscrire">
+      <Button layoutX="442.0" layoutY="550.0" mnemonicParsing="false" onAction="#sinscrireButton" prefHeight="50.0" prefWidth="400.0" styleClass="loginBtn" text="S'inscrire">
          <font>
             <Font name="Calibri" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="716.0" layoutY="609.0" mnemonicParsing="false" onAction="#connecterButton" styleClass="register" text="Se connecter">
+      <Button layoutX="715.0" layoutY="614.0" mnemonicParsing="false" onAction="#connecterButton" styleClass="register" text="Se connecter">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Label fx:id="regerror" alignment="CENTER" layoutX="432.0" layoutY="176.0" prefHeight="39.0" prefWidth="400.0" text=" " textFill="#e10303">
+      <Label fx:id="regerror" alignment="CENTER" layoutX="432.0" layoutY="168.0" prefHeight="39.0" prefWidth="400.0" text=" " textFill="#e10303">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
