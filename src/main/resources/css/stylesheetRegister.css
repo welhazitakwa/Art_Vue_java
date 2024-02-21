@@ -38,7 +38,7 @@
 }
 .textField:focused {
   -fx-border-color: transparent transparent #bc5f6a transparent;
-  -fx-background-color: -fx-focus-color, -fx-background;
+  -fx-background-color: rgba(0,0,0,0);
 }
 .password-field {
   -fx-background-color: transparent;

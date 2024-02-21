@@ -37,7 +37,7 @@
             <Font name="Calibri" size="19.0" />
          </font>
       </Text>
-      <Button layoutX="484.0" layoutY="444.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="43.0" prefWidth="302.0" styleClass="loginBtn" text="Se Connecter" textAlignment="RIGHT" textFill="#593a37">
+      <Button layoutX="484.0" layoutY="447.0" mnemonicParsing="false" onAction="#seConnecter" prefHeight="43.0" prefWidth="302.0" styleClass="loginBtn" text="Se Connecter" textAlignment="RIGHT" textFill="#593a37">
          <font>
             <Font size="20.0" />
          </font>
@@ -47,12 +47,12 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="mdpTextField" layoutX="484.0" layoutY="338.0" prefHeight="46.0" prefWidth="302.0" promptText="  Mot de passe" styleClass="password-field">
+      <PasswordField fx:id="mdpTextField" layoutX="484.0" layoutY="336.0" prefHeight="46.0" prefWidth="302.0" promptText="  Mot de passe" styleClass="password-field">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="590.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel utilisateur ? ">
+      <Text fill="#593a37" fontSmoothingType="LCD" layoutX="590.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel utilisateur ? ">
          <font>
             <Font size="14.0" />
          </font>
@@ -62,7 +62,7 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="703.0" layoutY="488.0" mnemonicParsing="false" onAction="#registerBtn" styleClass="register" text="S'inscrire">
+      <Button layoutX="703.0" layoutY="499.0" mnemonicParsing="false" onAction="#registerBtn" styleClass="register" text="S'inscrire">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
