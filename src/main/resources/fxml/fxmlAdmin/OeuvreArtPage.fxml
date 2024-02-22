@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controles.OeuvresArtController">
+
+    <TableView fx:id="oeuvresTableView">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="titreColumn" text="Titre" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="titre"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="categorieColumn" text="Catégorie" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="categorie.nom"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="artisteColumn" text="Artiste" prefWidth="150">
+                <cellValueFactory>
+
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="description"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="imageColumn" text="Image" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="image"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="dateAjoutColumn" text="Date d'ajout" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="dateAjout"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="prixVenteColumn" text="Prix de vente" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="prixVente"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="statusColumn" text="Status" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="status"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionColumn" text="Action" />
+
+        </columns>
+    </TableView>
+
+</VBox>

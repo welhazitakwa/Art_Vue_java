@@ -158,7 +158,7 @@ public class mainOeuvreArt {
 
         //----------------------------Afficher tous les oeuvre d'art-------------------------------------------------------
 
-       /* try {
+        try {
             // Récupération de toutes les œuvres d'art
             List<OeuvreArt> oeuvres = oeuvreArtService.AfficherOeuvreArt();
 
@@ -183,7 +183,7 @@ public class mainOeuvreArt {
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération des œuvres d'art : " + e.getMessage());
-        } */
+        }
 
         //------------------------------------Afficher Oeuvre d'art By ID---------------------------------------------------
 

@@ -37,7 +37,6 @@ public class CategorieService implements ICategorie<Categorie>{
                 preparedStatement.setInt(2, categorie.getIdCategorie());
                 preparedStatement.executeUpdate();
             }
-
     }
 
 //-----------------------------Supprimer catégorie-------------------------------------------
@@ -100,6 +99,6 @@ public class CategorieService implements ICategorie<Categorie>{
                 }
             }
         }
-        return null; // Si aucune catégorie correspondante n'est trouvée
+        return null;
     }
 }

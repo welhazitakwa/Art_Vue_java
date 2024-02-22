@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="600" style="-fx-background-color: #f0f0f0; -fx-padding: 20;" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.CategoriePage">
+
+          <!-- Titre -->
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Gestion des Catégories">
+        <VBox.margin>
+            <Insets bottom="40.0" />
+        </VBox.margin>
+    </Label>
+
+    <!-- Formulaire d'ajout de nouvelle catégorie -->
+    <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #ffffff; -fx-padding: 20; -fx-border-radius: 5px;">
+        <Label style="-fx-font-weight: bold; -fx-font-size: 18px;" text="Ajouter une nouvelle catégorie">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-weight: bold;" text="Nom Catégorie" />
+            <TextField fx:id="nomCategorieField" prefHeight="30.0" prefWidth="190.0" promptText="Entrez le nom de la catégorie" styleClass="input-field" />
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+        </HBox>
+   
+              <Button onAction="#ajouterCategorie" prefHeight="26.0" prefWidth="118.0" styleClass="ajouter-button" text="Ajouter">
+            <VBox.margin>
+                <Insets bottom="10.0" />
+            </VBox.margin>
+        </Button>
+    </VBox>
+
+          <!-- Titre du tableau -->
+    <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-padding: 20 0 10 0;" text="Liste des catégories" />
+
+                <!-- Tableau personnalisé pour afficher les catégories existantes -->
+    <TableView fx:id="tableCategories" prefHeight="400" prefWidth="250.0" style="-fx-background-color: #ffffff; -fx-padding: 20; -fx-border-radius: 5px;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID Catégorie">
+                <cellValueFactory>
+                    <PropertyValueFactory property="idCategorie" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="titreColumn" text="Nom Catégorie">
+                <cellValueFactory>
+               <PropertyValueFactory property="nomCategorie" />
+            </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionColumn" text="Action" />
+        </columns>
+    </TableView>
+</VBox>
