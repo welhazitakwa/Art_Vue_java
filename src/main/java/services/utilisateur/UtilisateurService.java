@@ -37,6 +37,26 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         Statement satatement = connection.createStatement();
         satatement.executeUpdate(req);
     }
+    public int validateRegisterLoginMail(String login,String mail) throws SQLException {
+        String reqVerif = "SELECT count(*) from utilisateur WHERE login = '" + login + "'";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(reqVerif);
+        int existinlogin = 0;
+        while (rs.next()) {
+            if (rs.getInt(1) == 1) {
+                existinlogin = 1;
+            } }
+
+
+        String reqVerif2 = "SELECT count(*) from utilisateur WHERE email = '" + mail + "'";
+        Statement statement2 = connection.createStatement();
+        ResultSet rs2 = statement2.executeQuery(reqVerif2);
+        while (rs2.next()) {
+            if (rs2.getInt(1) == 1) {
+                existinlogin = 2;
+            } }
+        return existinlogin ;
+    }
 
     public int validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
@@ -44,7 +64,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(reqVerif) ;
         int profilUser = 3 ;
-
 
 
         while (rs.next()) {
@@ -83,7 +102,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
     }
     public void register(Utilisateur utilisateur, String role) throws SQLException {
-         if (role.equals("artiste")) {
+         if (role.equals("Je suis un artiste")) {
              String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
                      "values('" + utilisateur.getNom() + "'," +
                      "'" + utilisateur.getPrenom() + "'," +
@@ -96,7 +115,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
              Statement statement = connection.createStatement();
              statement.executeUpdate(req) ;
          }
-         if (role.equals("client")) {
+         if (role.equals("Je suis un client")) {
              String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
                      "values('" + utilisateur.getNom() + "'," +
                      "'" + utilisateur.getPrenom() + "'," +

@@ -70,20 +70,5 @@ public class AdminDashboard implements Initializable {
         contentArea.getChildren().clear();
         contentArea.getChildren().add(new Button("Contenu de la page 2"));
     }
-    @FXML
-    public void PageExposition(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PageExposition.fxml"));
-            Parent pageExposition = loader.load();
-            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
-            PageExposition expositionController = loader.getController();
-
-            // Effacez le contenu existant et affichez la page de catégorie
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(pageExposition);
-        } catch (IOException ex) {
-            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }
 
