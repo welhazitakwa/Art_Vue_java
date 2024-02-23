@@ -69,7 +69,7 @@
                <children>
                   <ScrollPane prefHeight="426.0" prefWidth="1072.0">
                      <content>
-                        <VBox prefHeight="424.0" prefWidth="1074.0" style="-fx-background-color: #ffffff;">
+                        <VBox fx:id="usersLayout" prefHeight="424.0" prefWidth="1074.0" style="-fx-background-color: #ffffff;">
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="950.0" spacing="30.0" styleClass="light-gray-background" stylesheets="@../css/StylesheetUserDashboard.css">
                                  <children>

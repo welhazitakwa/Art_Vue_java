@@ -167,7 +167,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
 
     }
-
     @Override
     public void supprimer(int id) throws SQLException {
     String sql = "DELETE FROM `utilisateur` WHERE id=?";
@@ -175,7 +174,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
     }
-
     @Override
     public List<Utilisateur> listAll() throws SQLException {
         String sql = "select * from utilisateur " ;
@@ -190,11 +188,14 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             user.setEmail(rs.getString("email"));
             user.setNumTel(rs.getInt("numTel"));
             user.setLogin(rs.getString("login"));
+            user.setCin(rs.getInt("cin"));
             user.setMdp(rs.getString("mdp"));
+            user.setProfil(rs.getInt("profil"));
             user.setImage(rs.getString("image"));
             user.setGenre(rs.getString("genre"));
             user.setDateNaissance(rs.getDate("dateNaissance"));
             user.setAdresse(rs.getString("adresse"));
+            user.setDate_inscription(rs.getDate("date_inscription"));
             list.add(user) ;
         }
         return list;
@@ -220,6 +221,9 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             utilisateur.setGenre(rs.getString("genre"));
             utilisateur.setDateNaissance(rs.getDate("dateNaissance"));
             utilisateur.setAdresse(rs.getString("adresse"));
+            utilisateur.setDate_inscription(rs.getDate("date_inscription"));
+            utilisateur.setEtat_compte(rs.getInt("etat_compte"));
+
             return utilisateur;
         } else {
             return null;
