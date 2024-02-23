@@ -77,5 +77,18 @@ public class AdminDashboard implements Initializable {
     }
 
 
+    @FXML
+    void pageUtilisateurs(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UtilisateurDashboard.fxml"));
+            Parent UtilisateurPage = loader.load();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(UtilisateurPage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
 }
 
