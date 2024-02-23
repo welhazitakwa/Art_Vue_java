@@ -4,8 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -57,145 +55,110 @@
                   <Insets left="30.0" />
                </VBox.margin>
             </HBox>
-            <Label text="Liste des utilisateurs">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
-               </padding>
-               <font>
-                  <Font name="Calibri Bold" size="25.0" />
-               </font>
-            </Label>
+            <VBox>
+               <children>
+                  <HBox prefHeight="80.0" prefWidth="1034.0">
+                     <children>
+                        <Label prefHeight="75.0" prefWidth="878.0" text="Liste des utilisateurs">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Calibri Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="294.0" spacing="10.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#affichageArtistes" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: bc5f6a;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css" text="Artistes" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#AffichageClients" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #408080;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css" text="Clients" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="950.0" spacing="30.0" styleClass="light-gray-background" stylesheets="@../css/StylesheetUserDashboard.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="190.0" text="Nom et prenom" textFill="#573836">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Numéro de téléphone " textFill="#593a37">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" text="Email" textFill="#593a37">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="182.0" text="Adresse" textFill="#593a37">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="163.0" text="Actions" textFill="#593a37">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
             <HBox prefHeight="426.0" prefWidth="954.0" VBox.vgrow="ALWAYS">
                <children>
                   <ScrollPane prefHeight="426.0" prefWidth="1072.0">
                      <content>
                         <VBox fx:id="usersLayout" prefHeight="424.0" prefWidth="1074.0" style="-fx-background-color: #ffffff;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="950.0" spacing="30.0" styleClass="light-gray-background" stylesheets="@../css/StylesheetUserDashboard.css">
+                              <HBox fx:id="hbox2" alignment="CENTER" prefHeight="91.0" prefWidth="1074.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="190.0" text="Nom et prenom" textFill="#573836">
+                                    <Label fx:id="txt1" alignment="CENTER" text="Veuillez sélectionner le type d'affichage que vous souhaitez : ">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Numéro de téléphone " textFill="#593a37">
-                                       <font>
-                                          <Font name="Calibri Bold" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" text="Email" textFill="#593a37">
-                                       <font>
-                                          <Font name="Calibri Bold" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="182.0" text="Adresse" textFill="#593a37">
-                                       <font>
-                                          <Font name="Calibri Bold" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="163.0" text="Actions" textFill="#593a37">
-                                       <font>
-                                          <Font name="Calibri Bold" size="15.0" />
+                                          <Font name="Calibri Bold" size="30.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="40.0" />
+                                          <Insets top="100.0" />
                                        </HBox.margin>
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="65.0" prefWidth="1074.0" style="-fx-background-color: #FFFFFF;">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>
-                                    <ImageView fx:id="userImg" fitHeight="47.0" fitWidth="69.0">
-                                       <image>
-                                          <Image url="@../image/user1.jpg" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="6.0" top="10.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <VBox prefHeight="47.0" prefWidth="100.0">
-                                       <children>
-                                          <Label prefHeight="23.0" prefWidth="100.0" text="Ouelhazi">
-                                             <padding>
-                                                <Insets top="10.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                          </Label>
-                                          <Label prefHeight="8.0" prefWidth="100.0" text="Takwa">
-                                             <padding>
-                                                <Insets top="5.0" />
-                                             </padding>
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <padding>
-                                          <Insets left="7.0" />
-                                       </padding>
-                                    </VBox>
-                                    <Label alignment="CENTER" prefHeight="32.0" prefWidth="155.0" text="27 600 915">
-                                       <padding>
-                                          <Insets top="10.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets left="40.0" top="15.0" />
-                                       </HBox.margin>
+                                    <Label fx:id="txt2" text="Artistes" textFill="#bc5f6a">
                                        <font>
-                                          <Font size="15.0" />
+                                          <Font name="Calibri Bold" size="30.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="230.0" text="Takwa.Ouelhazi@esprit.tn">
-                                       <padding>
-                                          <Insets top="10.0" />
-                                       </padding>
+                                    <Label fx:id="txt3" text="ou">
                                        <font>
-                                          <Font size="15.0" />
+                                          <Font name="Calibri Bold" size="30.0" />
                                        </font>
-                                       <HBox.margin>
-                                          <Insets left="30.0" top="15.0" />
-                                       </HBox.margin>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="178.0" text="Ariana Soghra">
-                                       <padding>
-                                          <Insets top="10.0" />
-                                       </padding>
+                                    <Label fx:id="txt4" text="Clients" textFill="#408080">
                                        <font>
-                                          <Font size="15.0" />
+                                          <Font name="Calibri Bold" size="30.0" />
                                        </font>
-                                       <HBox.margin>
-                                          <Insets top="15.0" />
-                                       </HBox.margin>
                                     </Label>
-                                    <HBox alignment="CENTER" prefHeight="41.0" prefWidth="265.0" spacing="15.0">
-                                       <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #00C2DF;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css">
-                                             <graphic>
-                                                <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../image/details-removebg-preview.png" />
-                                                   </image></ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #ff0000;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css">
-                                             <graphic>
-                                                <ImageView fitHeight="19.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../image/deleteicon.png" />
-                                                   </image></ImageView>
-                                             </graphic>
-                                          </Button>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </HBox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>

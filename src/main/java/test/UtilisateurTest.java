@@ -57,7 +57,10 @@ public class UtilisateurTest {
 
 
 //        try {
-//            System.out.println(user1.listAll());
+//            System.out.println("lartttiiisstttessss");
+//            System.out.println(user1.listAllArtistes());
+//            System.out.println("cliiieennntttssss");
+//            System.out.println(user1.listClients());
 //        } catch (SQLException e) {
 //            throw new RuntimeException(e);
 //        }

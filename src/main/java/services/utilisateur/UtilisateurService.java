@@ -200,7 +200,56 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         }
         return list;
     }
-
+    public List<Utilisateur> listClients() throws SQLException {
+        String sql = "select * from utilisateur  where profil = 2" ;
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql) ;
+        List <Utilisateur> list = new ArrayList<>();
+        while (rs.next()) {
+            Utilisateur user = new Utilisateur();
+            user.setId(rs.getInt("id"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setEmail(rs.getString("email"));
+            user.setNumTel(rs.getInt("numTel"));
+            user.setLogin(rs.getString("login"));
+            user.setCin(rs.getInt("cin"));
+            user.setMdp(rs.getString("mdp"));
+            user.setProfil(rs.getInt("profil"));
+            user.setImage(rs.getString("image"));
+            user.setGenre(rs.getString("genre"));
+            user.setDateNaissance(rs.getDate("dateNaissance"));
+            user.setAdresse(rs.getString("adresse"));
+            user.setDate_inscription(rs.getDate("date_inscription"));
+            list.add(user) ;
+        }
+        return list;
+    }
+    public List<Utilisateur> listAllArtistes() throws  SQLException {
+        String sql = "select * from utilisateur where profil=1" ;
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql) ;
+        List <Utilisateur> list = new ArrayList<>();
+        while (rs.next()) {
+            Utilisateur user = new Utilisateur();
+            user.setId(rs.getInt("id"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setEmail(rs.getString("email"));
+            user.setNumTel(rs.getInt("numTel"));
+            user.setLogin(rs.getString("login"));
+            user.setCin(rs.getInt("cin"));
+            user.setMdp(rs.getString("mdp"));
+            user.setProfil(rs.getInt("profil"));
+            user.setImage(rs.getString("image"));
+            user.setGenre(rs.getString("genre"));
+            user.setDateNaissance(rs.getDate("dateNaissance"));
+            user.setAdresse(rs.getString("adresse"));
+            user.setDate_inscription(rs.getDate("date_inscription"));
+            list.add(user) ;
+        }
+        return list;
+    }
     @Override
     public  Utilisateur getUtilisateurById(int id) throws SQLException {
         String sql = "SELECT * FROM utilisateur WHERE id = ?";

@@ -46,17 +46,11 @@ public class UserItem {
 //      //  ImageView imgProfile = new ImageView(String.valueOf(getClass().getResourceAsStream(user.getImage())));
 //
 //       // userImg.setImage (imgProfile.getImage());
-//        UINom.setText(user.getNom());
-//        UIPrenom.setText(user.getPrenom());
-//        UIAdresse.setText(user.getAdresse());
-//        UIEmail.setText(user.getEmail());
-//        UITel.setText(String.valueOf(user.getNumTel()));
-
-        System.out.println("Nom: " + user.getNom());
-        System.out.println("Prenom: " + user.getPrenom());
-        System.out.println("Adresse: " + user.getAdresse());
-        System.out.println("Email: " + user.getEmail());
-        System.out.println("NumTel: " + user.getNumTel());
+//        System.out.println("Nom: " + user.getNom());
+//        System.out.println("Prenom: " + user.getPrenom());
+//        System.out.println("Adresse: " + user.getAdresse());
+//        System.out.println("Email: " + user.getEmail());
+//        System.out.println("NumTel: " + user.getNumTel());
         UINom.setText("qd");
         UIPrenom.setText("qzd");
         UIAdresse.setText("qzd");
@@ -69,25 +63,6 @@ public class UserItem {
             UIEmail.setText(user.getEmail());
             UITel.setText(String.valueOf(user.getNumTel()));
         }
-
-
-
-
-
-//            Utilisateur utilisateur = new Utilisateur();
-//            utilisateur.setId(rs.getInt("id"));
-//            utilisateur.setNom(rs.getString("nom"));
-//            utilisateur.setPrenom(rs.getString("prenom"));
-//            utilisateur.setEmail(rs.getString("email"));
-//            utilisateur.setNumTel(rs.getInt("numTel"));
-//            utilisateur.setLogin(rs.getString("login"));
-//            utilisateur.setMdp(rs.getString("mdp"));
-//            utilisateur.setImage(rs.getString("image"));
-//            utilisateur.setGenre(rs.getString("genre"));
-//            utilisateur.setDateNaissance(rs.getDate("dateNaissance"));
-//            utilisateur.setAdresse(rs.getString("adresse"));
-//            utilisateur.setDate_inscription(rs.getDate("date_inscription"));
-//            utilisateur.setEtat_compte(rs.getInt("etat_compte"));
 
 
 
