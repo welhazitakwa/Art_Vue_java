@@ -109,8 +109,8 @@ public class UserItem {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-            stage.setX(X + 200);
-            stage.setY(Y + 200);
+            stage.setX(X + 350);
+            stage.setY(Y + 150);
         } catch (Exception e) {
             e.printStackTrace();
 
