@@ -1,27 +1,27 @@
 package models;
-import java.time.LocalDate;
-
+import java.util.Date;
+import models.panieroeuvre;
 public class Commande {
-    public int id;
-    public float montant;
-    public LocalDate date;
-    public String etat;
+    private int id;
+    private float montant;
+    private Date date;
+    private String etat;
+  private Panier panier;
+public Commande(){}
 
-    public Commande(int id, float montant, LocalDate date, String etat) {
+    public Commande(int id, float montant, Date date,  Panier panier) {
         this.id = id;
         this.montant = montant;
         this.date = date;
-        this.etat = etat;
+        this.etat = "En attente";
+        this.panier = panier;
     }
 
-    public Commande(float montant, LocalDate date, String etat) {
+    public Commande(float montant, Date date, Panier panier) {
         this.montant = montant;
         this.date = date;
-        this.etat = etat;
-    }
-
-    public Commande() {
-
+        this.etat = "En attente";
+        this.panier = panier;
     }
 
     public int getId() {
@@ -40,11 +40,11 @@ public class Commande {
         this.montant = montant;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -56,6 +56,14 @@ public class Commande {
         this.etat = etat;
     }
 
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
+    }
+
     @Override
     public String toString() {
         return "Commande{" +
@@ -63,6 +71,7 @@ public class Commande {
                 ", montant=" + montant +
                 ", date=" + date +
                 ", etat='" + etat + '\'' +
+                ", panier=" + panier +
                 '}';
     }
 }

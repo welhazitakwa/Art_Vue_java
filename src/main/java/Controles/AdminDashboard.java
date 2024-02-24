@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
 public class AdminDashboard implements Initializable {
@@ -32,21 +34,23 @@ public class AdminDashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        /*btnExit.setOnMouseClicked(e->{
+            System.exit(0);
+        });
         try {
-            Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/fxmlAdmin/Dashboard.fxml"));
+            Parent fxml = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll();
         }
         catch (IOException ex){
             Logger.getLogger(ModuleLayer.Controller.class.getName()).log(Level.SEVERE , null , ex);
-        }
+        }*/
     }
 
     @FXML
     void pageCategorie(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/CategoriePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriePage.fxml"));
             Parent categoriePage = loader.load();
             // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
             CategoriePage categorieController = loader.getController();
@@ -65,21 +69,6 @@ public class AdminDashboard implements Initializable {
         // Charger le contenu de la page 2
         contentArea.getChildren().clear();
         contentArea.getChildren().add(new Button("Contenu de la page 2"));
-    }
-
-    public void to_ouevre_art(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/OeuvreArtPage.fxml"));
-            Parent OeuvresArt = loader.load();
-            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
-            OeuvresArtController OeuvresArtController = loader.getController();
-
-            // Effacez le contenu existant et affichez la page de catégorie
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(OeuvresArt);
-        } catch (IOException ex) {
-            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }
 

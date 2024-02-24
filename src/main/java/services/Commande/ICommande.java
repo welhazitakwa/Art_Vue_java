@@ -1,12 +1,12 @@
 package services.Commande;
-
+import models.Commande;
+import models.Panier;
+import models.panieroeuvre;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ICommande<C> {
-    void AjouterCommande (C c) throws SQLException;
-    void ModifierCommande (C c) throws SQLException;
-    void SupprimerCommande (int id ) throws SQLException;
-    List<C> AfficherCommande ( ) throws SQLException;
-
+public interface ICommande {
+    public void creerCommande(Commande commande, Panier panier) throws SQLException ;
+    public void modifierCommande(Commande commande, boolean estExpediee) throws SQLException ;
+    public void supprimerCommande(int id) throws SQLException;
 }
