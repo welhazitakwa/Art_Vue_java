@@ -1,5 +1,7 @@
 package Controles;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +9,16 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Categorie;
 import models.OeuvreArt;
+import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
 import java.io.IOException;
@@ -28,12 +33,31 @@ public class PageOeuvre implements Initializable {
 
     @FXML
     private GridPane gridPane;
+    @FXML
+    private ComboBox<String> categorieComboBox;
 
-    private final OeuvreArtService oeuvreArtService = new OeuvreArtService();
+    private OeuvreArtService oeuvreArtService;
+    private CategorieService categorieService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Récupérer et afficher les oeuvres d'art
+        oeuvreArtService = new OeuvreArtService();
+        categorieService = new CategorieService();
+        // Remplir la liste déroulante des catégories
+        try {
+            List<Categorie> categories = categorieService.AfficherCategorie();
+            ObservableList<String> categoryNames = FXCollections.observableArrayList();
+            for (Categorie categorie : categories) {
+                categoryNames.add(categorie.getNomCategorie());
+            }
+            categorieComboBox.setItems(categoryNames);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // Récupérer et afficher les œuvres d'art
+        afficherToutesOeuvres();
+    }
+    private void afficherToutesOeuvres() {
         try {
             List<OeuvreArt> oeuvres = oeuvreArtService.AfficherOeuvreArt();
             afficherOeuvres(oeuvres);
@@ -82,6 +106,24 @@ public class PageOeuvre implements Initializable {
                 column = 0;
                 row++;
             }
+        }
+    }
+    @FXML
+    void handleCategorySelection(ActionEvent event) {
+        try {
+            String selectedCategory = categorieComboBox.getValue(); // Récupérer la catégorie sélectionnée
+            List<OeuvreArt> oeuvres;
+            if (selectedCategory != null) {
+                // Si une catégorie est sélectionnée, récupérer les œuvres d'art correspondantes à cette catégorie
+                oeuvres = oeuvreArtService.getAllOeuvreArtByCategorie(selectedCategory);
+            } else {
+                // Sinon, récupérer toutes les œuvres d'art
+                afficherToutesOeuvres();
+                return;
+            }
+            afficherOeuvres(oeuvres);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

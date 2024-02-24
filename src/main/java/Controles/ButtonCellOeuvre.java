@@ -80,7 +80,7 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/DetailsOeuvreArt.fxml"));
                 Parent root = loader.load();
-                DetailsOeuvreArtController controller = loader.getController();
+                DetailsOeuvreAdmin controller = loader.getController();
                 OeuvreArt oeuvreArt = getTableView().getItems().get(getIndex());
                 controller.initData(oeuvreArt);
                 Stage stage = new Stage();

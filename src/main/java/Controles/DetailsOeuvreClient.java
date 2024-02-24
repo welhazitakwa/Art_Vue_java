@@ -2,11 +2,18 @@ package Controles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import models.OeuvreArt;
 import models.Utilisateur;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DetailsOeuvreClient {
 
@@ -86,11 +93,29 @@ public class DetailsOeuvreClient {
 
     @FXML
     void To_Accueil(ActionEvent event) {
-        // Ajouter la logique pour retourner à la page d'accueil
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
+            Parent pageAccueil = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new javafx.scene.Scene(pageAccueil));
+            stage.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        // Ajouter la logique pour retourner à la page des oeuvres d'art
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
+            Parent pageOeuvre = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new javafx.scene.Scene(pageOeuvre));
+            stage.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

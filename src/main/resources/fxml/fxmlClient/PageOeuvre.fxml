@@ -128,7 +128,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <ComboBox fx:id="categorieComboBox" prefHeight="39.0" prefWidth="189.0" promptText="Catégorie" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+                                <ComboBox fx:id="categorieComboBox" onAction="#handleCategorySelection" prefHeight="39.0" prefWidth="189.0" promptText="Catégorie" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
                                     <padding>
                                         <Insets right="20.0" />
                                     </padding>

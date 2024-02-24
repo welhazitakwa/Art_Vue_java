@@ -50,12 +50,9 @@ public class AdminDashboard implements Initializable {
     @FXML
     void pageCategorie(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/CategoriePage.fxml"));
             Parent categoriePage = loader.load();
-            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
             CategoriePage categorieController = loader.getController();
-
-            // Effacez le contenu existant et affichez la page de catégorie
             contentArea.getChildren().clear();
             contentArea.getChildren().add(categoriePage);
         } catch (IOException ex) {
@@ -69,6 +66,18 @@ public class AdminDashboard implements Initializable {
         // Charger le contenu de la page 2
         contentArea.getChildren().clear();
         contentArea.getChildren().add(new Button("Contenu de la page 2"));
+    }
+
+    public void to_ouevre_art(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/OeuvreArtPage.fxml"));
+            Parent OeuvreArtPage = loader.load();
+            OeuvresArtController oeuvresArtController = loader.getController();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(OeuvreArtPage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 

@@ -2,20 +2,21 @@ package Controles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import models.Categorie;
 import models.OeuvreArt;
 import models.Utilisateur;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
+import java.io.File;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class AjouterOeuvre {
 
@@ -26,7 +27,7 @@ public class AjouterOeuvre {
     private TextField descriptionField;
 
     @FXML
-    private ComboBox<String> categorieComboBox; // Modification du type de ComboBox
+    private ComboBox<String> categorieComboBox;
 
     @FXML
     private TextField prixField;
@@ -38,64 +39,105 @@ public class AjouterOeuvre {
     private TextField imageField;
 
     @FXML
-    private Button Ajouter;
+    private Button BtnAjouter;
 
     private CategorieService categorieService;
 
     @FXML
     void initialize() {
-        // Initialiser la date par défaut à aujourd'hui
         datePicker.setValue(LocalDate.now());
-
         categorieService = new CategorieService();
-
         try {
-            // Récupérer les catégories depuis la base de données
             List<Categorie> categories = categorieService.AfficherCategorie();
-
-            // Définir les noms de catégorie dans la ComboBox
             for (Categorie categorie : categories) {
                 categorieComboBox.getItems().add(categorie.getNomCategorie());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Gérer l'exception en conséquence
         }
-
-        
     }
 
     public void AjouterOeuvre(ActionEvent actionEvent) {
-        // Récupérer les valeurs des champs de texte et de la combobox
+        if (!validateFields()) {
+            return;
+        }
+
         String titre = titreField.getText();
         String description = descriptionField.getText();
-        String categorieNom = categorieComboBox.getValue(); // Récupérer le nom de la catégorie
+        String categorieNom = categorieComboBox.getValue();
         float prixVente = Float.parseFloat(prixField.getText());
         String image = imageField.getText();
         LocalDate localDate = datePicker.getValue();
         Date dateAjout = java.sql.Date.valueOf(localDate);
 
         try {
-            // Récupérer l'objet Catégorie
             CategorieService categorieService = new CategorieService();
             Categorie categorieObj = categorieService.getCategorieByNom(categorieNom);
 
-            // Récupérer l'artiste
             Utilisateur artiste = new Utilisateur();
             artiste.setId(1);
 
-            // Créer une nouvelle instance de OeuvreArt
             OeuvreArt oeuvreArt = new OeuvreArt(image, titre, description, dateAjout, prixVente, categorieObj, "disponible", artiste);
 
-            // Ajouter l'oeuvre d'art à la base de données
             OeuvreArtService oeuvreArtService = new OeuvreArtService();
             oeuvreArtService.AjouterOeuvreArt(oeuvreArt);
 
-            // Afficher un message de succès ou effectuer d'autres actions nécessaires
-            System.out.println("L'oeuvre d'art a ete ajoutee avec succes.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ajout réussi");
+            alert.setHeaderText(null);
+            alert.setContentText("L'oeuvre d'art a été ajoutée avec succès.");
+            alert.showAndWait();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Gérer l'exception en conséquence
+        }
+    }
+
+    public void choose_file(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            imageField.setText(selectedFile.toURI().toString());
+        } else {
+            System.out.println("Aucun fichier sélectionné.");
+        }
+    }
+
+    private boolean validateFields() {
+        if (titreField.getText().isEmpty() || descriptionField.getText().isEmpty() || categorieComboBox.getValue() == null ||
+                prixField.getText().isEmpty() || imageField.getText().isEmpty() || datePicker.getValue() == null) {
+            showAlert("Erreur de saisie", "Veuillez remplir tous les champs.");
+            return false;
         }
 
-    }}
+        try {
+            Float.parseFloat(prixField.getText());
+        } catch (NumberFormatException e) {
+            showAlert("Erreur de saisie", "Le champ Prix doit contenir un nombre valide.");
+            return false;
+        }
+
+        if (!isValidImagePath(imageField.getText())) {
+            showAlert("Erreur de saisie", "Le chemin d'image est invalide.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean isValidImagePath(String imagePath) {
+        return imagePath.startsWith("file:/") && (imagePath.endsWith(".jpg") || imagePath.endsWith(".png") || imagePath.endsWith(".gif"));
+    }
+}
