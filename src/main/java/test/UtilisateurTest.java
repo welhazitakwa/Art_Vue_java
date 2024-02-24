@@ -15,6 +15,7 @@ public class UtilisateurTest {
         // MyDataBase d =  MyDataBase.getInstance();
 
         UtilisateurService utilisateurService = new UtilisateurService();
+        System.out.println(utilisateurService.getUtilisateurById(1).getId());
 /*
       //   Tester la récupération d'un utilisateur par son identifiant
         try {

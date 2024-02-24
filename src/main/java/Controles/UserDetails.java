@@ -10,6 +10,7 @@ import services.utilisateur.UtilisateurService;
 
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserDetails  implements Initializable {
@@ -46,10 +47,12 @@ public class UserDetails  implements Initializable {
     @FXML
     private Label profil;
     @FXML
-    private Label passeId;
-    public void setParametre(String parametre) {
-        passeId.setText(parametre);
-    }
+    public Label label;
+    private int id ;
+
+
+
+
 
     @FXML
     void closeBtn(ActionEvent event) {
@@ -62,13 +65,26 @@ public class UserDetails  implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
        // System.out.println(passeId.getText());
-        UtilisateurService user1 = new UtilisateurService();
+//        nomPrenom.setText(label.getText());
 
 
 
 
     }
+    public void setParametre(String parametre) {
+        String vv = parametre ;
+        label.setText(vv);
+        id = Integer.parseInt(vv);
+        System.out.println("laaaaaabbbbbbbeeeeellll"+label.getText());
+        System.out.println("iiiiiidddddddddd"+id);
+        try {
+            UtilisateurService user1 = new UtilisateurService();
 
+            nomPrenom.setText(user1.getUtilisateurById(id).getPrenom());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

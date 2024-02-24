@@ -77,15 +77,15 @@ public class UserItem {
     }
     @FXML
     void detailsButton(ActionEvent event) {
-        System.out.println(parametreField.getText());
+        System.out.println("yatba3 feha mriigla : "+parametreField.getText());
+        String va_etre_passe = parametreField.getText() ;
         Stage detailsSatge = (Stage)((Node) event.getSource()).getScene().getWindow();
         double X = detailsSatge.getX();
         double Y = detailsSatge.getY();
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userDetails.fxml"));
             Parent root = loader.load() ;
-            UserDetails udcontroller = loader.getController();
-            udcontroller.setParametre(parametreField.getText());
+
             ScaleTransition st = new ScaleTransition(Duration.millis(50),root);
             st.setInterpolator(Interpolator.EASE_BOTH);
             st.setFromX(0);
@@ -104,6 +104,9 @@ public class UserItem {
             stage.show();
             stage.setX(X + 350);
             stage.setY(Y + 150);
+            UserDetails udcontroller = loader.getController();
+            udcontroller.setParametre(va_etre_passe);
+            udcontroller.initialize(null,null);
         } catch (Exception e) {
             e.printStackTrace();
 
