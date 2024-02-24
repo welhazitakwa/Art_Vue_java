@@ -10,9 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -22,14 +20,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
-
-import java.awt.*;
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class UserItem {
@@ -93,6 +84,8 @@ public class UserItem {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/userDetails.fxml"));
             Parent root = loader.load() ;
+            UserDetails udcontroller = loader.getController();
+            udcontroller.setParametre(parametreField.getText());
             ScaleTransition st = new ScaleTransition(Duration.millis(50),root);
             st.setInterpolator(Interpolator.EASE_BOTH);
             st.setFromX(0);

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import services.utilisateur.UtilisateurService;
 
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -44,6 +45,11 @@ public class UserDetails  implements Initializable {
 
     @FXML
     private Label profil;
+    @FXML
+    private Label passeId;
+    public void setParametre(String parametre) {
+        passeId.setText(parametre);
+    }
 
     @FXML
     void closeBtn(ActionEvent event) {
@@ -55,29 +61,15 @@ public class UserDetails  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+       // System.out.println(passeId.getText());
+        UtilisateurService user1 = new UtilisateurService();
 
-//        UtilisateurService user1 = new UtilisateurService();
-//        try {
-//            List <Utilisateur> users = user1.listAll() ;
-//            System.out.println(users);
-//            for (int i=0; i<users.size();i++) {
-//                System.out.println(users.size());
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("/fxml/userItem.fxml"));
-//                HBox hbox = fxmlLoader.load();
-//                UserItem uicontroller = fxmlLoader.getController();
-//                uicontroller.setData(users.get(i));
-//                usersLayout.getChildren().add(hbox);
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
+
+
 
     }
+
+
 }
 
 
