@@ -2,16 +2,26 @@ package Controles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
 
+import java.awt.*;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserItem {
 
@@ -29,17 +39,46 @@ public class UserItem {
 
     @FXML
     private Label UITel;
+    @FXML
+    private Label parametreField;
+    @FXML
+    private Label parametreField2;
+    @FXML
+    private HBox card;
 
     @FXML
     private ImageView userImg;
-
+    public void setParametre(String parametre) {
+        parametreField.setText(parametre);
+    }
+    public void setParametre2(String parametre) {
+        parametreField2.setText(parametre);
+    }
     @FXML
     void deleteButton(ActionEvent event) {
+        Alert dialogC = new Alert(Alert.AlertType.CONFIRMATION);
+        dialogC.setTitle(" Confirmation de suppression ");
+        dialogC.setHeaderText("Voulez vous vraiment supprimer "+ parametreField2.getText() + " !");
+       // dialogC.setContentText(parametreField.getText());
+        dialogC.setContentText("Le compte de "+ parametreField2.getText()+" va être supprimé définitivement");
 
+        Optional<ButtonType> answer = dialogC.showAndWait();
+        if (answer.get() == ButtonType.OK) {
+            UtilisateurService user1 = new UtilisateurService();
+            try {
+                user1.supprimer(Integer.parseInt(parametreField.getText()));
+                } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            System.out.println("User chose Cancel or closed the dialog-box");
+        }
     }
-
     @FXML
     void detailsButton(ActionEvent event) {
+        System.out.println(parametreField.getText());
+
 
     }
     public void setData (Utilisateur user) {

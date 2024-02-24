@@ -46,7 +46,6 @@ public class UtilisateurDashboard implements Initializable {
     @FXML
     private HBox navbar;
 
-
     @FXML
     void AffichageClients(ActionEvent event) {
         txt1.setText(" ");
@@ -58,14 +57,17 @@ public class UtilisateurDashboard implements Initializable {
         try {
             List <Utilisateur> users = user1.listClients() ;
             System.out.println(users);
+            usersLayout.getChildren().clear();
+
             for (int i=0; i<users.size();i++) {
-                usersLayout.getChildren().clear();
                 System.out.println(users.size());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/fxml/userItem.fxml"));
-
                 HBox hbox = fxmlLoader.load();
                 UserItem uicontroller = fxmlLoader.getController();
+                uicontroller.setParametre(String.valueOf(users.get(i).getId()));
+                uicontroller.setParametre2(users.get(i).getNom()+" "+users.get(i).getPrenom());
+
                 uicontroller.setData(users.get(i));
                 usersLayout.getChildren().add(hbox);
             }
@@ -87,13 +89,16 @@ public class UtilisateurDashboard implements Initializable {
         try {
             List <Utilisateur> users = user1.listAllArtistes() ;
             System.out.println(users);
+            usersLayout.getChildren().clear();
+
             for (int i=0; i<users.size();i++) {
-                usersLayout.getChildren().clear();
                 System.out.println(users.size());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/fxml/userItem.fxml"));
                 HBox hbox = fxmlLoader.load();
                 UserItem uicontroller = fxmlLoader.getController();
+                uicontroller.setParametre(String.valueOf(users.get(i).getId()));
+                uicontroller.setParametre2(users.get(i).getNom()+" "+users.get(i).getPrenom());
                 uicontroller.setData(users.get(i));
                 usersLayout.getChildren().add(hbox);
             }

@@ -15,11 +15,13 @@ public class UtilisateurTest {
         // MyDataBase d =  MyDataBase.getInstance();
 
         UtilisateurService utilisateurService = new UtilisateurService();
+/*
+      //   Tester la récupération d'un utilisateur par son identifiant
+        try {
+            int idUtilisateur = 1; // Remplacez 1 par l'identifiant de l'utilisateur que vous souhaitez récupérer
+            Utilisateur utilisateur = utilisateurService.getUtilisateurById(idUtilisateur);
+            System.out.println(utilisateur);
 
-        // Tester la récupération d'un utilisateur par son identifiant
-//        try {
-//            int idUtilisateur = 1; // Remplacez 1 par l'identifiant de l'utilisateur que vous souhaitez récupérer
-//            Utilisateur utilisateur = utilisateurService.getUtilisateurById(idUtilisateur);
 //            if (utilisateur != null) {
 //                System.out.println("Utilisateur trouvé : ");
 //                System.out.println("ID : " + utilisateur.getId());
@@ -29,9 +31,9 @@ public class UtilisateurTest {
 //            } else {
 //                System.out.println("Aucun utilisateur trouvé avec l'identifiant " + idUtilisateur);
 //            }
-//        } catch (SQLException e) {
-//            System.out.println("Erreur lors de la récupération de l'utilisateur : " + e.getMessage());
-//        }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de l'utilisateur : " + e.getMessage());
+        }*/
 
         UtilisateurService user1 = new UtilisateurService();
       /*try {
