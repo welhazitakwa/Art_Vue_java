@@ -13,6 +13,24 @@ public class OeuvreArt {
     public String status;
     public Utilisateur artiste;
 
+
+    public OeuvreArt(String image, String titre, float prixVente, String status, Utilisateur artiste) {
+        this.image = image;
+        this.titre = titre;
+        this.prixVente = prixVente;
+        this.status = status;
+        this.artiste = artiste;
+
+
+    }
+
+    public OeuvreArt(String image, String titre, float prixVente, Utilisateur artiste) {
+        this.image = image;
+        this.titre = titre;
+        this.prixVente = prixVente;
+        this.artiste = artiste;
+    }
+
     public OeuvreArt(int id, String image, String titre, String description, Date dateAjout, float prixVente, Categorie categorie, String status, Utilisateur artiste) {
         this.id = id;
         this.image = image;

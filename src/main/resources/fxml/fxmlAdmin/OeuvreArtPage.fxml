@@ -1,61 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controles.OeuvresArtController">
 
-    <TableView fx:id="oeuvresTableView">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50">
-                <cellValueFactory>
-                    <PropertyValueFactory property="id"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="titreColumn" text="Titre" prefWidth="150">
-                <cellValueFactory>
-                    <PropertyValueFactory property="titre"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="categorieColumn" text="Catégorie" prefWidth="100">
-                <cellValueFactory>
-                    <PropertyValueFactory property="categorie.nom"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="artisteColumn" text="Artiste" prefWidth="150">
-                <cellValueFactory>
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.OeuvresArtController">
+   <children>
+      <VBox alignment="TOP_CENTER" minHeight="500.0" prefWidth="900.0" style="-fx-background-color: white;">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des oeuvres d'art">
+            <VBox.margin>
+               <Insets bottom="40.0" top="20.0" />
+            </VBox.margin>
+            <font>
+               <Font name="Broadway" size="20.0" />
+            </font>
+         </Text>
+      
+          <TableView fx:id="oeuvresTableView" prefHeight="500.0" prefWidth="700.0">
+              <columns>
+                  <TableColumn fx:id="idColumn" prefWidth="50" text="ID">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="id" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="titreColumn" prefWidth="150" text="Titre">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="titre" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="categorieColumn" prefWidth="100" text="Catégorie">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="categorie.nom" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="artisteColumn" prefWidth="150" text="Artiste">
+                      <cellValueFactory>
 
                 </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="200">
-                <cellValueFactory>
-                    <PropertyValueFactory property="description"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="imageColumn" text="Image" prefWidth="100">
-                <cellValueFactory>
-                    <PropertyValueFactory property="image"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="dateAjoutColumn" text="Date d'ajout" prefWidth="100">
-                <cellValueFactory>
-                    <PropertyValueFactory property="dateAjout"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="prixVenteColumn" text="Prix de vente" prefWidth="100">
-                <cellValueFactory>
-                    <PropertyValueFactory property="prixVente"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="statusColumn" text="Status" prefWidth="100">
-                <cellValueFactory>
-                    <PropertyValueFactory property="status"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="actionColumn" text="Action" />
-
-        </columns>
-    </TableView>
-
+                  </TableColumn>
+                  <TableColumn fx:id="descriptionColumn" prefWidth="200" text="Description">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="description" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="imageColumn" prefWidth="100" text="Image">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="image" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="dateAjoutColumn" prefWidth="100" text="Date d'ajout">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="dateAjout" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="prixVenteColumn" prefWidth="100" text="Prix de vente">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="prixVente" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="statusColumn" prefWidth="100" text="Status">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="status" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="actionColumn" text="Action" />
+      
+              </columns>
+          </TableView>
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="15.0" right="40.0" top="15.0" />
+   </padding>
 </VBox>

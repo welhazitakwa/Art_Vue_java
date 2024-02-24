@@ -1,0 +1,17 @@
+.top-artiste{
+    -fx-background-radius: 0 50 50 50 ;
+}
+.light-gray-background {
+    -fx-background-color: #f3f3f3;
+}
+/* styles.css */
+.round-image {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-background-insets: 0;
+
+    -fx-clip: "M0,0 H100 V100 H0 Z";
+}
+.btn {
+    -fx-background-radius: 50;
+}

@@ -16,8 +16,8 @@ public class Home extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
 
         try {

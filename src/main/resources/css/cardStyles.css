@@ -1,0 +1,25 @@
+/* Styles for the card */
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+}
+
+#titleLabel {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#artistLabel, #priceLabel {
+    -fx-font-size: 14px;
+}
+.hbox {
+    -fx-background-color: white;
+    -fx-border-radius: 50;
+}
+.Btn {
+    -fx-background-color: #593a37;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+
+}

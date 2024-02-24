@@ -16,6 +16,7 @@ import java.util.Optional;
 public class ButtonCellFactory extends TableCell<Categorie, Void> {
 
     private final Button editButton = new Button();
+
     private final Button deleteButton = new Button();
     private final CategoriePage categoriePage; // Ajout de l'objet CategoriePage
 
