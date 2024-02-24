@@ -80,7 +80,21 @@ public class UserDetails  implements Initializable {
         try {
             UtilisateurService user1 = new UtilisateurService();
 
-            nomPrenom.setText(user1.getUtilisateurById(id).getPrenom());
+            nomPrenom.setText(user1.getUtilisateurById(id).getNom() + " "+ user1.getUtilisateurById(id).getPrenom() );
+            genre.setText(user1.getUtilisateurById(id).getGenre());
+            dateNaissance.setText(String.valueOf(user1.getUtilisateurById(id).getDateNaissance()));
+            if (user1.getUtilisateurById(id).getProfil()==1) {
+                profil.setText("Artiste");
+            }
+            else {
+                profil.setText("Client");
+            }
+            dateInscri.setText(String.valueOf(user1.getUtilisateurById(id).getDate_inscription()));
+            numTel.setText(String.valueOf(user1.getUtilisateurById(id).getNumTel()));
+            mail.setText(user1.getUtilisateurById(id).getEmail());
+            adresse.setText(user1.getUtilisateurById(id).getAdresse());
+            login.setText(user1.getUtilisateurById(id).getLogin());
+            cin.setText(String.valueOf(user1.getUtilisateurById(id).getCin()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
