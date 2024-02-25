@@ -3,6 +3,7 @@ package Controles;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -41,6 +42,8 @@ public class ModifierProfil implements Initializable {
 
     @FXML
     private Label recuperationId;
+    @FXML
+    private ComboBox<String> comboGenre;
 
     @FXML
     void sauvegarderInfo(ActionEvent event) {
@@ -65,7 +68,7 @@ public class ModifierProfil implements Initializable {
             nomEdit.setText(user1.getUtilisateurById(id).getNom());
             prenomEdit.setText( user1.getUtilisateurById(id).getPrenom() );
             adresseEdit.setText( user1.getUtilisateurById(id).getEmail());
-            //            genre.setText(user1.getUtilisateurById(id).getGenre());
+            comboGenre.setValue(user1.getUtilisateurById(id).getGenre());
             cinEdit.setText(String.valueOf(user1.getUtilisateurById(id).getCin()));
             // Supposons que vous ayez un DatePicker appelé datePicker et un Label appelé dateLabel
             datePicker.setValue(user1.getUtilisateurById(id).getDateNaissance().toLocalDate());
