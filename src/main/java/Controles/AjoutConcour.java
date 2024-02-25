@@ -76,7 +76,7 @@ public class AjoutConcour {
 
     @FXML
     void initialize() {
-        serviceOeuvreArt = new OeuvreArtService();
+       /* serviceOeuvreArt = new OeuvreArtService();
         serviceConcours = new ConcoursService();
 
         // Charger la liste des oeuvres disponibles dans la ListView
@@ -93,7 +93,7 @@ public class AjoutConcour {
             // Si non, initialiser la ListView avec les éléments
             ObservableList<OeuvreArt> observableList = FXCollections.observableArrayList(oeuvres);
             listeOeuvresDisponibles.setItems(observableList);
-        }
+        }*/
     }
 
     @FXML

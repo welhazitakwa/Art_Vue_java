@@ -9,13 +9,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Exposition;
 import services.Exposition.ExpositionService;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
-
+import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PageExposition {
+public class PageExposition implements Initializable{
     @FXML
     private TableView<Exposition> exposition_tableView;
 
@@ -32,12 +34,12 @@ public class PageExposition {
     private TextField idE_textFile;
 
     @FXML
-    private TableColumn<Exposition,java.sql.Date> DateDebutE_tableE;
+    private TableColumn<Exposition,Date> DateDebutE_tableE;
 
     @FXML
     private DatePicker DateDebutE_textFile;
     @FXML
-    private TableColumn<Exposition,java.sql.Date> DateFinE_tableE;
+    private TableColumn<Exposition,Date> DateFinE_tableE;
 
     @FXML
     private DatePicker DateFinE_textFile;
@@ -47,38 +49,47 @@ public class PageExposition {
     @FXML
     private TextField NbrOeuvreE_textFile;
     private ExpositionService expositionService;
-    public void ajouter_exposition(ActionEvent actionEvent) {
-       /* ExpositionService cs = new ExpositionService();
-        cs.AjouterExposition(new Exposition( NomE_textFile.getText(), DateDebutE_textFile,DateFinE_textFile,NbrOeuvreE_textFile.getText()));
+    public void ajouter_exposition(ActionEvent actionEvent) throws SQLException {
+        ExpositionService cs = new ExpositionService();
+        LocalDate dateDebut = DateDebutE_textFile.getValue();
+        LocalDate dateFin = DateFinE_textFile.getValue();
+        // Convertir en java.sql.Date si nécessaire
+        Date dateDebutSQL = Date.valueOf(dateDebut);
+        Date dateFinSQL = Date.valueOf(dateFin);
+        cs.AjouterExposition(new Exposition(Integer.parseInt(idE_textFile.getText()),NomE_textFile.getText(),dateDebutSQL,dateFinSQL,Integer.parseInt(NbrOeuvreE_textFile.getText())));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Categorie ajoutée");
         alert.setContentText("Categorie ajoutée !");
         alert.show();
-        idE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,Integer>("id_categorie&"));
-        nomC_tableC.setCellValueFactory(new PropertyValueFactory<Categorie,String>("nom_categorie"));
-        descriptionC_tableC.setCellValueFactory(new PropertyValueFactory<Categorie,String>("description"));
-        ObservableList<Categorie> list = FXCollections.observableArrayList();
-        list.addAll(cs.read());
-        categorie_tableView.setItems(list);
-        categorie_tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        idE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,Integer>("id_exposition"));
+        NomE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,String>("nom_exposition"));
+        DateDebutE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,java.sql.Date>("DateDebut"));
+        DateFinE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,java.sql.Date>("DateFin"));
+        NbrOeuvreE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,Integer>("NbrOeuvreE"));
+        ObservableList<Exposition> list = FXCollections.observableArrayList();
+        /*list.addAll(cs.AfficherExposition());
+        exposition_tableView.setItems(list);
+        exposition_tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                Categorie selectedUser = categorie_tableView.getSelectionModel().getSelectedItem();
-                idC_textFile.setText(String.valueOf(selectedUser.getId_categorie()));
-                nomC_textFile.setText(selectedUser.getNom_categorie());
-                descriptionC_textFile.setText(selectedUser.getDescription());
+                Exposition selectedUser = exposition_tableView.getSelectionModel().getSelectedItem();
+                idE_textFile.setText(String.valueOf(selectedUser.getId()));
+                NomE_textFile.setText(selectedUser.getNom());
+                DateDebutE_textFile.setValue(selectedUser.getDateDebut());
             }
         });*/
+    }
+    @FXML
+    public void initialize(URL location, ResourceBundle resources){
+        System.out.println("Méthode initialize appelée.");
+        expositionService = new ExpositionService();
+        initialiserTableView();
+        chargerDonnees();
     }
 
     public void modifier_exposition(ActionEvent actionEvent) {
     }
 
     public void supprimer_exposition(ActionEvent actionEvent) {
-    }
-    public void initialize(URL location, ResourceBundle resources) {
-        expositionService = new ExpositionService();
-        initialiserTableView();
-        chargerDonnees();
     }
 
     private void initialiserTableView() {
@@ -101,8 +112,8 @@ public class PageExposition {
         try {
             if (expositionService != null) { // Vérifier si categorieService est initialisé
                 List<Exposition> expositions = expositionService.AfficherExposition();
-                ObservableList<Exposition> categorieObservableList = FXCollections.observableArrayList(expositions);
-                exposition_tableView.setItems(categorieObservableList);
+                ObservableList<Exposition> expositionsObservableList = FXCollections.observableArrayList(expositions);
+                exposition_tableView.setItems(expositionsObservableList);
                 System.out.println("Catégories affichées avec succès : " + expositions.size());
             } else {
                 System.err.println("categorieService n'est pas initialisé.");

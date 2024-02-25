@@ -6,50 +6,53 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<AnchorPane prefHeight="573.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controles.PageExposition">
-   <Label layoutX="27.0" layoutY="60.0" text="id_exposition"/>
-   <Label layoutX="21.0" layoutY="107.0" text="nom_expostion"/>
-   <Label layoutX="5.0" layoutY="156.0" text="datedebut_exposition"/>
-   <TextField fx:id="NomE_textFile" layoutX="135.0" layoutY="103.0"/>
-   <TextField fx:id="idE_textFile" layoutX="135.0" layoutY="56.0"/>
-   <DatePicker fx:id="DateDebutE_textFile" layoutX="135.0" layoutY="152.0"/>
-   <Button layoutX="364.0" layoutY="197.0" mnemonicParsing="false" onAction="#ajouter_exposition" text="create"/>
-   <TableView fx:id="exposition_tableView" layoutX="72.0" layoutY="333.0" prefHeight="200.0" prefWidth="400.0">
+<AnchorPane prefHeight="573.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.PageExposition">
+   <Label layoutX="27.0" layoutY="60.0" text="id_exposition" />
+   <Label layoutX="21.0" layoutY="107.0" text="nom_expostion" />
+   <Label layoutX="5.0" layoutY="156.0" text="datedebut_exposition" />
+   <Label layoutX="5.0" layoutY="201.0" text="dateFin_exposition" />
+   <TextField fx:id="NbrOeuvreE_textFile" layoutX="135.0" layoutY="236.0" />
+   <TextField fx:id="NomE_textFile" layoutX="135.0" layoutY="103.0" />
+   <TextField fx:id="idE_textFile" layoutX="135.0" layoutY="56.0" />
+   <DatePicker fx:id="DateDebutE_textFile" layoutX="135.0" layoutY="152.0" />
+   <DatePicker fx:id="DateFinE_textFile" layoutX="135.0" layoutY="197.0" />
+   <Label layoutX="5.0" layoutY="240.0" text="nbroeuvre_exposition" />
+   <Button layoutX="423.0" layoutY="65.0" mnemonicParsing="false" onAction="#ajouter_exposition" text="create" />
+   <TableView fx:id="exposition_tableView" layoutX="72.0" layoutY="304.0" prefHeight="229.0" prefWidth="479.0">
       <columns>
          <!-- Définir les colonnes sans spécifier les types de données -->
-         <TableColumn text="ID">
+         <TableColumn fx:id="idE_tableE" text="ID">
          <cellValueFactory>
-            <PropertyValueFactory property="id"/>
+            <PropertyValueFactory property="idE_tableE" />
          </cellValueFactory>
       </TableColumn>
-         <TableColumn text="Nom">
+         <TableColumn fx:id="NomE_tableE" text="Nom">
             <cellValueFactory>
-               <PropertyValueFactory property="nom"/>
+               <PropertyValueFactory property="NomE_tableE" />
             </cellValueFactory>
          </TableColumn>
-         <TableColumn text="Date début">
+         <TableColumn fx:id="DateDebutE_tableE" text="Date début">
             <cellValueFactory>
-               <PropertyValueFactory property="dateDebut"/>
+               <PropertyValueFactory property="DateDebutE_tableE" />
             </cellValueFactory>
          </TableColumn>
-         <TableColumn text="Date fin">
+         <TableColumn fx:id="DateFinE_tableE" text="Date fin">
             <cellValueFactory>
-               <PropertyValueFactory property="dateFin"/>
+               <PropertyValueFactory property="DateFinE_tableE" />
             </cellValueFactory>
          </TableColumn>
-         <TableColumn text="Nombre d'oeuvres">
+         <TableColumn fx:id="NbrOeuvreE_tableE" text="Nombre d'oeuvres">
             <cellValueFactory>
-            <PropertyValueFactory property="nbrOeuvre"/>
+            <PropertyValueFactory property="NbrOeuvreE_tableE" />
          </cellValueFactory>
          </TableColumn>
       </columns>
    </TableView>
-   <Button layoutX="460.0" layoutY="197.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update"/>
-   <Button layoutX="556.0" layoutY="197.0" mnemonicParsing="false" onAction="#supprimer_exposition" text="delete"/>
+   <Button layoutX="421.0" layoutY="112.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update" />
+   <Button layoutX="421.0" layoutY="161.0" mnemonicParsing="false" onAction="#supprimer_exposition" text="delete" />
+
 
 </AnchorPane>

@@ -43,7 +43,7 @@ public class ModifierConcours {
     }
 
     public void initData(Concours concours) {
-        this.concours = concours;
+        /*this.concours = concours;
 
         // Initialisez les champs avec les données actuelles du concours
         titreTextField.setText(concours.getTitre());
@@ -66,7 +66,7 @@ public class ModifierConcours {
             // Si non, initialiser la ListView avec les éléments
             ObservableList<OeuvreArt> observableList = FXCollections.observableArrayList(toutesLesOeuvres);
             oeuvresListView.setItems(observableList);
-        }
+        }*/
     }
 
     // Méthode appelée lorsque l'utilisateur confirme les modifications
