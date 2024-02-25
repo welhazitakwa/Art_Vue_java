@@ -15,11 +15,14 @@ import java.util.logging.Logger;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 
 
 public class AdminDashboard implements Initializable {
+    @FXML
+    private BorderPane BoderPaneContainer;
     @FXML
     private ResourceBundle resources;
 
@@ -55,10 +58,6 @@ public class AdminDashboard implements Initializable {
 
 
     }
-
-
-
-
 
 
 
@@ -110,7 +109,14 @@ public class AdminDashboard implements Initializable {
         if (comboBoxOptions != null && comboBoxOptions.getValue() != null) {
             String optionSelectionnee = (String) comboBoxOptions.getValue();
             if ("Déconnexion".equals(optionSelectionnee)) {
-                System.out.println("Déconnecté");
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+                    Parent registerParent = loader.load();
+                    BoderPaneContainer.getChildren().clear();  // Use clear() instead of removeAll()
+                    BoderPaneContainer.getChildren().add(registerParent);
+                } catch (IOException e) {
+                    e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
+                }
             } else if ("Modifier le profil".equals(optionSelectionnee)) {
                 System.out.println("Profil");
             }

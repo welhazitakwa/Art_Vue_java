@@ -22,9 +22,6 @@ public class UtilisateurDashboard implements Initializable {
     @FXML
     private ResourceBundle resources;
     @FXML
-    private ComboBox<String> comboBoxOptions;
-
-    @FXML
     private URL location;
     @FXML
     private Label txt1;
