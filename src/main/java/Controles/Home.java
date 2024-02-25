@@ -19,7 +19,7 @@ public class Home extends Application {
           //FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AdminDashboard.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PanierAdmin.fxml"));
+         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PanierAdmin.fxml"));
 
         try {
             Parent root = loader.load();
