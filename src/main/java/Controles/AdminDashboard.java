@@ -36,7 +36,7 @@ public class AdminDashboard implements Initializable {
     @FXML
     private Button btnExit;
     @FXML
-    private ComboBox<?> comboBoxOptions;
+    private ComboBox<String> comboBoxOptions;
 
 
     @Override
@@ -102,54 +102,20 @@ public class AdminDashboard implements Initializable {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
-    void comboBox(ActionEvent event) {
-        ObservableList<String> items = FXCollections.observableArrayList("Modifier Profil", "Déconnexion");
-        ChoiceBox<String> choiceBox = new ChoiceBox<>(items);
-
-        // Gérer la sélection d'un élément dans la ChoiceBox
-        choiceBox.setOnAction(e -> {
-            String selectedOption = choiceBox.getValue();
-            System.out.println("Option sélectionnée : " + selectedOption);
-
-            // Ajoutez ici la logique pour gérer chaque option (Modifier Profil, Déconnexion)
-            if ("Modifier Profil".equals(selectedOption)) {
-                // Logique pour "Modifier Profil"
-                System.out.println("Action : Modifier Profil");
-            } else if ("Déconnexion".equals(selectedOption)) {
-                // Logique pour "Déconnexion"
-                System.out.println("Action : Déconnexion");
-            }
-
-            // Fermer la fenêtre contextuelle après la sélection
-            ((Popup) choiceBox.getScene().getWindow()).hide();
-        });
-
-        // Créer une VBox pour contenir la ChoiceBox
-        VBox container = new VBox();
-        container.getChildren().add(choiceBox);
-
-        // Créer une fenêtre contextuelle (Popup) et y ajouter la VBox
-        Popup popup = new Popup();
-        popup.getContent().add(container);
-
-        // Obtenez la scène à partir de l'événement
-        if (event.getSource() instanceof javafx.scene.Node) {
-            javafx.scene.Node sourceNode = (javafx.scene.Node) event.getSource();
-            popup.show(sourceNode.getScene().getWindow());
-        } else {
-            System.err.println("L'événement ne provient pas d'un élément de l'interface utilisateur.");
-        }
-    }
 
 
     public void traiterSelectionComboBox(ActionEvent actionEvent) {
 
-        String optionSelectionnee = (String) comboBoxOptions.getValue();
-        if (optionSelectionnee.equals("Déconnexion")) {
-            System.out.println(" deconnecté ");
-        } else if (optionSelectionnee.equals("Modifier le profil")) {
-            System.out.println("profill ");
+
+        if (comboBoxOptions != null && comboBoxOptions.getValue() != null) {
+            String optionSelectionnee = (String) comboBoxOptions.getValue();
+            if ("Déconnexion".equals(optionSelectionnee)) {
+                System.out.println("Déconnecté");
+            } else if ("Modifier le profil".equals(optionSelectionnee)) {
+                System.out.println("Profil");
+            }
+        } else {
+            System.out.println("Le ComboBox n'est pas correctement initialisé ou aucune valeur n'est sélectionnée.");
         }
     }
 }

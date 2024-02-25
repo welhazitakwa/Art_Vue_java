@@ -138,16 +138,5 @@ public class UtilisateurDashboard implements Initializable {
 //        }
 //
 
-        String optionSelectionnee = comboBoxOptions.getValue();
-        System.out.println("Option sélectionnée : " + optionSelectionnee);
-
-        // Ajouter ici la logique pour gérer chaque option (Modifier, Déconnecter)
-        if ("Modifier".equals(optionSelectionnee)) {
-            // Logique pour "Modifier"
-            System.out.println("Action : Modifier");
-        } else if ("Déconnecter".equals(optionSelectionnee)) {
-            // Logique pour "Déconnecter"
-            System.out.println("Action : Déconnecter");
-        }
   }
 }
