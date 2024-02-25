@@ -127,16 +127,7 @@ public class AdminDashboard implements Initializable {
                     e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
                 }
             } else if ("Modifier le profil".equals(optionSelectionnee)) {
-                   /*
-                   *
-                  UserDetails udcontroller = loader.getController();
-                    udcontroller.setParametre(parametreField.getText());
-                    udcontroller.initialize(null,null);
-                   *
-                   *
-                   * */
-
-                try {
+                    try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modifierProfil.fxml"));
                     Parent UtilisateurPage = loader.load();
                     ModifierProfil modifierProfil = loader.getController();

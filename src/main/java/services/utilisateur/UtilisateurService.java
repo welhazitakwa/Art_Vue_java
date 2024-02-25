@@ -264,6 +264,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             utilisateur.setPrenom(rs.getString("prenom"));
             utilisateur.setEmail(rs.getString("email"));
             utilisateur.setNumTel(rs.getInt("numTel"));
+            utilisateur.setCin(rs.getInt("cin"));
             utilisateur.setLogin(rs.getString("login"));
             utilisateur.setMdp(rs.getString("mdp"));
             utilisateur.setImage(rs.getString("image"));

@@ -7,9 +7,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -47,7 +49,15 @@ public class ModifierProfil implements Initializable {
 
     @FXML
     void sauvegarderInfo(ActionEvent event) {
-
+        UtilisateurService user1 = new UtilisateurService();
+        try {
+            user1.modifier(new Utilisateur(
+                    id, nomEdit.getText(), prenomEdit.getText(),mailEdit.getText(),
+                    Integer.parseInt(numTelEdit.getText()), loginEdit.getText(), Integer.parseInt(cinEdit.getText()),"cccccc ", comboGenre.getValue(),
+                    Date.valueOf(datePicker.getValue()), adresseEdit.getText()));
+        } catch (SQLException s){
+            System.out.println(s.getMessage());
+        }
     }
 
     @Override
