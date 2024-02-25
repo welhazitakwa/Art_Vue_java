@@ -68,6 +68,7 @@ public class PageVenteEnchere implements Initializable {
         PrixDepart_tableV.setCellValueFactory(new PropertyValueFactory<VenteEncheres,Float>("PrixDepart"));
         Statue_tableV.setCellValueFactory(new PropertyValueFactory<VenteEncheres,String>("Statue"));
         ObservableList<VenteEncheres> list = FXCollections.observableArrayList();
+        chargerDonnees();
         /*list.addAll(cs.AfficherExposition());
         exposition_tableView.setItems(list);
         exposition_tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {

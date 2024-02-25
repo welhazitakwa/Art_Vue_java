@@ -17,11 +17,11 @@ public class Home extends Application {
     @Override
     public void start(Stage primaryStage) {
          // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/CategoriePage.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/PageVenteEnchere.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOffreEnchere.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOffreEnchere.fxml"));
 
         try {
             Parent root = loader.load();

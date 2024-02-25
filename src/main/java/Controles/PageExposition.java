@@ -49,10 +49,23 @@ public class PageExposition implements Initializable{
     @FXML
     private TextField NbrOeuvreE_textFile;
     private ExpositionService expositionService;
+    @FXML
+    private ComboBox<Exposition> expositionComboBox;
     public void ajouter_exposition(ActionEvent actionEvent) throws SQLException {
         ExpositionService cs = new ExpositionService();
         LocalDate dateDebut = DateDebutE_textFile.getValue();
         LocalDate dateFin = DateFinE_textFile.getValue();
+
+        // Vérifier si la date de fin est postérieure à la date de début
+        if (dateDebut != null && dateFin != null && dateFin.isBefore(dateDebut)) {
+            // Afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Date de fin invalide");
+            alert.setContentText("La date de fin doit être postérieure à la date de début.");
+            alert.showAndWait();
+            return; // Sortir de la méthode si la validation échoue
+        }
         // Convertir en java.sql.Date si nécessaire
         Date dateDebutSQL = Date.valueOf(dateDebut);
         Date dateFinSQL = Date.valueOf(dateFin);
@@ -67,6 +80,7 @@ public class PageExposition implements Initializable{
         DateFinE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,java.sql.Date>("DateFin"));
         NbrOeuvreE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,Integer>("NbrOeuvreE"));
         ObservableList<Exposition> list = FXCollections.observableArrayList();
+        chargerDonnees();
         /*list.addAll(cs.AfficherExposition());
         exposition_tableView.setItems(list);
         exposition_tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -84,7 +98,16 @@ public class PageExposition implements Initializable{
         expositionService = new ExpositionService();
         initialiserTableView();
         chargerDonnees();
+        // Charger les expositions depuis la base de données et les ajouter au ComboBox
+        List<Exposition> expositions = null;
+        try {
+            expositions = expositionService.AfficherExposition();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        expositionComboBox.setItems(FXCollections.observableArrayList(expositions));
     }
+
 
     public void modifier_exposition(ActionEvent actionEvent) {
     }

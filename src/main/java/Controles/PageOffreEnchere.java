@@ -57,6 +57,7 @@ public class PageOffreEnchere implements Initializable {
         montantO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,Float>("Montant"));
         DateO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,java.sql.Date>("Date"));
         ObservableList<OffreEnchere> list = FXCollections.observableArrayList();
+        chargerDonnees();
         /*list.addAll(cs.AfficherExposition());
         exposition_tableView.setItems(list);
         exposition_tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {

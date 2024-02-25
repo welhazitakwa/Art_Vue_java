@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -21,7 +22,7 @@
    <DatePicker fx:id="DateFinE_textFile" layoutX="135.0" layoutY="197.0" />
    <Label layoutX="5.0" layoutY="240.0" text="nbroeuvre_exposition" />
    <Button layoutX="423.0" layoutY="65.0" mnemonicParsing="false" onAction="#ajouter_exposition" text="create" />
-   <TableView fx:id="exposition_tableView" layoutX="72.0" layoutY="304.0" prefHeight="229.0" prefWidth="479.0">
+   <TableView fx:id="exposition_tableView" layoutX="5.0" layoutY="300.0" prefHeight="229.0" prefWidth="479.0">
       <columns>
          <!-- Définir les colonnes sans spécifier les types de données -->
          <TableColumn fx:id="idE_tableE" text="ID">
@@ -51,6 +52,37 @@
          </TableColumn>
       </columns>
    </TableView>
+   <TableView fx:id="venteEnchere_tableView" layoutX="495.0" layoutY="300.0" prefHeight="229.0" prefWidth="479.0">
+      <columns>
+         <!-- Définir les colonnes sans spécifier les types de données -->
+         <TableColumn fx:id="idV_tableV" text="ID">
+            <cellValueFactory>
+               <PropertyValueFactory property="idV_tableV" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="DateDebutV_tableV" text="Date début">
+            <cellValueFactory>
+               <PropertyValueFactory property="DateDebutV_tableV" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="DateFinV_tableV" text="Date fin">
+            <cellValueFactory>
+               <PropertyValueFactory property="DateFinV_tableV" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="PrixDepart_tableV" text="Prix Depart">
+            <cellValueFactory>
+               <PropertyValueFactory property="PrixDepart_tableV" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="Statue_tableV" text="Statue">
+            <cellValueFactory>
+               <PropertyValueFactory property="Statue_tableV" />
+            </cellValueFactory>
+         </TableColumn>
+      </columns>
+   </TableView>
+   <ComboBox fx:id="expositionComboBox" layoutX="545.0" layoutY="56.0" promptText="Sélectionner une exposition" />
    <Button layoutX="421.0" layoutY="112.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update" />
    <Button layoutX="421.0" layoutY="161.0" mnemonicParsing="false" onAction="#supprimer_exposition" text="delete" />
 
