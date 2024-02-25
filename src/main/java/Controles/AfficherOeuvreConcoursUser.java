@@ -1,5 +1,7 @@
 package Controles;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -41,7 +43,20 @@ public class AfficherOeuvreConcoursUser {
         oeuvres.forEach(oeuvre -> {
             Label labelTitre = new Label("Titre: " + oeuvre.getTitre());
             Label labelArtiste = new Label("Artiste: " + oeuvre.getArtiste());
-            ImageView imageView = new ImageView(new Image(oeuvre.getImage()));
+
+            String imagePath = oeuvre.getImage();
+
+// Créez une URL à partir du chemin du fichier
+            File file = new File(imagePath);
+            URL imageUrl = null;
+            try {
+                imageUrl = file.toURI().toURL();
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+
+// Créez une ImageView avec l'URL de l'image
+            ImageView imageView = new ImageView(new Image(imageUrl.toString()));
 
             // Créez une HBox pour les étoiles
             HBox starRating = new HBox();

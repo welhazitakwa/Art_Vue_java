@@ -1,6 +1,8 @@
 package Controles;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -64,7 +66,13 @@ public class AfficherConcours {
             btnModifier.setOnAction(event -> modifierConcours(concours));
 
             Button btnVoirOeuvres = new Button("Voir Œuvres");
-            btnVoirOeuvres.setOnAction(event -> afficherOeuvres(concours));
+            btnVoirOeuvres.setOnAction(event -> {
+                try {
+                    afficherOeuvres(concours);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
             VBox vbox = new VBox(
                     new Label(concours.toString()),
@@ -155,7 +163,7 @@ public class AfficherConcours {
     }*/
   // Méthode appelée lors du clic sur le bouton "Voir Œuvres"
 
-      private void afficherOeuvres(Concours concours) {
+      private void afficherOeuvres(Concours concours) throws MalformedURLException {
           // Récupérez les œuvres du concours en utilisant le service approprié
           OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
           List<OeuvreArt> oeuvres = oeuvreConcoursService.getOeuvresByConcoursId(concours.getId());
@@ -176,11 +184,15 @@ public class AfficherConcours {
               int columnIndex = 0;
 
               for (OeuvreArt oeuvre : oeuvres) {
-                  // Récupérez l'URL de l'image en tant que chaîne depuis la base de données
                   String imageUrl = oeuvre.getImage();
 
-                  // Créez une ImageView avec l'image de l'œuvre
-                  ImageView imageView = new ImageView(new Image(imageUrl));
+// Créez une URL à partir de la chaîne d'URL
+                  File file = new File(imageUrl);
+                  URL url = file.toURI().toURL();
+
+// Créez une ImageView avec l'image de l'œuvre
+                  ImageView imageView = new ImageView(new Image(url.toString()));
+
 
                   // Redimensionnez l'image si nécessaire
                   imageView.setFitWidth(100);
