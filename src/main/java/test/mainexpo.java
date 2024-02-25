@@ -20,7 +20,7 @@ public class mainexpo {
 
         //table Exposition
 
-        /*ExpositionService cmd1 = new ExpositionService();
+        ExpositionService cmd1 = new ExpositionService();
         ExpositionService cmd2 = new ExpositionService();
         ExpositionService cmd3 = new ExpositionService();
         ExpositionService cmd4 = new ExpositionService();
@@ -29,9 +29,9 @@ public class mainexpo {
             cmd2.AjouterExposition(new Exposition(2, "bbb",dateFormat.parse("2000-05-25"),dateFormat.parse("2000-05-25"), 2));
             cmd3.AjouterExposition(new Exposition(3, "ccc",dateFormat.parse("2000-05-25"),dateFormat.parse("2000-05-25"), 3));
             cmd4.AjouterExposition(new Exposition(4, "ddd",dateFormat.parse("2000-05-25"),dateFormat.parse("2000-05-25"), 4));
-        } catch (SQLException e) {
+        } catch (SQLException | ParseException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
         /*try {
             cmd1.ModifierExposition( new Exposition(1, "aab",dateFormat.parse("2000-05-25"),dateFormat.parse("2000-05-25"), 6));
         } catch (SQLException | ParseException e) {

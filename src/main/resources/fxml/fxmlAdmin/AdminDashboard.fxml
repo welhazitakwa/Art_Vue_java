@@ -14,24 +14,24 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AdminDashboard">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" spacing="5.0" stylesheets="@../css/StyleMenu.css" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" spacing="5.0" stylesheets="@../../css/StyleMenu.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
                   <Insets bottom="30.0" top="20.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../image/artVue.png" />
+                  <Image url="@../../image/artVue.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="15.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/dashboard-76-128.png" />
+                        <Image url="@../../image/dashboard-76-128.png" />
                      </image>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageDashboard" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Dashboard">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageDashboard" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Dashboard">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -46,37 +46,13 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/user-118-128.png" />
+                        <Image url="@../../image/user-118-128.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Utilisateurs">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="loginBtn" />
-                        <String fx:value="Btn" />
-                     </styleClass>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="9.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="15.0">
-               <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/category-8-48.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets right="2.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageCategorie" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Catégorie d'art">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Utilisateurs">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -94,13 +70,13 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/art-gallery-15-1-128.png" />
+                        <Image url="@../../image/category-8-48.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Oeuvre d'art">
+                  <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageCategorie" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Catégorie d'art">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -118,13 +94,13 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/event-25-128.png" />
+                        <Image url="@../../image/art-gallery-15-1-128.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Evenements">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Oeuvre d'art" onAction="#pageCategorie">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -142,13 +118,13 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/trophy-35-256.png" />
+                        <Image url="@../../image/event-25-128.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Jeux Concours">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Evenements">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -166,13 +142,37 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/statistics-26-128.png" />
+                        <Image url="@../../image/trophy-35-256.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../css/StyleMenu.css" text="Statistiques">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Jeux Concours">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="9.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/statistics-26-128.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Statistiques">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -199,22 +199,22 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="680.0" spacing="20.0" styleClass="white-background" stylesheets="@../css/StyleMenu.css">
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="680.0" spacing="20.0" styleClass="white-background" stylesheets="@../../css/StyleMenu.css">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="190.0" styleClass="search-contrainer" stylesheets="@../css/StyleMenu.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="190.0" styleClass="search-contrainer" stylesheets="@../../css/StyleMenu.css">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/search-934-128.png" />
+                              <Image url="@../../image/search-934-128.png" />
                            </image>
                         </ImageView>
-                        <TextField prefHeight="19.0" prefWidth="139.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../css/StyleMenu.css" />
+                        <TextField prefHeight="19.0" prefWidth="139.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
                      </children>
                   </HBox>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/notification-3-128.png" />
+                        <Image url="@../../image/notification-3-128.png" />
                      </image>
                      <HBox.margin>
                         <Insets />
@@ -224,12 +224,12 @@
                      <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/225-default-avatar-128.png" />
+                              <Image url="@../../image/225-default-avatar-128.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/navigation-70-128.png" />
+                              <Image url="@../../image/navigation-70-128.png" />
                            </image>
                         </ImageView>
                      </children>

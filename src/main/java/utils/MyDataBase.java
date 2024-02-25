@@ -2,7 +2,9 @@ package utils;
 
 import java.sql.*;
 
-public class MyDataBase {
+public class
+
+MyDataBase {
 
     final String URL = "jdbc:mysql://localhost:3306/artVue" ;
     final String USER= "root";
