@@ -235,7 +235,7 @@
                         <ComboBox fx:id="comboBoxOptions" onAction="#traiterSelectionComboBox" prefHeight="26.0" prefWidth="0.0" styleClass="Btn">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
-<!--                                 <String fx:value=" " />-->
+                                 <String fx:value="Consulter mon compte" />
                                  <String fx:value="Modifier le profil" />
                                  <String fx:value="Déconnexion" />
                               </FXCollections>
