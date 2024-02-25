@@ -9,6 +9,7 @@ public class ImageContrlr extends TableCell<Utilisateur, String>{
 
     private final ImageView imageView = new ImageView();
 
+
     public ImageContrlr() {
         setGraphic(imageView);
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);

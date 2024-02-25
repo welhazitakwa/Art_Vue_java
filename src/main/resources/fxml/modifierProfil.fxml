@@ -34,7 +34,7 @@
             </HBox>
             <HBox prefHeight="217.0" prefWidth="1100.0">
                <children>
-                  <ImageView fitHeight="237.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageAffichage" fitHeight="237.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>

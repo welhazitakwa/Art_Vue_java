@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
@@ -38,6 +40,8 @@ public class ModifierProfil implements Initializable {
 
     @FXML
     private TextField prenomEdit;
+    @FXML
+    private ImageView imageAffichage;
 
     @FXML
     private Label recuperationId;
@@ -71,7 +75,6 @@ public class ModifierProfil implements Initializable {
                     dialog.showAndWait();
 
 
-
             } catch (SQLException s) {
                 System.out.println(s.getMessage());
             }
@@ -92,6 +95,14 @@ public class ModifierProfil implements Initializable {
         System.out.println();
         try {
             UtilisateurService user1 = new UtilisateurService();
+
+            //imageField.setText(new ImageContrlr().getText());
+//            ImageView imgProfile = new ImageView(String.valueOf(getClass().getResourceAsStream("file:/C:/ESPRIT/3A17%20semestre%202/PI-DEV/Art_Vue/src/main/resources/image/oumeyma.jpg")));
+//
+//            imageAffichage.setImage (imgProfile.getImage());
+            ImageView imgProfile = new ImageView(new Image(user1.getUtilisateurById(id).getImage()));
+
+            imageAffichage.setImage(imgProfile.getImage());
 
             nomEdit.setText(user1.getUtilisateurById(id).getNom());
             prenomEdit.setText( user1.getUtilisateurById(id).getPrenom() );
