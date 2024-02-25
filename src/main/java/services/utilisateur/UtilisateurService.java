@@ -150,14 +150,14 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     public void modifier(Utilisateur utilisateur) throws SQLException {
         int varrr = utilisateur.getId();
         String sql= "update utilisateur set nom= ?, prenom = ? ,email = ? , numTel = ?, login = ? , " +
-                "mdp = ? ,image = ?, genre = ?, dateNaissance = ?, adresse = ? where id = ?";
+                "cin = ? ,image = ?, genre = ?, dateNaissance = ?, adresse = ? where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, utilisateur.getNom());
         preparedStatement.setString(2, utilisateur.getPrenom());
         preparedStatement.setString(3, utilisateur.getEmail());
         preparedStatement.setInt(4, utilisateur.getNumTel());
         preparedStatement.setString(5, utilisateur.getLogin());
-        preparedStatement.setString(6, BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt()));
+        preparedStatement.setInt(6, utilisateur.getCin());
         preparedStatement.setString(7, utilisateur.getImage());
         preparedStatement.setString(8, utilisateur.getGenre());
         preparedStatement.setDate(9, utilisateur.getDateNaissance());
@@ -278,7 +278,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             return null;
         }
     }
-
 
     public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
         return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);

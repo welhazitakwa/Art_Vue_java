@@ -14,8 +14,8 @@ public class UtilisateurTest {
     public static void main(String[] args) throws SQLException {
         // MyDataBase d =  MyDataBase.getInstance();
 
-        UtilisateurService utilisateurService = new UtilisateurService();
-        System.out.println(utilisateurService.getUtilisateurById(1).getId());
+//        UtilisateurService utilisateurService = new UtilisateurService();
+//        System.out.println(utilisateurService.getUtilisateurById(1).getId());
 /*
       //   Tester la récupération d'un utilisateur par son identifiant
         try {
@@ -43,14 +43,15 @@ public class UtilisateurTest {
         } catch (SQLException s){
             System.out.println(s.getMessage());
         }
-
+*/
         try {
-            user1.modifier(new Utilisateur(1, "edit", "test","cryptage@gmail.com",
-                    12367009, "2cvcv3AFT", "88123.","imcaage ", "gencvre",
-                    new java.sql.Date(280922005), "acvcvddd"));
+            user1.modifier(new Utilisateur(
+                    12, "ccccccc", "cccccc","cccccc@gmail.com",
+                    11111111, "ccccccc", 11111111,"cccccc ", "ccccccccc",
+                    new java.sql.Date(280922005), "ccccccccccc"));
         } catch (SQLException s){
             System.out.println(s.getMessage());
-        }*/
+        }
 
        /* try {
             user1.supprimer(4);

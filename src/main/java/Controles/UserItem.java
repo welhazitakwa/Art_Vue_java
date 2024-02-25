@@ -114,9 +114,9 @@ public class UserItem {
 
     }
     public void setData (Utilisateur user) {
-//      //  ImageView imgProfile = new ImageView(String.valueOf(getClass().getResourceAsStream(user.getImage())));
-//
-//       // userImg.setImage (imgProfile.getImage());
+      //  ImageView imgProfile = new ImageView(String.valueOf(getClass().getResourceAsStream(user.getImage())));
+
+       // userImg.setImage (imgProfile.getImage());
 //        System.out.println("Nom: " + user.getNom());
 //        System.out.println("Prenom: " + user.getPrenom());
 //        System.out.println("Adresse: " + user.getAdresse());
