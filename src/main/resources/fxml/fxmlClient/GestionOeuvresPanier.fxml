@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="516.0" prefWidth="698.0" style="-fx-background-color: #E2D7D3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.GestionOeuvresPanier">
+   <children>
+      <VBox alignment="CENTER" layoutX="-1.0" prefHeight="167.0" prefWidth="699.0" style="-fx-background-color: #FDFAF0;">
+         <children>
+            <Label alignment="CENTER" text="Veuillez choisir votre panier  " textAlignment="CENTER" textFill="#593a37">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="699.0">
+               <children>
+                  <ComboBox fx:id="panierIdCombo" prefWidth="150.0" style="-fx-background-color: #FDE8DF; -fx-border-color: #593A37;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="1.0" prefWidth="698.0" />
+            <Button fx:id="AfficherOeuvres" alignment="CENTER" contentDisplay="CENTER" onAction="#afficherOeuvres" prefHeight="26.0" prefWidth="162.0" style="-fx-background-color: #91615d;" styleClass="ajouter-button" text="Afficher Les Oeuvres" textFill="WHITE" />
+         </children>
+      </VBox>
+      <VBox layoutY="205.0" prefHeight="310.0" prefWidth="699.0">
+         <children>
+            <TableView fx:id="tableOeuvres" prefHeight="314.0" prefWidth="699.0">
+              <columns>
+                <TableColumn fx:id="idOeuvreColumn" prefWidth="75.0" text="id" />
+                <TableColumn fx:id="nomOeuvreColumn" prefWidth="101.5999526977539" text="titre" />
+                  <TableColumn fx:id="actionColumn" prefWidth="101.5999526977539" text="Action" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

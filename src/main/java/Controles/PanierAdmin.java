@@ -95,7 +95,7 @@ public class PanierAdmin {
                     AfficherPanier();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Impossible d'ajouter le panier : un panier avec cet ID existe déjà.");
+                    alert.setContentText("Impossible d'ajouter le panier : Le client avec cet ID possède déjà un panier.");
                     alert.show();
                 }
             } catch (SQLException e) {

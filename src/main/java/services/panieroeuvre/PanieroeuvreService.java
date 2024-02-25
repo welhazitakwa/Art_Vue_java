@@ -1,5 +1,6 @@
 package services.panieroeuvre;
 import models.OeuvreArt;
+import models.Utilisateur;
 import models.panieroeuvre;
 import utils.MyDataBase;
 import java.sql.*;
@@ -137,6 +138,53 @@ public class PanieroeuvreService implements Ipanieroeuvre{
 
         return montantTotal;
     }
+    public List<Panier> getListePaniers() throws SQLException {
+        List<Panier> paniers = new ArrayList<>();
+        String sql = "SELECT * FROM panier";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+
+                Panier panier = new Panier();
+                panier.setId(resultSet.getInt("id"));
+
+
+                paniers.add(panier);
+            }
+        }
+        return paniers;
+    }
+    public List<OeuvreArt> getListeOeuvres() throws SQLException {
+        List<OeuvreArt> oeuvres = new ArrayList<>();
+        String sql = "SELECT * FROM oeuvreart";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+
+                OeuvreArt oeuvreArt = new OeuvreArt();
+                oeuvreArt.setId(resultSet.getInt("idOeuvreArt"));
+
+
+                oeuvres.add(oeuvreArt);
+            }
+        }
+        return oeuvres;
+    }
+
+    public boolean verifierExistenceOeuvreDansPanier(int idPanier, int idOeuvre) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM panieroeuvre WHERE id_panier = ? AND id_oeuvre = ?";
+        try (PreparedStatement existStatement = connection.prepareStatement(sql)) {
+            existStatement.setInt(1, idPanier);
+            existStatement.setInt(2, idOeuvre);
+            try (ResultSet resultSet = existStatement.executeQuery()) {
+                resultSet.next();
+                int count = resultSet.getInt(1);
+                return count > 0;
+            }
+        }
+    }
+
+
 }
 
 

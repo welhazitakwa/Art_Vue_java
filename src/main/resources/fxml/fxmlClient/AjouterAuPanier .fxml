@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #E2D7D3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AjouterAuPanier">
+   <children>
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="171.0" prefHeight="286.0" prefWidth="560.0" spacing="10" style="-fx-background-color: #FDFAF0; -fx-padding: 20; -fx-border-radius: 5px;">
+         <children>
+            <Label style="-fx-font-weight: Arimo; -fx-font-size: 18px;" text="Ajouter une oeuvre à votre panier" textFill="#91615d">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="518.0" spacing="10">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-background-size: 22px;" text="Id Panier " textFill="#593a37" />
+                  <ComboBox fx:id="panierIdCombo" prefWidth="150.0" style="-fx-background-color: #FDE8DF; -fx-border-color: #593A37;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="518.0" spacing="10">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="518.0" spacing="10">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-background-size: 22px;" text="Id oeuvre " textFill="#593a37" />
+                        <ComboBox fx:id="oeuvreIdCombo" prefWidth="150.0" style="-fx-background-color: #FDE8DF; -fx-border-color: #593A37;" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="518.0" spacing="10">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-background-size: 22px;" text="Quantité " textFill="#593a37" />
+                  <TextField fx:id="quantiteField" style="-fx-background-color: #FDE8DF; -fx-border-color: #593A37;" />
+               </children>
+            </HBox>
+            <Button fx:id="Ajouter" onAction="#ajouterAuPanier" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: #91615d;" styleClass="ajouter-button" text="Ajouter" textFill="WHITE" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

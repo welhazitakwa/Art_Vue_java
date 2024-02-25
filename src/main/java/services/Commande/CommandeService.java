@@ -144,9 +144,10 @@ public class CommandeService implements ICommande {
                 Commande commande = new Commande();
                 commande.setId(rs.getInt("id"));
                 commande.setMontant(rs.getInt("montant"));
+                commande.setEtat(rs.getString("etat"));
                 commande.setDate(rs.getDate("Date"));
                 Panier panier = new Panier();
-                panier.setId(rs.getInt("id"));
+                panier.setId(rs.getInt("panierId"));
 
                 commande.setPanier(panier);
                 commandes.add(commande);
