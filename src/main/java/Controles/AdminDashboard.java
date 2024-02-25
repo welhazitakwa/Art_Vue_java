@@ -146,7 +146,11 @@ public class AdminDashboard implements Initializable {
     public void traiterSelectionComboBox(ActionEvent actionEvent) {
 
         String optionSelectionnee = (String) comboBoxOptions.getValue();
-        System.out.println("Option sélectionnée : " + optionSelectionnee);
+        if (optionSelectionnee.equals("Déconnexion")) {
+            System.out.println(" deconnecté ");
+        } else if (optionSelectionnee.equals("Modifier le profil")) {
+            System.out.println("profill ");
+        }
     }
 }
 
