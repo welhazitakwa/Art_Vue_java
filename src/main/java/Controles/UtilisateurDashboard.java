@@ -3,6 +3,7 @@ package Controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,8 @@ import java.util.List;
 public class UtilisateurDashboard implements Initializable {
     @FXML
     private ResourceBundle resources;
+    @FXML
+    private ComboBox<String> comboBoxOptions;
 
     @FXML
     private URL location;
@@ -134,5 +137,17 @@ public class UtilisateurDashboard implements Initializable {
 //            throw new RuntimeException(e);
 //        }
 //
+
+        String optionSelectionnee = comboBoxOptions.getValue();
+        System.out.println("Option sélectionnée : " + optionSelectionnee);
+
+        // Ajouter ici la logique pour gérer chaque option (Modifier, Déconnecter)
+        if ("Modifier".equals(optionSelectionnee)) {
+            // Logique pour "Modifier"
+            System.out.println("Action : Modifier");
+        } else if ("Déconnecter".equals(optionSelectionnee)) {
+            // Logique pour "Déconnecter"
+            System.out.println("Action : Déconnecter");
+        }
   }
 }

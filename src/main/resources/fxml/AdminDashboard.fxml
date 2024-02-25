@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -200,7 +202,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="680.0" spacing="20.0" styleClass="white-background" stylesheets="@../css/StyleMenu.css">
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="680.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/StyleMenu.css">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="190.0" styleClass="search-contrainer" stylesheets="@../css/StyleMenu.css">
@@ -221,18 +223,26 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <HBox alignment="CENTER" spacing="5.0">
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="97.0">
                      <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/225-default-avatar-128.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/navigation-70-128.png" />
-                           </image>
-                        </ImageView>
+                        <!-- Autres éléments de votre interface utilisateur -->
+
+                        <ComboBox fx:id="comboBoxOptions" onAction="#traiterSelectionComboBox" prefHeight="26.0" prefWidth="0.0" styleClass="Btn">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Modifier" />
+                                 <String fx:value="Déconnecter" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
+
+                        <!-- Autres éléments de votre interface utilisateur -->
+
                      </children>
                      <HBox.margin>
                         <Insets right="20.0" />
