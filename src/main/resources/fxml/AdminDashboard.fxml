@@ -202,7 +202,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="680.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/StyleMenu.css">
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="680.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/StyleMenu.css">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="190.0" styleClass="search-contrainer" stylesheets="@../css/StyleMenu.css">
@@ -232,7 +232,7 @@
                         </ImageView>
                         <!-- Autres éléments de votre interface utilisateur -->
 
-                        <ComboBox fx:id="comboBoxOptions" onAction="#traiterSelectionComboBox" prefHeight="26.0" prefWidth="0.0" styleClass="Btn">
+                        <ComboBox fx:id="comboBoxOptions" maxWidth="2.0" minWidth="20.0" onAction="#traiterSelectionComboBox" prefHeight="30.0" prefWidth="17.0" styleClass="Btn">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Consulter mon compte" />

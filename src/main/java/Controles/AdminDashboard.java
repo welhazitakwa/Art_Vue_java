@@ -127,9 +127,17 @@ public class AdminDashboard implements Initializable {
                     e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
                 }
             } else if ("Modifier le profil".equals(optionSelectionnee)) {
-                System.out.println("Profil");
-            }
 
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modifierProfil.fxml"));
+                    Parent UtilisateurPage = loader.load();
+                    contentArea.getChildren().clear();
+                    contentArea.getChildren().add(UtilisateurPage);
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
 
 
