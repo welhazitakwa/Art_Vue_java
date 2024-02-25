@@ -4,13 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
-
+import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ModifierProfil implements Initializable {
@@ -45,6 +45,8 @@ public class ModifierProfil implements Initializable {
     private Label regerror;
     @FXML
     private ComboBox<String> comboGenre;
+    @FXML
+    private TextField imageField;
 
     @FXML
     void sauvegarderInfo(ActionEvent event) {
@@ -52,9 +54,16 @@ public class ModifierProfil implements Initializable {
         try {
             user1.modifier(new Utilisateur(
                     id, nomEdit.getText(), prenomEdit.getText(), mailEdit.getText(),
-                    Integer.parseInt(numTelEdit.getText()), loginEdit.getText(), Integer.parseInt(cinEdit.getText()), "cccccc ", comboGenre.getValue(),
+                    Integer.parseInt(numTelEdit.getText()), loginEdit.getText(), Integer.parseInt(cinEdit.getText()), imageField.getText(), comboGenre.getValue(),
                     Date.valueOf(datePicker.getValue()), adresseEdit.getText()));
+            if (!isValidImagePath(imageField.getText())) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR);
+                dialog.setTitle("Alerte d'erreur");
+                dialog.setHeaderText("Le chemin d'image est invalide.");
+                dialog.setContentText("Saisie Invalide");
+                dialog.showAndWait();
 
+            }
                     Alert dialog = new Alert(Alert.AlertType.INFORMATION);
                     dialog.setTitle("Alerte de Confirmation");
                     dialog.setHeaderText(" La modification est effectué avec succès ");
@@ -99,5 +108,21 @@ public class ModifierProfil implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    public void choose_file(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+        File selectedFile = fileChooser.showOpenDialog(null);
 
+        if (selectedFile != null) {
+            imageField.setText(selectedFile.toURI().toString());
+        } else {
+            System.out.println("Aucun fichier sélectionné.");
+        }
+    }
+    private boolean isValidImagePath(String imagePath) {
+        return imagePath.startsWith("file:/") && (imagePath.endsWith(".jpg") || imagePath.endsWith(".png") || imagePath.endsWith(".gif"));
+    }
 }
