@@ -6,18 +6,27 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Concours;
+import models.OeuvreArt;
 import services.concours.ConcoursService;
+import services.concours.OeuvreConcoursService;
 
 public class AfficherConcours {
 
@@ -30,7 +39,8 @@ public class AfficherConcours {
     @FXML
     private ListView<VBox> listeConcours;
 
-
+    @FXML
+    private Button retourButton;
 
     @FXML
     void initialize() {
@@ -116,11 +126,111 @@ public class AfficherConcours {
     }
 
 
-   // Méthode appelée lors du clic sur le bouton "Voir Œuvres"
+  /* // Méthode appelée lors du clic sur le bouton "Voir Œuvres"
     private void afficherOeuvres(Concours concours) {
-        // Implémentez la logique pour afficher les œuvres du concours
-        // ...
-    }
+        // Récupérez les œuvres du concours en utilisant le service approprié
+        OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
+        List<OeuvreArt> oeuvres = oeuvreConcoursService.getOeuvresByConcoursId(concours.getId());
 
+        if (oeuvres.isEmpty()) {
+            // Si la liste d'œuvres est vide, affichez un message
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Œuvres du Concours");
+            alert.setHeaderText("Aucune œuvre trouvée pour le concours : " + concours.getTitre());
+            alert.showAndWait();
+        } else {
+            // Créez une liste observable pour la ListView
+            ObservableList<OeuvreArt> observableOeuvres = FXCollections.observableArrayList(oeuvres);
+
+            // Créez une ListView pour afficher les œuvres
+            ListView<OeuvreArt> listView = new ListView<>(observableOeuvres);
+
+            // Créez une boîte de dialogue pour afficher la liste des œuvres
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Œuvres du Concours");
+            alert.setHeaderText("Liste des œuvres pour le concours : " + concours.getTitre());
+            alert.getDialogPane().setContent(new VBox(listView));
+            alert.showAndWait();
+        }
+    }*/
+  // Méthode appelée lors du clic sur le bouton "Voir Œuvres"
+
+      private void afficherOeuvres(Concours concours) {
+          // Récupérez les œuvres du concours en utilisant le service approprié
+          OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
+          List<OeuvreArt> oeuvres = oeuvreConcoursService.getOeuvresByConcoursId(concours.getId());
+
+          if (oeuvres.isEmpty()) {
+              // Si la liste d'œuvres est vide, affichez un message
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Œuvres du Concours");
+              alert.setHeaderText("Aucune œuvre trouvée pour le concours : " + concours.getTitre());
+              alert.showAndWait();
+          } else {
+              // Créez une GridPane pour afficher les œuvres avec des images
+              GridPane gridPane = new GridPane();
+              gridPane.setHgap(10);
+              gridPane.setVgap(10);
+
+              int rowIndex = 0;
+              int columnIndex = 0;
+
+              for (OeuvreArt oeuvre : oeuvres) {
+                  // Récupérez l'URL de l'image en tant que chaîne depuis la base de données
+                  String imageUrl = oeuvre.getImage();
+
+                  // Créez une ImageView avec l'image de l'œuvre
+                  ImageView imageView = new ImageView(new Image(imageUrl));
+
+                  // Redimensionnez l'image si nécessaire
+                  imageView.setFitWidth(100);
+                  imageView.setFitHeight(100);
+
+                  // Ajoutez l'ImageView à la GridPane
+                  gridPane.add(imageView, columnIndex, rowIndex);
+
+                  // Ajoutez d'autres informations sur l'œuvre (nom, artiste, etc.) s'il y a lieu
+                  Label label = new Label(oeuvre.getTitre()); // Remplacez par la méthode appropriée pour obtenir le nom de l'œuvre
+                  gridPane.add(label, columnIndex, rowIndex + 1);
+
+                  // Passez à la prochaine colonne
+                  columnIndex++;
+
+                  // Changez de ligne après un certain nombre de colonnes (vous pouvez ajuster cela selon vos besoins)
+                  if (columnIndex > 2) {
+                      columnIndex = 0;
+                      rowIndex += 2; // Passez deux lignes pour la prochaine œuvre
+                  }
+              }
+
+              // Créez une boîte de dialogue pour afficher la liste des œuvres
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Œuvres du Concours");
+              alert.setHeaderText("Liste des œuvres pour le concours : " + concours.getTitre());
+              alert.getDialogPane().setContent(gridPane);
+              alert.showAndWait();
+          }
+      }
+
+
+    @FXML
+    private void retournerPagePrecedente() {
+        try {
+            // Chargez le fichier FXML pour la page d'ajout de concours
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AjoutConcour.fxml"));
+            Parent root = loader.load();
+
+            // Créez une nouvelle scène avec la page d'ajout de concours
+            Scene scene = new Scene(root);
+
+            // Obtenez la fenêtre (stage) actuelle à partir du bouton de retour
+            Stage stage = (Stage) retourButton.getScene().getWindow();
+
+            // Définissez la nouvelle scène sur le stage
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+        }
+    }
 
 }

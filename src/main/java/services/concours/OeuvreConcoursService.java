@@ -44,8 +44,8 @@ public class OeuvreConcoursService {
 
         try {
             // Utilisez une requête SQL SELECT pour récupérer les œuvres associées à un concours
-            String query = "SELECT oeuvre.* FROM oeuvre_concours " +
-                    "JOIN oeuvre ON oeuvre_concours.id_oeuvre = oeuvre.id " +
+            String query = "SELECT oeuvreart.* FROM oeuvre_concours " +
+                    "JOIN oeuvreart ON oeuvre_concours.id_oeuvre = oeuvreart.idOeuvreArt " +
                     "WHERE oeuvre_concours.id_concours = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setInt(1, concoursId);
@@ -131,5 +131,26 @@ public class OeuvreConcoursService {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
     }
-    /*________________________________________________________________________________________________________*/
+    /*____________________________________getConcoursIdByOeuvreId_______________________________________________________*/
+
+    public int getConcoursIdByOeuvreId(int oeuvreId) {
+        int concoursId = -1; // Valeur par défaut si rien n'est trouvé
+
+        // Utilisez une requête SQL SELECT pour récupérer l'id du concours par l'id de l'oeuvre
+        String query = "SELECT id_concours FROM oeuvre_concours WHERE id_oeuvre = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, oeuvreId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    concoursId = resultSet.getInt("id_concours");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+        }
+
+        return concoursId;
+    }
 }

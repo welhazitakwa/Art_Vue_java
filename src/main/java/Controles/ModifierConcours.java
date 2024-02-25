@@ -1,6 +1,7 @@
 package Controles;
 
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import models.Concours;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import services.concours.OeuvreConcoursService;
+import services.oeuvreArt.OeuvreArtService;
 
 public class ModifierConcours {
 
@@ -48,9 +50,10 @@ public class ModifierConcours {
         dateDebutPicker.setValue(concours.getDate_debut());
         dateFinPicker.setValue(concours.getDate_fin());
         descriptionTextField.setText(concours.getDescription());
-        OeuvreConcoursService oeuvreConcoursService=new OeuvreConcoursService();
-        // Utilisez votre service pour obtenir les œuvres associées à ce concours
-        List<OeuvreArt> oeuvres = oeuvreConcoursService.getOeuvresByConcoursId(concours.getId());
+        OeuvreArtService oeuvreArtService = new OeuvreArtService();
+
+        // Utilisez votre service pour obtenir toutes les œuvres disponibles
+        List<OeuvreArt> toutesLesOeuvres = oeuvreArtService.getOeuvres();
 
         // Configurer la ListView pour permettre la sélection multiple
         oeuvresListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -58,10 +61,10 @@ public class ModifierConcours {
         // Vérifier si la ListView est déjà initialisée
         if (oeuvresListView.getItems() != null) {
             // Si oui, ajouter les éléments directement
-            oeuvresListView.getItems().addAll(oeuvres);
+            oeuvresListView.getItems().addAll(toutesLesOeuvres);
         } else {
             // Si non, initialiser la ListView avec les éléments
-            ObservableList<OeuvreArt> observableList = FXCollections.observableArrayList(oeuvres);
+            ObservableList<OeuvreArt> observableList = FXCollections.observableArrayList(toutesLesOeuvres);
             oeuvresListView.setItems(observableList);
         }
     }
@@ -96,6 +99,8 @@ public class ModifierConcours {
 
         // Fermez la fenêtre de modification ou effectuez d'autres actions nécessaires
         // ...
+        Stage stage = (Stage) confirmerButton.getScene().getWindow();
+        stage.close();
     }
 
 

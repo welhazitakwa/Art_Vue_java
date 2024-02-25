@@ -22,10 +22,10 @@ public class mainConcours {
         ConcoursService cs = new ConcoursService();
         voteServices vs = new voteServices();
         Concours Concours = null;
-        Concours.setTitre("Mon concours");
+       /* Concours.setTitre("Mon concours");
         Concours.setDateDebut(LocalDate.of(2023, 11, 14));
         Concours.setDateFin(LocalDate.of(2023, 12, 14));
-        Concours.setDescription("Ceci est mon concours");
+        Concours.setDescription("Ceci est mon concours");*/
 
         List<OeuvreArt> oeuvresArts = new ArrayList<>();
 
@@ -75,11 +75,11 @@ public class mainConcours {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }*/
-      try {
+      /*try {
             cs.SupprimerConcours(23);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
        /**try {
             System.out.println(cs.AfficherConcours());
         } catch (SQLException e) {
@@ -94,6 +94,18 @@ public class mainConcours {
         } catch (SQLException e) {
             e.printStackTrace();
         }**/
+        OeuvreConcoursService instance = new OeuvreConcoursService();
+
+        // Remplacez "1" par l'identifiant du concours que vous souhaitez tester
+        int concoursId = 35;
+
+        // Appelez la méthode
+        List<OeuvreArt> oeuvres = instance.getOeuvresByConcoursId(concoursId);
+
+        // Affichez les œuvres récupérées
+        for (OeuvreArt oeuvre : oeuvres) {
+            System.out.println(oeuvre);
+        }
 
         }
     }
