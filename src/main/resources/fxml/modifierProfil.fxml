@@ -151,14 +151,26 @@
                   </ComboBox>
                </children>
             </HBox>
-            <Label text="Informations de contact : " textFill="#bc5f6a">
-               <font>
-                  <Font name="Calibri Bold" size="22.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="40.0" />
-               </VBox.margin>
-            </Label>
+            <HBox prefHeight="1.0" prefWidth="1100.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="251.0" text="Informations de contact : " textFill="#bc5f6a">
+                     <font>
+                        <Font name="Calibri Bold" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="35.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="regerror" prefHeight="18.0" prefWidth="607.0" text=" " textFill="RED">
+                     <HBox.margin>
+                        <Insets left="5.0" top="2.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox prefHeight="53.0" prefWidth="1100.0">
                <children>
                   <Label text="Email : ">

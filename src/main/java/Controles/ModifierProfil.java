@@ -42,6 +42,8 @@ public class ModifierProfil implements Initializable {
     @FXML
     private Label recuperationId;
     @FXML
+    private Label regerror;
+    @FXML
     private ComboBox<String> comboGenre;
 
     @FXML
@@ -49,20 +51,25 @@ public class ModifierProfil implements Initializable {
         UtilisateurService user1 = new UtilisateurService();
         try {
             user1.modifier(new Utilisateur(
-                    id, nomEdit.getText(), prenomEdit.getText(),mailEdit.getText(),
-                    Integer.parseInt(numTelEdit.getText()), loginEdit.getText(), Integer.parseInt(cinEdit.getText()),"cccccc ", comboGenre.getValue(),
+                    id, nomEdit.getText(), prenomEdit.getText(), mailEdit.getText(),
+                    Integer.parseInt(numTelEdit.getText()), loginEdit.getText(), Integer.parseInt(cinEdit.getText()), "cccccc ", comboGenre.getValue(),
                     Date.valueOf(datePicker.getValue()), adresseEdit.getText()));
-            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-            dialog.setTitle("Alerte de Confirmation");
-            dialog.setHeaderText(" La modification est effectué avec succès ");
-            dialog.setContentText("Votre Compte est à jour");
-            dialog.showAndWait();
-        } catch (SQLException s){
-            System.out.println(s.getMessage());
-        }
+
+                    Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+                    dialog.setTitle("Alerte de Confirmation");
+                    dialog.setHeaderText(" La modification est effectué avec succès ");
+                    dialog.setContentText("Votre Compte est à jour");
+                    dialog.showAndWait();
+
+
+
+            } catch (SQLException s) {
+                System.out.println(s.getMessage());
+            }
+
     }
 
-    @Override
+        @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
