@@ -1,0 +1,6 @@
+.hbox-with-background {
+    -fx-background-image: url('/image/Banner.png');
+    -fx-background-repeat: no-repeat; /* Optionnel : spécifie que l'image ne doit pas se répéter */
+    -fx-background-size: cover; /* Optionnel : spécifie que l'image doit couvrir la totalité de la zone */
+    -fx-background-position: center; /* Optionnel : spécifie la position de l'image */
+}

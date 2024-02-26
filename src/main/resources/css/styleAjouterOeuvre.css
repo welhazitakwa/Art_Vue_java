@@ -1,0 +1,25 @@
+.textField {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 0 0;
+    -fx-background-radius: 0;
+    -fx-label-float: true;
+    -fx-border-color: transparent transparent #bc5f6a transparent;
+}
+.textField:focused {
+    -fx-border-color: transparent transparent #bc5f6a transparent;
+    -fx-background-color: -fx-focus-color, -fx-background;
+}
+
+.Btn {
+    -fx-background-color: #cdc2be;
+    -fx-text-fill: #593a37;
+}
+.Btn:hover  {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bc5f6a;
+    -fx-border-color: #bc5f6a;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;}
+.transparent {
+    -fx-background-color: rgba(0,0,0,0);
+}

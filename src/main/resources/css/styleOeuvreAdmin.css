@@ -1,3 +1,48 @@
+/* Tableau */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+
+/* En-têtes de colonne */
+.table-view .column-header,
+.table-view .column-header-background {
+    -fx-background-color:  #CDC2BE;
+    -fx-text-fill: black;
+    -fx-padding: 6px; /* Ajout du padding */
+}
+
+/* Cellules */
+.table-view .table-row-cell {
+    -fx-background-color: #F5F5F5;
+}
+
+/* Lignes de séparation */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #EAEAEA;
+}
+
+/* Texte */
+.table-view .table-cell {
+    -fx-text-fill: black;
+}
+
+/* Texte centré */
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+/* Réduire la taille de l'image */
+.table-view .image-cell .table-cell {
+    -fx-alignment: center;
+}
+
+.table-view .image-cell .table-cell > .image-view {
+    -fx-fit-width: 20px;
+    -fx-fit-height: 20px;
+}
 /* styles.css */
 .main-container {
     -fx-background-color: #ffffff; /* Blanc */
@@ -64,5 +109,6 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+
 
 
