@@ -3,12 +3,16 @@ package services.oeuvreArt;
 import models.Categorie;
 import models.OeuvreArt;
 import models.Utilisateur;
+import services.categorie.CategorieService;
+import services.utilisateur.UtilisateurService;
 import utils.MyDataBase;
 import java.sql.*;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
@@ -49,23 +53,15 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
 
     @Override
     public void ModifierOeuvreArt(OeuvreArt oeuvreArt) throws SQLException {
-        // Vérifier si l'oeuvre d'art a un ID valide
-        if (oeuvreArt.getId() <= 0) {
-            System.out.println("L'oeuvre d'art doit avoir un ID valide pour être modifiée.");
-            return;
-        }
 
-        String sql = "UPDATE oeuvreart SET image = ?, titre = ?, description = ?, dateAjout = ?, prixVente = ?, id_categorie = ?, status = ?, id_artiste = ? WHERE idOeuvreArt = ?";
+        String sql = "UPDATE oeuvreart SET image = ?, titre = ?, description = ?, prixVente = ?, id_categorie = ? WHERE idOeuvreArt = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, oeuvreArt.getImage());
             preparedStatement.setString(2, oeuvreArt.getTitre());
             preparedStatement.setString(3, oeuvreArt.getDescription());
-            preparedStatement.setDate(4, new java.sql.Date(oeuvreArt.getDateAjout().getTime()));
-            preparedStatement.setFloat(5, oeuvreArt.getPrixVente());
-            preparedStatement.setInt(6, oeuvreArt.getCategorie().getIdCategorie());
-            preparedStatement.setString(7, oeuvreArt.getStatus());
-            preparedStatement.setInt(8, oeuvreArt.getArtiste().getId());
-            preparedStatement.setInt(9, oeuvreArt.getId());
+            preparedStatement.setFloat(4, oeuvreArt.getPrixVente());
+            preparedStatement.setInt(5, oeuvreArt.getCategorie().getIdCategorie());
+            preparedStatement.setInt(6, oeuvreArt.getId());
             preparedStatement.executeUpdate();
             System.out.println("L'oeuvre d'art a été modifiée avec succès.");
         }
@@ -259,6 +255,48 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
         return oeuvre;
     }
 
+    //------------------------getAllOeuvreArtByArtisteAndCategory------------------
+    //------------------------getAllOeuvreArtByArtisteAndCategory------------------
+    public List<OeuvreArt> getAllOeuvreArtByArtisteAndCategory(int idArtiste, String categorie) throws SQLException {
+        List<OeuvreArt> oeuvreArts = new ArrayList<>();
+        String sql = "SELECT o.*, c.idCategorie, c.nomCategorie, u.nom, u.prenom " +
+                "FROM oeuvreart o " +
+                "JOIN utilisateur u ON o.id_Artiste = u.id " +
+                "JOIN categorie c ON o.id_Categorie = c.idCategorie " +
+                "WHERE u.id = ? AND c.nomCategorie = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, idArtiste);
+            preparedStatement.setString(2, categorie);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    OeuvreArt oeuvreArt = new OeuvreArt();
+                    oeuvreArt.setId(rs.getInt("idOeuvreArt"));
+                    oeuvreArt.setImage(rs.getString("image"));
+                    oeuvreArt.setTitre(rs.getString("titre"));
+                    oeuvreArt.setDescription(rs.getString("description"));
+                    oeuvreArt.setDateAjout(rs.getDate("dateAjout"));
+                    oeuvreArt.setPrixVente(rs.getFloat("prixVente"));
+                    oeuvreArt.setStatus(rs.getString("status"));
+
+                    // Création de l'objet Catégorie
+                    Categorie categorieObj = new Categorie();
+                    categorieObj.setIdCategorie(rs.getInt("idCategorie"));
+                    categorieObj.setNomCategorie(rs.getString("nomCategorie"));
+                    oeuvreArt.setCategorie(categorieObj);
+
+                    // Création de l'objet Utilisateur (artiste)
+                    Utilisateur artiste = new Utilisateur();
+                    artiste.setNom(rs.getString("nom"));
+                    artiste.setPrenom(rs.getString("prenom"));
+                    oeuvreArt.setArtiste(artiste);
+
+                    oeuvreArts.add(oeuvreArt);
+                }
+            }
+        }
+        return oeuvreArts;
+    }
+
 
     //-----------------------------Calculer nombre des oeuvre d'art total-------------------------------------------------------
 
@@ -306,6 +344,67 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
         }
         return nombreOeuvres;
     }
+
+
+
+    //------------------------------------------------------------------------------
+
+    public Map<String, Integer> nombreOeuvresArtParToutesCategories() throws SQLException {
+        Map<String, Integer> nombreOeuvresParCategorie = new HashMap<>();
+        String sql = "SELECT nomCategorie, COUNT(*) AS count FROM oeuvreart JOIN categorie ON oeuvreart.id_categorie = categorie.idCategorie GROUP BY nomCategorie";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                String categorie = resultSet.getString("nomCategorie");
+                int nombreOeuvres = resultSet.getInt("count");
+                nombreOeuvresParCategorie.put(categorie, nombreOeuvres);
+            }
+        }
+        return nombreOeuvresParCategorie;
+    }
+
+    public List<OeuvreArt> getOeuvresByTitre(String titre) throws SQLException {
+        List<OeuvreArt> oeuvres = new ArrayList<>();
+        String sql = "SELECT * FROM oeuvreart WHERE titre = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, titre);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    OeuvreArt oeuvre = new OeuvreArt();
+                    oeuvre.setId(rs.getInt("idOeuvreArt"));
+                    oeuvre.setImage(rs.getString("image"));
+                    oeuvre.setTitre(rs.getString("titre"));
+                    oeuvre.setDescription(rs.getString("description"));
+
+                    // Vérifiez si la date de l'ajout est nulle
+                    Date dateAjout = rs.getDate("dateAjout");
+                    if (dateAjout != null) {
+                        oeuvre.setDateAjout(dateAjout);
+                    } else {
+                        // Gérez le cas où la date est nulle (vous pouvez attribuer une valeur par défaut ou laisser vide)
+                        oeuvre.setDateAjout(null); // ou attribuez une valeur par défaut, par exemple : oeuvre.setDateAjout(new Date(System.currentTimeMillis()));
+                    }
+
+                    oeuvre.setPrixVente(rs.getFloat("prixVente"));
+                    oeuvre.setStatus(rs.getString("status"));
+
+                    // Obtenez la catégorie de l'œuvre d'art
+                    CategorieService categorieService = new CategorieService();
+                    Categorie categorie = categorieService.getCategorieById(rs.getInt("id_categorie"));
+                    oeuvre.setCategorie(categorie);
+
+                    // Obtenez l'artiste de l'œuvre d'art
+                    UtilisateurService utilisateurService = new UtilisateurService();
+                    Utilisateur artiste = utilisateurService.getUtilisateurById(rs.getInt("id_artiste"));
+                    oeuvre.setArtiste(artiste);
+
+                    oeuvres.add(oeuvre);
+                }
+            }
+        }
+        return oeuvres;
+    }
+
 
 }
 

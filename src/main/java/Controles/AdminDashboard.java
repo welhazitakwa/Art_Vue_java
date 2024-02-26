@@ -34,17 +34,9 @@ public class AdminDashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*btnExit.setOnMouseClicked(e->{
-            System.exit(0);
-        });
-        try {
-            Parent fxml = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
-            contentArea.getChildren().removeAll();
-            contentArea.getChildren().setAll();
-        }
-        catch (IOException ex){
-            Logger.getLogger(ModuleLayer.Controller.class.getName()).log(Level.SEVERE , null , ex);
-        }*/
+
+            pageDashboard(null);
+
     }
 
     @FXML
@@ -63,9 +55,15 @@ public class AdminDashboard implements Initializable {
 
 
     public void pageDashboard(ActionEvent actionEvent) {
-        // Charger le contenu de la page 2
-        contentArea.getChildren().clear();
-        contentArea.getChildren().add(new Button("Contenu de la page 2"));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/Dashboard.fxml"));
+            Parent Dashboard = loader.load();
+            DashboardStat dashboardStat = loader.getController();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(Dashboard);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void to_ouevre_art(ActionEvent actionEvent) {

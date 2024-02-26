@@ -75,7 +75,7 @@ public class AjouterOeuvre {
             Categorie categorieObj = categorieService.getCategorieByNom(categorieNom);
 
             Utilisateur artiste = new Utilisateur();
-            artiste.setId(1);
+            artiste.setId(14);
 
             OeuvreArt oeuvreArt = new OeuvreArt(image, titre, description, dateAjout, prixVente, categorieObj, "disponible", artiste);
 

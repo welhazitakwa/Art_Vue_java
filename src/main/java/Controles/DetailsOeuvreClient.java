@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.OeuvreArt;
@@ -80,9 +81,11 @@ public class DetailsOeuvreClient {
         idStatus.setText(oeuvreArt.getStatus());
         idEmailArtiste.setText(oeuvreArt.getArtiste().getEmail());
         idTelArtiste.setText(String.valueOf(oeuvreArt.getArtiste().getNumTel()));
-        // Charger l'image de l'oeuvre d'art
-        // Assurez-vous d'avoir une méthode pour charger l'image depuis l'URL ou le chemin spécifié
-        // par exemple : idImage.setImage(new Image(oeuvreArt.getImageUrl()));
+        String imageUrl = oeuvreArt.getImage();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Image image = new Image(imageUrl);
+            idImage.setImage(image);
+        }
     }
 
 

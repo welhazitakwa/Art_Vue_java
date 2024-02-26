@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -47,6 +48,7 @@ public class PageOeuvre implements Initializable {
         try {
             List<Categorie> categories = categorieService.AfficherCategorie();
             ObservableList<String> categoryNames = FXCollections.observableArrayList();
+            categoryNames.add("Tous"); // Ajouter l'option "Tous"
             for (Categorie categorie : categories) {
                 categoryNames.add(categorie.getNomCategorie());
             }
@@ -57,6 +59,7 @@ public class PageOeuvre implements Initializable {
         // Récupérer et afficher les œuvres d'art
         afficherToutesOeuvres();
     }
+
     private void afficherToutesOeuvres() {
         try {
             List<OeuvreArt> oeuvres = oeuvreArtService.AfficherOeuvreArt();
@@ -108,13 +111,14 @@ public class PageOeuvre implements Initializable {
             }
         }
     }
+
     @FXML
     void handleCategorySelection(ActionEvent event) {
         try {
             String selectedCategory = categorieComboBox.getValue(); // Récupérer la catégorie sélectionnée
             List<OeuvreArt> oeuvres;
-            if (selectedCategory != null) {
-                // Si une catégorie est sélectionnée, récupérer les œuvres d'art correspondantes à cette catégorie
+            if (selectedCategory != null && !selectedCategory.equals("Tous")) {
+                // Si une catégorie est sélectionnée (autre que "Tous"), récupérer les œuvres d'art correspondantes à cette catégorie
                 oeuvres = oeuvreArtService.getAllOeuvreArtByCategorie(selectedCategory);
             } else {
                 // Sinon, récupérer toutes les œuvres d'art
@@ -133,7 +137,7 @@ public class PageOeuvre implements Initializable {
         card.getStyleClass().add("hbox"); // Ajouter la classe de style pour la carte
 
         // Image de l'œuvre d'art
-        ImageView imageView = new ImageView("image/art.jpg");
+        ImageView imageView = new ImageView(new Image(oeuvreArt.getImage()));
         imageView.setFitWidth(136);
         imageView.setFitHeight(174);
 
@@ -145,7 +149,7 @@ public class PageOeuvre implements Initializable {
         Label artistLabel = new Label("Artiste: " + oeuvreArt.getArtiste().getNom() + " " + oeuvreArt.getArtiste().getPrenom());
 
         // Prix
-        Label priceLabel = new Label("Prix: " + oeuvreArt.getPrixVente() + " €");
+        Label priceLabel = new Label("Prix: " + oeuvreArt.getPrixVente() + " DT ");
 
         // Ajout des éléments à la carte
         card.getChildren().addAll(imageView, titleLabel, artistLabel, priceLabel);
