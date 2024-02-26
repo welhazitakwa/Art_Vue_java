@@ -256,7 +256,6 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
     }
 
     //------------------------getAllOeuvreArtByArtisteAndCategory------------------
-    //------------------------getAllOeuvreArtByArtisteAndCategory------------------
     public List<OeuvreArt> getAllOeuvreArtByArtisteAndCategory(int idArtiste, String categorie) throws SQLException {
         List<OeuvreArt> oeuvreArts = new ArrayList<>();
         String sql = "SELECT o.*, c.idCategorie, c.nomCategorie, u.nom, u.prenom " +
@@ -381,7 +380,7 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
                     if (dateAjout != null) {
                         oeuvre.setDateAjout(dateAjout);
                     } else {
-                        // Gérez le cas où la date est nulle (vous pouvez attribuer une valeur par défaut ou laisser vide)
+
                         oeuvre.setDateAjout(null); // ou attribuez une valeur par défaut, par exemple : oeuvre.setDateAjout(new Date(System.currentTimeMillis()));
                     }
 
