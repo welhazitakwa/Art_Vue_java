@@ -16,14 +16,14 @@ public class Home extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-         // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/CategoriePage.fxml"));
+        //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
+        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/VOteDetails.fxml"));
 
         try {
             Parent root = loader.load();
-            primaryStage.setTitle("Ligin");
+            primaryStage.setTitle("Login");
             //Scene scene = new Scene(root, 930,700);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);

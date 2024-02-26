@@ -1,115 +1,172 @@
 package Controles;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.OeuvreArt;
 import services.concours.OeuvreConcoursService;
 import services.vote.voteServices;
 
+import java.util.List;
+
 public class AfficherOeuvreConcoursUser {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private VBox vboxDetails;
-
+    @FXML
+    private Button consultermesvotes;
 
 
     @FXML
-    void initialize() {
-        assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreConcoursUser.fxml'.";
+    private ScrollPane scrollPane;
 
+  
+
+ 
+    @FXML
+    public void initialize() {
+        assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreConcoursUser.fxml'.";
     }
+    int idUser =1;
+
     @FXML
     public void initialiserDetailsOeuvres(List<OeuvreArt> oeuvres) {
-        // Supprimez tous les éléments existants de la VBox
         vboxDetails.getChildren().clear();
 
-        // Ajoutez les détails de chaque œuvre à la VBox
+        // Vous pouvez ajuster ces dimensions selon vos besoins
+        double imageViewWidth = 300;
+        double imageViewHeight = 300;
+
         oeuvres.forEach(oeuvre -> {
             Label labelTitre = new Label("Titre: " + oeuvre.getTitre());
             Label labelArtiste = new Label("Artiste: " + oeuvre.getArtiste());
 
             String imagePath = oeuvre.getImage();
-
-// Créez une URL à partir du chemin du fichier
             File file = new File(imagePath);
-            URL imageUrl = null;
+            URL imageUrl;
             try {
                 imageUrl = file.toURI().toURL();
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-
-// Créez une ImageView avec l'URL de l'image
             ImageView imageView = new ImageView(new Image(imageUrl.toString()));
+            imageView.setFitWidth(imageViewWidth);
+            imageView.setFitHeight(imageViewHeight);
 
-            // Créez une HBox pour les étoiles
-            HBox starRating = new HBox();
+            // Utilisez la ComboBox au lieu de la HBox
+            ComboBox<Integer> ratingComboBox = createRatingComboBox(oeuvre);
 
-            for (int i = 0; i < 5; i++) {
-                final int index = i; // Créez une variable finale pour capturer la valeur de i
-                Button starButton = new Button("★");
-                starButton.setOnAction(event -> handleStarSelection(oeuvre, index + 1));
-                starRating.getChildren().add(starButton);
-            }
+            // Add the confirmation button
+            Button confirmerButton = new Button("Confirmer");
+            confirmerButton.setOnAction(event -> confirmerVote(oeuvre, idUser));
 
+            // Utilisez la ComboBox au lieu de la HBox
             VBox detailsOeuvre = new VBox(
                     labelTitre,
                     labelArtiste,
                     imageView,
-                    starRating
+                    ratingComboBox,
+                    confirmerButton
             );
 
-            // Ajoutez chaque VBox de détails d'œuvre à la VBox principale
+            // Vous pouvez ajouter un espacement entre les éléments si nécessaire
+            detailsOeuvre.setSpacing(10);
+
             vboxDetails.getChildren().add(detailsOeuvre);
         });
+
+        // Ajoutez la VBox à un ScrollPane pour gérer le défilement si nécessaire
+        scrollPane.setContent(vboxDetails);
     }
 
-    // Méthode pour gérer la sélection des étoiles
-    private void handleStarSelection(OeuvreArt oeuvre, int selectedStars) {
-        // Ici, vous pouvez implémenter la logique pour enregistrer la note dans la table Vote
-        // Supposons que vous ayez une classe de service pour gérer les votes, par exemple VoteService
 
-        voteServices voteService = new voteServices();
+    private ComboBox<Integer> createRatingComboBox(OeuvreArt oeuvre) {
+        ComboBox<Integer> ratingComboBox = new ComboBox<>();
+        ratingComboBox.setId(getComboBoxId(oeuvre));
 
-        // Supposons que vous avez besoin de l'id du concours et de l'utilisateur actuel pour enregistrer le vote
-        OeuvreConcoursService oeuvreConcoursService =new OeuvreConcoursService();
-        int concoursId = oeuvreConcoursService.getConcoursIdByOeuvreId(oeuvre.getId()); // Obtenez l'id du concours associé à l'œuvre
-        int userId = getCurrentUserId(); // Obtenez l'id de l'utilisateur actuel
+        // Ajoutez les valeurs possibles à la ComboBox
+        for (int i = 0; i <= 5; i++) {
+            ratingComboBox.getItems().add(i);
+        }
 
+        // Sélectionnez la première valeur par défaut
+        ratingComboBox.getSelectionModel().selectFirst();
 
-        // Enregistrez le vote dans la base de données en utilisant le service VoteService
-        boolean voteEnregistre = voteService.enregistrerVote(concoursId, userId, selectedStars);
+        return ratingComboBox;
+    }
 
-        if (voteEnregistre) {
-            System.out.println("Vote enregistré avec succès pour l'oeuvre: " + oeuvre.getTitre() + ", Note: " + selectedStars);
-            // Vous pouvez également mettre à jour l'interface utilisateur pour refléter la nouvelle note ou fournir un feedback à l'utilisateur
-        } else {
-            System.out.println("Erreur lors de l'enregistrement du vote.");
-            // Gérer l'erreur ou fournir un feedback à l'utilisateur en cas d'échec de l'enregistrement du vote
+    private String getComboBoxId(OeuvreArt oeuvre) {
+        return "comboBox_" + oeuvre.getId();
+    }
+
+    private int getSelectedRating(OeuvreArt oeuvre) {
+        // Retrieve the ComboBox using lookup
+        ComboBox<Integer> ratingComboBox = (ComboBox<Integer>) vboxDetails.lookup("#" + getComboBoxId(oeuvre));
+
+        // Retournez la valeur sélectionnée
+        return ratingComboBox.getValue();
+    }
+
+    private void confirmerVote(OeuvreArt oeuvre, int idUser) {
+        int selectedRating = getSelectedRating(oeuvre);
+
+        // Ajoutez le vote à la base de données
+        int idOeuvre = oeuvre.getId();
+        OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
+        int idConcours = oeuvreConcoursService.getConcoursIdByOeuvreId(idOeuvre);
+
+        voteServices vS = new voteServices();
+        vS.enregistrerVote(idConcours, idOeuvre, idUser, selectedRating);
+
+        // Reste de votre logique pour confirmer le vote
+        System.out.println("Vote confirmé avec succès pour l'oeuvre: " + oeuvre.getTitre() + ", Note: " + selectedRating);
+    }
+
+    public void consultermesvotes(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Chargez le fichier FXML pour la page VoteDetails
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VoteDetails.fxml"));
+            Parent root = loader.load();
+
+            // Obtenez le contrôleur associé à la vue chargée
+            VoteDetails voteDetailsController = loader.getController();
+
+            // Configurez le contrôleur au besoin (vous pouvez avoir des méthodes pour initialiser des données, etc.)
+            // voteDetailsController.initializeData(...);
+
+            // Créez une nouvelle scène avec la page VoteDetails
+            Scene scene = new Scene(root);
+
+            // Obtenez la fenêtre (stage) actuelle à partir de n'importe quel nœud dans votre scène
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Définissez la nouvelle scène sur le stage
+            stage.setScene(scene);
+            stage.setTitle("Vote Details"); // Titre de la nouvelle fenêtre
+
+            // Montrez la nouvelle fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
     }
 
-    // Méthode factice pour obtenir l'id de l'utilisateur actuel
-    private int getCurrentUserId() {
-        // Implémentez la logique pour obtenir l'id de l'utilisateur actuel
-        // Cette méthode peut dépendre de la manière dont vous gérez les utilisateurs dans votre application
-        return 123; // Par exemple, retourne une valeur factice pour l'exemple
-    }
 
 }

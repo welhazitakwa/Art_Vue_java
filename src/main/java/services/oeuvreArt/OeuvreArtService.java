@@ -306,6 +306,58 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
         }
         return nombreOeuvres;
     }
+           /*************list oeuvres (mariem)******************************/
+
+           public List<OeuvreArt> getOeuvres() {
+               List<OeuvreArt> oeuvres = new ArrayList<>();
+
+               try {
+                   String query = "SELECT * FROM oeuvreart";
+                   Statement statement = connection.createStatement();
+                   ResultSet resultSet = statement.executeQuery(query);
+
+                   while (resultSet.next()) {
+                       int id = resultSet.getInt("idOeuvreArt");
+                       String image = resultSet.getString("image");
+                       String titre = resultSet.getString("titre");
+                       String description = resultSet.getString("description");
+                       float prixVente = resultSet.getFloat("prixVente");
+                       String status = resultSet.getString("status");
+                       Date dateAjout = resultSet.getDate("dateAjout");
+
+                       int categorieId = resultSet.getInt("id_categorie");
+
+                       int artisteId = resultSet.getInt("id_artiste");
+
+                       // Vous devrez probablement implémenter des méthodes de récupération pour les objets liés
+                       Categorie categorie = getCategorieById(categorieId);
+                       Utilisateur artiste = getArtisteById(artisteId);
+
+                       OeuvreArt oeuvre = new OeuvreArt(id, image, titre, description, dateAjout, prixVente, categorie, status, artiste);
+                       oeuvres.add(oeuvre);
+                   }
+
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+
+               return oeuvres;
+           }
+
+    // Méthode pour récupérer une catégorie par ID
+    private Categorie getCategorieById(int categorieId) throws SQLException {
+        // Implémentez la logique de récupération de la catégorie depuis la base de données
+        // Retournez un objet Categorie
+        return null;
+    }
+
+    // Méthode pour récupérer un artiste par ID
+    private Utilisateur getArtisteById(int artisteId) throws SQLException {
+        // Implémentez la logique de récupération de l'artiste depuis la base de données
+        // Retournez un objet Utilisateur
+        return null;
+    }
+/******************************************/
 
 }
 

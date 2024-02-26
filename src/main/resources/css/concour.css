@@ -1,0 +1,88 @@
+/* styles.css */
+
+/* Style pour le bouton Admin */
+#Admin {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-color: #AF9083;
+    -fx-font-weight: bold;
+}
+
+/* Style pour le bouton User */
+#User {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-color: #AF9083;
+    -fx-font-weight: bold;
+}
+/*______________________ajoutconcours____________________________________*/
+
+
+
+/* Style pour les champs de texte (TextField) et zones de texte (TextArea) */
+TextField, TextArea {
+    -fx-font-size: 14px;
+    -fx-padding: 5px; /* Ajustez la marge selon vos préférences */
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bordure arrondie */
+    -fx-background-radius: 5px; /* Coins arrondis pour le fond */
+}
+
+/* Style pour les champs de texte lorsqu'ils sont en focus */
+TextField:focused, TextArea:focused {
+    -fx-border-color: #9d6969; /* Couleur de la bordure lorsqu'en focus */
+    -fx-box-shadow: 0 0 5px 0 #8f5c5c; /* Ombre légère en focus */
+}
+
+/* Style pour les champs de texte lorsqu'ils sont désactivés */
+TextField:disabled, TextArea:disabled {
+    -fx-opacity: 0.7; /* Opacité réduite pour les champs désactivés */
+}
+
+/* Style pour les boutons */
+Button {
+    -fx-background-color: #916363; /* Couleur de fond de base */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-font-size: 16px; /* Taille de la police */
+    -fx-padding: 10px 20px; /* Rembourrage interne du bouton */
+    -fx-border-radius: 5px; /* Bordure arrondie du bouton */
+}
+
+/* Style pour le survol du bouton */
+Button:hover {
+    -fx-background-color: #c67171; /* Nouvelle couleur de fond au survol */
+}
+
+/* Style pour le clic du bouton */
+Button:pressed {
+    -fx-background-color: #b15d5d; /* Nouvelle couleur de fond au clic */
+}
+
+
+/* Style pour la ListView */
+ListView {
+    -fx-font-size: 14px;
+    -fx-border-color: #ccc;
+    /* Ajoutez d'autres styles selon vos besoins */
+}
+
+/*---------------------------afficherconcours------------------------------------------------------*/
+/* Style pour la VBox qui contient chaque concours */
+.vbox {
+    -fx-padding: 10px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-spacing: 5px;
+}
+/*-----------------*/
+.selected-star {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+}
+.root {
+
+    -fx-box-shadow: 5px 5px 5px #888888;
+}
+

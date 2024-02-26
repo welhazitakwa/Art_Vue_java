@@ -2,21 +2,72 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.ModifierConcours">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" style="-fx-background-color: #cdc2be;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.ModifierConcours">
+    <DatePicker fx:id="dateDebutPicker" layoutX="535.0" layoutY="153.0" prefHeight="47.0" prefWidth="308.0" promptText="Date de début" />
+    <DatePicker fx:id="dateFinPicker" layoutX="535.0" layoutY="230.0" prefHeight="47.0" prefWidth="308.0" promptText="Date de fin" />
 
-    <TextField fx:id="titreTextField" layoutX="218.0" layoutY="79.0" promptText="Titre" />
-    <DatePicker fx:id="dateDebutPicker" layoutX="218.0" layoutY="121.0" promptText="Date de début" />
-    <DatePicker fx:id="dateFinPicker" layoutX="230.0" layoutY="165.0" promptText="Date de fin" />
-    <TextField fx:id="descriptionTextField" layoutX="230.0" layoutY="217.0" promptText="Description" />
+    <TextField fx:id="titreTextField" layoutX="535.0" layoutY="87.0" prefHeight="47.0" prefWidth="308.0" promptText="Titre" />
+    <TextField fx:id="descriptionTextField" layoutX="535.0" layoutY="309.0" prefHeight="59.0" prefWidth="308.0" promptText="Description" />
 
     <!-- ListView pour afficher et sélectionner plusieurs œuvres -->
-    <ListView fx:id="oeuvresListView" layoutX="204.0" layoutY="252.0" prefHeight="200" prefWidth="200" />
+    <ListView fx:id="oeuvresListView" layoutX="535.0" layoutY="390.0" prefHeight="220.0" prefWidth="604.0" />
 
-    <Button fx:id="confirmerButton" layoutX="358.0" layoutY="500.0" onAction="#confirmerModification" text="Confirmer" />
+    <Button fx:id="confirmerButton" layoutX="468.0" layoutY="672.0" onAction="#confirmerModification" prefHeight="59.0" prefWidth="210.0" text="Confirmer">
+      <effect>
+         <Lighting diffuseConstant="1.55">
+            <bumpInput>
+               <Lighting bumpInput="$null">
+                  <light>
+                     <Light.Distant />
+                  </light>
+               </Lighting>
+            </bumpInput>
+            <light>
+               <Light.Distant>
+                  <color>
+                     <Color red="0.5921568870544434" green="0.3843137323856354" blue="0.3843137323856354" />
+                  </color>
+               </Light.Distant>
+            </light>
+         </Lighting>
+      </effect>
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font></Button>
+   <Label layoutX="317.0" layoutY="96.0" text="Titre :">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="318.0" layoutY="162.0" text="Date debut :">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="317.0" layoutY="239.0" text="Date fin :">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="317.0" layoutY="324.0" text="Description :">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="317.0" layoutY="411.0" text="Liste des oeuvres :">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
 
 
 </AnchorPane>
