@@ -118,7 +118,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     }
     public void register(Utilisateur utilisateur, String role) throws SQLException {
          if (role.equals("Je suis un artiste")) {
-             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
+             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription,image, etat_compte)" +
                      "values('" + utilisateur.getNom() + "'," +
                      "'" + utilisateur.getPrenom() + "'," +
                      "'" + utilisateur.getEmail() + "'," +
@@ -126,12 +126,13 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                      "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
                      "'" + 1 + "'," +
                      "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
+                     "'" + "file:/C:/ESPRIT/3A17%20semestre%202/PI-DEV/Art_Vue/src/main/resources/image/225-default-avatar-128.png" + "'," +
                      "'" + 0 + "')";
              Statement statement = connection.createStatement();
              statement.executeUpdate(req) ;
          }
          if (role.equals("Je suis un client")) {
-             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
+             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, image,etat_compte)" +
                      "values('" + utilisateur.getNom() + "'," +
                      "'" + utilisateur.getPrenom() + "'," +
                      "'" + utilisateur.getEmail() + "'," +
@@ -139,6 +140,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                      "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
                      "'" + 2 + "'," +
                      "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
+                     "'" + "file:/C:/ESPRIT/3A17%20semestre%202/PI-DEV/Art_Vue/src/main/resources/image/225-default-avatar-128.png" + "'," +
                      "'" + 0 + "')";
              Statement statement = connection.createStatement();
              statement.executeUpdate(req) ;
