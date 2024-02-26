@@ -68,5 +68,16 @@ public class ExpositionService implements  IExposition<Exposition>{
         return listeExposition;
 
     }
+    public void associerVenteExposition(int idVenteEnchere, int idExposition) throws SQLException {
+        // Réalisez ici la logique pour associer la vente aux enchères à l'exposition
+        // Par exemple, vous pouvez exécuter une requête SQL pour mettre à jour l'attribut id_exposition dans la table vente_enchere
+        String sql = "UPDATE venteencheres SET id_exposition = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, idExposition);
+            preparedStatement.setInt(2, idVenteEnchere);
+            preparedStatement.executeUpdate();
+        }
+    }
 
 }

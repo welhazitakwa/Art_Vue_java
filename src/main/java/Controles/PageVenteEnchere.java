@@ -59,8 +59,8 @@ public class PageVenteEnchere implements Initializable {
         Date dateFinSQL = Date.valueOf(dateFin);
         cs.AjouterVenteEncheres(new VenteEncheres(Integer.parseInt(idV_textFile.getText()),dateDebutSQL,dateFinSQL,Float.parseFloat(prixDepartV_textFile.getText()),StatueV_textFile.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Categorie ajoutée");
-        alert.setContentText("Categorie ajoutée !");
+        alert.setTitle("VenteEncheres ajoutée");
+        alert.setContentText("VenteEncheres ajoutée !");
         alert.show();
         idV_tableV.setCellValueFactory(new PropertyValueFactory<VenteEncheres,Integer>("id_ventEncheres"));
         DateDebutV_tableV.setCellValueFactory(new PropertyValueFactory<VenteEncheres,java.sql.Date>("DateDebut"));
@@ -116,9 +116,9 @@ public class PageVenteEnchere implements Initializable {
                 List<VenteEncheres> venteEncheres = venteEncheresService.AfficherVenteEncheres();
                 ObservableList<VenteEncheres> venteEncheresObservableList = FXCollections.observableArrayList(venteEncheres);
                 venteEnchere_tableView.setItems(venteEncheresObservableList);
-                System.out.println("Catégories affichées avec succès : " + venteEncheres.size());
+                System.out.println("VenteEncheres affichées avec succès : " + venteEncheres.size());
             } else {
-                System.err.println("categorieService n'est pas initialisé.");
+                System.err.println("VenteEncheresService n'est pas initialisé.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

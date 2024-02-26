@@ -85,6 +85,7 @@
    <ComboBox fx:id="expositionComboBox" layoutX="545.0" layoutY="56.0" promptText="Sélectionner une exposition" />
    <Button layoutX="421.0" layoutY="112.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update" />
    <Button layoutX="421.0" layoutY="161.0" mnemonicParsing="false" onAction="#supprimer_exposition" text="delete" />
+   <Button layoutX="579.0" layoutY="129.0" mnemonicParsing="false" onAction="#associerVenteExposition" text="Associer à l'exposition" />
 
 
 </AnchorPane>

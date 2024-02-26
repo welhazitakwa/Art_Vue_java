@@ -50,8 +50,8 @@ public class PageOffreEnchere implements Initializable {
         Date dateSQL = Date.valueOf(date);
         cs.AjouterOffreEnchere(new OffreEnchere(Integer.parseInt(idO_textFile.getText()),Float.parseFloat(montantO_textFile.getText()),dateSQL));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Categorie ajoutée");
-        alert.setContentText("Categorie ajoutée !");
+        alert.setTitle("OffreEnchere ajoutée");
+        alert.setContentText("OffreEnchere ajoutée !");
         alert.show();
         idO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,Integer>("id_offreEncheres"));
         montantO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,Float>("Montant"));
@@ -103,9 +103,9 @@ public class PageOffreEnchere implements Initializable {
                 List<OffreEnchere> offreEnchere = offreEnchereService.AfficherOffreEnchere();
                 ObservableList<OffreEnchere> offreEnchereObservableList = FXCollections.observableArrayList(offreEnchere);
                 offreEnchere_tableView.setItems(offreEnchereObservableList);
-                System.out.println("Catégories affichées avec succès : " + offreEnchere.size());
+                System.out.println("OffreEnchere affichées avec succès : " + offreEnchere.size());
             } else {
-                System.err.println("categorieService n'est pas initialisé.");
+                System.err.println("OffreEnchereService n'est pas initialisé.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
