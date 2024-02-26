@@ -14,7 +14,7 @@
    <top>
       <HBox prefHeight="181.0" prefWidth="758.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="177.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageRecup" fitHeight="177.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/user1.jpg" />
                </image>

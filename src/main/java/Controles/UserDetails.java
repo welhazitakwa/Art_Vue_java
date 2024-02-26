@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import services.utilisateur.UtilisateurService;
 
@@ -12,10 +13,13 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import javafx.scene.image.ImageView;
 public class UserDetails  implements Initializable {
 
     double x,y;
+
+    @FXML
+    private ImageView imageRecup;
 
     @FXML
     private Label adresse;
@@ -69,7 +73,7 @@ public class UserDetails  implements Initializable {
 
 
 
-
+//regex
     }
     public void setParametre(String parametre) {
         String vv = parametre ;
@@ -79,7 +83,9 @@ public class UserDetails  implements Initializable {
         System.out.println("iiiiiidddddddddd"+id);
         try {
             UtilisateurService user1 = new UtilisateurService();
+            ImageView imgProfile = new ImageView(new Image(user1.getUtilisateurById(id).getImage()));
 
+            imageRecup.setImage(imgProfile.getImage());
             nomPrenom.setText(user1.getUtilisateurById(id).getNom() + " "+ user1.getUtilisateurById(id).getPrenom() );
             genre.setText(user1.getUtilisateurById(id).getGenre());
             dateNaissance.setText(String.valueOf(user1.getUtilisateurById(id).getDateNaissance()));
