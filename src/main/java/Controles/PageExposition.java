@@ -10,7 +10,6 @@ import models.Exposition;
 import services.Exposition.ExpositionService;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.net.URL;
@@ -33,17 +32,17 @@ public class PageExposition {
     private TextField idE_textFile;
 
     @FXML
-    private TableColumn<Exposition,String> DateDebutE_tableE;
+    private TableColumn<Exposition,java.sql.Date> DateDebutE_tableE;
 
     @FXML
     private DatePicker DateDebutE_textFile;
     @FXML
-    private TableColumn<Exposition,String> DateFinE_tableE;
+    private TableColumn<Exposition,java.sql.Date> DateFinE_tableE;
 
     @FXML
     private DatePicker DateFinE_textFile;
     @FXML
-    private TableColumn<Exposition,String> NbrOeuvreE_tableE;
+    private TableColumn<Exposition,Integer> NbrOeuvreE_tableE;
 
     @FXML
     private TextField NbrOeuvreE_textFile;
@@ -91,10 +90,23 @@ public class PageExposition {
     }
 
     private void chargerDonnees() {
-        try {
+       /* try {
             List<Exposition> expositions = expositionService.AfficherExposition();
             ObservableList<Exposition> observableList = FXCollections.observableArrayList(expositions);
             exposition_tableView.setItems(observableList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            if (expositionService != null) { // Vérifier si categorieService est initialisé
+                List<Exposition> expositions = expositionService.AfficherExposition();
+                ObservableList<Exposition> categorieObservableList = FXCollections.observableArrayList(expositions);
+                exposition_tableView.setItems(categorieObservableList);
+                System.out.println("Catégories affichées avec succès : " + expositions.size());
+            } else {
+                System.err.println("categorieService n'est pas initialisé.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
