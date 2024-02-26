@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -117,6 +118,9 @@ public class UserItem {
       //  ImageView imgProfile = new ImageView(String.valueOf(getClass().getResourceAsStream(user.getImage())));
 
        // userImg.setImage (imgProfile.getImage());
+        ImageView imgProfile = new ImageView(new Image(user.getImage()));
+
+        userImg.setImage(imgProfile.getImage());
 //        System.out.println("Nom: " + user.getNom());
 //        System.out.println("Prenom: " + user.getPrenom());
 //        System.out.println("Adresse: " + user.getAdresse());
