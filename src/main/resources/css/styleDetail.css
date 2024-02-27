@@ -1,0 +1,48 @@
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #593A37;
+}
+
+.centerPane {
+    -fx-background-color: #EFE9E7;
+
+}
+
+.leftPane {
+    -fx-background-color: #AF9083;
+    -fx-padding: 20px;
+}
+
+.image {
+    -fx-padding: 10px;
+}
+
+.title {
+    -fx-padding: 10px;
+    -fx-font-size: 30;
+}
+
+.artist {
+    -fx-padding: 10px;
+}
+
+.category {
+    -fx-padding: 10px;
+}
+
+.dateAdded {
+    -fx-padding: 10px;
+}
+
+.description {
+    -fx-padding: 10px;
+}
+
+.price {
+    -fx-padding: 10px;
+}
+
+.status {
+    -fx-padding: 10px;
+}

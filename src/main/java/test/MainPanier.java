@@ -1,51 +1,96 @@
 package test;
 
 import models.Panier;
+import models.Utilisateur;
 import services.Panier.PanierService;
+import services.utilisateur.UtilisateurService;
 import utils.MyDataBase;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDate.*;
+import java.util.Date;
+import java.util.List;
 public class MainPanier {
     public static void main(String[] args) {
         MyDataBase d = MyDataBase.getInstance();
         PanierService pan1=new PanierService();
         PanierService pan2=new PanierService();
-        PanierService pan3=new PanierService();
-        PanierService pan4=new PanierService();
-     /*   try
-        {
-            //pan1.AjouterPanier(new Panier(12, LocalDate.of(2024, 1, 1)));
-//pan2.AjouterPanier(new Panier(5,LocalDate.of(2024,1,1)));
-//pan3.AjouterPanier(new Panier(6,LocalDate.of(2023,1,1)));
-pan4.AjouterPanier(new Panier(7,LocalDate.of(2024,1,4)));
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
+      UtilisateurService utilisateurService = new UtilisateurService();
+      /*try{
 
-        }*/
-     /*   try {
-            pan3.ModifierPanier(new Panier(3,6,LocalDate.of(2024,1,1)));
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
+          Panier panier = pan1.getPanierById(15);
 
-        }*/
-      /*  try
-        {
-            pan4.SupprimerPanier(4);
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
+          if (panier != null) {
+              // Affichage des détails du panier
+              System.out.println("Détails du panier avec l'ID " + 15 + ":");
+              System.out.println("ID: " + panier.getId());
+              System.out.println("Date d'ajout: " + panier.getDateAjout());
+              System.out.println("Client: " + panier.getClient());
+          } else {
+              System.out.println("Le panier avec l'ID " + 15 + " n'existe pas.");
+          }
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }
+*/
 
-        }*/
-        try {
-            System.out.println(pan1.AfficherPanier());
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
+/*try
+{
+    Utilisateur client1 = utilisateurService.getUtilisateurById(10);
+    Panier panier1 = new Panier();
 
-        }
+    panier1.setDateAjout(new Date());
+    panier1.setClient(client1);
+    pan1.AjouterPanier(panier1);
+    System.out.println("Ajouté avec succès!");
+}
+catch (SQLException e) {
+    System.out.println("Erreur lors de l'ajout du panier : " + e.getMessage());
+}*/
+   /* try {
+        Utilisateur client1 = utilisateurService.getUtilisateurById(1);
+        Panier panier1 = new Panier();
+        panier1.setId(15);
 
+        panier1.setDateAjout(new Date());
+        panier1.setClient(client1);
+        pan1.ModifierPanier(panier1);
     }
+    catch (SQLException e) {
+        System.out.println("Erreur lors de la modification du panier : " + e.getMessage());
+    }*/
+
+       /* try {
+
+            pan1.SupprimerPanier(13);
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la suppression de l'oeuvre d'art : " + e.getMessage());
+        }*/
+
+       /* try {
+
+            List<Panier> paniers = pan1.AfficherPanier();
+
+
+            if (paniers.isEmpty()) {
+                System.out.println("Aucun panier trouvée.");
+            } else {
+                System.out.println("Liste des paniers :");
+
+                for (Panier panier : paniers) {
+                    System.out.println("ID : " + panier.getId());
+
+
+                    System.out.println("Date Ajout : " + panier.getDateAjout());
+
+                    System.out.println("Client : " + panier.getClient().getNom() + " " + panier.getClient().getPrenom());
+                    System.out.println("------------------------------------");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des paniers : " + e.getMessage());
+        }
+*/
     }
+}
+

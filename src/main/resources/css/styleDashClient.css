@@ -1,0 +1,13 @@
+.DecBtn {
+    -fx-background-color: #593a37;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-padding: 8 20 8 20;
+}
+.Text {
+-fx-font-family: Calibri;
+    -fx-font-size: 20;
+}
+.radios {
+    -fx-background-radius: 20;
+}

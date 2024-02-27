@@ -34,6 +34,7 @@
             <artifactId>javafx-controls</artifactId>
             <version>20.0.2</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -43,8 +44,8 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                   <!-- <mainClass>Controles.Home</mainClass>-->
                     <mainClass>Controles.Home</mainClass>
+
                 </configuration>
             </plugin>
         </plugins>

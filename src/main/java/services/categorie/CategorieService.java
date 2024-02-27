@@ -37,7 +37,6 @@ public class CategorieService implements ICategorie<Categorie>{
                 preparedStatement.setInt(2, categorie.getIdCategorie());
                 preparedStatement.executeUpdate();
             }
-
     }
 
 //-----------------------------Supprimer catégorie-------------------------------------------
@@ -100,6 +99,24 @@ public class CategorieService implements ICategorie<Categorie>{
                 }
             }
         }
-        return null; // Si aucune catégorie correspondante n'est trouvée
+        return null;
     }
-}
+    //--------------------calcule nb catégorie ------------------------------------
+
+
+        public int getNombreCategories() throws SQLException {
+            String sql = "SELECT COUNT(*) AS count FROM categorie";
+            try (Statement statement = connection.createStatement();
+                 ResultSet rs = statement.executeQuery(sql)) {
+                if (rs.next()) {
+                    return rs.getInt("count");
+                }
+            }
+            // En cas d'erreur ou si aucune catégorie n'est trouvée, retourner 0
+            return 0;
+        }
+
+
+    }
+
+

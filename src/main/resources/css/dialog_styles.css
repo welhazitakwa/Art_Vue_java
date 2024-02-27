@@ -1,0 +1,40 @@
+/* dialog_styles.css */
+.dialog-label {
+    -fx-font-size: 14px;
+    -fx-padding: 30 0 0 10px;
+    -fx-text-alignment: left;
+    -fx-alignment: baseline-left;
+    -fx-font-family: "Arial";
+}
+
+.dialog-text-field {
+    -fx-padding: 8px;
+    -fx-prompt-text-fill: gray;
+    -fx-background-color: #f8f8f8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 13px;
+
+
+
+}
+
+
+.dialog-button {
+
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-color: #AF9083;
+    -fx-font-weight: bold;
+
+
+}
+.dialog-text-field:focused {
+    -fx-background-color: #E0E0E0; /* Couleur de fond lorsqu'en focus */
+    -fx-border-color: #593a37; /* Couleur de bordure lorsqu'en focus */
+    -fx-border-width: 2px; /* Largeur de la bordure lorsqu'en focus */
+}

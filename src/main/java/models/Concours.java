@@ -1,20 +1,19 @@
 package models;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Concours {
 
-    private static int id;
-    private static String titre;
-    private static Date date_debut;
-    private static Date date_fin;
-    private static String description;
+    private  int id;
+    private String titre;
+    private  LocalDate date_debut;
+    private LocalDate date_fin;
+    private  String description;
 
     public Concours() {
 
     }
-    public Concours(int id, String titre, Date date_debut, Date date_fin, String description ) {
+    public Concours(int id, String titre, LocalDate date_debut, LocalDate date_fin, String description ) {
         this.id = id;
         this.titre = titre;
         this.date_debut = date_debut;
@@ -22,51 +21,57 @@ public class Concours {
         this.description = description ;
     }
 
-    public Concours(String titre, Date date_debut, Date date_fin, String description) {
+    public Concours(String titre, LocalDate date_debut, LocalDate date_fin, String description) {
         this.titre = titre;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
         this.description = description ;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        Concours.id = id;
+    public  void setId(int id) {
+        this.id = id;
     }
 
-    public static String getTitre() {
+    public  String getTitre() {
         return titre;
     }
 
-    public static void setTitre(String titre) {
-        Concours.titre = titre;
+    public  void setTitre(String titre) {
+        this.titre = titre;
     }
 
-    public static Date getDate_debut() {
+    public  LocalDate getDate_debut() {
         return date_debut;
     }
 
-    public static void setDate_debut(Date date_debut) {
-        Concours.date_debut = date_debut;
+    public void setDate_debut(LocalDate date_debut) {
+        this.date_debut = date_debut;
     }
 
-    public static Date getDate_fin() {
+    public LocalDate getDate_fin() {
         return date_fin;
     }
 
-    public static void setDate_fin(Date date_fin) {
-        Concours.date_fin = date_fin;
+    public void setDate_fin(LocalDate date_fin) {
+        this.date_fin = date_fin;
     }
 
-    public static String getDescription() {
+    public  String getDescription() {
         return description;
     }
 
-    public static void setDescription(String description) {
-        Concours.description = description;
+    public  void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDateDebut(LocalDate of) {this.date_debut=date_debut;
+    }
+
+    public  void setDateFin(LocalDate of) {this.date_fin=date_fin;
     }
 
     @Override

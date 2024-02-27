@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.DetailsOeuvreAdmin">
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="idTitrePageLabel" text="label">
+                    <font>
+                        <Font name="Book Antiqua Bold" size="27.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" prefHeight="575.0" prefWidth="1400.0">
+                    <VBox.margin>
+                        <Insets bottom="20.0" top="60.0" />
+                    </VBox.margin>
+                    <children>
+                        <ImageView fx:id="idImage" fitHeight="327.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/peinture.jpg" />
+                            </image>
+                        </ImageView>
+                        <VBox prefHeight="460.0" prefWidth="412.0">
+                            <HBox.margin>
+                                <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
+                            </HBox.margin>
+                            <children>
+                                <Label fx:id="IdTitre" text="Label">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="idDescription" text="label">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="idStatus" text="label">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="372.0" style="-fx-background-color: rgba(183, 183, 183, 0.53);">
+                                    <children>
+                                        <Label fx:id="idPrix" text="label">
+                                            <HBox.margin>
+                                                <Insets left="20.0" />
+                                            </HBox.margin>
+                                            <font>
+                                                <Font name="Arial Narrow Bold" size="21.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="idCategorie" text="label">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="idArtiste" text="label" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMATION COMPLEMENTAIRES">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" top="30.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <HBox prefHeight="5.0" prefWidth="200.0" style="-fx-background-color: black;">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" right="40.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="372.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Artiste" wrappingWidth="93.12969970703125" />
+                                        <Label fx:id="idEmailArtiste" text="label" />
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="332.0" prefHeight="32.0" prefWidth="372.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Téléphone Artiste">
+                                            <HBox.margin>
+                                                <Insets right="20.0" />
+                                            </HBox.margin>
+                                        </Text>
+                                        <Label fx:id="idTelArtiste" text="label" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="40.0" top="40.0" />
+                    </padding>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="40.0" />
+            </padding>
+        </VBox>
+    </center>
+
+</BorderPane>
