@@ -249,5 +249,24 @@ public class ConcoursService implements Iconcours<Concours> {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
     }
+    /*-----------------------------------------------------------------*/
+    public boolean titreExisteDeja(String titre) {
+        String query = "SELECT COUNT(*) FROM concours WHERE titre = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, titre);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0; // Si count est supérieur à 0, le titre existe déjà
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+        }
+
+        return false;
+    }
 }
 
