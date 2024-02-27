@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -74,11 +75,13 @@ public class AfficherConcours {
                 }
             });
 
+            // Créez un HBox pour les boutons avec un espacement
+            HBox buttonBox = new HBox(10); // Espacement de 10 pixels
+            buttonBox.getChildren().addAll(btnSupprimer, btnModifier, btnVoirOeuvres);
+
             VBox vbox = new VBox(
                     new Label(concours.toString()),
-                    btnSupprimer,
-                    btnModifier,
-                    btnVoirOeuvres
+                    buttonBox // Ajoutez le HBox à la VBox
             );
 
             // Ajoutez chaque VBox à la liste
@@ -88,6 +91,8 @@ public class AfficherConcours {
         // Ajoutez la liste complète à votre ListView
         listeConcours.getItems().addAll(vboxList);
     }
+
+
     // Méthode appelée lors du clic sur le bouton "Supprimer"
     private void supprimerConcours(Concours concours) {
         // Créez une instance de ConcoursService

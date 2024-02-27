@@ -151,6 +151,5 @@ public class OeuvreConcoursService {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
 
-        return concoursId;
-    }
-}
+        return concoursId;}}
+   

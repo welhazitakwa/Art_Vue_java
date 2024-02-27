@@ -16,18 +16,22 @@ import services.vote.voteServices;
 import utils.MyDataBase;
 import services.concours.OeuvreConcoursService;
 
+
+
 public class mainConcours {
     public static void main(String[] args) throws SQLException {
 
         ConcoursService cs = new ConcoursService();
         voteServices vs = new voteServices();
         Concours Concours = null;
+
+
        /* Concours.setTitre("Mon concours");
         Concours.setDateDebut(LocalDate.of(2023, 11, 14));
         Concours.setDateFin(LocalDate.of(2023, 12, 14));
         Concours.setDescription("Ceci est mon concours");*/
 
-        List<OeuvreArt> oeuvresArts = new ArrayList<>();
+       // List<OeuvreArt> oeuvresArts = new ArrayList<>();
 
     /*    try {
             
@@ -45,8 +49,8 @@ public class mainConcours {
             throw new RuntimeException(e);
 
 */
-         /* try {
-            vs.ModifierVote(new Vote (2,9));
+      /*    try {
+            vs.ModifierVote(new Vote (9,2));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }*/
@@ -69,8 +73,8 @@ public class mainConcours {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }*/
-       /* try {
-            cs.ModifierConcours(new Concours(17,"test", LocalDate.of(2024, 2, 18),LocalDate.of(2024, 2, 18),
+        /*try {
+            cs.ModifierConcours(new Concours(27,"test", LocalDate.of(2024, 2, 18),LocalDate.of(2024, 2, 18),
                     "skl,kjcndjhb"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -94,7 +98,7 @@ public class mainConcours {
         } catch (SQLException e) {
             e.printStackTrace();
         }**/
-        OeuvreConcoursService instance = new OeuvreConcoursService();
+       /* OeuvreConcoursService instance = new OeuvreConcoursService();
 
         // Remplacez "1" par l'identifiant du concours que vous souhaitez tester
         int concoursId = 35;
@@ -106,6 +110,6 @@ public class mainConcours {
         for (OeuvreArt oeuvre : oeuvres) {
             System.out.println(oeuvre);
         }
-
+           */
         }
     }

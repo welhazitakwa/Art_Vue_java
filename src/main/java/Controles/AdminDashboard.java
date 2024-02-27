@@ -29,6 +29,10 @@ public class AdminDashboard implements Initializable {
 
     @FXML
     private Button idBTNCategorie;
+
+    @FXML
+    private Button id_pageconcoursmenu;
+
     @FXML
     private Button btnExit;
 
@@ -53,6 +57,7 @@ public class AdminDashboard implements Initializable {
     }
 
 
+    @FXML
 
     public void pageDashboard(ActionEvent actionEvent) {
         try {
@@ -73,6 +78,21 @@ public class AdminDashboard implements Initializable {
             OeuvresArtController oeuvresArtController = loader.getController();
             contentArea.getChildren().clear();
             contentArea.getChildren().add(OeuvreArtPage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
+    void pageconcoursmenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Concours.fxml"));
+            Parent Concours1 = loader.load();
+
+           Concours1 ConcoursController = loader.getController();
+
+            // Effacez le contenu existant et affichez la page de catégorie
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(Concours1);
         } catch (IOException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }

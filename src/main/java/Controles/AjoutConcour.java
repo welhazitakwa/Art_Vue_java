@@ -64,6 +64,26 @@ public class AjoutConcour {
         String description = descriptionTF.getText();
         List<OeuvreArt> oeuvresSelectionnees = listeOeuvresDisponibles.getSelectionModel().getSelectedItems();
 
+        // Contrôle de saisie pour les dates
+        if (dateDebut == null || dateFin == null || dateFin.isBefore(dateDebut)) {
+            // Affichez un message d'erreur, par exemple avec une boîte de dialogue
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez vérifier les dates saisies.");
+            alert.showAndWait();
+            return;
+        }
+        if (serviceConcours.titreExisteDeja(titreConcours)) {
+            // Affichez un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur d'ajout");
+            alert.setHeaderText(null);
+            alert.setContentText("Le titre existe déjà. Veuillez choisir un autre titre.");
+            alert.showAndWait();
+            return;
+        }
+
         // Créer un objet Concours avec les informations saisies
         Concours concours = new Concours(titreConcours, dateDebut, dateFin, description);
 

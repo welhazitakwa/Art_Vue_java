@@ -81,6 +81,7 @@ public class ModifierConcours {
         // Récupérez les œuvres sélectionnées dans la ListView
         ObservableList<OeuvreArt> oeuvresSelectionnees = oeuvresListView.getSelectionModel().getSelectedItems();
 
+
         // Mettez à jour les données du concours avec les nouvelles informations
         concours.setTitre(nouveauTitre);
         concours.setDate_debut(nouvelleDateDebut);

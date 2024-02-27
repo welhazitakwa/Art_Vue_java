@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
@@ -28,6 +29,7 @@ public class AfficherConcoursUser {
 
     @FXML
     private FlowPane flowPane;
+
 
     @FXML
     void initialize() {
@@ -67,6 +69,11 @@ public class AfficherConcoursUser {
     public void initialiserListeConcours(List<Concours> concoursList) {
         // Supprimez tous les éléments existants de la liste
         flowPane.getChildren().clear(); // Assurez-vous d'avoir une instance de FlowPane
+
+        // Configurez le FlowPane
+        flowPane.setAlignment(Pos.CENTER);
+        flowPane.setHgap(20); // Espacement horizontal entre les concours
+        flowPane.setVgap(20); // Espacement vertical entre les concours
 
         // Ajoutez chaque concours à la liste avec le bouton "Voir Œuvres"
         concoursList.forEach(concours -> {
