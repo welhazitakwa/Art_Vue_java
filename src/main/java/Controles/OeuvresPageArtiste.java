@@ -15,7 +15,7 @@ import services.oeuvreArt.OeuvreArtService;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OeuvresArtController {
+public class OeuvresPageArtiste {
 
     @FXML
     private TableColumn<OeuvreArt, Void> actionColumn;
@@ -45,6 +45,7 @@ public class OeuvresArtController {
 
 
     private OeuvreArtService oeuvreArtService = new OeuvreArtService();
+    private int artisteConnecte=14; // Le nom de l'artiste connecté
 
     private void initializeCategorieColumn() {
         categorieColumn.setCellValueFactory(cellData -> {
@@ -80,7 +81,7 @@ public class OeuvresArtController {
             e.printStackTrace();
         }
         try {
-            List<OeuvreArt> oeuvresList = oeuvreArtService.AfficherOeuvreArt();
+            List<OeuvreArt> oeuvresList = oeuvreArtService.getAllOeuvreArtByArtistes(artisteConnecte);
             ObservableList<OeuvreArt> oeuvreArtObservableList = FXCollections.observableArrayList(oeuvresList);
             oeuvresTableView.setItems(oeuvreArtObservableList);
             System.out.println("Oeuvres d'art récupérées avec succès !");
@@ -99,12 +100,13 @@ public class OeuvresArtController {
         imageColumn.setCellFactory(param -> new ImageCell());
         initializeCategorieColumn();
         initializeArtisteColumn();
-        actionColumn.setCellFactory(param -> new ButtonCellOeuvre(this));
+        actionColumn.setCellFactory(param -> new ButtonCellOeuvreArtiste(this));
     }
+
 
     public void afficherOeuvreArt() {
         try {
-            List<OeuvreArt> oeuvreArts = oeuvreArtService.AfficherOeuvreArt();
+            List<OeuvreArt> oeuvreArts = oeuvreArtService.getAllOeuvreArtByArtistes(artisteConnecte);
             ObservableList<OeuvreArt> oeuvreArtObservableList = FXCollections.observableArrayList(oeuvreArts);
             oeuvresTableView.setItems(oeuvreArtObservableList);
             System.out.println("Oeuvres arts affichées avec succès : " + oeuvreArts.size());
@@ -119,7 +121,7 @@ public class OeuvresArtController {
             afficherOeuvreArt(); // Afficher toutes les œuvres d'art
         } else if (selectedCategory != null) {
             try {
-                List<OeuvreArt> oeuvresByCategory = oeuvreArtService.getAllOeuvreArtByCategorie(selectedCategory);
+                List<OeuvreArt> oeuvresByCategory = oeuvreArtService.getAllOeuvreArtByArtisteAndCategory(artisteConnecte,selectedCategory);
                 ObservableList<OeuvreArt> oeuvreArtObservableList = FXCollections.observableArrayList(oeuvresByCategory);
                 oeuvresTableView.setItems(oeuvreArtObservableList);
                 System.out.println("Oeuvres arts filtrées par catégorie affichées avec succès : " + oeuvresByCategory.size());
@@ -129,3 +131,4 @@ public class OeuvresArtController {
         }
     }
 }
+

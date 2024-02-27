@@ -9,6 +9,7 @@
 .formContainer Text {
     -fx-font-size: 1.2em;
     -fx-fill: #888888 ;
+    -fx-fill: rgba(183, 183, 183, 0.53);
 }
 .formContainerVbox{
     -fx-border-width: 0 0 0 1;
