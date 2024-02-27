@@ -3,20 +3,16 @@ package Controles;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import services.utilisateur.UtilisateurService;
 
 public class Login {
@@ -59,7 +55,7 @@ public class Login {
 
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdminDashboard.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
                 Parent registerParent = loader.load();
                 AdminDashboard adminDashController = loader.getController();
                 adminDashController.setParametre( String.valueOf(user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText())));

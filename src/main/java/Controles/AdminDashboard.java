@@ -93,24 +93,7 @@ public class AdminDashboard implements Initializable {
     }
 
 
-    @FXML
-    void pageUtilisateurs(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UtilisateurDashboard.fxml"));
-            Parent UtilisateurPage = loader.load();
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(UtilisateurPage);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/Dashboard.fxml"));
-            Parent Dashboard = loader.load();
-            DashboardStat dashboardStat = loader.getController();
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(Dashboard);
-        } catch (IOException ex) {
-            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public void to_ouevre_art(ActionEvent actionEvent) {
         try {
@@ -125,6 +108,40 @@ public class AdminDashboard implements Initializable {
         }
     }
 
+
+    @FXML
+    void pageconcoursmenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Concours.fxml"));
+            Parent Concours1 = loader.load();
+
+           Concours1 ConcoursController = loader.getController();
+
+            // Effacez le contenu existant et affichez la page de catégorie
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(Concours1);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+
+
+
+
+
+
+    @FXML
+    void pageUtilisateurs(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UtilisateurDashboard.fxml"));
+            Parent UtilisateurPage = loader.load();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(UtilisateurPage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 
     public void traiterSelectionComboBox(ActionEvent actionEvent) {
@@ -141,8 +158,9 @@ public class AdminDashboard implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
                 }
-            } else if ("Modifier le profil".equals(optionSelectionnee)) {
-                    try {
+            }
+            else if ("Modifier le profil".equals(optionSelectionnee)) {
+                try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modifierProfil.fxml"));
                     Parent UtilisateurPage = loader.load();
                     ModifierProfil modifierProfil = loader.getController();
@@ -159,7 +177,7 @@ public class AdminDashboard implements Initializable {
 
 
             else if ("Consulter mon compte".equals(optionSelectionnee)) {
-               /***********************************************************************/
+                /***********************************************************************/
                 Stage detailsSatge = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
                 double X = detailsSatge.getX();
                 double Y = detailsSatge.getY();
@@ -191,25 +209,10 @@ public class AdminDashboard implements Initializable {
                     e.printStackTrace();
 
                 }
-               /***********************************************************************/
+                /***********************************************************************/
             }
         } else {
             System.out.println("Le ComboBox n'est pas correctement initialisé ou aucune valeur n'est sélectionnée.");
-
-    @FXML
-    void pageconcoursmenu(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Concours.fxml"));
-            Parent Concours1 = loader.load();
-
-           Concours1 ConcoursController = loader.getController();
-
-            // Effacez le contenu existant et affichez la page de catégorie
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(Concours1);
-        } catch (IOException ex) {
-            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
-
         }
     }
 }
