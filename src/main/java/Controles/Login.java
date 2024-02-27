@@ -38,7 +38,7 @@ public class Login {
     private Label labelError;
 
     @FXML
-    void seConnecter(ActionEvent event) {
+    void seConnecter(ActionEvent event) throws SQLException {
         UtilisateurService user1 = new UtilisateurService();
         int validLogin = 5;
         try {
@@ -50,23 +50,38 @@ public class Login {
             alert2.setContentText(e.getMessage());
             alert2.show();
             labelError.setText(" ");
-
         }
         if (validLogin == 0) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("c'est un admin");
-            alert.show();
-            labelError.setText(" ");
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setContentText("c'est un admin"+" l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
+//            alert.show();
+//            labelError.setText(" ");
+
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdminDashboard.fxml"));
+                Parent registerParent = loader.load();
+                AdminDashboard adminDashController = loader.getController();
+                adminDashController.setParametre( String.valueOf(user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText())));
+                contentArea.getChildren().clear();  // Use clear() instead of removeAll()
+                contentArea.getChildren().add(registerParent);
+            } catch (IOException e) {
+                e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
+            }
+
+
+
+
 
         } else if (validLogin == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("c'est un artiste");
+            alert.setContentText("c'est un artiste"+ " l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
             alert.show();
             labelError.setText(" ");
 
         }else if (validLogin == 2) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("c'est un client");
+            alert.setContentText("c'est un client"+ " l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
             alert.show();
             labelError.setText(" ");
         } else {
