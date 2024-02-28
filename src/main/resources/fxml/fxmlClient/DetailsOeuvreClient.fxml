@@ -103,7 +103,7 @@
          <children>
             <Label fx:id="idTitrePageLabel" text="label">
                <font>
-                  <Font name="Book Antiqua Bold" size="27.0" />
+                  <Font name="Broadway" size="27.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="575.0" prefWidth="1400.0">
@@ -121,21 +121,31 @@
                         <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Label fx:id="IdTitre" text="Label">
+                        <HBox>
+                           <children>
+                              <Label fx:id="IdTitre" styleClass="titre2" stylesheets="@../../css/styleDetail.css" text="Label">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="372.0">
+                           <children>
+                              <Label fx:id="idDescription" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="372.0" text="label" />
+                           </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
-                        </Label>
-                        <Label fx:id="idDescription" text="label">
+                        </HBox>
+                        <HBox>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
-                        </Label>
-                        <Label fx:id="idStatus" text="label">
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </Label>
+                           <children>
+                              <Label fx:id="idStatus" styleClass="stat" stylesheets="@../../css/styleDetail.css" text="label" />
+                           </children>
+                        </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="372.0" style="-fx-background-color: rgba(183, 183, 183, 0.53);">
                            <children>
                               <Label fx:id="idPrix" text="label">
@@ -148,34 +158,43 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label fx:id="idCategorie" text="label">
+                        <HBox>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
-                        </Label>
-                        <Label fx:id="idArtiste" text="label" />
-                        <Button fx:id="idBtnAjoutPanier" mnemonicParsing="false" onAction="#Ajouter_ToPanier" prefHeight="39.0" prefWidth="382.0" text="AJOUTER AU PANIER">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="126.0" text="Catégorie" />
+                              <Label fx:id="idCategorie" text="label" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="126.0" text="Artiste " />
+                              <Label fx:id="idArtiste" text="label" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="idBtnAjoutPanier" mnemonicParsing="false" onAction="#Ajouter_ToPanier" prefHeight="39.0" prefWidth="382.0" styleClass="Btn" stylesheets="@../../css/styleDetail.css" text="AJOUTER AU PANIER">
                            <VBox.margin>
                               <Insets top="30.0" />
                            </VBox.margin>
                         </Button>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMATION COMPLEMENTAIRES">
                            <VBox.margin>
-                              <Insets bottom="30.0" top="30.0" />
+                              <Insets bottom="10.0" top="30.0" />
                            </VBox.margin>
                         </Text>
-                        <HBox prefHeight="5.0" prefWidth="200.0" style="-fx-background-color: black;">
+                        <HBox prefHeight="4.0" prefWidth="200.0" style="-fx-background-color: black;">
                            <VBox.margin>
                               <Insets bottom="20.0" right="40.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="372.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="372.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Artiste" wrappingWidth="93.12969970703125" />
                               <Label fx:id="idEmailArtiste" text="label" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="332.0" prefHeight="32.0" prefWidth="372.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="332.0" prefHeight="24.0" prefWidth="372.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Téléphone Artiste">
                                  <HBox.margin>

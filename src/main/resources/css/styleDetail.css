@@ -1,7 +1,26 @@
-.label {
+.titre2 {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: #593A37;
+}
+.stat {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green;
+
+}
+.Btn {
+    -fx-background-color: #cdc2be;
+    -fx-text-fill: #593a37;
+}
+.Btn:hover  {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bc5f6a;
+    -fx-border-color: #bc5f6a;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;}
+.transparent {
+    -fx-background-color: rgba(0,0,0,0);
 }
 
 .centerPane {
@@ -43,6 +62,4 @@
     -fx-padding: 10px;
 }
 
-.status {
-    -fx-padding: 10px;
-}
+

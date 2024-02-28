@@ -2,8 +2,13 @@ package Controles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import models.Categorie;
 import models.OeuvreArt;
 import models.Utilisateur;
@@ -11,12 +16,15 @@ import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AjouterOeuvre {
 
@@ -140,4 +148,29 @@ public class AjouterOeuvre {
     private boolean isValidImagePath(String imagePath) {
         return imagePath.startsWith("file:/") && (imagePath.endsWith(".jpg") || imagePath.endsWith(".png") || imagePath.endsWith(".gif"));
     }
+    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
+        try {
+            // Charger la nouvelle page depuis le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
+            Parent newPage = loader.load();
+            // Accéder au stage actuel à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Remplacer la scène actuelle par la nouvelle scène
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void To_Oeuvre_Art(ActionEvent event) {
+        loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", event);
+    }
+
+    @FXML
+    public void To_Accueil(ActionEvent event) {
+        loadNewPage("/fxml/fxmlArtiste/AcceuilArtiste.fxml", event);
+    }
+
 }

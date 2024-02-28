@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -158,28 +160,28 @@ public class PageOeuvre implements Initializable {
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
-            Parent pageOeuvre = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new javafx.scene.Scene(pageOeuvre));
-            stage.show();
+        loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
+    }
 
+    @FXML
+    public void To_Accueil(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Acceuil.fxml", event);
+    }
+
+    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
+        try {
+            // Charger la nouvelle page depuis le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
+            Parent newPage = loader.load();
+            // Accéder au stage actuel à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Remplacer la scène actuelle par la nouvelle scène
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
         } catch (IOException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void To_Accueil(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
-            Parent pageAccueil = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new javafx.scene.Scene(pageAccueil));
-            stage.show();
 
-        } catch (IOException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

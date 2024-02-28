@@ -23,7 +23,7 @@ import java.util.Optional;
 
 public class ButtonCellOeuvreArtiste extends TableCell<OeuvreArt, Void> {
 
-    private final Button modifierButton = new Button();
+   /* private final Button modifierButton = new Button();
     private final Button deleteButton = new Button();
     private final OeuvresPageArtiste oeuvresPageArtiste;
 
@@ -107,5 +107,5 @@ public class ButtonCellOeuvreArtiste extends TableCell<OeuvreArt, Void> {
             buttonsContainer.setAlignment(javafx.geometry.Pos.CENTER);
             setGraphic(buttonsContainer);
         }
-    }
+    }*/
 }
