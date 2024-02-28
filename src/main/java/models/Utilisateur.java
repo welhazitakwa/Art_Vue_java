@@ -80,7 +80,22 @@ public class Utilisateur {
         this.image = image;
         this.genre = genre;
     }
+    public Utilisateur(int id, String nom, String prenom , String email , int numTel ,String login , int cin,
+                       String image ,String genre ,Date dateNaissance ,String adresse ){
 
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email ;
+        this.numTel = numTel;
+        this.login = login;
+        this.cin = cin;
+        this.image = image;
+        this.genre = genre;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+
+    }
     public int getId() {
         return id;
     }

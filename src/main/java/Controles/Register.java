@@ -77,10 +77,7 @@ public class Register {
             int validLogin = 0;
             try {
                 validLogin = user1.validateRegisterLoginMail(login.getText(),email.getText());
-                System.out.println("haw dkhal lel tryy");
-                System.out.println("w raw lvariable li ntasti beha "+validLogin);
-
-                if (validLogin == 1) {
+                            if (validLogin == 1) {
                     regerror.setText("Ce login est déjà utilisé !");
                 }
                 else if (validLogin == 2) {
