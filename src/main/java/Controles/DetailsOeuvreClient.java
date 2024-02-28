@@ -93,7 +93,26 @@ public class DetailsOeuvreClient {
 
     @FXML
     void Ajouter_ToPanier(ActionEvent event) {
-        loadNewPage("/fxml/fxmlClient/PagePanierClient.fxml", event);
+        try {
+            // Charger la nouvelle page depuis le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanierClient.fxml"));
+            Parent newPage = loader.load();
+
+            // Accéder au contrôleur de la nouvelle page
+            PagePanierClient controller = loader.getController();
+
+            // Initialiser les données de l'œuvre dans le contrôleur de la nouvelle page
+            controller.initData(oeuvreArt);
+
+            // Accéder au stage actuel à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
