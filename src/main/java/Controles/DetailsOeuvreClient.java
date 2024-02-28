@@ -3,7 +3,9 @@ package Controles;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -75,9 +77,9 @@ public class DetailsOeuvreClient {
         idTitrePageLabel.setText("Détails de l'oeuvre d'art " + oeuvreArt.getTitre());
         IdTitre.setText(oeuvreArt.getTitre());
         idDescription.setText(oeuvreArt.getDescription());
-        idPrix.setText("Prix: " + oeuvreArt.getPrixVente() + " DT");
-        idArtiste.setText("Artiste: " + artiste.getNom() + " " + artiste.getPrenom());
-        idCategorie.setText("Catégorie: " + oeuvreArt.getCategorie().getNomCategorie());
+        idPrix.setText( oeuvreArt.getPrixVente() + " DT");
+        idArtiste.setText(artiste.getNom() + " " + artiste.getPrenom());
+        idCategorie.setText( oeuvreArt.getCategorie().getNomCategorie());
         idStatus.setText(oeuvreArt.getStatus());
         idEmailArtiste.setText(oeuvreArt.getArtiste().getEmail());
         idTelArtiste.setText(String.valueOf(oeuvreArt.getArtiste().getNumTel()));
@@ -91,34 +93,54 @@ public class DetailsOeuvreClient {
 
     @FXML
     void Ajouter_ToPanier(ActionEvent event) {
-        // Ajouter la logique pour ajouter l'oeuvre d'art au panier
+        try {
+            // Charger la nouvelle page depuis le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanierClient.fxml"));
+            Parent newPage = loader.load();
+
+            // Accéder au contrôleur de la nouvelle page
+            PagePanierClient controller = loader.getController();
+
+            // Initialiser les données de l'œuvre dans le contrôleur de la nouvelle page
+            controller.initData(oeuvreArt);
+
+            // Accéder au stage actuel à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     void To_Accueil(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
-            Parent pageAccueil = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new javafx.scene.Scene(pageAccueil));
-            stage.show();
-
-        } catch (IOException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadNewPage("/fxml/fxmlClient/Acceuil.fxml", event);
     }
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
-            Parent pageOeuvre = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new javafx.scene.Scene(pageOeuvre));
-            stage.show();
+        loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
+    }
 
+    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
+        try {
+            // Charger la nouvelle page depuis le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
+            Parent newPage = loader.load();
+
+            // Accéder au stage actuel à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+            //stage.show(); // Optionnel selon vos besoins
         } catch (IOException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
