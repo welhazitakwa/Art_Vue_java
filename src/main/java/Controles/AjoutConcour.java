@@ -2,6 +2,7 @@ package Controles;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Concours;
 import models.OeuvreArt;
@@ -94,27 +97,53 @@ public class AjoutConcour {
     }
 
 
+
     @FXML
     void initialize() {
         serviceOeuvreArt = new OeuvreArtService();
         serviceConcours = new ConcoursService();
 
         // Charger la liste des oeuvres disponibles dans la ListView
-        List<OeuvreArt> oeuvres = serviceOeuvreArt.getOeuvres();
+        List<OeuvreArt> oeuvres = null;
+        try {
+            oeuvres = serviceOeuvreArt.AfficherOeuvreArt();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // Configurer la ListView pour permettre la sélection multiple
         listeOeuvresDisponibles.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        // Vérifier si la ListView est déjà initialisée
-        if (listeOeuvresDisponibles != null) {
-            // Si oui, ajouter les éléments directement
-            listeOeuvresDisponibles.getItems().addAll(oeuvres);
-        } else {
-            // Si non, initialiser la ListView avec les éléments
-            ObservableList<OeuvreArt> observableList = FXCollections.observableArrayList(oeuvres);
-            listeOeuvresDisponibles.setItems(observableList);
-        }
+        // Configurer la cellule de liste directement dans la ListView
+        listeOeuvresDisponibles.setCellFactory(param -> new ListCell<OeuvreArt>() {
+            private final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(OeuvreArt item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(item.getTitre()); // Mettez ici le texte que vous souhaitez afficher
+
+                    // Chargez et affichez l'image
+                    String imagePath = item.getImage(); // Assurez-vous d'avoir une méthode getImagePath() dans votre classe OeuvreArt
+                    Image image = new Image("file:" + imagePath);
+                    imageView.setImage(image);
+                    imageView.setFitWidth(50); // Ajustez la largeur de l'image selon vos besoins
+                    imageView.setPreserveRatio(true);
+
+                    setGraphic(imageView);
+                }
+            }
+        });
+
+        // Ajouter les éléments à la liste
+        listeOeuvresDisponibles.getItems().addAll(oeuvres);
     }
+
 
     @FXML
     private Stage primaryStage;

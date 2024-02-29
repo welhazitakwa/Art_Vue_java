@@ -43,16 +43,16 @@ public  class voteServices implements Ivote <Vote>{
 /*-----------------------------SupprimerVote CRUD-----------------------------------------*/
     @Override
     public void SupprimerVote(int id) throws SQLException {
-      /*  String req = "DELETE FROM `vote` WHERE id=?";
+      String req = "DELETE FROM `vote` WHERE id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(req)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-        }*/
+        }
     }
 /*-----------------------------aafficherVote CRUD-----------------------------------------*/
     @Override
     public List<Vote> AfficherVote() throws SQLException {
-       /* String sql = "SELECT * FROM vote";
+       String sql = "SELECT * FROM vote";
 
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(sql);
@@ -64,8 +64,8 @@ public  class voteServices implements Ivote <Vote>{
             listeVote.add(v);
         }
 
-        return listeVote;*/
-        return null;
+        return listeVote;
+
     }
     /*-----------------------------ajouterVote interface-----------------------------------------*/
 
@@ -93,17 +93,24 @@ public  class voteServices implements Ivote <Vote>{
     public List<Vote> getVotesUtilisateur(int idUtilisateur) {
         List<Vote> votesUtilisateur = new ArrayList<>();
 
-        String query = "SELECT * FROM vote WHERE user = ?";
+        String query = "SELECT vote.id, vote.note, concours.titre AS titreConcours, oeuvreart.titre AS titreOeuvre, oeuvreart.image AS imageOeuvre " +
+                "FROM vote " +
+                "JOIN concours ON vote.concours = concours.id " +
+                "JOIN oeuvreart ON vote.oeuvre = oeuvreart.idOeuvreArt " +
+                "WHERE vote.user = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, idUtilisateur);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    // Assurez-vous d'avoir une classe Vote avec les détails du vote
                     Vote vote = new Vote();
                     vote.setId(resultSet.getInt("id"));
                     vote.setNote(resultSet.getInt("note"));
+                    vote.setTitreConcours(resultSet.getString("titreConcours"));
+                    vote.setTitreOeuvre(resultSet.getString("titreOeuvre"));
+                    vote.setImageOeuvre(resultSet.getString("imageOeuvre"));
+
                     // Ajoutez d'autres attributs du vote selon votre modèle
 
                     votesUtilisateur.add(vote);
@@ -115,6 +122,7 @@ public  class voteServices implements Ivote <Vote>{
 
         return votesUtilisateur;
     }
+
     /*--------------------------------------------------------*/
     public List<Vote> getVotesByUser(int userId) {
         List<Vote> votes = new ArrayList<>();
@@ -151,7 +159,7 @@ public  class voteServices implements Ivote <Vote>{
         return votes;
     }
     /*--------------------------------------------------*/
-    public boolean deleteVote(int voteId) {
+    public boolean deleteVote(int voteId) throws SQLException {
         String query = "DELETE FROM vote WHERE id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -159,10 +167,11 @@ public  class voteServices implements Ivote <Vote>{
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
-            return false;
+            // Gérez les exceptions de manière appropriée dans votre application
+            throw new SQLException("Erreur lors de la suppression du vote avec l'ID " + voteId, e);
         }
     }
+
 
     public boolean editVote(int voteId, int newNote) {
         String query = "UPDATE vote SET note = ? WHERE id = ?";

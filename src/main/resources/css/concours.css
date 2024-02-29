@@ -1,0 +1,25 @@
+/* concour.css */
+
+/* Style pour le conteneur principal AnchorPane */
+#anchorPane {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+}
+
+/* Style pour la liste des œuvres VBox */
+#vboxDetails {
+    -fx-spacing: 10; /* Espacement entre les éléments de la liste */
+}
+
+/* Style pour le bouton consulter mes votes */
+#consultermesvotes {
+    -fx-background-color: #9d6969; /* Couleur de fond */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-font-size: 14;
+}
+
+/* Style pour l'étiquette Liste des Oeuvres */
+#labelListeOeuvres {
+    -fx-font-family: 'Broadway'; /* Police de caractères */
+    -fx-font-size: 31;
+    -fx-text-fill: #8a5a5a; /* Couleur du texte */
+}
