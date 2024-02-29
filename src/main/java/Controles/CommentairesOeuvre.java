@@ -5,13 +5,19 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.Commentaire;
 import models.OeuvreArt;
 import services.commentaire.CommentaireService;
@@ -56,7 +62,7 @@ public class CommentairesOeuvre {
 
          imageOuevre.setImage(imgProfile.getImage());
         try {
-            List<Commentaire> comments = comment1.getCommentsByOeuvre(32) ;
+            List<Commentaire> comments = comment1.getCommentsByOeuvre(this.oeuvreArt.getId()) ;
             System.out.println(comments);
             for (int i=0; i<comments.size();i++) {
                 System.out.println(comments.size());
@@ -77,28 +83,20 @@ public class CommentairesOeuvre {
     @FXML
     void initialize() {
 
-//        CommentaireService comment1 = new CommentaireService();
-//        //ImageView imgProfile = new ImageView(new Image(oeuvreArt.getImage()));
-//
-//       // imageOuevre.setImage(imgProfile.getImage());
-//        try {
-//            List<Commentaire> comments = comment1.getCommentsByOeuvre(32) ;
-//            System.out.println(comments);
-//            for (int i=0; i<comments.size();i++) {
-//                System.out.println(comments.size());
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("/fxml/fxmlClient/CommentaireItem.fxml"));
-//                HBox hbox = fxmlLoader.load();
-//                CommentaireItem commentaireItem = fxmlLoader.getController();
-//                commentaireItem.setData(comments.get(i));
-//                commentLayout.getChildren().add(hbox);
-//            }
-//        }
-//          catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+
     }
 
+
+    public void toOuevre(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
+            Parent registerParent = loader.load();
+            PageOeuvre pageOeuvre = loader.getController();
+            pageOeuvre.setParametre(idClient); // Passage de l'ID au contrôleur AcceuilArtiste
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
