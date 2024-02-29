@@ -33,7 +33,8 @@ public class CommentaireItem {
     }
 
     public void setData (Commentaire comment) {
-
+        ImageView imgProfile = new ImageView(new Image(comment.getImage()));
+        userImg.setImage(imgProfile.getImage());
 //        System.out.println("Nom: " + user.getNom());
 //        System.out.println("Prenom: " + user.getPrenom());
 //        System.out.println("Adresse: " + user.getAdresse());
@@ -45,7 +46,7 @@ public class CommentaireItem {
 
         if (comment != null) {
             textFieldComment.setText(comment.getCommentaire());
-            //nomPrenom.setText(comment.get);
+            nomPrenom.setText(comment.getNom()+" "+comment.getPrenom());
             dateComment.setText(String.valueOf(comment.getDate_commentaire()));
 
         }
