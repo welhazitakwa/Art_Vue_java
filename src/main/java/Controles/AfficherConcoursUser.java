@@ -39,8 +39,10 @@ public class AfficherConcoursUser {
     @FXML
     private void afficherOeuvres(Concours concours) {
         try {
+
+            int concoursId = concours.getId();
             // Chargez le fichier FXML pour la page d'affichage des œuvres
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AfficherOeuvreConcoursUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AfficherOeuvreUser.fxml"));
             Parent root = loader.load();
 
             // Obtenez le contrôleur associé à la vue chargée
@@ -49,8 +51,11 @@ public class AfficherConcoursUser {
             OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
             List<OeuvreArt> oeuvres = oeuvreConcoursService.getOeuvresByConcoursId(concours.getId());
 
-            // Appelez la méthode pour initialiser les détails des œuvres
-            controller.initialiserDetailsOeuvres(oeuvres);
+            // Récupérez l'ID de l'utilisateur connecté à l'aide de votre classe d'authentification
+           // int userId = AuthenticationService.getUserId(); // Assurez-vous d'adapter cette méthode en fonction de votre classe d'authentification
+           // int userId =1;
+                    // Appelez la méthode pour initialiser les détails des œuvres en passant l'ID de l'utilisateur
+            controller.initialiserDetailsOeuvres(oeuvres, concoursId);
 
             // Créez une nouvelle scène avec la page d'affichage des œuvres
             Scene scene = new Scene(root);

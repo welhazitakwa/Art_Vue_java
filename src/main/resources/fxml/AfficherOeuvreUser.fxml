@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import Controles.RatingBar?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controles.AfficherOeuvreConcoursUser"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+
+<children>
+    <ScrollPane fx:id="scrollPane" hbarPolicy="AS_NEEDED" layoutX="136.0" layoutY="172.0" prefHeight="568.0" prefWidth="777.0" vbarPolicy="AS_NEEDED" />
+    <VBox fx:id="vboxDetails" layoutX="178.0" layoutY="160.0" prefHeight="568.0" prefWidth="735.0" />
+
+    <Button fx:id="consultermesvotes" layoutX="947.0" layoutY="39.0" mnemonicParsing="false" onAction="#consultermesvotes" text="consulter mes votes" />
+    <Label layoutX="352.0" layoutY="87.0" text="Liste des Oeuvres :" textFill="#8a5a5a">
+        <font>
+            <Font name="Broadway" size="31.0" />
+        </font>
+    </Label>
+
+    <!-- Ajoutez votre composant RatingBar ici -->
+    <RatingBar fx:id="ratingBar" layoutX="500.0" layoutY="100.0" />
+</children>
+</AnchorPane>

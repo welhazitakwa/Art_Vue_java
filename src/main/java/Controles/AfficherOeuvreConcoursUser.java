@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.OeuvreArt;
@@ -32,25 +30,27 @@ public class AfficherOeuvreConcoursUser {
     private VBox vboxDetails;
     @FXML
     private Button consultermesvotes;
-
-
     @FXML
     private ScrollPane scrollPane;
 
-  
+    int idUser = 1;
+    private int idConcours;
 
- 
     @FXML
     public void initialize() {
-        assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreConcoursUser.fxml'.";
+        assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreUser.fxml'.";
     }
-    int idUser =1;
+
+    private RatingBar createRatingBar(OeuvreArt oeuvre) {
+        RatingBar ratingBar = new RatingBar();
+        ratingBar.setId("ratingBar_" + oeuvre.getId());
+        return ratingBar;
+    }
 
     @FXML
-    public void initialiserDetailsOeuvres(List<OeuvreArt> oeuvres) {
+    public void initialiserDetailsOeuvres(List<OeuvreArt> oeuvres, int concoursId) {
         vboxDetails.getChildren().clear();
 
-        // Vous pouvez ajuster ces dimensions selon vos besoins
         double imageViewWidth = 300;
         double imageViewHeight = 300;
 
@@ -58,8 +58,7 @@ public class AfficherOeuvreConcoursUser {
             Label labelTitre = new Label("Titre: " + oeuvre.getTitre());
             Label labelArtiste = new Label("Artiste: " + oeuvre.getArtiste());
 
-            String imagePath = oeuvre.getImage();
-            File file = new File(imagePath);
+            File file = new File(oeuvre.getImage());
             URL imageUrl;
             try {
                 imageUrl = file.toURI().toURL();
@@ -70,67 +69,37 @@ public class AfficherOeuvreConcoursUser {
             imageView.setFitWidth(imageViewWidth);
             imageView.setFitHeight(imageViewHeight);
 
-            // Utilisez la ComboBox au lieu de la HBox
-            ComboBox<Integer> ratingComboBox = createRatingComboBox(oeuvre);
-
-            // Add the confirmation button
+            RatingBar ratingBar = createRatingBar(oeuvre);
             Button confirmerButton = new Button("Confirmer");
-            confirmerButton.setOnAction(event -> confirmerVote(oeuvre, idUser));
+            confirmerButton.setOnAction(event -> confirmerVote(oeuvre, idUser, concoursId));
 
-            // Utilisez la ComboBox au lieu de la HBox
             VBox detailsOeuvre = new VBox(
                     labelTitre,
                     labelArtiste,
                     imageView,
-                    ratingComboBox,
+                    ratingBar,
                     confirmerButton
             );
 
-            // Vous pouvez ajouter un espacement entre les éléments si nécessaire
             detailsOeuvre.setSpacing(10);
 
             vboxDetails.getChildren().add(detailsOeuvre);
         });
 
-        // Ajoutez la VBox à un ScrollPane pour gérer le défilement si nécessaire
         scrollPane.setContent(vboxDetails);
     }
 
-
-    private ComboBox<Integer> createRatingComboBox(OeuvreArt oeuvre) {
-        ComboBox<Integer> ratingComboBox = new ComboBox<>();
-        ratingComboBox.setId(getComboBoxId(oeuvre));
-
-        // Ajoutez les valeurs possibles à la ComboBox
-        for (int i = 0; i <= 5; i++) {
-            ratingComboBox.getItems().add(i);
-        }
-
-        // Sélectionnez la première valeur par défaut
-        ratingComboBox.getSelectionModel().selectFirst();
-
-        return ratingComboBox;
-    }
-
-    private String getComboBoxId(OeuvreArt oeuvre) {
-        return "comboBox_" + oeuvre.getId();
-    }
-
     private int getSelectedRating(OeuvreArt oeuvre) {
-        // Retrieve the ComboBox using lookup
-        ComboBox<Integer> ratingComboBox = (ComboBox<Integer>) vboxDetails.lookup("#" + getComboBoxId(oeuvre));
-
-        // Retournez la valeur sélectionnée
-        return ratingComboBox.getValue();
+        // Utilisez la méthode getRating de RatingBar
+        RatingBar ratingBar = (RatingBar) vboxDetails.lookup("#ratingBar_" + oeuvre.getId());
+        return ratingBar.getRating();
     }
 
-    private void confirmerVote(OeuvreArt oeuvre, int idUser) {
+    private void confirmerVote(OeuvreArt oeuvre, int idUser, int idConcours) {
         int selectedRating = getSelectedRating(oeuvre);
 
         // Ajoutez le vote à la base de données
         int idOeuvre = oeuvre.getId();
-        OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
-        int idConcours = oeuvreConcoursService.getConcoursIdByOeuvreId(idOeuvre);
 
         voteServices vS = new voteServices();
         vS.enregistrerVote(idConcours, idOeuvre, idUser, selectedRating);
@@ -167,6 +136,4 @@ public class AfficherOeuvreConcoursUser {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
     }
-
-
 }
