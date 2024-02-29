@@ -8,10 +8,12 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Commentaire;
+import models.OeuvreArt;
 import services.commentaire.CommentaireService;
 
 public class CommentairesOeuvre {
@@ -36,13 +38,18 @@ public class CommentairesOeuvre {
 
     @FXML
     private Button idBTNCategorie1;
+    private OeuvreArt oeuvreArt;
+
 
     @FXML
     private ImageView imageOuevre;
-
-    @FXML
-    void initialize() {
+    public void initData(OeuvreArt oeuvreArt) {
+        this.oeuvreArt = oeuvreArt;
+        System.out.println("l'oeuuvredfdfdfdf : "+oeuvreArt);
         CommentaireService comment1 = new CommentaireService();
+        ImageView imgProfile = new ImageView(new Image(oeuvreArt.getImage()));
+
+         imageOuevre.setImage(imgProfile.getImage());
         try {
             List<Commentaire> comments = comment1.getCommentsByOeuvre(32) ;
             System.out.println(comments);
@@ -56,11 +63,37 @@ public class CommentairesOeuvre {
                 commentLayout.getChildren().add(hbox);
             }
         }
-          catch (SQLException e) {
+        catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    @FXML
+    void initialize() {
+
+//        CommentaireService comment1 = new CommentaireService();
+//        //ImageView imgProfile = new ImageView(new Image(oeuvreArt.getImage()));
+//
+//       // imageOuevre.setImage(imgProfile.getImage());
+//        try {
+//            List<Commentaire> comments = comment1.getCommentsByOeuvre(32) ;
+//            System.out.println(comments);
+//            for (int i=0; i<comments.size();i++) {
+//                System.out.println(comments.size());
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("/fxml/fxmlClient/CommentaireItem.fxml"));
+//                HBox hbox = fxmlLoader.load();
+//                CommentaireItem commentaireItem = fxmlLoader.getController();
+//                commentaireItem.setData(comments.get(i));
+//                commentLayout.getChildren().add(hbox);
+//            }
+//        }
+//          catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
 }

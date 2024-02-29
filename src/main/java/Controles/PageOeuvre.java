@@ -114,8 +114,7 @@ public class PageOeuvre implements Initializable {
                     Parent detailsOeuvre = loader.load();
                     // Obtenir une référence au contrôleur
                     CommentairesOeuvre commentairesOeuvre = loader.getController();
-                   // commentairesOeuvre.(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
-
+                    commentairesOeuvre.initData(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
                     // Obtenir la scène actuelle à partir du bouton découvrez
                     Scene currentScene = ((Node) e.getSource()).getScene();
 
