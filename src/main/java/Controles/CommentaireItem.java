@@ -2,6 +2,7 @@ package Controles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,10 +22,20 @@ public class CommentaireItem {
 
     @FXML
     private ImageView userImg;
+    @FXML
+    private Button idDelete;
+
+    @FXML
+    private Button idedit;
+    private int idClient ;
+
+    public void setParametre(int param) {
+        idClient = param;
+        System.out.println("ahawa l'client connecté : " + param);
+    }
 
     @FXML
     void deleteComment(ActionEvent event) {
-
     }
 
     @FXML
@@ -33,6 +44,8 @@ public class CommentaireItem {
     }
 
     public void setData (Commentaire comment) {
+
+
         ImageView imgProfile = new ImageView(new Image(comment.getImage()));
         userImg.setImage(imgProfile.getImage());
 //        System.out.println("Nom: " + user.getNom());
@@ -43,13 +56,22 @@ public class CommentaireItem {
         textFieldComment.setText("qd");
         nomPrenom.setText("qzd");
         dateComment.setText("qzd");
+        if ( comment.getClient_id() == idClient) {
+            idedit.setVisible(true);
+            idDelete.setVisible(true);
+            
+        } else {
+            idedit.setVisible(false);
+            idDelete.setVisible(false);
 
+        }
         if (comment != null) {
             textFieldComment.setText(comment.getCommentaire());
             nomPrenom.setText(comment.getNom()+" "+comment.getPrenom());
             dateComment.setText(String.valueOf(comment.getDate_commentaire()));
 
         }
+
 
 
 

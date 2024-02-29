@@ -3,7 +3,7 @@ package models;
 import java.sql.Date;
 
 public class Commentaire {
-    private int id, client_id, oeuvre_id;
+    private int id, client_id, oeuvre_id, profil;
     private String commentaire , nom , prenom,image ;
     private Date date_commentaire ;
         public Commentaire (int id, String commentaire, Date date_commentaire, int client_id, int oeuvre_id) {
@@ -90,12 +90,21 @@ public class Commentaire {
         this.image = image;
     }
 
+    public int getProfil() {
+        return profil;
+    }
+
+    public void setProfil(int profil) {
+        this.profil = profil;
+    }
+
     @Override
     public String toString() {
         return "Commentaire{" +
                 "id=" + id +
                 ", client_id=" + client_id +
                 ", oeuvre_id=" + oeuvre_id +
+                ", profil=" + profil +
                 ", commentaire='" + commentaire + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +

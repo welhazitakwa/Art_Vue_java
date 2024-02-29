@@ -72,7 +72,10 @@ public class CommentairesOeuvre {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/fxml/fxmlClient/CommentaireItem.fxml"));
                 HBox hbox = fxmlLoader.load();
+
                 CommentaireItem commentaireItem = fxmlLoader.getController();
+                commentaireItem.setParametre(idClient);
+                System.out.println("yyyyaaaaaaaa rabii : "+idClient);
                 commentaireItem.setData(comments.get(i));
                 commentLayout.getChildren().add(hbox);
             }
