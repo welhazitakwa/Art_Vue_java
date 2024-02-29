@@ -7,12 +7,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import services.utilisateur.UtilisateurService;
 
 public class Login {
@@ -64,28 +67,18 @@ public class Login {
             } catch (IOException e) {
                 e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
             }
-
-
-
-
-
         } else if (validLogin == 1) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setContentText("c'est un artiste"+ " l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));
-//            alert.show();
-//            labelError.setText(" ");
-
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
                 Parent registerParent = loader.load();
                 AcceuilArtiste acceuilArtiste = loader.getController();
-                acceuilArtiste.setParametre( String.valueOf(user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText())));
-                contentArea.getChildren().clear();  // Use clear() instead of removeAll()
-                contentArea.getChildren().add(registerParent);
+                int idArtiste = user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()); // Récupération de l'ID
+                acceuilArtiste.setParametre(idArtiste); // Passage de l'ID au contrôleur AcceuilArtiste
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(registerParent));
             } catch (IOException e) {
-                e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
+                e.printStackTrace();
             }
-
         }else if (validLogin == 2) {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setContentText("c'est un client"+ " l'id te3ou : "+ user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText()));

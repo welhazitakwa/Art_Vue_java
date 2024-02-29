@@ -54,6 +54,13 @@ public class AjouterOeuvre {
     private Button BtnAjouter;
 
     private CategorieService categorieService;
+    private int idArtiste;
+
+    public void setParametre(int idArtiste) {
+        this.idArtiste = idArtiste;
+        System.out.println("ID de l'artiste dans page AjouterOeuvre : " + idArtiste);
+
+    }
 
     @FXML
     void initialize() {
@@ -70,6 +77,8 @@ public class AjouterOeuvre {
     }
 
     public void AjouterOeuvre(ActionEvent actionEvent) {
+        // Déclaration de event à un niveau plus élevé
+        ActionEvent event = actionEvent;
         if (!validateFields()) {
             return;
         }
@@ -87,7 +96,7 @@ public class AjouterOeuvre {
             Categorie categorieObj = categorieService.getCategorieByNom(categorieNom);
 
             Utilisateur artiste = new Utilisateur();
-            artiste.setId(14);
+            artiste.setId(idArtiste);
 
             OeuvreArt oeuvreArt = new OeuvreArt(image, titre, description, dateAjout, prixVente, categorieObj, "disponible", artiste);
 
@@ -104,6 +113,20 @@ public class AjouterOeuvre {
             notifications.title("Success Message");
             notifications.hideAfter(Duration.seconds(4.0));
             notifications.show();
+
+            // Charger la page OeuvreArtArtiste.fxml après la fermeture de l'alerte
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
+                Parent newPage = loader.load();
+                OeuvresPageArtiste controller = loader.getController();
+                controller.setParametre(idArtiste); // Passer l'ID de l'artiste à la nouvelle page
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(newPage);
+                stage.setScene(scene);
+            } catch (IOException ex) {
+                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
 
 
         } catch (SQLException e) {
@@ -189,4 +212,6 @@ public class AjouterOeuvre {
         loadNewPage("/fxml/fxmlArtiste/AproposArtiste.fxml", event);
 
     }
+
+
 }

@@ -12,21 +12,37 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AproposArtiste {
-    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
+    private int idArtiste; // Changer le type de idArtiste en int
+    public void setParametre(int idArtiste) { // Modifier le type du paramètre
+        this.idArtiste = idArtiste;
+        System.out.println("ID de l'artiste dans page Acceuil : " + idArtiste);
+    }
+    public void To_Acceuil(ActionEvent event) {
         try {
-            // Charger la nouvelle page depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
             Parent newPage = loader.load();
-            // Accéder au stage actuel à partir de l'événement
+            AcceuilArtiste acceuilArtiste = loader.getController();
+            acceuilArtiste.setParametre(idArtiste);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            // Remplacer la scène actuelle par la nouvelle scène
             Scene scene = new Scene(newPage);
             stage.setScene(scene);
         } catch (IOException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void To_Acceuil(ActionEvent event) {
-        loadNewPage("/fxml/fxmlArtiste/AcceuilArtiste.fxml", event);
+
+
+    public void pageOeuvreArt(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
+            Parent newPage = loader.load();
+            OeuvresPageArtiste oeuvrePageArtiste = loader.getController();
+            oeuvrePageArtiste.setParametre(idArtiste); // Passage de l'ID de l'artiste à la page OeuvrePageArtiste
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
