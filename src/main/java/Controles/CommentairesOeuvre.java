@@ -40,7 +40,12 @@ public class CommentairesOeuvre {
     private Button idBTNCategorie1;
     private OeuvreArt oeuvreArt;
 
+    private int idClient ;
 
+    public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté : " + idClient);
+    }
     @FXML
     private ImageView imageOuevre;
     public void initData(OeuvreArt oeuvreArt) {

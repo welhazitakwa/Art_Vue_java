@@ -43,6 +43,12 @@ public class PageOeuvre implements Initializable {
 
     private OeuvreArtService oeuvreArtService;
     private CategorieService categorieService;
+    private int idClient ;
+
+    public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté : " + idClient);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,10 +118,10 @@ public class PageOeuvre implements Initializable {
                     // Charger la vue des détails de l'œuvre
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/CommentairesOeuvre.fxml"));
                     Parent detailsOeuvre = loader.load();
-                    // Obtenir une référence au contrôleur
                     CommentairesOeuvre commentairesOeuvre = loader.getController();
-                    commentairesOeuvre.initData(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
-                    // Obtenir la scène actuelle à partir du bouton découvrez
+                    commentairesOeuvre.initData(oeuvre);
+                    commentairesOeuvre.setParametre(idClient);
+
                     Scene currentScene = ((Node) e.getSource()).getScene();
 
                     // Modifier la racine de la scène pour afficher les détails de l'œuvre

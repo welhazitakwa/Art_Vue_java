@@ -18,8 +18,11 @@ public class AcceuilArtiste {
 
     @FXML
     private Label parametreField;
-    public void setParametre(String parametre) {
-        parametreField.setText(parametre);
+    private int idArtiste;
+
+    public void setParametre(int idArtiste) {
+        this.idArtiste = idArtiste;
+        System.out.println("ID de l'artiste dans page Oeuvre : " + idArtiste);
     }
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
