@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Commentaire {
     private int id, client_id, oeuvre_id;
-    private String commentaire ;
+    private String commentaire , nom , prenom,image ;
     private Date date_commentaire ;
         public Commentaire (int id, String commentaire, Date date_commentaire, int client_id, int oeuvre_id) {
         this.id = id;
@@ -66,6 +66,30 @@ public class Commentaire {
         this.date_commentaire = date_commentaire;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Commentaire{" +
@@ -73,6 +97,9 @@ public class Commentaire {
                 ", client_id=" + client_id +
                 ", oeuvre_id=" + oeuvre_id +
                 ", commentaire='" + commentaire + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", image='" + image + '\'' +
                 ", date_commentaire=" + date_commentaire +
                 '}';
     }
