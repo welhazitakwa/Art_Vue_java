@@ -57,30 +57,42 @@ public class mainOeuvreArt {
 
         //-----------------------------------------Modifier oeuvre art---------------------------------------------------------
 
+        CategorieService categorieService = new CategorieService();
+        UtilisateurService utilisateurService = new UtilisateurService();
         try {
-            // Récupération d'une catégorie existante
-            Categorie categorie = categorieService.getCategorieById(5);
-            Utilisateur artiste1 = utilisateurService.getUtilisateurById(1);
-
-            // Création d'une instance d'oeuvre d'art avec les détails
+            Categorie categorie = categorieService.getCategorieById(42);
             OeuvreArt oeuvreArt = new OeuvreArt();
-            oeuvreArt.setId(8); // Spécifier l'ID de l'oeuvre d'art à modifier
+            oeuvreArt.setId(46); // Spécifier l'ID de l'oeuvre d'art à modifier
             oeuvreArt.setImage("chemin/nouvelle_image.jpg"); // Nouvelle image
             oeuvreArt.setTitre("Nouveau titre"); // Nouveau titre
             oeuvreArt.setDescription("Nouvelle description"); // Nouvelle description
-            oeuvreArt.setDateAjout(new Date()); // Date d'ajout actuelle
             oeuvreArt.setPrixVente(150.0f); // Nouveau prix de vente
             oeuvreArt.setCategorie(categorie); // Utilisation de la catégorie récupérée
             oeuvreArt.setStatus("Disponible"); // Nouveau statut
-            oeuvreArt.setArtiste(artiste1);
+
 
             // Appel de la méthode pour modifier l'oeuvre d'art
             oeuvreArtService.ModifierOeuvreArt(oeuvreArt);
         } catch (SQLException e) {
             System.out.println("Erreur lors de la modification de l'oeuvre d'art : " + e.getMessage());
+        }*/
+        String titre = "Plage";
+        try {
+            // Appelez la méthode getOeuvresByTitre
+            List<OeuvreArt> oeuvres = oeuvreArtService.getOeuvresByTitre(titre);
+
+            // Affichez les détails des oeuvres d'art
+            for (OeuvreArt oeuvre : oeuvres) {
+                System.out.println("ID: " + oeuvre.getId());
+                System.out.println("Titre: " + oeuvre.getTitre());
+                // Affichez d'autres détails si nécessaire
+            }
+        } catch (SQLException e) {
+            // Gérez les exceptions SQL si nécessaire
+            e.printStackTrace();
         }
 
-
+/*
 
         //----------------------------Supprimer oeuvre art----------------------------------------------------------------------
 
@@ -154,7 +166,7 @@ public class mainOeuvreArt {
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération des oeuvres d'art pour l'artiste avec l'ID : " + idArtiste + " : " + e.getMessage());
         }
-        */
+
 
         //----------------------------Afficher tous les oeuvre d'art-------------------------------------------------------
 
@@ -217,7 +229,7 @@ public class mainOeuvreArt {
             System.out.println("Erreur lors du calcul du nombre d'œuvres d'art : " + e.getMessage());
         }
         // ----------------------------------------calculer nombre Oeuvre d'art selon categorie----------------------------
-        CategorieService categorieService = new CategorieService();
+        //CategorieService categorieService = new CategorieService();
         try {
             Categorie categorie = categorieService.getCategorieById(5);
             String nomCategorie = categorie.getNomCategorie(); // Obtenez le nom de la catégorie
@@ -234,7 +246,7 @@ public class mainOeuvreArt {
             System.out.println("Nombre total d'œuvres d'art de l'artiste avec l'ID " + idUtilisateur + " : " + nombreOeuvres);
         } catch (SQLException e) {
             System.out.println("Erreur lors du calcul du nombre d'œuvres d'art par artiste : " + e.getMessage());
-        }
+        }*/
 
 
     }

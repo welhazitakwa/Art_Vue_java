@@ -1,5 +1,7 @@
 package Controles;
 
+import Controles.DetailsOeuvreAdmin;
+import Controles.OeuvresArtController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -80,7 +82,7 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/DetailsOeuvreArt.fxml"));
                 Parent root = loader.load();
-                DetailsOeuvreArtController controller = loader.getController();
+                DetailsOeuvreAdmin controller = loader.getController();
                 OeuvreArt oeuvreArt = getTableView().getItems().get(getIndex());
                 controller.initData(oeuvreArt);
                 Stage stage = new Stage();
@@ -98,8 +100,10 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
         if (empty) {
             setGraphic(null);
         } else {
-            // Afficher les boutons dans la cellule
-            setGraphic(new HBox(deleteButton, detailButton));
+            // Centrer les boutons dans la cellule en utilisant HBox avec alignement au centre
+            HBox buttonsContainer = new HBox(deleteButton, detailButton);
+            buttonsContainer.setAlignment(javafx.geometry.Pos.CENTER);
+            setGraphic(buttonsContainer);
         }
     }
 }

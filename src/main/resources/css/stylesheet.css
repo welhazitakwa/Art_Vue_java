@@ -1,5 +1,6 @@
 .parent {
   -fx-background-color: #cdc2be;
+
 }
 .sidebar {
   -fx-background-color: #408080;
@@ -66,3 +67,5 @@
   -fx-background-insets:0, 0 0 0 0;
   -fx-border-color: transparent transparent #bc5f6a transparent;
 -fx-background-color: transparent;}
+
+
