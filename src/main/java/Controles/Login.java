@@ -94,8 +94,8 @@ public class Login {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
                 Parent registerParent = loader.load();
-                AdminDashboard adminDashController = loader.getController();
-                adminDashController.setParametre( String.valueOf(user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText())));
+                Acceuil acceuil = loader.getController();
+                //acceuil.setParametre( String.valueOf(user1.getIdUserConnected(loginTextField.getText(), mdpTextField.getText())));
                 contentArea.getChildren().clear();  // Use clear() instead of removeAll()
                 contentArea.getChildren().add(registerParent);
             } catch (IOException e) {
