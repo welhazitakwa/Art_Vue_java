@@ -111,7 +111,7 @@
             </Label>
             <HBox prefHeight="643.0" prefWidth="1400.0">
                <children>
-                  <ImageView fitHeight="563.0" fitWidth="449.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageOuevre" fitHeight="563.0" fitWidth="449.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../image/art.jpg" />
                      </image>
@@ -128,7 +128,7 @@
                            <children>
                               <ScrollPane prefHeight="468.0" prefWidth="917.0">
                                  <content>
-                                    <VBox prefHeight="466.0" prefWidth="913.0">
+                                    <VBox fx:id="commentLayout" prefHeight="466.0" prefWidth="913.0">
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                              <children>
