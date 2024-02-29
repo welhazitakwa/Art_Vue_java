@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -49,6 +50,12 @@ public class ModifierOeuvre {
 
     private CategorieService categorieService;
     private int id;
+    private int idArtiste;
+
+    public void setParametre(int idArtiste) {
+        this.idArtiste = idArtiste;
+        System.out.println("ID de l'artiste dans page Modifier Oeuvre : " + idArtiste);
+    }
 
     @FXML
     void initialize() {
@@ -98,9 +105,13 @@ public class ModifierOeuvre {
     }
 
     public void ModifierOeuvreArt(ActionEvent actionEvent) {
+        // Déclaration de event à un niveau plus élevé
+        ActionEvent event = actionEvent;
+
         if (!validateFields()) {
             return;
         }
+
         String titre = titreField.getText();
         String categorieNom = categorieComboBox.getValue();
         String description = descriptionField.getText();
@@ -134,7 +145,17 @@ public class ModifierOeuvre {
             notifications.show();
 
             // Charger la page OeuvreArtArtiste.fxml après la fermeture de l'alerte
-            loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", actionEvent);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
+                Parent newPage = loader.load();
+                OeuvresPageArtiste controller = loader.getController();
+                controller.setParametre(idArtiste); // Passer l'ID de l'artiste à la nouvelle page
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(newPage);
+                stage.setScene(scene);
+            } catch (IOException ex) {
+                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -184,22 +205,42 @@ public class ModifierOeuvre {
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", event);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
+            Parent newPage = loader.load();
+            OeuvresPageArtiste oeuvrePageArtiste = loader.getController();
+            oeuvrePageArtiste.setParametre(idArtiste); // Passage de l'ID de l'artiste à la page OeuvrePageArtiste
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     public void To_Accueil(ActionEvent event) {
-        loadNewPage("/fxml/fxmlArtiste/AcceuilArtiste.fxml", event);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
+            Parent newPage = loader.load();
+            AcceuilArtiste acceuilArtiste = loader.getController();
+            acceuilArtiste.setParametre(idArtiste);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
+
+    public void To_Aprops(ActionEvent event) {
         try {
-            // Charger la nouvelle page depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AproposArtiste.fxml"));
             Parent newPage = loader.load();
-            // Accéder au stage actuel à partir de l'événement
+            AproposArtiste aproposArtiste = loader.getController();
+            aproposArtiste.setParametre(idArtiste);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            // Remplacer la scène actuelle par la nouvelle scène
             Scene scene = new Scene(newPage);
             stage.setScene(scene);
         } catch (IOException ex) {
