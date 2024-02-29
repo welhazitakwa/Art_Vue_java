@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -103,14 +104,14 @@
             <Insets top="40.0" />
          </padding>
          <children>
-            <Label text="Commentaires">
+            <Label alignment="CENTER" text="Commentaires">
                <font>
                   <Font name="Calibri Bold" size="36.0" />
                </font>
             </Label>
             <HBox prefHeight="643.0" prefWidth="1400.0">
                <children>
-                  <ImageView fitHeight="540.0" fitWidth="403.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="563.0" fitWidth="449.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../image/art.jpg" />
                      </image>
@@ -118,6 +119,123 @@
                         <Insets bottom="15.0" left="30.0" right="15.0" top="50.0" />
                      </HBox.margin>
                   </ImageView>
+                  <VBox prefHeight="641.0" prefWidth="949.0">
+                     <children>
+                        <HBox prefHeight="468.0" prefWidth="907.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                           <children>
+                              <ScrollPane prefHeight="468.0" prefWidth="917.0">
+                                 <content>
+                                    <VBox prefHeight="466.0" prefWidth="913.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                             <children>
+                                                <ImageView fitHeight="73.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+                                                   <HBox.margin>
+                                                      <Insets left="15.0" top="15.0" />
+                                                   </HBox.margin>
+                                                   <image>
+                                                      <Image url="@../../image/jalila.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox prefHeight="100.0" prefWidth="801.0">
+                                                   <children>
+                                                      <HBox prefHeight="40.0" prefWidth="801.0" spacing="5.0">
+                                                         <children>
+                                                            <Label lineSpacing="5.0" text="Nom et Prenom">
+                                                               <HBox.margin>
+                                                                  <Insets top="15.0" />
+                                                               </HBox.margin>
+                                                               <font>
+                                                                  <Font name="Calibri Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="au">
+                                                               <HBox.margin>
+                                                                  <Insets top="15.0" />
+                                                               </HBox.margin>
+                                                               <font>
+                                                                  <Font name="Calibri" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label lineSpacing="5.0" text="Date">
+                                                               <font>
+                                                                  <Font name="Calibri Bold" size="14.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets top="15.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="5.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                         <children>
+                                                            <TextField editable="false" prefHeight="42.0" prefWidth="667.0" promptText="Commenter .." styleClass="textComment" />
+                                                            <Button mnemonicParsing="false" style="-fx-background-color: #ff0000;" styleClass="btn">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../image/deleteicon.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="10.0" style="-fx-background-color: #449c85;" styleClass="btn" stylesheets="@../../css/stylecheetCommentaire.css" textFill="#449c85">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../image/editticon.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                               </graphic>
+                                                            </Button>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </HBox>
+                        <Label text="Ecrire un commentaire">
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <TextField prefHeight="58.0" prefWidth="657.0" promptText="Commenter .." styleClass="textComment">
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" styleClass="loginBtn" stylesheets="@../../css/stylesheet.css" text="Envoyer" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>
