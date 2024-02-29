@@ -8,7 +8,7 @@ public class Utilisateur {
     private String nom, prenom, login, mdp, email, adresse, image, genre ;
 
     public Utilisateur (){}
-   /* public Utilisateur(int id,  String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
+    public Utilisateur(int id,  String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
                        Date dateNaissance, String adresse) {
         this.id = id;
         this.numTel = numTel;
@@ -21,7 +21,7 @@ public class Utilisateur {
         this.adresse = adresse;
         this.image = image;
         this.genre = genre;
-    }*/
+    }
     public Utilisateur(String nom, String prenom,String email, String login, String mdp){
         this.nom = nom;
         this.prenom = prenom;
@@ -48,7 +48,7 @@ public class Utilisateur {
         this.genre = genre;
     }
 
-    /*public Utilisateur(
+    public Utilisateur(
             String nom,String prenom, String email, int numTel, String login, String mdp,String image, String genre,
             Date dateNaissance, String adresse
                          ) {
@@ -62,7 +62,7 @@ public class Utilisateur {
         this.adresse = adresse;
         this.image = image;
         this.genre = genre;
-    }*/
+    }
     public Utilisateur( String nom, String prenom,String email, int numTel, String login, int cin,String mdp, int profil,String image,
                         String genre,Date dateNaissance,String adresse,  int etat_compte ) {
         this.numTel = numTel;
@@ -80,7 +80,22 @@ public class Utilisateur {
         this.image = image;
         this.genre = genre;
     }
+    public Utilisateur(int id, String nom, String prenom , String email , int numTel ,String login , int cin,
+                       String image ,String genre ,Date dateNaissance ,String adresse ){
 
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email ;
+        this.numTel = numTel;
+        this.login = login;
+        this.cin = cin;
+        this.image = image;
+        this.genre = genre;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+
+    }
     public int getId() {
         return id;
     }
