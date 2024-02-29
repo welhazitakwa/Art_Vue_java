@@ -1,7 +1,6 @@
 package Controles;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,7 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AcceuilArtiste {
+public class AproposArtiste {
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
             // Charger la nouvelle page depuis le fichier FXML
@@ -27,14 +26,7 @@ public class AcceuilArtiste {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    void To_Oeuvre_Art(ActionEvent event) {
-
-        loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", event);
-    }
-    public void To_Apropos(ActionEvent event) {
-        loadNewPage("/fxml/fxmlArtiste/AproposArtiste.fxml", event);
-
+    public void To_Acceuil(ActionEvent event) {
+        loadNewPage("/fxml/fxmlArtiste/AcceuilArtiste.fxml", event);
     }
 }

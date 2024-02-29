@@ -7,11 +7,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import models.Categorie;
 import models.OeuvreArt;
 import models.Utilisateur;
+import org.controlsfx.control.Notifications;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
@@ -90,11 +94,18 @@ public class AjouterOeuvre {
             OeuvreArtService oeuvreArtService = new OeuvreArtService();
             oeuvreArtService.AjouterOeuvreArt(oeuvreArt);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ajout réussi");
-            alert.setHeaderText(null);
-            alert.setContentText("L'oeuvre d'art a été ajoutée avec succès.");
-            alert.showAndWait();
+            Image image1 = new Image("/image/succes.png");
+            ImageView imageView = new ImageView(image1);
+            imageView.setFitWidth(40); // Réglez la largeur souhaitée
+            imageView.setFitHeight(40);
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utilisez l'ImageView avec la taille ajustée
+            notifications.text("L'oeuvre d'art a été ajoutée avec succès.");
+            notifications.title("Success Message");
+            notifications.hideAfter(Duration.seconds(4.0));
+            notifications.show();
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -170,7 +181,12 @@ public class AjouterOeuvre {
 
     @FXML
     public void To_Accueil(ActionEvent event) {
+
         loadNewPage("/fxml/fxmlArtiste/AcceuilArtiste.fxml", event);
     }
 
+    public void To_Apropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlArtiste/AproposArtiste.fxml", event);
+
+    }
 }

@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.PageOeuvre">
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="915.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="915.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="77.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -36,7 +36,7 @@
                         <String fx:value="Btn" />
                     </styleClass>
                 </Button>
-                <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" stylesheets="@../../css/StyleMenu.css" text="A Propos">
+                <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#To_Apropos" prefHeight="38.0" prefWidth="86.0" stylesheets="@../../css/StyleMenu.css" text="A Propos">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -84,7 +84,8 @@
                         <Insets right="20.0" />
                     </HBox.margin>
                 </Button>
-                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="218.0" styleClass="search-contrainer" stylesheets="@../../css/StyleMenu.css">
+                <!-- Barre de recherche avec le bouton panier -->
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="27.0" prefWidth="345.0" styleClass="search-contrainer" stylesheets="@../../css/StyleMenu.css">
                     <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -93,7 +94,22 @@
                         </ImageView>
                         <TextField prefHeight="19.0" prefWidth="139.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
                     </children>
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding>
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
                 </HBox>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="21.0" prefWidth="25.0" style="-fx-background-color: white;" stylesheets="@../../css/StyleMenu.css">
+                      <graphic>
+                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../../image/panier.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
             </children>
             <padding>
                 <Insets left="15.0" />
@@ -142,9 +158,9 @@
                             <padding>
                                 <Insets bottom="20" left="20" right="20" top="20" />
                             </padding>
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
+                            <VBox.margin>
+                                <Insets top="40.0" />
+                            </VBox.margin>
                         </GridPane>
                     </children>
                 </VBox>

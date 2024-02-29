@@ -34,7 +34,7 @@
                         <String fx:value="Btn" />
                     </styleClass>
                 </Button>
-                <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" stylesheets="@../../css/StyleMenu.css" text="A Propos">
+                <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#To_Apropos" prefHeight="38.0" prefWidth="86.0" stylesheets="@../../css/StyleMenu.css" text="A Propos">
                     <font>
                         <Font size="16.0" />
                     </font>

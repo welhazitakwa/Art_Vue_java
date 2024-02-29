@@ -18,25 +18,37 @@ public class Acceuil {
     @FXML
     private Button BtnToOeuvreArt;
 
-    @FXML
-    void To_Oeuvre_Art(ActionEvent event) {
+    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
             // Charger la nouvelle page depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
-            Parent pageOeuvre = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
+            Parent newPage = loader.load();
             // Accéder au stage actuel à partir de l'événement
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             // Remplacer la scène actuelle par la nouvelle scène
-            Scene scene = new Scene(pageOeuvre);
+            Scene scene = new Scene(newPage);
             stage.setScene(scene);
-            //stage.show(); // Optionnel selon vos besoins
         } catch (IOException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
+    void To_Oeuvre_Art(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
+    }
+
+    @FXML
     void initialize() {
 
+    }
+
+    public void To_Apropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Apropos.fxml", event);
+
+    }
+
+    public void topropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Apropos.fxml", event);
     }
 }

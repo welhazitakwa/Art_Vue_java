@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AcceuilArtiste {
+public class Apropos {
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
             // Charger la nouvelle page depuis le fichier FXML
@@ -30,11 +30,10 @@ public class AcceuilArtiste {
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-
-        loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", event);
+        loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
     }
-    public void To_Apropos(ActionEvent event) {
-        loadNewPage("/fxml/fxmlArtiste/AproposArtiste.fxml", event);
 
+    public void To_Acceuil(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Acceuil.fxml", event);
     }
 }

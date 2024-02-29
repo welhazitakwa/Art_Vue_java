@@ -12,9 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.OeuvreArt;
-import models.Utilisateur;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,6 +53,7 @@ public class DetailsOeuvreClient {
 
     @FXML
     private Label idPrix;
+
     @FXML
     private Label IdTitre;
 
@@ -65,11 +67,9 @@ public class DetailsOeuvreClient {
     private Label idTitrePageLabel;
 
     private OeuvreArt oeuvreArt;
-    private Utilisateur artiste;
 
     public void initData(OeuvreArt oeuvreArt) {
         this.oeuvreArt = oeuvreArt;
-        this.artiste = oeuvreArt.getArtiste();
         afficherDetailsOeuvre();
     }
 
@@ -77,9 +77,9 @@ public class DetailsOeuvreClient {
         idTitrePageLabel.setText("Détails de l'oeuvre d'art " + oeuvreArt.getTitre());
         IdTitre.setText(oeuvreArt.getTitre());
         idDescription.setText(oeuvreArt.getDescription());
-        idPrix.setText( oeuvreArt.getPrixVente() + " DT");
-        idArtiste.setText(artiste.getNom() + " " + artiste.getPrenom());
-        idCategorie.setText( oeuvreArt.getCategorie().getNomCategorie());
+        idPrix.setText(oeuvreArt.getPrixVente() + " DT");
+        idArtiste.setText(oeuvreArt.getArtiste().getNom() + " " + oeuvreArt.getArtiste().getPrenom());
+        idCategorie.setText(oeuvreArt.getCategorie().getNomCategorie());
         idStatus.setText(oeuvreArt.getStatus());
         idEmailArtiste.setText(oeuvreArt.getArtiste().getEmail());
         idTelArtiste.setText(String.valueOf(oeuvreArt.getArtiste().getNumTel()));
@@ -90,34 +90,9 @@ public class DetailsOeuvreClient {
         }
     }
 
-
     @FXML
     void Ajouter_ToPanier(ActionEvent event) {
-        try {
-            // Charger la nouvelle page depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanierClient.fxml"));
-            Parent newPage = loader.load();
 
-            // Accéder au contrôleur de la nouvelle page
-            PagePanierClient controller = loader.getController();
-
-            // Initialiser les données de l'œuvre dans le contrôleur de la nouvelle page
-            controller.initData(oeuvreArt);
-
-            // Accéder au stage actuel à partir de l'événement
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Remplacer la scène actuelle par la nouvelle scène
-            Scene scene = new Scene(newPage);
-            stage.setScene(scene);
-        } catch (IOException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    void To_Accueil(ActionEvent event) {
-        loadNewPage("/fxml/fxmlClient/Acceuil.fxml", event);
     }
 
     @FXML
@@ -125,22 +100,26 @@ public class DetailsOeuvreClient {
         loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
     }
 
+    @FXML
+    public void To_Accueil(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Acceuil.fxml", event);
+    }
+
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
             // Charger la nouvelle page depuis le fichier FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
             Parent newPage = loader.load();
-
             // Accéder au stage actuel à partir de l'événement
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             // Remplacer la scène actuelle par la nouvelle scène
             Scene scene = new Scene(newPage);
             stage.setScene(scene);
-            //stage.show(); // Optionnel selon vos besoins
         } catch (IOException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void To_Apropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Apropos.fxml", event);
+    }
 }
