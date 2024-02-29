@@ -105,6 +105,31 @@ public class PageOeuvre implements Initializable {
             });
             //----------commen----------------------------------------
 
+            Button discoverButton2 = new Button("Commenter");
+            discoverButton2.setStyle("-fx-background-color:transparent; -fx-background-radius: 5; -fx-border-color: transparent transparent #bc5f6a transparent;");
+            discoverButton2.setOnAction(e -> {
+                try {
+                    // Charger la vue des détails de l'œuvre
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/CommentairesOeuvre.fxml"));
+                    Parent detailsOeuvre = loader.load();
+                    // Obtenir une référence au contrôleur
+                    CommentairesOeuvre commentairesOeuvre = loader.getController();
+                   // commentairesOeuvre.(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
+
+                    // Obtenir la scène actuelle à partir du bouton découvrez
+                    Scene currentScene = ((Node) e.getSource()).getScene();
+
+                    // Modifier la racine de la scène pour afficher les détails de l'œuvre
+                    currentScene.setRoot(detailsOeuvre);
+                } catch (IOException ex) {
+                    Logger.getLogger(PageOeuvre.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            // Créer une HBox pour centrer le bouton
+            HBox buttonBox = new HBox(discoverButton,discoverButton2);
+            buttonBox.setSpacing(10);
+
             // Créer une HBox pour mettre les boutons côte à côte
             HBox buttonBox = new HBox(discoverButton);
             buttonBox.setAlignment(javafx.geometry.Pos.CENTER);

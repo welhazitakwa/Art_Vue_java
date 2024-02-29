@@ -136,6 +136,7 @@ public class AdminDashboard implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UtilisateurDashboard.fxml"));
             Parent UtilisateurPage = loader.load();
+
             contentArea.getChildren().clear();
             contentArea.getChildren().add(UtilisateurPage);
         } catch (IOException ex) {
