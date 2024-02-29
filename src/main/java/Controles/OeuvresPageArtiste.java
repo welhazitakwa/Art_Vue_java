@@ -41,11 +41,11 @@ public class OeuvresPageArtiste implements Initializable {
 
     private OeuvreArtService oeuvreArtService;
     private CategorieService categorieService;
-    private int artisteConnecte = 0; // Le nom de l'artiste connecté
-    public void setParametre(String parametre) {
+    private int artisteConnecte =18; // Le nom de l'artiste connecté
+    /*public void setParametre(String parametre) {
         artisteConnecte = Integer.parseInt(parametre) ;
         labelTest.setText(String.valueOf(artisteConnecte));
-    }
+    }*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         oeuvreArtService = new OeuvreArtService();
@@ -74,6 +74,7 @@ public class OeuvresPageArtiste implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     private void afficherOeuvres(List<OeuvreArt> oeuvres) {
         gridPane.getChildren().clear();

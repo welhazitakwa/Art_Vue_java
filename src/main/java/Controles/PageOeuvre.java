@@ -103,12 +103,14 @@ public class PageOeuvre implements Initializable {
                     Logger.getLogger(PageOeuvre.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
+            //----------commen----------------------------------------
 
-
-            HBox buttonBox = new HBox(discoverButton); // Créer une HBox pour centrer le bouton
+            // Créer une HBox pour mettre les boutons côte à côte
+            HBox buttonBox = new HBox(discoverButton);
             buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
+            buttonBox.setSpacing(5); // Espacement entre les boutons
 
-            card.getChildren().add(buttonBox); // Ajouter la HBox contenant le bouton
+            card.getChildren().add(buttonBox); // Ajouter la HBox contenant les boutons à la carte
 
             // Ajout de la marge entre les cartes
             GridPane.setMargin(card, new Insets(20, 20, 20, 20));
@@ -122,6 +124,8 @@ public class PageOeuvre implements Initializable {
             }
         }
     }
+
+
 
     @FXML
     void handleCategorySelection(ActionEvent event) {
