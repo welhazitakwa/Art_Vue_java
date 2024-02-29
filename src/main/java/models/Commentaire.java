@@ -6,16 +6,25 @@ public class Commentaire {
     private int id, client_id, oeuvre_id;
     private String commentaire ;
     private Date date_commentaire ;
-
-    public Commentaire(int id, int client_id, int oeuvre_id, String commentaire, Date date_commentaire) {
+        public Commentaire (int id, String commentaire, Date date_commentaire, int client_id, int oeuvre_id) {
         this.id = id;
         this.client_id = client_id;
         this.oeuvre_id = oeuvre_id;
         this.commentaire = commentaire;
         this.date_commentaire = date_commentaire;
     }
+    public Commentaire ( String commentaire, int client_id, int oeuvre_id) {
+        this.client_id = client_id;
+        this.oeuvre_id = oeuvre_id;
+        this.commentaire = commentaire;
+        }
 
     public Commentaire() { }
+
+    public Commentaire(int id, String commentaire) {
+        this.id = id;
+        this.commentaire = commentaire;
+    }
 
     public int getId() {
         return id;
