@@ -15,14 +15,12 @@ import java.util.logging.Logger;
 
 public class AcceuilArtiste {
     @FXML
-
     private BorderPane contentArea;
     private int idArtiste; // Changer le type de idArtiste en int
     public void setParametre(int idArtiste) { // Modifier le type du paramètre
         this.idArtiste = idArtiste;
         System.out.println("ID de l'artiste dans page Acceuil : " + idArtiste);
 
-   
     }
 
     @FXML

@@ -17,7 +17,12 @@ public class Acceuil {
 
     @FXML
     private Button BtnToOeuvreArt;
+    private int idClient ;
 
+    public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté : " + idClient);
+    }
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
             // Charger la nouvelle page depuis le fichier FXML
@@ -35,7 +40,17 @@ public class Acceuil {
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
+           // FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
+            Parent registerParent = loader.load();
+            PageOeuvre pageOeuvre = loader.getController();
+            pageOeuvre.setParametre(idClient); // Passage de l'ID au contrôleur AcceuilArtiste
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
