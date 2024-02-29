@@ -1,5 +1,6 @@
 package Controles;
 
+import Controles.DetailsOeuvreClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Categorie;
@@ -84,17 +86,24 @@ public class PageOeuvre implements Initializable {
             discoverButton.setStyle("-fx-background-color:transparent; -fx-background-radius: 5; -fx-border-color: transparent transparent #bc5f6a transparent;");
             discoverButton.setOnAction(e -> {
                 try {
+                    // Charger la vue des détails de l'œuvre
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/DetailsOeuvreClient.fxml"));
                     Parent detailsOeuvre = loader.load();
+
+                    // Obtenir une référence au contrôleur
                     DetailsOeuvreClient controller = loader.getController();
                     controller.initData(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
-                    Stage stage = new Stage();
-                    stage.setScene(new javafx.scene.Scene(detailsOeuvre));
-                    stage.show();
+
+                    // Obtenir la scène actuelle à partir du bouton découvrez
+                    Scene currentScene = ((Node) e.getSource()).getScene();
+
+                    // Modifier la racine de la scène pour afficher les détails de l'œuvre
+                    currentScene.setRoot(detailsOeuvre);
                 } catch (IOException ex) {
                     Logger.getLogger(PageOeuvre.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
+
 
             HBox buttonBox = new HBox(discoverButton); // Créer une HBox pour centrer le bouton
             buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -149,12 +158,32 @@ public class PageOeuvre implements Initializable {
 
         // Artiste
         Label artistLabel = new Label("Artiste: " + oeuvreArt.getArtiste().getNom() + " " + oeuvreArt.getArtiste().getPrenom());
-
+        artistLabel.setPadding(new Insets(0, 0, 10, 0));
         // Prix
         Label priceLabel = new Label("Prix: " + oeuvreArt.getPrixVente() + " DT ");
+        priceLabel.setStyle("-fx-font-weight: bold;"); // Mettre le prix en gras
+
+        // Icône panier
+        ImageView panierIcon = new ImageView(new Image("/image/panier.png"));
+        panierIcon.setFitWidth(17);
+        panierIcon.setFitHeight(17);
+
+// Bouton d'image panier
+        Button panierButton = new Button("", panierIcon);
+        panierButton.setStyle("-fx-background-color: transparent; -fx-background-size: 25px 25px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
+        panierButton.setPadding(new Insets(0, 0, 0, 6)); // Ajouter un padding à droite de l'icône
+        panierButton.setOnAction(event -> {
+            // Ajouter la logique pour ajouter l'œuvre au panier
+            // Par exemple :
+            // addToCart(oeuvreArt);
+        });
+
+        // Regrouper le prix et l'icône du panier dans une HBox
+        HBox pricePanierBox = new HBox(priceLabel, panierButton);
+        pricePanierBox.setSpacing(10); // Espacement entre le prix et l'icône du panier
 
         // Ajout des éléments à la carte
-        card.getChildren().addAll(imageView, titleLabel, artistLabel, priceLabel);
+        card.getChildren().addAll(imageView, titleLabel, artistLabel, pricePanierBox);
         return card;
     }
 
@@ -183,5 +212,7 @@ public class PageOeuvre implements Initializable {
         }
     }
 
-
+    public void To_Apropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlClient/Apropos.fxml", event);
+    }
 }

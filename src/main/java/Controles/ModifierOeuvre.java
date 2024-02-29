@@ -10,10 +10,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import models.Categorie;
 import models.OeuvreArt;
+import org.controlsfx.control.Notifications;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
@@ -118,11 +122,16 @@ public class ModifierOeuvre {
             oeuvre1.ModifierOeuvreArt(new OeuvreArt(
                     id, imageField.getText(), titreField.getText(), descriptionField.getText(), Float.parseFloat(prixField.getText()), categorieObj));
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Modification réussie");
-            alert.setHeaderText(null);
-            alert.setContentText("L'œuvre d'art a été modifiée avec succès.");
-            alert.showAndWait();
+            Image image1 = new Image("/image/succes.png");
+            ImageView imageView = new ImageView(image1);
+            imageView.setFitWidth(40); // Réglez la largeur souhaitée
+            imageView.setFitHeight(40);
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utilisez l'ImageView avec la taille ajustée
+            notifications.text("L'œuvre d'art a été modifiée avec succès.");
+            notifications.title("Modification réussie");
+            notifications.hideAfter(Duration.seconds(4.0));
+            notifications.show();
 
             // Charger la page OeuvreArtArtiste.fxml après la fermeture de l'alerte
             loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", actionEvent);

@@ -243,26 +243,8 @@ public class OeuvresPageArtiste implements Initializable {
     public void to_Ajout(ActionEvent event) {
         loadNewPage("/fxml/fxmlArtiste/AjouterOeuvre.fxml", event);
     }
+
+    public void toApropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlArtiste/AproposArtiste.fxml", event);
+    }
 }
-
-
-
-
-/*
-modifierButton.setOnAction(e -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/ModifierOeuvre.fxml"));
-                    Parent modifierOeuvreParent = loader.load();
-                    ModifierOeuvre controller = loader.getController();
-                    controller.EnvoyerDataOeuvre(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
-
-                    // Récupérer le Stage actuel
-                    Stage stage = (Stage) gridPane.getScene().getWindow();
-
-                    // Remplacer la scène actuelle par la scène de modification
-                    stage.getScene().setRoot(modifierOeuvreParent);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
- */

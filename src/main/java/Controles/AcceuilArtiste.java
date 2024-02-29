@@ -41,6 +41,7 @@ public class AcceuilArtiste {
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
 
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
             Parent registerParent = loader.load();
@@ -52,8 +53,12 @@ public class AcceuilArtiste {
             e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
         }
 
+
+      //  loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", event);
+
     }
+    public void To_Apropos(ActionEvent event) {
+        loadNewPage("/fxml/fxmlArtiste/AproposArtiste.fxml", event);
 
-
-
+    }
 }
