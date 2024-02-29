@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,6 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AcceuilArtiste {
+
+    @FXML
+    private BorderPane contentArea;
     @FXML
     private Label parametreField;
     public void setParametre(String parametre) {
@@ -36,7 +40,18 @@ public class AcceuilArtiste {
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        loadNewPage("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml", event);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
+            Parent registerParent = loader.load();
+            OeuvresPageArtiste oeuvresPageArtiste = loader.getController();
+            oeuvresPageArtiste.setParametre( parametreField.getText());
+            contentArea.getChildren().clear();  // Use clear() instead of removeAll()
+            contentArea.getChildren().add(registerParent);
+        } catch (IOException e) {
+            e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
+        }
+
     }
 
 

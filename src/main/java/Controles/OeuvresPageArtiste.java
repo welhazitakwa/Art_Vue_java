@@ -32,7 +32,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OeuvresPageArtiste implements Initializable {
-
+    @FXML
+    private Label labelTest;
     @FXML
     private GridPane gridPane;
     @FXML
@@ -40,8 +41,11 @@ public class OeuvresPageArtiste implements Initializable {
 
     private OeuvreArtService oeuvreArtService;
     private CategorieService categorieService;
-    private int artisteConnecte = 14; // Le nom de l'artiste connecté
-
+    private int artisteConnecte = 0; // Le nom de l'artiste connecté
+    public void setParametre(String parametre) {
+        artisteConnecte = Integer.parseInt(parametre) ;
+        labelTest.setText(String.valueOf(artisteConnecte));
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         oeuvreArtService = new OeuvreArtService();
@@ -122,7 +126,7 @@ public class OeuvresPageArtiste implements Initializable {
             deleteButton.setOnAction(e -> {
                 // Créer une boîte de dialogue d'alerte
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation de suppression");
+                alert.setTitle("Confirmation de suppression" );
                 alert.setHeaderText(null);
                 alert.setContentText("Êtes-vous sûr de vouloir supprimer cette œuvre d'art ?");
 
