@@ -1,6 +1,7 @@
 package services.concours;
 
 import models.Categorie;
+import models.Concours;
 import models.OeuvreArt;
 import models.Utilisateur;
 import services.categorie.CategorieService;
@@ -113,7 +114,7 @@ public class OeuvreConcoursService {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
     }
-/*_________________________________Ajouter des oeuvre a un concours dans la table oeuvre_concours________________________________________*/
+/*_________________________________Ajouter DES oeuvre a un concours dans la table oeuvre_concours________________________________________*/
     public void ajouterOeuvresAuConcours(int idConcours, List<OeuvreArt> oeuvres) {
         try {
             // Utilisez une requête SQL INSERT pour ajouter les nouvelles entrées dans la table oeuvre_concours
@@ -151,5 +152,37 @@ public class OeuvreConcoursService {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
 
-        return concoursId;}}
-   
+        return concoursId;}
+    /*___________________________________________ modifierConcours interface ______________________________________*/
+
+    public void modifierConcours(Concours concoursModifie, List<OeuvreArt> nouvellesOeuvres) {
+        try {
+            // Commencez par supprimer les anciennes relations avec les œuvres
+            supprimerOeuvresDuConcours(concoursModifie.getId());
+
+            // Utilisez une requête SQL UPDATE pour mettre à jour le concours dans la base de données
+            String updateQuery = "UPDATE concours SET titre = ?, date_debut = ?, date_fin = ?, description = ? WHERE id = ?";
+            try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+                // Paramétrez les valeurs mises à jour
+                updateStatement.setString(1, concoursModifie.getTitre());
+                updateStatement.setDate(2, Date.valueOf(concoursModifie.getDate_debut()));
+                updateStatement.setDate(3, Date.valueOf(concoursModifie.getDate_fin()));
+                updateStatement.setString(4, concoursModifie.getDescription());
+                updateStatement.setInt(5, concoursModifie.getId());
+
+                // Exécutez la requête UPDATE
+                int rowsAffected = updateStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Concours modifié avec succès.");
+
+                    // Ajoutez les nouvelles relations avec les œuvres
+                    ajouterOeuvresAuConcours(concoursModifie.getId(), nouvellesOeuvres);
+                } else {
+                    System.out.println("Aucun concours n'a été modifié. Vérifiez l'ID du concours.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+        }
+    }}

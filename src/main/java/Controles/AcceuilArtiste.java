@@ -15,20 +15,25 @@ import java.util.logging.Logger;
 
 public class AcceuilArtiste {
     @FXML
+
     private BorderPane contentArea;
     private int idArtiste; // Changer le type de idArtiste en int
     public void setParametre(int idArtiste) { // Modifier le type du paramètre
         this.idArtiste = idArtiste;
         System.out.println("ID de l'artiste dans page Acceuil : " + idArtiste);
+
+   
     }
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
             Parent newPage = loader.load();
             OeuvresPageArtiste oeuvrePageArtiste = loader.getController();
             oeuvrePageArtiste.setParametre(idArtiste); // Passage de l'ID de l'artiste à la page OeuvrePageArtiste
+          
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(newPage);
             stage.setScene(scene);
@@ -36,6 +41,7 @@ public class AcceuilArtiste {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
     public void To_Apropos(ActionEvent event) {
         try {
@@ -49,5 +55,6 @@ public class AcceuilArtiste {
         } catch (IOException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 }

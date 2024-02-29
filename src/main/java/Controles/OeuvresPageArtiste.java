@@ -42,6 +42,7 @@ public class OeuvresPageArtiste implements Initializable {
     private OeuvreArtService oeuvreArtService;
     private CategorieService categorieService;
 
+
     private int idArtiste;
 
     public void setParametre(int idArtiste) {
@@ -77,6 +78,7 @@ public class OeuvresPageArtiste implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     private void afficherOeuvres(List<OeuvreArt> oeuvres) {
         gridPane.getChildren().clear();

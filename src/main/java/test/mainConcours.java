@@ -47,7 +47,7 @@ public class mainConcours {
             vs.AjouterVote(new Vote(2));
         } catch (SQLException e) {
             throw new RuntimeException(e);
-
+           }
 */
       /*    try {
             vs.ModifierVote(new Vote (9,2));
@@ -55,16 +55,16 @@ public class mainConcours {
             throw new RuntimeException(e);
         }*/
 
-        /* try {
-            vs.SupprimerVote(1);
+       /* try {
+            vs.SupprimerVote(12);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-      /* try {
+       try {
             System.out.println(vs.AfficherVote());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
 //test CRUD concours
 
     /*   try {

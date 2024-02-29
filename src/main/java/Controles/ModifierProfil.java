@@ -68,20 +68,20 @@ public class ModifierProfil implements Initializable {
                 dialog.showAndWait();
 
             }
-                    Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-                    dialog.setTitle("Alerte de Confirmation");
-                    dialog.setHeaderText(" La modification est effectué avec succès ");
-                    dialog.setContentText("Votre Compte est à jour");
-                    dialog.showAndWait();
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("Alerte de Confirmation");
+            dialog.setHeaderText(" La modification est effectué avec succès ");
+            dialog.setContentText("Votre Compte est à jour");
+            dialog.showAndWait();
 
 
-            } catch (SQLException s) {
-                System.out.println(s.getMessage());
-            }
+        } catch (SQLException s) {
+            System.out.println(s.getMessage());
+        }
 
     }
 
-        @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
@@ -90,7 +90,7 @@ public class ModifierProfil implements Initializable {
         String vv = parametre ;
         //recuperationId.setText(vv);
         id = Integer.parseInt(vv);
-       // System.out.println("laaaaaabbbbbbbeeeeellll"+recuperationId.getText());
+        // System.out.println("laaaaaabbbbbbbeeeeellll"+recuperationId.getText());
         System.out.println("iiiiiidddddddddd"+id);
         System.out.println();
         try {
@@ -103,7 +103,7 @@ public class ModifierProfil implements Initializable {
             ImageView imgProfile = new ImageView(new Image(user1.getUtilisateurById(id).getImage()));
 
             imageAffichage.setImage(imgProfile.getImage());
-
+            imageField.setText(user1.getUtilisateurById(id).getImage());
             nomEdit.setText(user1.getUtilisateurById(id).getNom());
             prenomEdit.setText( user1.getUtilisateurById(id).getPrenom() );
             adresseEdit.setText( user1.getUtilisateurById(id).getAdresse());
