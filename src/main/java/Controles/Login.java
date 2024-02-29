@@ -68,8 +68,6 @@ public class Login {
                 e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
             }
 
-
-
         } else if (validLogin == 1) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
@@ -82,7 +80,6 @@ public class Login {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }else if (validLogin == 2) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
