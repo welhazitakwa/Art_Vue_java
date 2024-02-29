@@ -143,12 +143,12 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <TextField prefHeight="58.0" prefWidth="657.0" promptText="Commenter .." styleClass="textComment">
+                              <TextField fx:id="idTextField" prefHeight="58.0" prefWidth="657.0" promptText="Commenter .." styleClass="textComment">
                                  <HBox.margin>
                                     <Insets left="15.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" styleClass="loginBtn" stylesheets="@../../css/stylesheet.css" text="Envoyer" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#addComment" prefHeight="38.0" prefWidth="86.0" styleClass="loginBtn" stylesheets="@../../css/stylesheet.css" text="Envoyer" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin>
