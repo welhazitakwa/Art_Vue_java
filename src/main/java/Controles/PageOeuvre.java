@@ -131,9 +131,9 @@ public class PageOeuvre implements Initializable {
             buttonBox.setSpacing(10);
 
             // Créer une HBox pour mettre les boutons côte à côte
-            HBox buttonBox = new HBox(discoverButton);
-            buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
-            buttonBox.setSpacing(5); // Espacement entre les boutons
+//            HBox buttonBox = new HBox(discoverButton);
+//            buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
+//            buttonBox.setSpacing(5); // Espacement entre les boutons
 
             card.getChildren().add(buttonBox); // Ajouter la HBox contenant les boutons à la carte
 
