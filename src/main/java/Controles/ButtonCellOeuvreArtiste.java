@@ -1,7 +1,7 @@
 package Controles;
 
-import Controles.DetailsOeuvreAdmin;
-import Controles.OeuvresArtController;
+import Controles.ModifierOeuvre;
+import Controles.OeuvresPageArtiste;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import models.Categorie;
 import models.OeuvreArt;
 import services.oeuvreArt.OeuvreArtService;
 
@@ -20,36 +21,36 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
+public class ButtonCellOeuvreArtiste extends TableCell<OeuvreArt, Void> {
 
-    private final Button detailButton = new Button();
+    private final Button modifierButton = new Button();
     private final Button deleteButton = new Button();
-    private final OeuvresArtController oeuvresArtController;
+    private final OeuvresPageArtiste oeuvresPageArtiste;
 
-    public ButtonCellOeuvre(OeuvresArtController oeuvresArtController) {
-        this.oeuvresArtController = oeuvresArtController;
+    public ButtonCellOeuvreArtiste(OeuvresPageArtiste oeuvresPageArtiste) {
+        this.oeuvresPageArtiste = oeuvresPageArtiste;
 
         // Charger les images pour les boutons
         Image deleteImage = new Image(getClass().getResourceAsStream("/image/delete-100-128.png"));
-        Image detailImage = new Image(getClass().getResourceAsStream("/image/details.png"));
+        Image modifierImage = new Image(getClass().getResourceAsStream("/image/modify-7-128.png"));
 
         // Créer les ImageView pour les images chargées
         ImageView deleteImageView = new ImageView(deleteImage);
-        ImageView detailImageView = new ImageView(detailImage);
+        ImageView modifierImageView = new ImageView(modifierImage);
 
         // Ajuster la taille des images
         deleteImageView.setFitWidth(16);
         deleteImageView.setFitHeight(16);
-        detailImageView.setFitWidth(16);
-        detailImageView.setFitHeight(16);
+        modifierImageView.setFitWidth(16);
+        modifierImageView.setFitHeight(16);
 
         // Ajouter les ImageView aux boutons
         deleteButton.setGraphic(deleteImageView);
-        detailButton.setGraphic(detailImageView);
+        modifierButton.setGraphic(modifierImageView);
 
         // Ajouter des styles aux boutons
         deleteButton.getStyleClass().add("button");
-        detailButton.getStyleClass().add("button");
+        modifierButton.getStyleClass().add("button");
 
         // Ajouter des gestionnaires d'événements pour les boutons
 
@@ -70,7 +71,7 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
                     getTableView().getItems().remove(oeuvreArt);
                     System.out.println("Oeuvre d'art supprimée avec succès !");
                     // Rafraîchir la liste des oeuvres d'art après la suppression
-                    oeuvresArtController.afficherOeuvreArt();
+                    oeuvresPageArtiste.afficherOeuvreArt();
                 } catch (SQLException e) {
                     e.printStackTrace();
                     // Gérer les erreurs de suppression ici
@@ -78,13 +79,13 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
             }
         });
 
-        detailButton.setOnAction(event -> {
+        modifierButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/DetailsOeuvreArt.fxml"));
-                Parent root = loader.load();
-                DetailsOeuvreAdmin controller = loader.getController();
                 OeuvreArt oeuvreArt = getTableView().getItems().get(getIndex());
-                controller.initData(oeuvreArt);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/ModifierOeuvre.fxml"));
+                Parent root = loader.load();
+                ModifierOeuvre controller = loader.getController();
+                controller.EnvoyerDataOeuvre(oeuvreArt);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -92,6 +93,7 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
                 e.printStackTrace();
             }
         });
+
     }
 
     @Override
@@ -101,7 +103,7 @@ public class ButtonCellOeuvre extends TableCell<OeuvreArt, Void> {
             setGraphic(null);
         } else {
             // Centrer les boutons dans la cellule en utilisant HBox avec alignement au centre
-            HBox buttonsContainer = new HBox(deleteButton, detailButton);
+            HBox buttonsContainer = new HBox(deleteButton, modifierButton);
             buttonsContainer.setAlignment(javafx.geometry.Pos.CENTER);
             setGraphic(buttonsContainer);
         }

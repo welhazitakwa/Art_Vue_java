@@ -11,6 +11,7 @@ public interface ICategorie <T> {
     void SupprimerCategorie (int id ) throws SQLException;
     List<T> AfficherCategorie ( ) throws SQLException;
     Categorie getCategorieById(int id) throws SQLException;
+    int getNombreCategories() throws SQLException;
     Categorie getCategorieByNom(String nomCategorie) throws SQLException;
 
 }

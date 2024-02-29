@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.ModifierOeuvre">
+    <children>
+        <VBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0">
+            <children>
+                <Label prefHeight="46.0" prefWidth="486.0" text="Formulaire d'ajout d'oeuvre d'art" textAlignment="CENTER" textFill="#593a37">
+                    <font>
+                        <Font name="Book Antiqua Bold" size="32.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="26.0" prefWidth="380.0" text="Remplir le formulaire d'ajout avec les informations" textFill="#593a37">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+            </children>
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+        </VBox>
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="444.0" prefWidth="774.0" styleClass="card" stylesheets="@../../css/styleArtiste.css">
+            <VBox.margin>
+                <Insets left="80.0" right="80.0" top="50.0" />
+            </VBox.margin>
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="729.0">
+                    <children>
+                        <Label prefHeight="30.0" prefWidth="54.0" text="Titre">
+                            <padding>
+                                <Insets top="9.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="40.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="titreField" prefHeight="42.0" prefWidth="355.0" promptText="Titre" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+                            <HBox.margin>
+                                <Insets left="53.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="774.0">
+                    <children>
+                        <Label prefHeight="28.0" prefWidth="87.0" text="Catégorie">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="40.0" />
+                            </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="categorieComboBox" prefHeight="37.0" prefWidth="358.0" promptText="Catégorie" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </ComboBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="774.0">
+                    <children>
+                        <Label text="Description">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="40.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="descriptionField" prefHeight="38.0" prefWidth="354.0" promptText="Description" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+                            <HBox.margin>
+                                <Insets left="26.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="734.0">
+                    <children>
+                        <Label text="Prix de vente">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="40.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="prixField" prefHeight="41.0" prefWidth="354.0" promptText="Prix de vente" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+                            <HBox.margin>
+                                <Insets left="17.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="734.0">
+                    <children>
+                        <Label text="Image">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="40.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="imageField" prefHeight="40.0" prefWidth="354.0" promptText="Image" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+                            <HBox.margin>
+                                <Insets left="66.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="694.0">
+                    <children>
+                        <Button fx:id="btnChoisirFile" mnemonicParsing="false" onAction="#choose_file" prefHeight="28.0" prefWidth="98.0" text="Choisir Image">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="230.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="40.0" top="40.0" />
+            </padding>
+        </VBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button fx:id="BtnModifier" mnemonicParsing="false" onAction="#ModifierOeuvreArt" prefHeight="35.0" prefWidth="173.0" styleClass="Btn" stylesheets="@../../css/styleAjouterOeuvre.css" text="Modifier" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
