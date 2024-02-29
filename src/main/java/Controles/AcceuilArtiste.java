@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AcceuilArtiste {
+    @FXML
+    private Label parametreField;
+    public void setParametre(String parametre) {
+        parametreField.setText(parametre);
+    }
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
             // Charger la nouvelle page depuis le fichier FXML
