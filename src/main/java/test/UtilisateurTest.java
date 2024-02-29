@@ -37,21 +37,21 @@ public class UtilisateurTest {
         }*/
 
         UtilisateurService user1 = new UtilisateurService();
-      /*try {
+  /*    try {
          user1.ajouter(new Utilisateur( "Ferjeni", "Nourhen","Nourhen.ferjeni@gmail.com",92404237,
                  "Nourhen", 12852360,"123.",1,"imaage ", "femme",new java.sql.Date(28022005), "addddd",0));
         } catch (SQLException s){
             System.out.println(s.getMessage());
+        }*/
+
+        try {
+            user1.modifier(new Utilisateur(
+                    12, "ccccccc", "cccccc","cccccc@gmail.com",
+                    11111111, "ccccccc", 11111111,"cccccc ", "ccccccccc",
+                    new java.sql.Date(280922005), "ccccccccccc"));
+        } catch (SQLException s){
+            System.out.println(s.getMessage());
         }
-*/
-//        try {
-//            user1.modifier(new Utilisateur(
-//                    12, "ccccccc", "cccccc","cccccc@gmail.com",
-//                    11111111, "ccccccc", 11111111,"cccccc ", "ccccccccc",
-//                    new java.sql.Date(280922005), "ccccccccccc"));
-//        } catch (SQLException s){
-//            System.out.println(s.getMessage());
-//        }
 
        /* try {
             user1.supprimer(4);

@@ -1,6 +1,5 @@
 package services.Panier;
 
-import models.Commande;
 import models.Panier;
 import services.utilisateur.UtilisateurService;
 import utils.MyDataBase;
@@ -18,20 +17,21 @@ public class PanierService implements Ipanier<Panier> {
     }
 
     @Override
-    public void AjouterPanier(Panier panier) throws SQLException {
+    public boolean AjouterPanier(Panier panier) throws SQLException {
         if (panier.getClient() == null) {
             System.out.println("Le client est nul. Impossible d'ajouter le panier.");
-            return; // Arrêter l'exécution de la méthode
+            return false;
         }
         if (clientPossedePanier(panier.getClient().getId())) {
             System.out.println("Le client possède déjà un panier. Impossible d'ajouter un nouveau panier.");
-            return; // Arrêter l'exécution de la méthode
+            return false;
         }
-        String sql = "INSERT INTO panier (dateAjout,client) VALUES (?, ?)";
+        String sql = "INSERT INTO panier (dateAjout, client) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setDate(1, new java.sql.Date(panier.getDateAjout().getTime()));
             preparedStatement.setInt(2, panier.getClient().getId());
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0; // Si des lignes ont été affectées, l'insertion a réussi
         }
     }
 
@@ -129,11 +129,27 @@ panier.setDateAjout(rs.getDate("DateAjout"));
         return panier;
     }
 
-
-
-
-
-
-
-
+    public List<Utilisateur> getListeClients() throws SQLException {
+        List<Utilisateur> clients = new ArrayList<>();
+        String sql = "SELECT * FROM utilisateur"; // Remplacez "clients" par le nom de votre table clients
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                // Créez un objet Client à partir des données de la base de données
+                Utilisateur client = new Utilisateur();
+                client.setId(resultSet.getInt("id"));
+                client.setNom(resultSet.getString("nom"));
+                // Ajoutez le client à la liste
+                clients.add(client);
+            }
+        }
+        return clients;
+    }
 }
+
+
+
+
+
+
+
