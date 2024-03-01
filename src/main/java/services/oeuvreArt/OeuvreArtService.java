@@ -381,6 +381,24 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
                return oeuvres;
            }
 
+           // Méthode pour mettre à jour le nombre de likes dans la base de données
+           public void updateLikes(int oeuvreArtId, int newLikesCount) throws SQLException {
+               PreparedStatement statement = null;
+               try {
+                   String query = "UPDATE oeuvreArt SET nombre_likes = ? WHERE idOeuvreArt = ?";
+                   statement = connection.prepareStatement(query);
+                   statement.setInt(1, newLikesCount);
+                   statement.setInt(2, oeuvreArtId);
+                   statement.executeUpdate();
+               } finally {
+                   if (statement != null) {
+                       statement.close();
+                   }
+               }
+           }
+
+
+
     // Méthode pour récupérer une catégorie par ID
     private Categorie getCategorieById(int categorieId) throws SQLException {
         // Implémentez la logique de récupération de la catégorie depuis la base de données

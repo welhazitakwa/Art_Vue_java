@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import models.Categorie;
 import models.OeuvreArt;
 import services.categorie.CategorieService;
+import services.likes.LikesService;
 import services.oeuvreArt.OeuvreArtService;
 
 import java.io.IOException;
@@ -198,9 +199,24 @@ public class OeuvresPageArtiste implements Initializable {
 
         Label priceLabel = new Label("Prix: " + oeuvreArt.getPrixVente() + " DT ");
 
-        card.getChildren().addAll(imageView, titleLabel, artistLabel, priceLabel);
+        // Ajout d'un label pour afficher le nombre total de likes
+        Label likesLabel = new Label("Likes:   " + countTotalLikes(oeuvreArt.getId()) );
+        likesLabel.setStyle("-fx-font-weight: bold;"); // Appliquer le style CSS pour le gras
+
+        card.getChildren().addAll(imageView, titleLabel, artistLabel, priceLabel, likesLabel);
         return card;
     }
+    private int countTotalLikes(int idOeuvre) {
+        int totalLikes = 0;
+        try {
+            LikesService likesService = new LikesService();
+            totalLikes = likesService.countLikesForArtwork(idOeuvre);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalLikes;
+    }
+
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
