@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Label?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AdminDashboard">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" spacing="5.0" stylesheets="@../../css/StyleMenu.css" BorderPane.alignment="CENTER">
@@ -239,7 +240,10 @@
                   </HBox>
                </children>
             </HBox>
-            <VBox fx:id="contentArea" prefHeight="767.0" prefWidth="1065.0" />
+            <VBox fx:id="contentArea" prefHeight="767.0" prefWidth="1065.0">
+               <children>
+                  <Label fx:id="parametreField" text="Label" visible="false" />
+               </children></VBox>
 
          </children>
       </VBox>
