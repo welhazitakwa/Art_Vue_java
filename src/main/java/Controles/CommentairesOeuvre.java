@@ -39,7 +39,7 @@ public class CommentairesOeuvre {
     private Button BtnToOeuvreArt;
 
     @FXML
-    private VBox commentLayout;
+    public VBox commentLayout;
 
     @FXML
     private Button idBTNCategorie;
@@ -53,6 +53,7 @@ public class CommentairesOeuvre {
 
     public void setParametre(int idClient) {
         this.idClient = idClient;
+
         System.out.println("ID de l'client connecté : " + idClient);
     }
     @FXML
@@ -74,7 +75,7 @@ public class CommentairesOeuvre {
                 HBox hbox = fxmlLoader.load();
 
                 CommentaireItem commentaireItem = fxmlLoader.getController();
-                commentaireItem.setParametre(idClient);
+                commentaireItem.setParametre(idClient, this.oeuvreArt);
                 System.out.println("fel commentaireOeuvre" + idClient);
                 commentaireItem.setData(comments.get(i));
                 commentLayout.getChildren().add(hbox);
