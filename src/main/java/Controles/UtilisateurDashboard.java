@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Utilisateur;
+import services.oeuvreArt.OeuvreArtService;
 import services.utilisateur.UtilisateurService;
 import javafx.scene.control.Label;
 //import java.awt.Label;
@@ -45,6 +46,17 @@ public class UtilisateurDashboard implements Initializable {
     private HBox hbox3;
     @FXML
     private HBox navbar;
+    @FXML
+    private Label label1Dash;
+
+    @FXML
+    private Label label2Dash;
+
+    @FXML
+    private Label label3Dash;
+
+    @FXML
+    private Label label4Dash;
 
     @FXML
     void AffichageClients(ActionEvent event) {
@@ -133,7 +145,30 @@ public class UtilisateurDashboard implements Initializable {
 //        catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-//
 
-  }
+        UtilisateurService user1 = new UtilisateurService() ;
+        OeuvreArtService o1= new OeuvreArtService() ;
+        try {
+            int total = user1.nbtotal()-1 ;
+            label1Dash.setText("Total des utilisateurs: \n"+ "                "+total);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            label2Dash.setText("Total des artistes : \n"+ "                "+user1.nbArtistes());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            label3Dash.setText("Total des clients : \n"+ "                " +user1.nbClients());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            label4Dash.setText("Total des œuvres : \n"+ "                " +o1.nombreOeuvresArt());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
