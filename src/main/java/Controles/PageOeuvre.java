@@ -13,10 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -44,8 +41,12 @@ public class PageOeuvre implements Initializable {
     private GridPane gridPane;
     @FXML
     private ComboBox<String> categorieComboBox;
+    @FXML
+    private TextField idRecherche;
 
     private OeuvreArtService oeuvreArtService;
+
+
     private CategorieService categorieService;
     private int idClient;
 
@@ -177,20 +178,31 @@ public class PageOeuvre implements Initializable {
     void handleCategorySelection(ActionEvent event) {
         try {
             String selectedCategory = categorieComboBox.getValue(); // Récupérer la catégorie sélectionnée
-            List<OeuvreArt> oeuvres;
-            if (selectedCategory != null && !selectedCategory.equals("Tous")) {
-                // Si une catégorie est sélectionnée (autre que "Tous"), récupérer les œuvres d'art correspondantes à cette catégorie
-                oeuvres = oeuvreArtService.getAllOeuvreArtByCategorie(selectedCategory);
+            String recherche = idRecherche.getText(); // Récupérer le texte saisi dans le champ de recherche
+            if (!recherche.isEmpty()) { // Vérifier si le champ de recherche n'est pas vide
+                List<OeuvreArt> oeuvres;
+                if (selectedCategory != null && !selectedCategory.equals("Tous")) {
+                    // Si une catégorie est sélectionnée (autre que "Tous"), récupérer les œuvres d'art correspondantes à cette catégorie et à cet artiste
+                    oeuvres = oeuvreArtService.rechercherParArtisteEtCategorie(recherche, selectedCategory);
+                } else {
+                    // Sinon, récupérer les œuvres d'art correspondant uniquement à cet artiste
+                    oeuvres = oeuvreArtService.rechercherParArtiste(recherche);
+                }
+                afficherOeuvres(oeuvres); // Afficher les œuvres correspondantes
             } else {
-                // Sinon, récupérer toutes les œuvres d'art
-                afficherToutesOeuvres();
-                return;
+                // Si le champ de recherche est vide, afficher toutes les œuvres de la catégorie sélectionnée
+                if (selectedCategory != null && !selectedCategory.equals("Tous")) {
+                    List<OeuvreArt> oeuvres = oeuvreArtService.getAllOeuvreArtByCategorie(selectedCategory);
+                    afficherOeuvres(oeuvres);
+                } else {
+                    afficherToutesOeuvres(); // Afficher toutes les œuvres
+                }
             }
-            afficherOeuvres(oeuvres);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     private VBox createArtworkCard(OeuvreArt oeuvreArt) {
         VBox card = new VBox();
@@ -307,4 +319,21 @@ public class PageOeuvre implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void Rechercher(ActionEvent event) {
+        String recherche = idRecherche.getText(); // Récupérer le texte saisi dans le champ de recherche
+        if (!recherche.isEmpty()) { // Vérifier si le champ de recherche n'est pas vide
+            try {
+                List<OeuvreArt> oeuvres = oeuvreArtService.rechercherParArtiste(recherche); // Appeler le service pour rechercher les œuvres par artiste
+                afficherOeuvres(oeuvres); // Afficher les œuvres correspondantes
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Gérer les erreurs
+            }
+        } else {
+            // Si le champ de recherche est vide, afficher toutes les œuvres
+            afficherToutesOeuvres();
+        }
+    }
+
 }
