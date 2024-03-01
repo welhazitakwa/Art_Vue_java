@@ -11,7 +11,7 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="1096.0" stylesheets="@../../css/styleOeuvreAdmin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.OeuvresArtController">
    <children>
-      <VBox alignment="CENTER" minHeight="500.0" prefHeight="730.0" prefWidth="1026.0" style="-fx-background-color: white;">
+      <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="1096.0" style="-fx-background-color: white;">
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des oeuvres d'art">
             <VBox.margin>
                <Insets bottom="20.0" top="30.0" />
@@ -97,7 +97,4 @@
       
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="15.0" />
-   </padding>
 </VBox>
