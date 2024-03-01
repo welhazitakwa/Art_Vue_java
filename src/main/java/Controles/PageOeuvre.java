@@ -47,7 +47,7 @@ public class PageOeuvre implements Initializable {
 
     public void setParametre(int idClient) {
         this.idClient = idClient;
-        System.out.println("ID de l'client connecté : " + idClient);
+        System.out.println("ID de l'client connecté page Oeuvre : " + idClient);
     }
 
     @Override
@@ -223,30 +223,44 @@ public class PageOeuvre implements Initializable {
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-        loadNewPage("/fxml/fxmlClient/PageOeuvre.fxml", event);
-    }
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
+            Parent registerParent = loader.load();
+            PageOeuvre pageOeuvre = loader.getController();
+            pageOeuvre.setParametre(idClient);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     public void To_Accueil(ActionEvent event) {
-        loadNewPage("/fxml/fxmlClient/Acceuil.fxml", event);
-    }
 
-    private void loadNewPage(String fxmlFilePath, ActionEvent event) {
         try {
-            // Charger la nouvelle page depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFilePath));
-            Parent newPage = loader.load();
-            // Accéder au stage actuel à partir de l'événement
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
+            Parent registerParent = loader.load();
+            Acceuil acceuil = loader.getController();
+            acceuil.setParametre(idClient);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            // Remplacer la scène actuelle par la nouvelle scène
-            Scene scene = new Scene(newPage);
-            stage.setScene(scene);
-        } catch (IOException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void To_Apropos(ActionEvent event) {
-        loadNewPage("/fxml/fxmlClient/Apropos.fxml", event);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Apropos.fxml"));
+            Parent registerParent = loader.load();
+            Apropos apropos = loader.getController();
+            apropos.setParametre(idClient);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
