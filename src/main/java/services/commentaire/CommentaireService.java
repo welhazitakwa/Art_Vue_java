@@ -63,9 +63,8 @@ public class CommentaireService implements ICommentaire<Commentaire>{
             commentaire.setCommentaire(rs.getString("commentaire"));
             commentaire.setDate_commentaire(rs.getDate("date_commentaire"));
             commentaire.setClient_id(rs.getInt("client_id"));
-            commentaire.setClient_id(rs.getInt("oeuvre_id"));
+            commentaire.setOeuvre_id(rs.getInt("oeuvre_id"));
             commentaire.setProfil(rs.getInt("profil"));
-
             commentaire.setImage(rs.getString("imguser"));
             commentaire.setNom(rs.getString("nom"));
             commentaire.setPrenom(rs.getString("prenom"));

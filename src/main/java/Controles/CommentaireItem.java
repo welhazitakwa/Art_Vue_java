@@ -23,10 +23,10 @@ public class CommentaireItem {
     @FXML
     private ImageView userImg;
     @FXML
-    private Button idDelete;
+    public Button idDelete;
 
     @FXML
-    private Button idedit;
+    public Button idedit;
     private int idClient ;
 
     public void setParametre(int param) {
@@ -56,30 +56,23 @@ public class CommentaireItem {
         textFieldComment.setText("qd");
         nomPrenom.setText("qzd");
         dateComment.setText("qzd");
-        if ( comment.getClient_id() == idClient) {
-            idedit.setVisible(true);
-            idDelete.setVisible(true);
-            
-        } else {
-            idedit.setVisible(false);
-            idDelete.setVisible(false);
 
-        }
         if (comment != null) {
             textFieldComment.setText(comment.getCommentaire());
             nomPrenom.setText(comment.getNom()+" "+comment.getPrenom());
             dateComment.setText(String.valueOf(comment.getDate_commentaire()));
 
+            if (comment.getClient_id() == idClient) {
+                System.out.println("kifkif rww");
+                idedit.setVisible(true);
+                idDelete.setVisible(true);
+            } else {
+                idedit.setVisible(false);
+                idDelete.setVisible(false);
+                System.out.println("mch kifkif");
+            }
+
         }
-
-
-
-
-
-
-
-
-
 
     }
 

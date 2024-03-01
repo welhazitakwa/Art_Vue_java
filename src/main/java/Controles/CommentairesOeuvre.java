@@ -75,7 +75,7 @@ public class CommentairesOeuvre {
 
                 CommentaireItem commentaireItem = fxmlLoader.getController();
                 commentaireItem.setParametre(idClient);
-                System.out.println("yyyyaaaaaaaa rabii : "+idClient);
+                System.out.println("fel commentaireOeuvre" + idClient);
                 commentaireItem.setData(comments.get(i));
                 commentLayout.getChildren().add(hbox);
             }

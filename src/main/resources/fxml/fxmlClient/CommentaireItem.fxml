@@ -56,7 +56,7 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <TextField fx:id="textFieldComment" editable="false" prefHeight="42.0" prefWidth="675.0" promptText="Commenter .." styleClass="textComment" />
-                  <Button fx:id="idDelete" mnemonicParsing="false" onAction="#deleteComment" style="-fx-background-color: #ff0000;" styleClass="btn">
+                  <Button fx:id="idDelete" mnemonicParsing="false" onAction="#deleteComment" style="-fx-background-color: #ff0000;" styleClass="btn" visible="false">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -65,7 +65,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="idedit" mnemonicParsing="false" onAction="#editComment" prefHeight="30.0" prefWidth="10.0" style="-fx-background-color: #449c85;" styleClass="btn" stylesheets="@../../css/stylecheetCommentaire.css" textFill="#449c85">
+                  <Button fx:id="idedit" mnemonicParsing="false" onAction="#editComment" prefHeight="30.0" prefWidth="10.0" style="-fx-background-color: #449c85;" styleClass="btn" stylesheets="@../../css/stylecheetCommentaire.css" textFill="#449c85" visible="false">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
