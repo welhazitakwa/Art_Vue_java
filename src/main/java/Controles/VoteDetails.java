@@ -36,9 +36,17 @@ public class VoteDetails {
         private VBox vboxVotes;
 
         private Map<Vote, VBox> voteBoxMap = new HashMap<>();
+     private int idClient;
 
-        @FXML
+    public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté page votedetails : " + idClient);
+    }
+
+    @FXML
         void initialize() {
+
+
             // Initialisez la VBox
             vboxVotes = new VBox();
             vboxVotes.setSpacing(20);
@@ -46,7 +54,7 @@ public class VoteDetails {
             // Initialisez la ScrollPane avec la VBox comme contenu
             scrollPane.setContent(vboxVotes);
 
-            afficherVotesUtilisateur(1);
+            afficherVotesUtilisateur(idClient);
         }
 
         private VBox getOrCreateVoteBox(Vote vote) {
@@ -126,7 +134,7 @@ public class VoteDetails {
                 vboxVotes.getChildren().remove(voteBox);
 
                 // Mise à jour de l'affichage
-                afficherVotesUtilisateur(1);
+                afficherVotesUtilisateur(idClient);
             } else {
                 System.out.println("La suppression du vote a échoué.");
             }
@@ -142,9 +150,9 @@ public class VoteDetails {
             // Ajoutez la logique pour modifier le vote dans la base de données et mettre à jour l'interface utilisateur
         }
 
-    private void afficherVotesUtilisateur(int userId) {
+    private void afficherVotesUtilisateur(int idClient) {
         voteServices voteService = new voteServices();
-        List<Vote> votes = voteService.getVotesUtilisateur(userId);
+        List<Vote> votes = voteService.getVotesUtilisateur(idClient);
 
         // Effacer tous les enfants de vboxVotes
         vboxVotes.getChildren().clear();

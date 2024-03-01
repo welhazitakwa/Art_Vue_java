@@ -32,8 +32,14 @@ public class AfficherOeuvreConcoursUser {
     private Button consultermesvotes;
     @FXML
     private ScrollPane scrollPane;
+    private int idClient ;
 
-    int idUser = 1;
+    public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté page Oeuvreuser : " + idClient);
+    }
+
+   // int idUser = 1;
     private int idConcours;
 
     @FXML
@@ -71,7 +77,7 @@ public class AfficherOeuvreConcoursUser {
 
             RatingBar ratingBar = createRatingBar(oeuvre);
             Button confirmerButton = new Button("Confirmer");
-            confirmerButton.setOnAction(event -> confirmerVote(oeuvre, idUser, concoursId));
+            confirmerButton.setOnAction(event -> confirmerVote(oeuvre, idClient, concoursId));
 
             VBox detailsOeuvre = new VBox(
                     labelTitre,
@@ -116,9 +122,11 @@ public class AfficherOeuvreConcoursUser {
 
             // Obtenez le contrôleur associé à la vue chargée
             VoteDetails voteDetailsController = loader.getController();
+            voteDetailsController.setParametre(idClient);
+
 
             // Configurez le contrôleur au besoin (vous pouvez avoir des méthodes pour initialiser des données, etc.)
-            // voteDetailsController.initializeData(...);
+            voteDetailsController.initialize();
 
             // Créez une nouvelle scène avec la page VoteDetails
             Scene scene = new Scene(root);

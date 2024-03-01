@@ -103,14 +103,14 @@ public class AdminDashboard implements Initializable {
     @FXML
     void pageconcoursmenu(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Concours.fxml"));
-            Parent Concours1 = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AjoutConcour.fxml"));
+            Parent AjoutConcour = loader.load();
 
-           Concours1 ConcoursController = loader.getController();
+            AjoutConcour ConcoursController = loader.getController();
 
             // Effacez le contenu existant et affichez la page de catégorie
             contentArea.getChildren().clear();
-            contentArea.getChildren().add(Concours1);
+            contentArea.getChildren().add(AjoutConcour);
         } catch (IOException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
 
