@@ -60,11 +60,13 @@ public class mainConcours {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
-       try {
+       /*try {
             System.out.println(vs.AfficherVote());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
+
+
 //test CRUD concours
 
     /*   try {

@@ -235,5 +235,7 @@ public class ConcoursService implements Iconcours<Concours> {
 
         return false;
     }
+    /*---------------------------------------------------------------------*/
+
 }
 

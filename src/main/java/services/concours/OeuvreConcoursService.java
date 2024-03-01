@@ -6,14 +6,15 @@ import models.OeuvreArt;
 import models.Utilisateur;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
+import services.vote.voteServices;
 import utils.MyDataBase;
 import java.sql.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class OeuvreConcoursService {
 
@@ -185,4 +186,38 @@ public class OeuvreConcoursService {
         } catch (SQLException e) {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
-    }}
+    }
+    /************************************************************************/
+
+  private voteServices voteService=new voteServices();  // Assurez-vous que la classe VoteService est injectée
+
+    public List<OeuvreArt> getTop3ClassementConcours(int concoursId) {
+        List<OeuvreArt> oeuvres = getOeuvresByConcoursId(concoursId);
+        Map<Integer, Double> noteMoyenneMap = new HashMap<>();
+
+        // Calculer la note moyenne pour chaque œuvre
+        for (OeuvreArt oeuvre : oeuvres) {
+            double noteMoyenne = voteService.getNoteMoyenneOeuvre(oeuvre.getId(), concoursId);
+            noteMoyenneMap.put(oeuvre.getId(), noteMoyenne);
+        }
+
+        // Utilisez Collections.sort avec un Comparator personnalisé
+        Collections.sort(oeuvres, new Comparator<OeuvreArt>() {
+            @Override
+            public int compare(OeuvreArt o1, OeuvreArt o2) {
+                // Comparez les notes moyennes de manière décroissante
+                double note1 = noteMoyenneMap.getOrDefault(o1.getId(), 0.0);
+                double note2 = noteMoyenneMap.getOrDefault(o2.getId(), 0.0);
+                return Double.compare(note2, note1);
+            }
+        });
+
+        // Retournez les trois premières œuvres si la liste en contient au moins trois, sinon, retournez la liste entière
+        return oeuvres.size() >= 3 ? oeuvres.subList(0, 3) : oeuvres;
+    }
+
+
+
+
+
+}
