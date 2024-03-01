@@ -13,6 +13,8 @@ public class OeuvreArt {
     public String status;
     public Utilisateur artiste;
 
+    private boolean liked;
+    private int nombreLikes;
 
 
     public OeuvreArt(int id, String image, String titre, String description, float prixVente, Categorie categorie) {
@@ -78,6 +80,22 @@ public class OeuvreArt {
 
     public OeuvreArt() {
 
+    }
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
+    public int getNombreLikes() {
+        return nombreLikes;
+    }
+
+    public void setNombreLikes(int nombreLikes) {
+        this.nombreLikes = nombreLikes;
     }
 
     public int getId() {
