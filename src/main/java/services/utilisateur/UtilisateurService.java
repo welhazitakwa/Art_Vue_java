@@ -202,6 +202,42 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         }
         return list;
     }
+    public int nbArtistes () throws SQLException {
+        String req = "select count(*) nbArtistes from utilisateur where profil = 1";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(req) ;
+        int nbArtistes = 0;
+        while (rs.next()) {
+            nbArtistes = rs.getInt("nbArtistes");
+        }
+
+        return nbArtistes;
+
+    }
+    public int nbClients () throws SQLException {
+        String req = "select count(*) nbArtistes from utilisateur where profil = 2";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(req) ;
+        int nbArtistes = 0;
+        while (rs.next()) {
+            nbArtistes = rs.getInt("nbArtistes");
+        }
+
+        return nbArtistes;
+
+    }
+    public int nbtotal () throws SQLException {
+        String req = "select count(*) nbArtistes from utilisateur";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(req) ;
+        int nbArtistes = 0;
+        while (rs.next()) {
+            nbArtistes = rs.getInt("nbArtistes");
+        }
+
+        return nbArtistes;
+
+    }
     public List<Utilisateur> listClients() throws SQLException {
         String sql = "select * from utilisateur  where profil = 2" ;
         Statement statement = connection.createStatement();
@@ -285,4 +321,5 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
         return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);
     }
+
 }
