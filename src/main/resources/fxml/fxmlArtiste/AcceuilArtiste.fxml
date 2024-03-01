@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -83,6 +85,8 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
+<!--                        combo-->
+
             <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="218.0" styleClass="search-contrainer" stylesheets="@../../css/StyleMenu.css">
                <children>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -93,6 +97,23 @@
                   <TextField prefHeight="19.0" prefWidth="139.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
                </children>
             </HBox>
+            <ImageView fitHeight="46.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/userimg.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="250.0" />
+               </HBox.margin>
+            </ImageView>
+            <ComboBox fx:id="comboBoxOptions" minWidth="20.0" onAction="#traiterSelectionComboBox" prefHeight="30.0" prefWidth="17.0" styleClass="transparent" stylesheets="@../../css/stylesheet.css">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Consulter mon compte" />
+                     <String fx:value="Modifier le profil" />
+                     <String fx:value="Déconnexion" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
          </children>
          <padding>
             <Insets left="15.0" />

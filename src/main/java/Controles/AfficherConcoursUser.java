@@ -29,8 +29,12 @@ public class AfficherConcoursUser {
 
     @FXML
     private FlowPane flowPane;
+     int idClient ;
 
-
+   public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté page Oconcouruser : " + idClient);
+    }
     @FXML
     void initialize() {
         assert flowPane != null : "fx:id=\"flowPane\" was not injected: check your FXML file 'AfficherConcoursUser.fxml'.";
@@ -47,6 +51,7 @@ public class AfficherConcoursUser {
 
             // Obtenez le contrôleur associé à la vue chargée
             AfficherOeuvreConcoursUser controller = loader.getController();
+            controller.setParametre(idClient);
 
             OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
             List<OeuvreArt> oeuvres = oeuvreConcoursService.getOeuvresByConcoursId(concours.getId());
@@ -89,7 +94,7 @@ public class AfficherConcoursUser {
                     new Label(concours.toString()),
                     btnVoirOeuvres
             );
-
+;
             // Ajoutez chaque VBox à la FlowPane
             flowPane.getChildren().add(vbox);
         });

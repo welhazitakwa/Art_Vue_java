@@ -103,14 +103,14 @@ public class AdminDashboard implements Initializable {
     @FXML
     void pageconcoursmenu(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Concours.fxml"));
-            Parent Concours1 = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AjoutConcour.fxml"));
+            Parent AjoutConcour = loader.load();
 
-           Concours1 ConcoursController = loader.getController();
+            AjoutConcour ConcoursController = loader.getController();
 
             // Effacez le contenu existant et affichez la page de catégorie
             contentArea.getChildren().clear();
-            contentArea.getChildren().add(Concours1);
+            contentArea.getChildren().add(AjoutConcour);
         } catch (IOException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -145,10 +145,10 @@ public class AdminDashboard implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
                     Parent registerParent = loader.load();
-                    BoderPaneContainer.getChildren().clear();  // Use clear() instead of removeAll()
-                    BoderPaneContainer.getChildren().add(registerParent);
+                    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(registerParent));
                 } catch (IOException e) {
-                    e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
+                    e.printStackTrace();
                 }
             }
             else if ("Modifier le profil".equals(optionSelectionnee)) {

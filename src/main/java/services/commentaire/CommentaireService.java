@@ -51,7 +51,7 @@ public class CommentaireService implements ICommentaire<Commentaire>{
         String image = "";
         String nom = "";
         String prenom = "";
-        String sql = "SELECT nom , prenom , oeuvre_id ,client_id ,u.image as imguser, commentaire, c.date_commentaire\n ,c.id as idcomm" +
+        String sql = "SELECT nom ,profil, prenom , oeuvre_id ,client_id ,u.image as imguser, commentaire, c.date_commentaire,c.id as idcomm" +
                 "    FROM commentaire c JOIN utilisateur u ON c.client_id = u.id JOIN oeuvreart o ON o.idOeuvreArt = c.oeuvre_id" +
                 "    WHERE oeuvre_id = "+id;
         Statement statement = connection.createStatement();
@@ -63,7 +63,8 @@ public class CommentaireService implements ICommentaire<Commentaire>{
             commentaire.setCommentaire(rs.getString("commentaire"));
             commentaire.setDate_commentaire(rs.getDate("date_commentaire"));
             commentaire.setClient_id(rs.getInt("client_id"));
-            commentaire.setClient_id(rs.getInt("oeuvre_id"));
+            commentaire.setOeuvre_id(rs.getInt("oeuvre_id"));
+            commentaire.setProfil(rs.getInt("profil"));
             commentaire.setImage(rs.getString("imguser"));
             commentaire.setNom(rs.getString("nom"));
             commentaire.setPrenom(rs.getString("prenom"));

@@ -111,5 +111,22 @@ public class mainConcours {
             System.out.println(oeuvre);
         }
            */
+       /* int idUtilisateur = 39;
+
+        // Créez une instance de votre classe de services
+        voteServices voteService = new voteServices();
+
+        // Appelez la méthode getVotesUtilisateur
+        List<Vote> votesUtilisateur = voteService.getVotesUtilisateur(idUtilisateur);
+
+        // Affichez les résultats
+        for (Vote vote : votesUtilisateur) {
+            System.out.println("ID du vote: " + vote.getId());
+            System.out.println("Note: " + vote.getNote());
+            System.out.println("Titre du concours: " + vote.getTitreConcours());
+            System.out.println("Titre de l'œuvre: " + vote.getTitreOeuvre());
+            System.out.println("Image de l'œuvre: " + vote.getImageOeuvre());
+            System.out.println("------------------------");
+        }*/
         }
     }

@@ -145,8 +145,12 @@ public class PageOeuvre implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/CommentairesOeuvre.fxml"));
                     Parent commeOeuvre = loader.load();
                     CommentairesOeuvre commentairesOeuvre = loader.getController();
-                    commentairesOeuvre.initData(oeuvre);
                     commentairesOeuvre.setParametre(idClient);
+
+                    commentairesOeuvre.initData(oeuvre);
+
+
+
                     Scene currentScene = ((Node) e.getSource()).getScene();
                     currentScene.setRoot(commeOeuvre);
                 } catch (IOException ex) {

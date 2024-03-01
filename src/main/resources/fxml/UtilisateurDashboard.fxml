@@ -28,24 +28,24 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="150.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0" spacing="25.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 1">
+                  <Label fx:id="label1Dash" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 1">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 2">
+                  <Label fx:id="label2Dash" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 2">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 3">
+                  <Label fx:id="label3Dash" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 3">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" lineSpacing="10.0" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 4">
+                  <Label fx:id="label4Dash" alignment="CENTER" lineSpacing="10.0" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #cdc2be;" styleClass="top-artiste" stylesheets="@../css/StylesheetUserDashboard.css" text="Artiste 4">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
