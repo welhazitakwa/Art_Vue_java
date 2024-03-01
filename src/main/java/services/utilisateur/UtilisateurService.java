@@ -317,9 +317,10 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             return null;
         }
     }
-
     public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
         return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);
     }
-
+//    public int checkCAPTCHA (){
+//
+//    }
 }

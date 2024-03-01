@@ -32,7 +32,11 @@ public class Login {
     private PasswordField mdpTextField;
     @FXML
     private Label labelError;
-
+    @FXML
+    private TextField validateCaptcha;
+    @FXML
+    private TextField captchaCodeValue;
+    private String a = "";
     public static String createCaptchaValue(){
         Random random = new Random();
         int length=7+(Math.abs(random.nextInt()) % 3);
@@ -54,6 +58,11 @@ public class Login {
     @FXML
     void seConnecter(ActionEvent event) throws SQLException {
         UtilisateurService user1 = new UtilisateurService();
+        if (validateCaptcha.getText().equals(a)) {
+            System.out.println("haw el a :" + a);
+            System.out.println(" s7iiii7");
+
+
         int validLogin = 5;
         try {
             validLogin = user1.validateLogin(loginTextField.getText(), mdpTextField.getText());
@@ -84,7 +93,8 @@ public class Login {
                 e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
             }
 
-        } else if (validLogin == 1) {
+        }
+        else if (validLogin == 1) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
                 Parent registerParent = loader.load();
@@ -110,6 +120,10 @@ public class Login {
             }
         } else {
             labelError.setText("Merci de vérifier vos données !");
+        }
+        }else {
+            labelError.setText("CAPTCHA code invalide !");
+            System.out.println("mouuuchhhh s7iiii7");
         }
     }
     @FXML
@@ -141,6 +155,8 @@ public class Login {
 
     @FXML
     void initialize() {
+        a = createCaptchaValue();
+        captchaCodeValue.setText(a);
 
     }
 
