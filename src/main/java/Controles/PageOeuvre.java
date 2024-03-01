@@ -202,18 +202,9 @@ public class PageOeuvre implements Initializable {
         panierIcon.setFitWidth(17);
         panierIcon.setFitHeight(17);
 
-// Bouton d'image panier
-        Button panierButton = new Button("", panierIcon);
-        panierButton.setStyle("-fx-background-color: transparent; -fx-background-size: 25px 25px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
-        panierButton.setPadding(new Insets(0, 0, 0, 6)); // Ajouter un padding à droite de l'icône
-        panierButton.setOnAction(event -> {
-            // Ajouter la logique pour ajouter l'œuvre au panier
-            // Par exemple :
-            // addToCart(oeuvreArt);
-        });
 
         // Regrouper le prix et l'icône du panier dans une HBox
-        HBox pricePanierBox = new HBox(priceLabel, panierButton);
+        HBox pricePanierBox = new HBox(priceLabel);
         pricePanierBox.setSpacing(10); // Espacement entre le prix et l'icône du panier
 
         // Ajout des éléments à la carte
