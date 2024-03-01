@@ -85,7 +85,37 @@ public class CommentaireItem {
 
     @FXML
     void editComment(ActionEvent event) {
+        Alert dialogC = new Alert(Alert.AlertType.CONFIRMATION);
+        dialogC.setTitle(" Confirmation de modification ");
+        dialogC.setHeaderText("Voulez vous confirmer la modification de ce commentaire ! ");
+        dialogC.setContentText("Après votre confirmation le commentaire sera modifié");
 
+        Optional<ButtonType> answer = dialogC.showAndWait();
+        if (answer.get() == ButtonType.OK) {
+
+            try {
+                CommentaireService comment1 = new CommentaireService() ;
+                comment1.modifier(new Commentaire(idOeuvre, textFieldComment.getText()));
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/CommentairesOeuvre.fxml"));
+                    Parent detailsOeuvre = loader.load();
+                    CommentairesOeuvre commentairesOeuvre = loader.getController();
+                    commentairesOeuvre.setParametre(idClient);
+                    commentairesOeuvre.initData(idsupp);
+                    Scene currentScene = ((Node) event.getSource()).getScene();
+
+                    // Modifier la racine de la scène pour afficher les détails de l'œuvre
+                    currentScene.setRoot(detailsOeuvre);
+                } catch (IOException ex) {
+                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        else {
+            System.out.println("User chose Cancel or closed the dialog-box");
+        }
     }
     private int idOeuvre = 0 ;
     private int id ;
@@ -113,7 +143,9 @@ public class CommentaireItem {
             if (comment.getClient_id() == idClient) {
                 System.out.println("kifkif rww");
                 idedit.setVisible(true);
+                textFieldComment.setEditable(true);
                 idDelete.setVisible(true);
+
             } else {
                 idedit.setVisible(false);
                 idDelete.setVisible(false);
