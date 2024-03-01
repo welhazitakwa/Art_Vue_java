@@ -145,10 +145,10 @@ public class AdminDashboard implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
                     Parent registerParent = loader.load();
-                    BoderPaneContainer.getChildren().clear();  // Use clear() instead of removeAll()
-                    BoderPaneContainer.getChildren().add(registerParent);
+                    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(registerParent));
                 } catch (IOException e) {
-                    e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
+                    e.printStackTrace();
                 }
             }
             else if ("Modifier le profil".equals(optionSelectionnee)) {
