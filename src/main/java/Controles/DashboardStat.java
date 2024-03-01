@@ -13,6 +13,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
+import services.utilisateur.UtilisateurService;
 
 public class DashboardStat {
 
@@ -26,6 +27,11 @@ public class DashboardStat {
     private Label nbOeuvreLabel;
     @FXML
     private Label idNbCategorieLabel;
+    @FXML
+    private Label nbArtiste;
+
+    @FXML
+    private Label nbClient;
 
     @FXML
     private BarChart<String, Number> barChart;
@@ -40,12 +46,20 @@ public class DashboardStat {
     void initialize() {
         OeuvreArtService oeuvreArtService = new OeuvreArtService();
         CategorieService categorieService = new CategorieService();
+        UtilisateurService utilisateurService = new UtilisateurService();
         try {
             int nombreOeuvres = oeuvreArtService.nombreOeuvresArt();
             nbOeuvreLabel.setText(String.valueOf(nombreOeuvres));
 
             int nombreCategorie = categorieService.getNombreCategories();
             idNbCategorieLabel.setText(String.valueOf(nombreCategorie));
+
+            int nombreClient = utilisateurService.nbClients();
+            nbClient.setText(String.valueOf(nombreClient));
+
+            int nombreArtiste = utilisateurService.nbArtistes();
+            nbArtiste.setText(String.valueOf(nombreArtiste));
+
 
             Map<String, Integer> data = oeuvreArtService.nombreOeuvresArtParToutesCategories();
             XYChart.Series<String, Number> series = new XYChart.Series<>();
