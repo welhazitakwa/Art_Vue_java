@@ -87,39 +87,30 @@ public class AdminDashboard implements Initializable {
 
     public void pageDashboard(ActionEvent actionEvent) {
 
-        // Charger le contenu de la page 2
-        contentArea.getChildren().clear();
-        contentArea.getChildren().add(new Button("Contenu de la page 2"+ "   l'id de l'utilisateur connecté "+parametreField.getText()));
-    }
-
-
-
-
-    public void to_ouevre_art(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/OeuvreArtPage.fxml"));
-            Parent OeuvreArtPage = loader.load();
-            OeuvresArtController oeuvresArtController = loader.getController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/Dashboard.fxml"));
+            Parent pageDashboard = loader.load();
+            DashboardStat dashboardStat = loader.getController();
             contentArea.getChildren().clear();
-            contentArea.getChildren().add(OeuvreArtPage);
+            contentArea.getChildren().add(pageDashboard);
 
         } catch (IOException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
 
+    }
 
     @FXML
     void pageconcoursmenu(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Concours.fxml"));
-            Parent Concours1 = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AjoutConcour.fxml"));
+            Parent AjoutConcour = loader.load();
 
-           Concours1 ConcoursController = loader.getController();
+            AjoutConcour ConcoursController = loader.getController();
 
             // Effacez le contenu existant et affichez la page de catégorie
             contentArea.getChildren().clear();
-            contentArea.getChildren().add(Concours1);
+            contentArea.getChildren().add(AjoutConcour);
         } catch (IOException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -214,6 +205,31 @@ public class AdminDashboard implements Initializable {
             }
         } else {
             System.out.println("Le ComboBox n'est pas correctement initialisé ou aucune valeur n'est sélectionnée.");
+        }
+    }
+
+    public void pageOeuvre(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/OeuvreArtPage.fxml"));
+            Parent OeuvreArtPage = loader.load();
+            OeuvresArtController oeuvresArtController = loader.getController();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(OeuvreArtPage);
+
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void to_User(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UtilisateurDashboard.fxml"));
+            Parent UtilisateurPage = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(UtilisateurPage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
