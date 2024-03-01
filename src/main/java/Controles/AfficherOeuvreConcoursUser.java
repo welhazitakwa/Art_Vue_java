@@ -1,115 +1,147 @@
 package Controles;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.OeuvreArt;
 import services.concours.OeuvreConcoursService;
 import services.vote.voteServices;
 
+import java.util.List;
+
 public class AfficherOeuvreConcoursUser {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private VBox vboxDetails;
-
-
-
     @FXML
-    void initialize() {
-        assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreConcoursUser.fxml'.";
+    private Button consultermesvotes;
+    @FXML
+    private ScrollPane scrollPane;
+    private int idClient ;
 
+    public void setParametre(int idClient) {
+        this.idClient = idClient;
+        System.out.println("ID de l'client connecté page Oeuvreuser : " + idClient);
     }
+
+   // int idUser = 1;
+    private int idConcours;
+
     @FXML
-    public void initialiserDetailsOeuvres(List<OeuvreArt> oeuvres) {
-        // Supprimez tous les éléments existants de la VBox
+    public void initialize() {
+        assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreUser.fxml'.";
+    }
+
+    private RatingBar createRatingBar(OeuvreArt oeuvre) {
+        RatingBar ratingBar = new RatingBar();
+        ratingBar.setId("ratingBar_" + oeuvre.getId());
+        return ratingBar;
+    }
+
+    @FXML
+    public void initialiserDetailsOeuvres(List<OeuvreArt> oeuvres, int concoursId) {
         vboxDetails.getChildren().clear();
 
-        // Ajoutez les détails de chaque œuvre à la VBox
+        double imageViewWidth = 300;
+        double imageViewHeight = 300;
+
         oeuvres.forEach(oeuvre -> {
             Label labelTitre = new Label("Titre: " + oeuvre.getTitre());
             Label labelArtiste = new Label("Artiste: " + oeuvre.getArtiste());
 
-            String imagePath = oeuvre.getImage();
-
-// Créez une URL à partir du chemin du fichier
-            File file = new File(imagePath);
-            URL imageUrl = null;
+            File file = new File(oeuvre.getImage());
+            URL imageUrl;
             try {
                 imageUrl = file.toURI().toURL();
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-
-// Créez une ImageView avec l'URL de l'image
             ImageView imageView = new ImageView(new Image(imageUrl.toString()));
+            imageView.setFitWidth(imageViewWidth);
+            imageView.setFitHeight(imageViewHeight);
 
-            // Créez une HBox pour les étoiles
-            HBox starRating = new HBox();
-
-            for (int i = 0; i < 5; i++) {
-                final int index = i; // Créez une variable finale pour capturer la valeur de i
-                Button starButton = new Button("★");
-                starButton.setOnAction(event -> handleStarSelection(oeuvre, index + 1));
-                starRating.getChildren().add(starButton);
-            }
+            RatingBar ratingBar = createRatingBar(oeuvre);
+            Button confirmerButton = new Button("Confirmer");
+            confirmerButton.setOnAction(event -> confirmerVote(oeuvre, idClient, concoursId));
 
             VBox detailsOeuvre = new VBox(
                     labelTitre,
                     labelArtiste,
                     imageView,
-                    starRating
+                    ratingBar,
+                    confirmerButton
             );
 
-            // Ajoutez chaque VBox de détails d'œuvre à la VBox principale
+            detailsOeuvre.setSpacing(10);
+
             vboxDetails.getChildren().add(detailsOeuvre);
         });
+
+        scrollPane.setContent(vboxDetails);
     }
 
-    // Méthode pour gérer la sélection des étoiles
-    private void handleStarSelection(OeuvreArt oeuvre, int selectedStars) {
-        // Ici, vous pouvez implémenter la logique pour enregistrer la note dans la table Vote
-        // Supposons que vous ayez une classe de service pour gérer les votes, par exemple VoteService
+    private int getSelectedRating(OeuvreArt oeuvre) {
+        // Utilisez la méthode getRating de RatingBar
+        RatingBar ratingBar = (RatingBar) vboxDetails.lookup("#ratingBar_" + oeuvre.getId());
+        return ratingBar.getRating();
+    }
 
-        voteServices voteService = new voteServices();
+    private void confirmerVote(OeuvreArt oeuvre, int idUser, int idConcours) {
+        int selectedRating = getSelectedRating(oeuvre);
 
-        // Supposons que vous avez besoin de l'id du concours et de l'utilisateur actuel pour enregistrer le vote
-        OeuvreConcoursService oeuvreConcoursService =new OeuvreConcoursService();
-        int concoursId = oeuvreConcoursService.getConcoursIdByOeuvreId(oeuvre.getId()); // Obtenez l'id du concours associé à l'œuvre
-        int userId = getCurrentUserId(); // Obtenez l'id de l'utilisateur actuel
+        // Ajoutez le vote à la base de données
+        int idOeuvre = oeuvre.getId();
+
+        voteServices vS = new voteServices();
+        vS.enregistrerVote(idConcours, idOeuvre, idUser, selectedRating);
+
+        // Reste de votre logique pour confirmer le vote
+        System.out.println("Vote confirmé avec succès pour l'oeuvre: " + oeuvre.getTitre() + ", Note: " + selectedRating);
+    }
+
+    public void consultermesvotes(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Chargez le fichier FXML pour la page VoteDetails
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VoteDetails.fxml"));
+            Parent root = loader.load();
+
+            // Obtenez le contrôleur associé à la vue chargée
+            VoteDetails voteDetailsController = loader.getController();
+            voteDetailsController.setParametre(idClient);
 
 
-        // Enregistrez le vote dans la base de données en utilisant le service VoteService
-        boolean voteEnregistre = voteService.enregistrerVote(concoursId, userId, selectedStars);
+            // Configurez le contrôleur au besoin (vous pouvez avoir des méthodes pour initialiser des données, etc.)
+            voteDetailsController.initialize();
 
-        if (voteEnregistre) {
-            System.out.println("Vote enregistré avec succès pour l'oeuvre: " + oeuvre.getTitre() + ", Note: " + selectedStars);
-            // Vous pouvez également mettre à jour l'interface utilisateur pour refléter la nouvelle note ou fournir un feedback à l'utilisateur
-        } else {
-            System.out.println("Erreur lors de l'enregistrement du vote.");
-            // Gérer l'erreur ou fournir un feedback à l'utilisateur en cas d'échec de l'enregistrement du vote
+            // Créez une nouvelle scène avec la page VoteDetails
+            Scene scene = new Scene(root);
+
+            // Obtenez la fenêtre (stage) actuelle à partir de n'importe quel nœud dans votre scène
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Définissez la nouvelle scène sur le stage
+            stage.setScene(scene);
+            stage.setTitle("Vote Details"); // Titre de la nouvelle fenêtre
+
+            // Montrez la nouvelle fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
     }
-
-    // Méthode factice pour obtenir l'id de l'utilisateur actuel
-    private int getCurrentUserId() {
-        // Implémentez la logique pour obtenir l'id de l'utilisateur actuel
-        // Cette méthode peut dépendre de la manière dont vous gérez les utilisateurs dans votre application
-        return 123; // Par exemple, retourne une valeur factice pour l'exemple
-    }
-
 }

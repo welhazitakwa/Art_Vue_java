@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AproposArtiste">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="915.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="77.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../image/artVue.png" />
+                    </image>
+                    <HBox.margin>
+                        <Insets right="90.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#To_Acceuil" prefHeight="37.0" prefWidth="76.0" stylesheets="@../../css/StyleMenu.css" text="Accueil">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="idBTNCategorie" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" stylesheets="@../../css/StyleMenu.css" text="A Propos">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="BtnToOeuvreArt" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageOeuvreArt" prefHeight="37.0" prefWidth="116.0" stylesheets="@../../css/StyleMenu.css" text="Oeuvres d'art">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="idBTNCategorie1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" stylesheets="@../../css/StyleMenu.css" text="Expositions">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                    </styleClass>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="106.0" stylesheets="@../../css/StyleMenu.css" text="Evénements">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                    </styleClass>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="116.0" stylesheets="@../../css/StyleMenu.css" text="Competitions">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                    </styleClass>
+                    <HBox.margin>
+                        <Insets right="20.0" />
+                    </HBox.margin>
+                </Button>
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="21.0" prefWidth="218.0" styleClass="search-contrainer" stylesheets="@../../css/StyleMenu.css">
+                    <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/search-934-128.png" />
+                            </image>
+                        </ImageView>
+                        <TextField prefHeight="19.0" prefWidth="139.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="15.0" />
+            </padding>
+        </HBox>
+    </top>
+   <right>
+        <ScrollPane maxHeight="-Infinity" prefHeight="2500.0" prefWidth="1555.0" BorderPane.alignment="CENTER">
+            <content>
+                <VBox alignment="TOP_RIGHT" prefHeight="879.0" prefWidth="1472.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="À PROPOS DE NOUS">
+                           <VBox.margin>
+                              <Insets bottom="40.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Broadway" size="32.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pourquoi ARTVUE, pour quelles missions ?">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="L'équipe et son histoire !">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="188.0" prefWidth="2000.0" style="-fx-background-color: white;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ARTVUE est bien plus qu'une simple application d'exposition d'art en ligne. Notre projet est une vitrine virtuelle dédiée à l'art contemporain, offrant une plateforme dynamique pour découvrir, apprécier et acquérir des œuvres d'art. Notre mission est double : d'une part, nous nous engageons à promouvoir la richesse de la scène artistique tunisienne et africaine en offrant une visibilité accrue aux artistes émergents et établis. D'autre part, nous visons à rendre l'art accessible à tous en proposant une expérience immersive et éducative à travers notre plateforme. ARTVUE offre ainsi une opportunité unique de plonger dans le monde captivant de l'art contemporain, de découvrir de nouveaux talents et d'explorer des expressions artistiques diverses. En tant que projet, nous sommes passionnément investis dans la valorisation et la diffusion de la culture artistique, tout en encourageant l'interaction et le dialogue entre les artistes, les collectionneurs et les amateurs d'art. Avec ARTVUE, notre objectif est de créer un espace numérique inclusif et inspirant où l'art trouve son public et où les créateurs peuvent s'épanouir." textAlignment="CENTER" wrappingWidth="1304.5367126464844">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="30.0" right="20.0" top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="60.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="355.0" prefWidth="1472.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NOS VALEURS">
+                           <font>
+                              <Font name="Broadway" size="32.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="60.0" top="40.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox alignment="TOP_CENTER" prefHeight="325.0" prefWidth="1472.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="279.0" prefWidth="223.0">
+                                 <children>
+                                    <ImageView fitHeight="68.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../image/passion.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passion">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C’est la force de la passion qui fait la force d’ARTVUE." />
+                                 </children>
+                                 <padding>
+                                    <Insets right="100.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="279.0" prefWidth="223.0">
+                                 <children>
+                                    <ImageView fitHeight="68.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../image/humanite.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Humanité">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nous sommes humains, libres et créateurs et nous façonnons le beau." textAlignment="CENTER" wrappingWidth="322.1663818359375" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="100.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="279.0" prefWidth="223.0">
+                                 <children>
+                                    <ImageView fitHeight="68.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../image/qualite.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Qualité">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="« Dans la course à la qualité, il n'y a pas de ligne d'arrivée.”  (Léon-Paul Fargue )" textAlignment="CENTER" wrappingWidth="320.10546875" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+   </right>
+</BorderPane>

@@ -1,0 +1,65 @@
+.titre2 {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #593A37;
+}
+.stat {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green;
+
+}
+.Btn {
+    -fx-background-color: #cdc2be;
+    -fx-text-fill: #593a37;
+}
+.Btn:hover  {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bc5f6a;
+    -fx-border-color: #bc5f6a;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;}
+.transparent {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.centerPane {
+    -fx-background-color: #EFE9E7;
+
+}
+
+.leftPane {
+    -fx-background-color: #AF9083;
+    -fx-padding: 20px;
+}
+
+.image {
+    -fx-padding: 10px;
+}
+
+.title {
+    -fx-padding: 10px;
+    -fx-font-size: 30;
+}
+
+.artist {
+    -fx-padding: 10px;
+}
+
+.category {
+    -fx-padding: 10px;
+}
+
+.dateAdded {
+    -fx-padding: 10px;
+}
+
+.description {
+    -fx-padding: 10px;
+}
+
+.price {
+    -fx-padding: 10px;
+}
+
+

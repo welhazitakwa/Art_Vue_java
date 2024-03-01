@@ -12,6 +12,8 @@ import services.utilisateur.UtilisateurService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.awt.Color.green;
 
@@ -60,6 +62,24 @@ public class Register {
         }
     }
 
+
+    public static String validateEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return "Adresse mail invalide !";
+        }
+
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+
+        if (matcher.matches()) {
+            return "valide";
+        } else {
+            return "Adresse mail invalide !";
+        }
+    }
+
+
     @FXML
     void sinscrireButton(ActionEvent event) {
         UtilisateurService user1 = new UtilisateurService();
@@ -70,6 +90,7 @@ public class Register {
 
         if ( nom.getText().equals("") || prenom.getText().equals("") || pwdd.equals("")||login.getText().equals("") ||
                 email.getText().equals("")|| confirmpwd.getText().equals("") ) {
+            regerror.setTextFill(Color.RED);
             regerror.setText("Assurez-vous de remplir toutes les données !");
 
         } else {
@@ -77,18 +98,20 @@ public class Register {
             int validLogin = 0;
             try {
                 validLogin = user1.validateRegisterLoginMail(login.getText(),email.getText());
-                System.out.println("haw dkhal lel tryy");
-                System.out.println("w raw lvariable li ntasti beha "+validLogin);
-
-                if (validLogin == 1) {
-                    regerror.setText("Ce login est déjà utilisé !");
+                            if (validLogin == 1) {
+                                regerror.setTextFill(Color.RED);
+                                regerror.setText("Ce login est déjà utilisé !");
                 }
                 else if (validLogin == 2) {
-                    regerror.setText("Cette adresse mail est déjà utilisé !");
+                                regerror.setTextFill(Color.RED);
+                                regerror.setText("Cette adresse mail est déjà utilisé !");
                 }
                 else {
-
-                    if (pwdd.getText().equals(confirmpwd.getText())) {
+                    if (validateEmail(email.getText()).equals("Adresse mail invalide !")){
+                        regerror.setTextFill(Color.RED);
+                        regerror.setText("Merci d'utiliser un mail valide !");
+                    } else {
+                        if (pwdd.getText().equals(confirmpwd.getText())) {
                         try {
                             user1.register(new Utilisateur(nom.getText(),prenom.getText(),email.getText(),login.getText(),pwdd.getText()),selectedValue);
                         } catch (SQLException e) {
@@ -102,9 +125,12 @@ public class Register {
 
 
                     else {
-                        regerror.setText(" Essayez de reconfirmer votre mot de passe !");
+                            regerror.setTextFill(Color.RED);
+                            regerror.setText(" Essayez de reconfirmer votre mot de passe !");
 
-                    }
+                    }}
+
+
 
 
 

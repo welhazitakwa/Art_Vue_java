@@ -1,0 +1,114 @@
+/* Tableau */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+
+/* En-têtes de colonne */
+.table-view .column-header,
+.table-view .column-header-background {
+    -fx-background-color:  #CDC2BE;
+    -fx-text-fill: black;
+    -fx-padding: 6px; /* Ajout du padding */
+}
+
+/* Cellules */
+.table-view .table-row-cell {
+    -fx-background-color: #F5F5F5;
+}
+
+/* Lignes de séparation */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #EAEAEA;
+}
+
+/* Texte */
+.table-view .table-cell {
+    -fx-text-fill: black;
+}
+
+/* Texte centré */
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+/* Réduire la taille de l'image */
+.table-view .image-cell .table-cell {
+    -fx-alignment: center;
+}
+
+.table-view .image-cell .table-cell > .image-view {
+    -fx-fit-width: 20px;
+    -fx-fit-height: 20px;
+}
+/* styles.css */
+.main-container {
+    -fx-background-color: #ffffff; /* Blanc */
+}
+
+.form-container {
+    -fx-background-color: #ffffff; /* Blanc */
+    -fx-border-color: #bc5f6a; /* Rouge */
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+}
+
+.label-white {
+    -fx-text-fill: #ffffff; /* Blanc */
+}
+
+.text-field-black {
+    -fx-background-color: #ffffff; /* Blanc */
+    -fx-text-fill: #000000; /* Noir */
+}
+
+.button-black {
+    -fx-background-color: #593a37; /* Noir */
+    -fx-text-fill: #ffffff; /* Blanc */
+}
+
+.spacing {
+    -fx-padding: 20px;
+}
+
+.input-field {
+    -fx-background-color: #f8f8f8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-font-size: 13px;
+}
+
+.input-field:focused {
+    -fx-background-color: #E0E0E0; /* Couleur de fond lorsqu'en focus */
+    -fx-border-color: #593a37; /* Couleur de bordure lorsqu'en focus */
+    -fx-border-width: 2px; /* Largeur de la bordure lorsqu'en focus */
+}
+
+/* Boutons */
+.button {
+    -fx-background-color: #ffffff; /* Couleur de fond pour les boutons */
+    -fx-text-fill: white; /* Couleur du texte des boutons */
+    -fx-font-weight: bold; /* Gras pour le texte des boutons */
+}
+
+.button:hover {
+    -fx-background-color: #AF9083; /* Couleur de fond pour les boutons lorsqu'ils sont survolés */
+}
+
+.button:pressed {
+    -fx-background-color: #3e1d1a; /* Couleur de fond pour les boutons lorsqu'ils sont enfoncés */
+}
+
+.ajouter-button {
+    -fx-background-color: #AF9083;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
+

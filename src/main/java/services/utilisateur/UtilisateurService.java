@@ -58,6 +58,21 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         return existinlogin ;
     }
 
+    public int getIdUserConnected(String login, String pwd) throws SQLException {
+        int userLogin = 0;
+        if (validateLogin(login,pwd)==0 || validateLogin(login,pwd)==1 ||validateLogin(login,pwd)==2) {
+
+
+            String getID = "SELECT id from utilisateur WHERE login = '" + login + "'";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(getID);
+
+            while (rs.next()) {
+                userLogin = rs.getInt("id");
+            }
+        }
+        return userLogin ;
+    }
     public int validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
         String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";
@@ -103,7 +118,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     }
     public void register(Utilisateur utilisateur, String role) throws SQLException {
          if (role.equals("Je suis un artiste")) {
-             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
+             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription,image, etat_compte)" +
                      "values('" + utilisateur.getNom() + "'," +
                      "'" + utilisateur.getPrenom() + "'," +
                      "'" + utilisateur.getEmail() + "'," +
@@ -111,12 +126,13 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                      "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
                      "'" + 1 + "'," +
                      "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
+                     "'" + "file:/C:/ESPRIT/3A17%20semestre%202/PI-DEV/Art_Vue/src/main/resources/image/225-default-avatar-128.png" + "'," +
                      "'" + 0 + "')";
              Statement statement = connection.createStatement();
              statement.executeUpdate(req) ;
          }
          if (role.equals("Je suis un client")) {
-             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, etat_compte)" +
+             String req= "INSERT INTO utilisateur(nom, prenom, email,login, mdp,profil,date_inscription, image,etat_compte)" +
                      "values('" + utilisateur.getNom() + "'," +
                      "'" + utilisateur.getPrenom() + "'," +
                      "'" + utilisateur.getEmail() + "'," +
@@ -124,6 +140,7 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
                      "'" +  BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt())+ "'," +
                      "'" + 2 + "'," +
                      "'" + java.sql.Date.valueOf(LocalDate.now()) + "'," +
+                     "'" + "file:/C:/ESPRIT/3A17%20semestre%202/PI-DEV/Art_Vue/src/main/resources/image/225-default-avatar-128.png" + "'," +
                      "'" + 0 + "')";
              Statement statement = connection.createStatement();
              statement.executeUpdate(req) ;
@@ -135,14 +152,14 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
     public void modifier(Utilisateur utilisateur) throws SQLException {
         int varrr = utilisateur.getId();
         String sql= "update utilisateur set nom= ?, prenom = ? ,email = ? , numTel = ?, login = ? , " +
-                "mdp = ? ,image = ?, genre = ?, dateNaissance = ?, adresse = ? where id = ?";
+                "cin = ? ,image = ?, genre = ?, dateNaissance = ?, adresse = ? where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, utilisateur.getNom());
         preparedStatement.setString(2, utilisateur.getPrenom());
         preparedStatement.setString(3, utilisateur.getEmail());
         preparedStatement.setInt(4, utilisateur.getNumTel());
         preparedStatement.setString(5, utilisateur.getLogin());
-        preparedStatement.setString(6, BCrypt.hashpw(utilisateur.getMdp() , BCrypt.gensalt()));
+        preparedStatement.setInt(6, utilisateur.getCin());
         preparedStatement.setString(7, utilisateur.getImage());
         preparedStatement.setString(8, utilisateur.getGenre());
         preparedStatement.setDate(9, utilisateur.getDateNaissance());
@@ -152,7 +169,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
 
     }
-
     @Override
     public void supprimer(int id) throws SQLException {
     String sql = "DELETE FROM `utilisateur` WHERE id=?";
@@ -160,7 +176,6 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
     }
-
     @Override
     public List<Utilisateur> listAll() throws SQLException {
         String sql = "select * from utilisateur " ;
@@ -175,16 +190,104 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             user.setEmail(rs.getString("email"));
             user.setNumTel(rs.getInt("numTel"));
             user.setLogin(rs.getString("login"));
+            user.setCin(rs.getInt("cin"));
             user.setMdp(rs.getString("mdp"));
+            user.setProfil(rs.getInt("profil"));
             user.setImage(rs.getString("image"));
             user.setGenre(rs.getString("genre"));
             user.setDateNaissance(rs.getDate("dateNaissance"));
             user.setAdresse(rs.getString("adresse"));
+            user.setDate_inscription(rs.getDate("date_inscription"));
             list.add(user) ;
         }
         return list;
     }
+    public int nbArtistes () throws SQLException {
+        String req = "select count(*) nbArtistes from utilisateur where profil = 1";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(req) ;
+        int nbArtistes = 0;
+        while (rs.next()) {
+            nbArtistes = rs.getInt("nbArtistes");
+        }
 
+        return nbArtistes;
+
+    }
+    public int nbClients () throws SQLException {
+        String req = "select count(*) nbArtistes from utilisateur where profil = 2";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(req) ;
+        int nbArtistes = 0;
+        while (rs.next()) {
+            nbArtistes = rs.getInt("nbArtistes");
+        }
+
+        return nbArtistes;
+
+    }
+    public int nbtotal () throws SQLException {
+        String req = "select count(*) nbArtistes from utilisateur";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(req) ;
+        int nbArtistes = 0;
+        while (rs.next()) {
+            nbArtistes = rs.getInt("nbArtistes");
+        }
+
+        return nbArtistes;
+
+    }
+    public List<Utilisateur> listClients() throws SQLException {
+        String sql = "select * from utilisateur  where profil = 2" ;
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql) ;
+        List <Utilisateur> list = new ArrayList<>();
+        while (rs.next()) {
+            Utilisateur user = new Utilisateur();
+            user.setId(rs.getInt("id"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setEmail(rs.getString("email"));
+            user.setNumTel(rs.getInt("numTel"));
+            user.setLogin(rs.getString("login"));
+            user.setCin(rs.getInt("cin"));
+            user.setMdp(rs.getString("mdp"));
+            user.setProfil(rs.getInt("profil"));
+            user.setImage(rs.getString("image"));
+            user.setGenre(rs.getString("genre"));
+            user.setDateNaissance(rs.getDate("dateNaissance"));
+            user.setAdresse(rs.getString("adresse"));
+            user.setDate_inscription(rs.getDate("date_inscription"));
+            list.add(user) ;
+        }
+        return list;
+    }
+    public List<Utilisateur> listAllArtistes() throws  SQLException {
+        String sql = "select * from utilisateur where profil=1" ;
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql) ;
+        List <Utilisateur> list = new ArrayList<>();
+        while (rs.next()) {
+            Utilisateur user = new Utilisateur();
+            user.setId(rs.getInt("id"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setEmail(rs.getString("email"));
+            user.setNumTel(rs.getInt("numTel"));
+            user.setLogin(rs.getString("login"));
+            user.setCin(rs.getInt("cin"));
+            user.setMdp(rs.getString("mdp"));
+            user.setProfil(rs.getInt("profil"));
+            user.setImage(rs.getString("image"));
+            user.setGenre(rs.getString("genre"));
+            user.setDateNaissance(rs.getDate("dateNaissance"));
+            user.setAdresse(rs.getString("adresse"));
+            user.setDate_inscription(rs.getDate("date_inscription"));
+            list.add(user) ;
+        }
+        return list;
+    }
     @Override
     public  Utilisateur getUtilisateurById(int id) throws SQLException {
         String sql = "SELECT * FROM utilisateur WHERE id = ?";
@@ -199,20 +302,24 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             utilisateur.setPrenom(rs.getString("prenom"));
             utilisateur.setEmail(rs.getString("email"));
             utilisateur.setNumTel(rs.getInt("numTel"));
+            utilisateur.setCin(rs.getInt("cin"));
             utilisateur.setLogin(rs.getString("login"));
             utilisateur.setMdp(rs.getString("mdp"));
             utilisateur.setImage(rs.getString("image"));
             utilisateur.setGenre(rs.getString("genre"));
             utilisateur.setDateNaissance(rs.getDate("dateNaissance"));
             utilisateur.setAdresse(rs.getString("adresse"));
+            utilisateur.setDate_inscription(rs.getDate("date_inscription"));
+            utilisateur.setEtat_compte(rs.getInt("etat_compte"));
+
             return utilisateur;
         } else {
             return null;
         }
     }
 
-
     public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
         return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);
     }
+
 }

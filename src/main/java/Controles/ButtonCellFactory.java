@@ -1,5 +1,7 @@
 package Controles;
 
+import Controles.CategoriePage;
+import Controles.ModifierCategorieDialog;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -84,8 +86,10 @@ public class ButtonCellFactory extends TableCell<Categorie, Void> {
         if (empty) {
             setGraphic(null);
         } else {
-            // Afficher les boutons dans la cellule
-            setGraphic(new HBox(editButton, deleteButton));
+            // Centrer les boutons dans la cellule en utilisant HBox avec alignement au centre
+            HBox buttonsContainer = new HBox(editButton, deleteButton);
+            buttonsContainer.setAlignment(javafx.geometry.Pos.CENTER);
+            setGraphic(buttonsContainer);
         }
     }
 }

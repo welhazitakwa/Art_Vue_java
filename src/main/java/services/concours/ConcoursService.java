@@ -168,43 +168,10 @@ public class ConcoursService implements Iconcours<Concours> {
             // Gérez les exceptions de manière appropriée dans votre application
         }
     }
-    /*___________________________________________ modifierConcours interface ______________________________________*/
-
-    public void modifierConcours(Concours concoursModifie, List<OeuvreArt> nouvellesOeuvres) {
-        try {
-            // Commencez par supprimer les anciennes relations avec les œuvres
-            supprimerOeuvresDuConcours(concoursModifie.getId());
-
-            // Utilisez une requête SQL UPDATE pour mettre à jour le concours dans la base de données
-            String updateQuery = "UPDATE concours SET titre = ?, date_debut = ?, date_fin = ?, description = ? WHERE id = ?";
-            try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
-                // Paramétrez les valeurs mises à jour
-                updateStatement.setString(1, concoursModifie.getTitre());
-                updateStatement.setDate(2, Date.valueOf(concoursModifie.getDate_debut()));
-                updateStatement.setDate(3, Date.valueOf(concoursModifie.getDate_fin()));
-                updateStatement.setString(4, concoursModifie.getDescription());
-                updateStatement.setInt(5, concoursModifie.getId());
-
-                // Exécutez la requête UPDATE
-                int rowsAffected = updateStatement.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    System.out.println("Concours modifié avec succès.");
-
-                    // Ajoutez les nouvelles relations avec les œuvres
-                    ajouterOeuvresAuConcours(concoursModifie.getId(), nouvellesOeuvres);
-                } else {
-                    System.out.println("Aucun concours n'a été modifié. Vérifiez l'ID du concours.");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
-        }
-    }
 
 
     /*___________________________________________supprimerOeuvresDuConcours_________________________________________________________________*/
-    private void supprimerOeuvresDuConcours(int idConcours) {
+  /*  private void supprimerOeuvresDuConcours(int idConcours) {
         try {
             // Utilisez une requête SQL DELETE pour supprimer les entrées correspondantes dans la table oeuvre_concours
             String deleteQuery = "DELETE FROM oeuvre_concours WHERE id_concours = ?";
@@ -223,13 +190,13 @@ public class ConcoursService implements Iconcours<Concours> {
         } catch (SQLException e) {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
-    }
+    }*/
 
     /*___________________________________________ajouterOeuvresAuConcours________________________________________________________________*/
-    private void ajouterOeuvresAuConcours(int idConcours, List<OeuvreArt> oeuvres) {
+   /* private void ajouterOeuvresAuConcours(int idConcours, List<OeuvreArt> oeuvres) {
         try {
             // Utilisez une requête SQL INSERT pour ajouter les nouvelles entrées dans la table oeuvre_concours
-            String insertQuery = "INSERT INTO oeuvre_concours (id_concours, id_oeuvre) VALUES (?, ?)";
+            String insertQuery = "INSERT INTO oeuvre_concours (id_oeuvre,id_concours) VALUES (?, ?)";
             try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
                 for (OeuvreArt oeuvre : oeuvres) {
                     insertStatement.setInt(1, idConcours);
@@ -248,6 +215,25 @@ public class ConcoursService implements Iconcours<Concours> {
         } catch (SQLException e) {
             e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
         }
+    }*/
+    /*-----------------------------------------------------------------*/
+    public boolean titreExisteDeja(String titre) {
+        String query = "SELECT COUNT(*) FROM concours WHERE titre = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, titre);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0; // Si count est supérieur à 0, le titre existe déjà
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+        }
+
+        return false;
     }
 }
 
