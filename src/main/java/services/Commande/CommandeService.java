@@ -19,10 +19,7 @@ public class CommandeService implements ICommande {
             System.out.println("Le panier spécifié n'existe pas. Impossible de créer la commande.");
             return;
         }
-        if (panierEstCommande(panier.getId())) {
-            System.out.println("Le panier associé à cette commande a déjà été commandé. Impossible de créer une nouvelle commande.");
-            return;
-        }
+
         // Calcul du montant total de la commande à partir des œuvres dans le panier
         PanieroeuvreService panieroeuvreService = new PanieroeuvreService();
         float montantTotal = panieroeuvreService.calculerMontantTotal(panier.getId());
@@ -53,19 +50,6 @@ public class CommandeService implements ICommande {
             }
         }
     }
-    private boolean panierEstCommande(int panierId) throws SQLException {
-        String sql = "SELECT COUNT(*) AS count FROM commande WHERE panier = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, panierId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    int count = resultSet.getInt("count");
-                    return count > 0;
-                }
-            }
-        }
-        return false;
-    }
 
     public void modifierCommande(Commande commande, boolean estExpediee) throws SQLException {
         // Vérifier si la commande existe
@@ -89,6 +73,7 @@ public class CommandeService implements ICommande {
         }
 
     }
+
     public Commande getCommandeById(int id) throws SQLException {
         Commande commande = null;
         String sql = "SELECT * FROM commande WHERE id = ?";
@@ -131,28 +116,63 @@ public class CommandeService implements ICommande {
         }
     }
 
-    public List<Commande> AfficherCommande() throws SQLException {
-        List<Commande> commandes = new ArrayList<>();
+    public List<Commande> getCommandesParPanier(int idPanier) throws SQLException {
 
-        String sql = "SELECT c.*, p.id AS panierId " +
-                "FROM commande c " +
-                "JOIN panier p ON c.panier = p.id";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet rs = preparedStatement.executeQuery()) {
-            while (rs.next()) {
-                Commande commande = new Commande();
-                commande.setId(rs.getInt("id"));
-                commande.setMontant(rs.getInt("montant"));
-                commande.setDate(rs.getDate("Date"));
-                Panier panier = new Panier();
-                panier.setId(rs.getInt("id"));
+        List<Commande> commandesPanier = new ArrayList<>();
 
-                commande.setPanier(panier);
-                commandes.add(commande);
+        String sql = "SELECT * FROM commande WHERE panier = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, idPanier);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    Commande commande = new Commande();
+
+                    commande.setMontant(rs.getInt("montant"));
+                    commande.setDate(rs.getDate("date"));
+                    commande.setEtat(rs.getString("etat"));
+                    // Assurez-vous de récupérer d'autres détails de la commande selon votre modèle de données
+                    commandesPanier.add(commande);
+                }
             }
         }
-        return commandes;
+
+        return commandesPanier;
     }
+
+
+   public Commande getCommandeByPanierId(int idPanier) throws SQLException {
+       String sql = "SELECT c.*, p.id AS panierId\n" +
+               "FROM commande c\n" +
+               "JOIN panier p ON c.panier = p.id\n" +
+               "WHERE p.id = ?\n" +  // Ajouter le paramètre pour l'ID du panier
+               "ORDER BY c.id DESC\n" + // Utiliser l'identifiant de commande pour trier
+               "LIMIT 1";
+
+       try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+           preparedStatement.setInt(1, idPanier);  // Définir le paramètre pour l'ID du panier
+           try (ResultSet rs = preparedStatement.executeQuery()) {
+               if (rs.next()) {
+                   Commande commande = new Commande();
+
+                   commande.setMontant(rs.getInt("montant"));
+                   commande.setDate(rs.getDate("date"));
+                   commande.setEtat(rs.getString("etat"));
+
+                   // Créez un objet Panier et configurez son ID
+                   Panier panier = new Panier();
+                   panier.setId(rs.getInt("panierId"));
+
+                   // Définissez le panier pour la commande
+                   commande.setPanier(panier);
+
+                   return commande;
+               } else {
+                   return null; // Aucune commande trouvée pour cet ID de panier
+               }
+           }
+       }
+   }
+
 
 }

@@ -201,4 +201,17 @@ public class Acceuil {
             System.out.println("Le ComboBox n'est pas correctement initialisé ou aucune valeur n'est sélectionnée.");
         }
     }
+    @FXML
+    public void to_Page_Panier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanier.fxml"));
+            Parent registerParent = loader.load();
+            PagePanier pagePanier = loader.getController();
+            pagePanier.setParametre(idClient);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
