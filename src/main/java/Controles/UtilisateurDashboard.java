@@ -3,6 +3,7 @@ package Controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -175,7 +176,12 @@ public class UtilisateurDashboard implements Initializable {
     public void telecharger(ActionEvent actionEvent) {
         //List<Utilisateur> userList = null;// = List.of("Utilisateur 1", "Utilisateur 2", "Utilisateur 3");
         //generatePDF(userList, "C:\\Users\\Fatma Ouelhazi\\Downloads\\output.pdf");
-
+        Alert dialogC = new Alert(Alert.AlertType.INFORMATION);
+        dialogC.setTitle(" Confirmation de suppression ");
+        dialogC.setHeaderText("Votre PDF est télécharger");
+        dialogC.setContentText("Vous pouvez Consulter vos téléchargements");
+        dialogC.show();
+        // dialogC.setContentText(parametreField.getText());
 
         List<String> artistList = new ArrayList<>();
         List<String> clientList = new ArrayList<>();
@@ -193,6 +199,7 @@ public class UtilisateurDashboard implements Initializable {
                 }
             }
             generatePDF(artistList, clientList,"C:\\Users\\Fatma Ouelhazi\\Downloads\\output.pdf");
+
 
             System.out.println("aww fel tryy");
         } catch (SQLException e) {
