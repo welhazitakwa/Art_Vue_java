@@ -20,13 +20,13 @@ public class Home extends Application {
 
         //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
     //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AfficherConcoursUser.fxml"));
 
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
 
          // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/CategoriePage.fxml"));

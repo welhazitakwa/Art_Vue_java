@@ -158,4 +158,30 @@ public class AcceuilArtiste {
         }
     }
 
+    public void PageventeEnchere(ActionEvent actionEvent) {
+        /*try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/PageVenteEnchere.fxml"));
+            Parent PageExposition = loader.load();
+            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
+            PageExposition expositionController = loader.getController();
+
+            // Effacez le contenu existant et affichez la page de catégorie
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(PageExposition);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/PageVenteEnchere.fxml"));
+            Parent newPage = loader.load();
+            PageVenteEnchere aproposArtiste = loader.getController();
+            //aproposArtiste.setParametre(idArtiste);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

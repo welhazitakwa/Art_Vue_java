@@ -55,7 +55,7 @@
                   <String fx:value="Btn" />
                </styleClass>
             </Button>
-            <Button fx:id="idBTNCategorie1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" stylesheets="@../../css/StyleMenu.css" text="Expositions">
+            <Button fx:id="idBTNExposition" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PageventeEnchere" prefHeight="37.0" prefWidth="101.0" stylesheets="@../../css/StyleMenu.css" text="Expositions">
                <font>
                   <Font size="16.0" />
                </font>

@@ -233,7 +233,8 @@ public class AdminDashboard implements Initializable {
         }
     }
 
-    public void PageExposition(ActionEvent actionEvent) {
+
+    public void pageexposition(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
             Parent PageExposition = loader.load();
