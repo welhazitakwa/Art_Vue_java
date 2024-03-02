@@ -4,6 +4,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,9 +21,11 @@ import java.util.List;
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(50, 700);
+                contentStream.setNonStrokingColor(Color.BLUE);
 
-                contentStream.showText("Liste des utilisateurs de la première liste :");
+                contentStream.showText("Liste des artistes:");
                 contentStream.newLineAtOffset(0, -20);
+                contentStream.setNonStrokingColor(Color.BLACK);
 
                 for (String user : userList1) {
                     contentStream.showText(user);
@@ -30,9 +33,11 @@ import java.util.List;
                 }
 
                 contentStream.newLineAtOffset(0, -20);
+                contentStream.setNonStrokingColor(Color.BLUE);
 
-                contentStream.showText("Liste des utilisateurs de la deuxième liste :");
+                contentStream.showText("Liste des Clients :");
                 contentStream.newLineAtOffset(0, -20);
+                contentStream.setNonStrokingColor(Color.BLACK);
 
                 for (String user : userList2) {
                     contentStream.showText(user);
