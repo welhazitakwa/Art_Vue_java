@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-public class evenement {
+public class  evenement {
     private  int id;
     private  String nom;
     private  String lieu;

@@ -102,7 +102,7 @@ public class EventService implements InterfaceEvent<evenement>{
                 "FROM evenement e";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(req);
-        while (resultSet.next()) {
+        while  (resultSet.next()) {
             evenement evenement = new evenement();
             int evenementId = resultSet.getInt("evenement_id");
             evenement.setId(evenementId);
