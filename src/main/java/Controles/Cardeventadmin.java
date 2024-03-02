@@ -14,7 +14,7 @@ import org.controlsfx.control.Notifications;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class Cardeventadmin {
+public class  Cardeventadmin {
     @FXML
     private Label nomevent;
     @FXML
@@ -87,7 +87,7 @@ public class Cardeventadmin {
                     .darkStyle();
             n2.showConfirm();
         }else{
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/com/example/artevent/Eventuser.fxml"));
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Eventuser.fxml"));
             Parent root=loader.load();
             Eventuser mc=loader.getController();
             mc.setdata(id);

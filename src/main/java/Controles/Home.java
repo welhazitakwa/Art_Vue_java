@@ -20,7 +20,7 @@ public class Home extends Application {
 
         //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
     //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+//        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AfficherConcoursUser.fxml"));
 
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
@@ -34,6 +34,10 @@ public class Home extends Application {
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
 
+
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AfficheEventAdmin.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
+        ////FXMLLoader fxmlLoader = new FXMLLoader(ArtEvent.class.getResource("/fxml/Eventclient.fxml"));
 
 
         try {

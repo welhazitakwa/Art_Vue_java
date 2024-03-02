@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class calenderService implements InterfaceCalender<Calendar> {
+public class  calenderService implements InterfaceCalender<Calendar> {
     private Connection connection;
     public calenderService (){
         connection = MyDataBase.getInstance().getConnection();

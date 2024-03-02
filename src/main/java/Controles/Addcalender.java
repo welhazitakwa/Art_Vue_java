@@ -69,7 +69,7 @@ public class Addcalender {
                         .darkStyle();
                 n2.showInformation();
 
-            }else {
+            }else{
                 Calendar c = new Calendar(nom.getText(), debut, fin);
                 cs.ajoutercalender(c);
                 Notifications n = Notifications.create()

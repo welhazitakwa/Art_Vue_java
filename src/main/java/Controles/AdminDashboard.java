@@ -1,8 +1,8 @@
 package Controles;
+
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,23 +10,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class AdminDashboard implements Initializable {
@@ -232,5 +230,25 @@ public class AdminDashboard implements Initializable {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
+    @FXML
+    public void  event(ActionEvent actionEvent) {
+
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AfficheEventAdmin.fxml"));
+                Parent AfficheEventAdmin = loader.load();
+
+                AfficheEventAdmin eventController = loader.getController();
+
+                // Effacez le contenu existant et affichez la page de catégorie
+                contentArea.getChildren().clear();
+                contentArea.getChildren().add(AfficheEventAdmin);
+            } catch (IOException ex) {
+                Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+        }
+
+    }
+
 

@@ -7,7 +7,7 @@ import models.evenement;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface InterfaceEvent <T>{
+public interface  InterfaceEvent <T>{
     int ajouterEvent (T t,int id) throws SQLException;
     int modifierEvent (T t,int id) throws SQLException ;
     int supprimerEvent (int id) throws SQLException ;

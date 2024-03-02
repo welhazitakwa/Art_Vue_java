@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CardEventClient {
+public class  CardEventClient {
     @FXML
     private Label nomevent;
     @FXML
