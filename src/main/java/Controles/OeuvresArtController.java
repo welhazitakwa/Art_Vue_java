@@ -137,7 +137,7 @@ public class OeuvresArtController {
         System.out.println("Print PDF button clicked");
         ObservableList<OeuvreArt> oeuvres = oeuvresTableView.getItems();
         System.out.println("Nombre d'oeuvres : " + oeuvres.size());
-        PDFGenerator.generatePDF(oeuvres);
+        PDFGeneratorNour.generatePDF(oeuvres);
         Image image1 = new Image("/image/succes.png");
         ImageView imageView = new ImageView(image1);
         imageView.setFitWidth(40);

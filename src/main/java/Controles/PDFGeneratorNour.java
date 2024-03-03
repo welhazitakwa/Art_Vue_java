@@ -6,10 +6,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.ObservableList;
 import models.OeuvreArt;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class PDFGenerator {
+public class PDFGeneratorNour {
 
     public static void generatePDF(ObservableList<OeuvreArt> oeuvres) {
         Document document = new Document();
