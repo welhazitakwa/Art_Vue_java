@@ -37,7 +37,11 @@ public class PageOffreClient implements Initializable {
     private ExpositionService expositionService;
     private VenteEncheresService venteEncheresService;
     private OffreEnchereService offreEnchereService;
+    private int idClient; // Changer le type de idArtiste en int
+    public void setParametre(int idClient) { // Modifier le type du paramètre
+        this.idClient = idClient;
 
+    }
     public void To_Accueil(ActionEvent actionEvent) {
     }
 
@@ -201,6 +205,7 @@ public class PageOffreClient implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 
 }
