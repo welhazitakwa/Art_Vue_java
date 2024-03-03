@@ -231,4 +231,17 @@ public class Acceuil {
         }
     }
 
+    public void to_exposition(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOffreClient.fxml"));
+            Parent exposition = loader.load();
+            PageOffreClient expoClient = loader.getController();
+            expoClient.setParametre(idClient);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(exposition));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
