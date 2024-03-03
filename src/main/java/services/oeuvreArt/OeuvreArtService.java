@@ -125,6 +125,113 @@ public class OeuvreArtService implements IOeuvreArt<OeuvreArt> {
         }
         return oeuvres;
     }
+    public List<OeuvreArt> rechercherParTitreEtCategorie(String recherche, String categorie) throws SQLException {
+        List<OeuvreArt> oeuvres = new ArrayList<>();
+        String sql = "SELECT o.*, c.idCategorie, c.nomCategorie, u.nom, u.prenom " +
+                "FROM oeuvreart o " +
+                "JOIN utilisateur u ON o.id_Artiste = u.id " +
+                "JOIN categorie c ON o.id_Categorie = c.idCategorie " +
+                "WHERE o.titre LIKE ? AND c.nomCategorie = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            // Préparer la recherche pour correspondre au titre de l'oeuvre
+            String searchPattern = "%" + recherche + "%";
+            preparedStatement.setString(1, searchPattern);
+            preparedStatement.setString(2, categorie);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    OeuvreArt oeuvreArt = new OeuvreArt();
+                    oeuvreArt.setId(rs.getInt("idOeuvreArt"));
+                    oeuvreArt.setImage(rs.getString("image"));
+                    oeuvreArt.setTitre(rs.getString("titre"));
+                    oeuvreArt.setDescription(rs.getString("description"));
+                    oeuvreArt.setDateAjout(rs.getDate("dateAjout"));
+                    oeuvreArt.setPrixVente(rs.getFloat("prixVente"));
+                    oeuvreArt.setStatus(rs.getString("status"));
+
+                    // Création de l'objet Catégorie
+                    Categorie categorieObj = new Categorie();
+                    categorieObj.setIdCategorie(rs.getInt("idCategorie"));
+                    categorieObj.setNomCategorie(rs.getString("nomCategorie"));
+                    oeuvreArt.setCategorie(categorieObj);
+
+                    // Création de l'objet Utilisateur (artiste)
+                    Utilisateur artiste = new Utilisateur();
+                    artiste.setNom(rs.getString("nom"));
+                    artiste.setPrenom(rs.getString("prenom"));
+                    oeuvreArt.setArtiste(artiste);
+
+                    oeuvres.add(oeuvreArt);
+                }
+            }
+        }
+        return oeuvres;
+    }
+    public Map<String, Integer> getPriceDistribution() throws SQLException {
+        Map<String, Integer> priceDistribution = new HashMap<>();
+        // Définir les plages de prix
+        String[] priceRanges = {"0-50", "51-100", "101-150", "151-200", "201-300", "301-400", "401-600", "601-800", "801-1000", "1001+"};
+
+        // Construire les requêtes SQL pour chaque plage de prix
+        String sqlTemplate = "SELECT COUNT(*) AS count FROM oeuvreart WHERE prixVente %s";
+
+        for (String range : priceRanges) {
+            String[] bounds = range.split("-");
+            String sql = bounds.length == 1 ?
+                    String.format(sqlTemplate, ">= '" + bounds[0] + "'") :
+                    String.format(sqlTemplate, "BETWEEN '" + bounds[0] + "' AND '" + bounds[1] + "'");
+
+            // Exécuter la requête SQL
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt("count");
+                    priceDistribution.put(range, count);
+                }
+            }
+        }
+        return priceDistribution;
+    }
+
+
+    public List<OeuvreArt> rechercherParTitre(String recherche) throws SQLException {
+        List<OeuvreArt> oeuvreArts = new ArrayList<>();
+        String sql = "SELECT o.*, c.idCategorie, c.nomCategorie, u.nom, u.prenom " +
+                "FROM oeuvreart o " +
+                "JOIN utilisateur u ON o.id_Artiste = u.id " +
+                "JOIN categorie c ON o.id_Categorie = c.idCategorie " +
+                "WHERE o.titre LIKE ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, "%" + recherche + "%");
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    OeuvreArt oeuvreArt = new OeuvreArt();
+                    oeuvreArt.setId(rs.getInt("idOeuvreArt"));
+                    oeuvreArt.setImage(rs.getString("image"));
+                    oeuvreArt.setTitre(rs.getString("titre"));
+                    oeuvreArt.setDescription(rs.getString("description"));
+                    oeuvreArt.setDateAjout(rs.getDate("dateAjout"));
+                    oeuvreArt.setPrixVente(rs.getFloat("prixVente"));
+                    oeuvreArt.setStatus(rs.getString("status"));
+
+                    // Création de l'objet Catégorie
+                    Categorie categorieObj = new Categorie();
+                    categorieObj.setIdCategorie(rs.getInt("idCategorie"));
+                    categorieObj.setNomCategorie(rs.getString("nomCategorie"));
+                    oeuvreArt.setCategorie(categorieObj);
+
+                    // Création de l'objet Utilisateur (artiste)
+                    Utilisateur artiste = new Utilisateur();
+                    artiste.setNom(rs.getString("nom"));
+                    artiste.setPrenom(rs.getString("prenom"));
+                    oeuvreArt.setArtiste(artiste);
+
+                    oeuvreArts.add(oeuvreArt);
+                }
+            }
+        }
+        return oeuvreArts;
+    }
+
 
 
     //------------------------------------------Afficher Oeuvre By Artiste---------------------------------------------------

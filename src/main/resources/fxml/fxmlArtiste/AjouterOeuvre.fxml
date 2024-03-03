@@ -249,7 +249,7 @@
                                 </HBox>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="694.0">
                                     <children>
-                                        <Button fx:id="btnChoisirFile" mnemonicParsing="false" onAction="#choose_file" prefHeight="11.0" prefWidth="98.0" text="Choisir Image">
+                                        <Button fx:id="btnChoisirFile" mnemonicParsing="false" onAction="#choose_file" prefHeight="32.0" prefWidth="98.0" text="Choisir Image">
                                             <font>
                                                 <Font size="10.0" />
                                             </font>

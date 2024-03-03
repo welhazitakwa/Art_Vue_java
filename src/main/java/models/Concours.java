@@ -76,12 +76,22 @@ public class Concours {
 
     @Override
     public String toString() {
-        return "Concours{" +
-                "id=" + id +
-                ", titre='" + titre+ '\'' +
-                ", date debut='" + date_debut + '\'' +
-                ", date fin=" + date_fin +
-                ", description=" + description +
-                '}';
+        return "Concours :    " +
+                "   id=" + id +
+                ",    titre='" + titre+ '\'' +
+                ",    date debut='" + date_debut + '\'' +
+                ",    date fin=" + date_fin +
+                ",    description=" + description+"           "
+                ;
+    }
+
+    public String toString1() {
+        return "Concours " +
+                "   n°" + id +
+                ",   : titre='" + titre+ '\'' +
+                ",    date debut='" + date_debut + '\'' +
+                ",    date fin=" + date_fin +
+                ",    description=" + description+"           "
+                ;
     }
 }

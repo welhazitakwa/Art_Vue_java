@@ -6,10 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
@@ -41,6 +38,8 @@ public class DashboardStat {
 
     @FXML
     private NumberAxis yAxis;
+    @FXML
+    private PieChart pricePieChart;
 
     @FXML
     void initialize() {
@@ -71,6 +70,30 @@ public class DashboardStat {
             barChart.getData().add(series);
             barChart.setTitle("Nombre d'œuvres par catégorie");
 
+            // Initialisation du PieChart
+            initializePricePieChart();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    // Méthode pour initialiser le PieChart
+    private void initializePricePieChart() {
+        OeuvreArtService oeuvreArtService = new OeuvreArtService();
+        try {
+            // Obtenir la répartition des œuvres d'art par prix de vente
+            Map<String, Integer> priceDistribution = oeuvreArtService.getPriceDistribution();
+
+            // Effacer les données précédentes du PieChart
+            pricePieChart.getData().clear();
+
+            // Ajouter les données de répartition des prix au PieChart
+            for (Map.Entry<String, Integer> entry : priceDistribution.entrySet()) {
+                String priceRange = entry.getKey();
+                int count = entry.getValue();
+                pricePieChart.getData().add(new PieChart.Data(priceRange, count));
+            }
+            pricePieChart.setTitle("Répartition des œuvres d'art par prix de vente");
         } catch (SQLException e) {
             e.printStackTrace();
         }

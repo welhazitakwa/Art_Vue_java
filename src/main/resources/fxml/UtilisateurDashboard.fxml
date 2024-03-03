@@ -67,9 +67,9 @@
                               <Font name="Calibri Bold" size="25.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="294.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="72.0" prefWidth="542.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#affichageArtistes" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: bc5f6a;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css" text="Artistes" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#telecharger" prefHeight="40.0" prefWidth="126.0" style="-fx-background-color: #3D6187;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css" text="Télécharger" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Bold" size="20.0" />
                                  </font>
@@ -79,9 +79,20 @@
                                     <Font name="Calibri Bold" size="20.0" />
                                  </font>
                               </Button>
+                              <Button mnemonicParsing="false" onAction="#affichageArtistes" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: bc5f6a;" styleClass="btn" stylesheets="@../css/StylesheetUserDashboard.css" text="Artistes" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="20.0" />
+                                 </font>
+                              </Button>
                            </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </HBox>
                      </children>
+                     <VBox.margin>
+                        <Insets right="16.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="950.0" spacing="30.0" styleClass="light-gray-background" stylesheets="@../css/StylesheetUserDashboard.css">
                      <children>

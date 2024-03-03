@@ -18,24 +18,8 @@ public class Home extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-
-        //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
-    //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-      //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AfficherConcoursUser.fxml"));
-
-       FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
-
-         // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/CategoriePage.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-      //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
-
-
+    FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+     
 
         try {
             Parent root = loader.load();
@@ -48,4 +32,7 @@ public class Home extends Application {
             throw new RuntimeException(e);
         }
     }
+
+
+
 }

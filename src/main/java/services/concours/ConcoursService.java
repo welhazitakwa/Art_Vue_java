@@ -115,6 +115,8 @@ public class ConcoursService implements Iconcours<Concours> {
 
     }
     /*____________________________________________ Retourner une liste des concours ______________________________________________________*/
+
+
     public static List<Concours> getConcoursList() {
         List<Concours> concoursList = new ArrayList<>();
 

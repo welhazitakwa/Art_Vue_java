@@ -3,6 +3,7 @@ package Controles;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,29 +22,53 @@ import services.utilisateur.UtilisateurService;
 public class Login {
     @FXML
     private AnchorPane contentArea;
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private TextField loginTextField;
-
     @FXML
     private PasswordField mdpTextField;
     @FXML
     private Label labelError;
-
+    @FXML
+    private TextField validateCaptcha;
+    @FXML
+    private TextField captchaCodeValue;
+    private String a = "";
+    public static String createCaptchaValue(){
+        Random random = new Random();
+        int length=7+(Math.abs(random.nextInt()) % 3);
+        StringBuffer captchaStrBuffer = new StringBuffer() ;
+        for (int i=0; i<length;i++) {
+            int baseCharacterNumber = Math.abs(random.nextInt()%62);
+            int characterNumber = 0 ;
+            if(baseCharacterNumber < 26) {
+                characterNumber= 65 + baseCharacterNumber ;
+            } else if (baseCharacterNumber < 52) {
+                characterNumber = 97 + (baseCharacterNumber - 26);
+            }else {
+                characterNumber = 48 + (baseCharacterNumber-52);
+            }
+            captchaStrBuffer.append((char)characterNumber);
+        }
+        return captchaStrBuffer.toString();
+    }
     @FXML
     void seConnecter(ActionEvent event) throws SQLException {
         UtilisateurService user1 = new UtilisateurService();
+        if (validateCaptcha.getText().equals(a)) {
+            System.out.println("haw el a :" + a);
+            System.out.println(" s7iiii7");
+
+
         int validLogin = 5;
         try {
             validLogin = user1.validateLogin(loginTextField.getText(), mdpTextField.getText());
           //  System.out.println(loginTextField.getText());
           //  System.out.println(mdpTextField.getText());
+
         } catch (SQLException e) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setContentText(e.getMessage());
@@ -68,7 +93,8 @@ public class Login {
                 e.printStackTrace();  // Handle the exception appropriately (log or show an error message)
             }
 
-        } else if (validLogin == 1) {
+        }
+        else if (validLogin == 1) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
                 Parent registerParent = loader.load();
@@ -94,6 +120,10 @@ public class Login {
             }
         } else {
             labelError.setText("Merci de vérifier vos données !");
+        }
+        }else {
+            labelError.setText("CAPTCHA code invalide !");
+            System.out.println("mouuuchhhh s7iiii7");
         }
     }
     @FXML
@@ -125,6 +155,8 @@ public class Login {
 
     @FXML
     void initialize() {
+        a = createCaptchaValue();
+        captchaCodeValue.setText(a);
 
     }
 
