@@ -1,15 +1,21 @@
 package Controles;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import models.Utilisateur;
 import services.utilisateur.UtilisateurService;
 
@@ -39,7 +45,7 @@ public class RecupMdp {
         if (nvMDP.getText().equals(confirmerMDP.getText())) {
             try {
                 UtilisateurService user1 = new UtilisateurService();
-                user1.nouveauMDP(nvMDP.getText(),"takwawelhazi2@gmail.com");
+                user1.nouveauMDP(nvMDP.getText(),mail);
 
             } catch (SQLException e) {
                 Alert alert2 = new Alert(Alert.AlertType.ERROR);
@@ -68,5 +74,15 @@ public class RecupMdp {
       this.mail = mail;
       System.out.println("mail fel recup mdp : " + mail);
 
+    }
+
+    public void connecter(ActionEvent actionEvent) {
+        try {   FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        Parent registerParent = loader.load();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -30,6 +30,7 @@ public class OTP {
 
     @FXML
     private URL location;
+    private String mail;
 
     @FXML
     private Label errorLabel;
@@ -61,7 +62,6 @@ public class OTP {
                 errorLabel.setText("OTP incorrecte ! ");
             }
     }
-    private String mail;
     public void setParametre(String text) {
         mail = text ;
         System.out.println("mail fel OTP mdp : " + mail);
@@ -87,14 +87,12 @@ public class OTP {
             message.setText("Votre OTP est : " + hide.getText());
             message.setSubject("OTP pour récupérer votre mot de passe");
             message.setFrom(new InternetAddress("artvuecontact@gmail.com"));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("takwawelhazi2@gmail.com"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.mail));
             message.saveChanges();
 
-
-            try
-            {
+            try {
                 Transport transport = session.getTransport("smtp");
-                transport.connect("smtp.gmail.com","artvuecontact@gmail.com","nbqr tqqk tdbw wkxs");
+                transport.connect("smtp.gmail.com", "artvuecontact@gmail.com", "nbqr tqqk tdbw wkxs");
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
 
@@ -105,8 +103,7 @@ public class OTP {
                 dialogC.show();
 
                 //JOptionPane.showMessageDialog(null,"OTP has send to your Email id");
-            }catch(Exception e)
-            {
+            } catch (Exception e) {
                 Alert dialogC = new Alert(Alert.AlertType.ERROR);
                 dialogC.setTitle(" Echec d'envoi ");
                 dialogC.setHeaderText("Votre OTP n'était pas envoyé");
@@ -115,8 +112,7 @@ public class OTP {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,e);
+            System.out.println("echec");
         }
         }
 
@@ -124,10 +120,9 @@ public class OTP {
         void initialize () {
             Random();
             System.out.println(hide.getText());
-            System.out.println("mail fel otp 2 initialise : "+mail);
-           // sendOTP();
-    }
-
+            System.out.println("mail fel otp 2 initialise hihi : " + this.mail);
+            sendOTP();
+        }
     }
 
 

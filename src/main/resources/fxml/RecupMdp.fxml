@@ -35,7 +35,7 @@
             <Font name="Calibri Bold" size="18.0" />
         </font>
     </Text>
-    <Button layoutX="563.0" layoutY="574.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="52.0" prefWidth="192.0" styleClass="loginBtn" stylesheets="@../css/stylesheet.css" text="S'auvegarder">
+    <Button layoutX="553.0" layoutY="520.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="52.0" prefWidth="192.0" styleClass="loginBtn" stylesheets="@../css/stylesheet.css" text="S'auvegarder">
         <font>
             <Font name="Calibri Bold" size="24.0" />
         </font>
@@ -56,5 +56,10 @@
          <Font name="Calibri" size="24.0" />
       </font>
    </PasswordField>
+   <Button layoutX="553.0" layoutY="594.0" mnemonicParsing="false" onAction="#connecter" prefHeight="52.0" prefWidth="192.0" styleClass="loginBtn" stylesheets="@../css/stylesheet.css" text="Se Connecter">
+      <font>
+         <Font name="Calibri Bold" size="24.0" />
+      </font>
+   </Button>
 
 </AnchorPane>
