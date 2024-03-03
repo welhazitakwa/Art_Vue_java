@@ -73,14 +73,14 @@ public class AfficherOeuvreConcoursUser {
             Label labelTitre = new Label("Titre: " + oeuvre.getTitre());
             Label labelArtiste = new Label("Artiste: " + oeuvre.getArtiste());
 
-            File file = new File(oeuvre.getImage());
-            URL imageUrl;
-            try {
-                imageUrl = file.toURI().toURL();
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-            ImageView imageView = new ImageView(new Image(imageUrl.toString()));
+//           // File file = new File(oeuvre.getImage());
+//            URL imageUrl;
+//            try {
+//                imageUrl = oeuvre.getImage().toURI().toURL();
+//            } catch (MalformedURLException e) {
+//                throw new RuntimeException(e);
+//            }
+            ImageView imageView = new ImageView(new Image(oeuvre.getImage().toString()));
             imageView.setFitWidth(imageViewWidth);
             imageView.setFitHeight(imageViewHeight);
 

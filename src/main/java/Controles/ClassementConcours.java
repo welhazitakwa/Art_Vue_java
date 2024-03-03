@@ -287,7 +287,7 @@ public class ClassementConcours {
 
                     // Taille fixe pour les ImageView
                     double imageViewSize = 200;
-                    ImageView imageView = new ImageView(new Image(new File(oeuvre.getImage()).toURI().toString()));
+                    ImageView imageView = new ImageView(new Image(oeuvre.getImage()));
                     imageView.setFitWidth(imageViewSize); // Ajustez la largeur de l'image
                     imageView.setFitHeight(imageViewSize); // Ajustez la hauteur de l'image
                     StackPane imageStackPane = new StackPane(imageView);

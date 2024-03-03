@@ -199,11 +199,11 @@ public class AfficherConcours {
                   String imageUrl = oeuvre.getImage();
 
 // Créez une URL à partir de la chaîne d'URL
-                  File file = new File(imageUrl);
-                  URL url = file.toURI().toURL();
+              //    File file = new File(imageUrl);
+             //     URL url = file.toURI().toURL();
 
 // Créez une ImageView avec l'image de l'œuvre
-                  ImageView imageView = new ImageView(new Image(url.toString()));
+                  ImageView imageView = new ImageView(new Image(imageUrl.toString()));
 
 
                   // Redimensionnez l'image si nécessaire

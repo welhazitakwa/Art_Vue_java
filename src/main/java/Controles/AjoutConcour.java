@@ -112,7 +112,7 @@ public class AjoutConcour {
                 HBox oeuvreBox = new HBox();
 
                 // Ajoutez l'image
-                ImageView imageView = new ImageView(new Image("file:" + oeuvre.getImage()));
+                ImageView imageView = new ImageView(new Image( oeuvre.getImage()));
                 imageView.setFitWidth(100); // Ajustez la largeur de l'image selon vos besoins
                 imageView.setPreserveRatio(true);
 
@@ -232,7 +232,7 @@ public class AjoutConcour {
 
                     // Chargez et affichez l'image
                     String imagePath = item.getImage(); // Assurez-vous d'avoir une méthode getImagePath() dans votre classe OeuvreArt
-                    Image image = new Image("file:" + imagePath);
+                    Image image = new Image(imagePath);
                     imageView.setImage(image);
                     imageView.setFitWidth(200); // Ajustez la largeur de l'image selon vos besoins
                     imageView.setPreserveRatio(true);
