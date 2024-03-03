@@ -42,7 +42,7 @@ public class OTP {
             if(hide.getText().equals(verifOTP.getText())){
                 errorLabel.setText("s7ii7 rw ");
             }else {
-                errorLabel.setText("baarrawwwhhh 3lya");
+                errorLabel.setText("OTP incorrecte ! ");
             }
     }
     private String mail;
@@ -106,7 +106,7 @@ public class OTP {
         void initialize () {
             Random();
             System.out.println("dfdfdfdfdfdf"+mail);
-            sendOTP();
+           // sendOTP();
     }
 
     }
