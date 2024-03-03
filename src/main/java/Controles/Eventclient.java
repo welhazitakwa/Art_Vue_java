@@ -39,14 +39,21 @@ public class Eventclient implements Initializable {
             EventService es=new EventService();
             evenement e=es.getEventBynom(text);
            if(e!=null){
+               //efface tous les enfants du conteneur vbox. Un vbox est probablement un conteneur graphique
                vbox.getChildren().clear();
+               //Crée un chargeur FXML, qui permet de charger une hiérarchie de nœuds à partir d'un fichier FXML.
                FXMLLoader fxl=new FXMLLoader();
+               //Spécifie l'emplacement du fichier FXML à charger
                fxl.setLocation(getClass().getResource("/fxml/CardEventClient.fxml"));
+               //Charge la hiérarchie de nœuds depuis le fichier FXML spécifié et retourne le nœud racine.
                Parent root=fxl.load();
+               // Récupère le contrôleur associé à la vue FXML
                CardEventClient c=fxl.getController();
+               //récupéré et le nombre d'utilisateurs associés à cet événement.
                c.setdata(e,es.nombredeutulisateurparevent(e.getId()));
                c.setId(e.getId());
                c.SetIdu(idu);
+               // Ajoute le nœud racine de la vue FXML  au conteneur vbox.
                vbox.getChildren().add(root);
             }else{
                Notifications n2 = Notifications.create()
