@@ -1,0 +1,8 @@
+.table-view .column-header {
+    -fx-background-color: #D4B4A8;
+}
+.ajouter-button {
+    -fx-background-color: #AF9083;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

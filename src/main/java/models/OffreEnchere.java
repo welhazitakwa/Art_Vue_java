@@ -6,14 +6,30 @@ public class OffreEnchere {
     private int id;
     private float montant;
     private Date date;
+    private int id_VenteEnchere;
 
     public OffreEnchere() {
+    }
+
+    public OffreEnchere(int id, float montant, Date date, int id_VenteEnchere) {
+        this.id = id;
+        this.montant = montant;
+        this.date = date;
+        this.id_VenteEnchere = id_VenteEnchere;
     }
 
     public OffreEnchere(int id, float montant, Date date) {
         this.id = id;
         this.montant = montant;
         this.date = date;
+    }
+
+    public int getId_VenteEnchere() {
+        return id_VenteEnchere;
+    }
+
+    public void setId_VenteEnchere(int id_VenteEnchere) {
+        this.id_VenteEnchere = id_VenteEnchere;
     }
 
     public int getId() {

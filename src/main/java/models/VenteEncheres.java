@@ -8,17 +8,21 @@ public class VenteEncheres {
     private Date dateFin;
     private float prixDepart;
     private String statue;
+    private int idExposition;
 
     public VenteEncheres() {
     }
 
-    public VenteEncheres(int id, Date dateDebut, Date dateFin, float prixDepart, String statue) {
+    public VenteEncheres(int id, Date dateDebut, Date dateFin, float prixDepart, String statue, int idExposition) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.prixDepart = prixDepart;
         this.statue = statue;
+        this.idExposition = idExposition;
     }
+
+
 
     public int getId() {
         return id;
@@ -58,6 +62,13 @@ public class VenteEncheres {
 
     public void setStatue(String statue) {
         this.statue = statue;
+    }
+    public int getIdExposition() {
+        return idExposition;
+    }
+
+    public void setIdExposition(int idExposition) {
+        this.idExposition = idExposition;
     }
 
     @Override

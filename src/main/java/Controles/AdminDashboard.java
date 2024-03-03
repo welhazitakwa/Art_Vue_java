@@ -288,6 +288,23 @@ public class AdminDashboard implements Initializable {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
+    public void pageexposition(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
+            Parent PageExposition = loader.load();
+            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
+            PageExposition expositionController = loader.getController();
+
+            // Effacez le contenu existant et affichez la page de catégorie
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(PageExposition);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @FXML
     public void  event(ActionEvent actionEvent) {
 
