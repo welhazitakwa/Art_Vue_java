@@ -60,11 +60,11 @@ public class UtilisateurTest {
         }*/
 
         UtilisateurService user1 = new UtilisateurService();
-        try {
+        /*try {
             System.out.println(user1.checkEmail("hamzaOuelzi@gmail.com"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         // System.out.println("mlkjhytredfghjklmlllllllllllllll"+ user1.nbArtistes());
   /*    try {
          user1.ajouter(new Utilisateur( "Ferjeni", "Nourhen","Nourhen.ferjeni@gmail.com",92404237,
@@ -118,6 +118,12 @@ public class UtilisateurTest {
         }
 
 */
+
+//        try {
+//            user1.nouveauMDP("123.","takwawelhazi2@gmail.com");
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 
     }}
 

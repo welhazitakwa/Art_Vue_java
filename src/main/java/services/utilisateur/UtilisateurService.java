@@ -162,6 +162,13 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
 
 
     }
+    public void nouveauMDP(String pwd, String mail) throws SQLException{
+        String mdp_hashed = BCrypt.hashpw(pwd , BCrypt.gensalt()) ;
+        String sql= "update utilisateur set mdp= '"+ mdp_hashed +"'"+ "where email= '" + mail +"'";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.executeUpdate();
+
+    }
     @Override
     public void modifier(Utilisateur utilisateur) throws SQLException {
         int varrr = utilisateur.getId();
