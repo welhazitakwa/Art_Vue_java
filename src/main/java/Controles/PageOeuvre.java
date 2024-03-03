@@ -1,6 +1,7 @@
 package Controles;
 
 import Controles.DetailsOeuvreClient;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,12 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -24,6 +27,7 @@ import javafx.stage.Stage;
 import models.Categorie;
 import models.OeuvreArt;
 import services.categorie.CategorieService;
+import services.likes.LikesService;
 import services.oeuvreArt.OeuvreArtService;
 
 import java.io.IOException;
@@ -43,12 +47,14 @@ public class PageOeuvre implements Initializable {
 
     private OeuvreArtService oeuvreArtService;
     private CategorieService categorieService;
-    private int idClient ;
+    private int idClient;
 
     public void setParametre(int idClient) {
         this.idClient = idClient;
         System.out.println("ID de l'client connecté page Oeuvre : " + idClient);
     }
+
+    // Autres variables et méthodes
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +74,38 @@ public class PageOeuvre implements Initializable {
         }
         // Récupérer et afficher les œuvres d'art
         afficherToutesOeuvres();
+        // Appeler la méthode pour mettre à jour l'état des likes après un court délai
+        Platform.runLater(this::updateLikeStateForAllArtworks);
+    }
+
+
+    // Méthode pour mettre à jour l'état des likes pour chaque œuvre
+    private void updateLikeStateForAllArtworks() {
+        for (Node node : gridPane.getChildren()) {
+            if (node instanceof VBox) {
+                VBox card = (VBox) node;
+                // Récupérer l'œuvre associée à cette carte
+                OeuvreArt oeuvre = (OeuvreArt) card.getUserData();
+                // Récupérer le bouton de like dans cette carte
+                ToggleButton likeButton = (ToggleButton) card.lookup(".like-button");
+                if (likeButton != null) {
+                    try {
+                        LikesService likesService = new LikesService();
+                        boolean isLiked = likesService.isLikedByUser(idClient, oeuvre.getId());
+                        likeButton.setSelected(isLiked); // Définir l'état initial du bouton en fonction de l'état de like dans la base de données
+                        ImageView likeIcon = (ImageView) likeButton.getGraphic();
+                        if (isLiked) {
+                            likeIcon.setImage(new Image("/image/coeurlike.png")); // Afficher l'icône de like
+                        } else {
+                            likeIcon.setImage(new Image("/image/coeurDislike.png")); // Afficher l'icône de dislike
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        // Gérer les erreurs
+                    }
+                }
+            }
+        }
     }
 
     private void afficherToutesOeuvres() {
@@ -81,71 +119,51 @@ public class PageOeuvre implements Initializable {
 
     private void afficherOeuvres(List<OeuvreArt> oeuvres) {
         gridPane.getChildren().clear();
-
         int column = 0;
         int row = 0;
-
         for (OeuvreArt oeuvre : oeuvres) {
             VBox card = createArtworkCard(oeuvre);
-
             Button discoverButton = new Button("Découvrir");
             discoverButton.setStyle("-fx-background-color:transparent; -fx-background-radius: 5; -fx-border-color: transparent transparent #bc5f6a transparent;");
             discoverButton.setOnAction(e -> {
                 try {
-                    // Charger la vue des détails de l'œuvre
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/DetailsOeuvreClient.fxml"));
                     Parent detailsOeuvre = loader.load();
-
-                    // Obtenir une référence au contrôleur
                     DetailsOeuvreClient controller = loader.getController();
-                    controller.initData(oeuvre); // Passer l'œuvre sélectionnée au contrôleur
-
-                    // Obtenir la scène actuelle à partir du bouton découvrez
+                    controller.setParametre(idClient);
+                    controller.initData(oeuvre);
                     Scene currentScene = ((Node) e.getSource()).getScene();
-
-                    // Modifier la racine de la scène pour afficher les détails de l'œuvre
                     currentScene.setRoot(detailsOeuvre);
                 } catch (IOException ex) {
                     Logger.getLogger(PageOeuvre.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
-            //----------commen----------------------------------------
 
             Button discoverButton2 = new Button("Commenter");
             discoverButton2.setStyle("-fx-background-color:transparent; -fx-background-radius: 5; -fx-border-color: transparent transparent #bc5f6a transparent;");
             discoverButton2.setOnAction(e -> {
                 try {
-                    // Charger la vue des détails de l'œuvre
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/CommentairesOeuvre.fxml"));
-                    Parent detailsOeuvre = loader.load();
+                    Parent commeOeuvre = loader.load();
                     CommentairesOeuvre commentairesOeuvre = loader.getController();
                     commentairesOeuvre.setParametre(idClient);
+
                     commentairesOeuvre.initData(oeuvre);
 
 
-                    Scene currentScene = ((Node) e.getSource()).getScene();
 
-                    // Modifier la racine de la scène pour afficher les détails de l'œuvre
-                    currentScene.setRoot(detailsOeuvre);
+                    Scene currentScene = ((Node) e.getSource()).getScene();
+                    currentScene.setRoot(commeOeuvre);
                 } catch (IOException ex) {
                     Logger.getLogger(PageOeuvre.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
 
             // Créer une HBox pour centrer le bouton
-            HBox buttonBox = new HBox(discoverButton,discoverButton2);
+            HBox buttonBox = new HBox(discoverButton, discoverButton2);
             buttonBox.setSpacing(10);
-
-            // Créer une HBox pour mettre les boutons côte à côte
-//            HBox buttonBox = new HBox(discoverButton);
-//            buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
-//            buttonBox.setSpacing(5); // Espacement entre les boutons
-
-            card.getChildren().add(buttonBox); // Ajouter la HBox contenant les boutons à la carte
-
-            // Ajout de la marge entre les cartes
+            card.getChildren().add(buttonBox);
             GridPane.setMargin(card, new Insets(20, 20, 20, 20));
-
             gridPane.add(card, column, row);
 
             column++;
@@ -155,8 +173,6 @@ public class PageOeuvre implements Initializable {
             }
         }
     }
-
-
 
     @FXML
     void handleCategorySelection(ActionEvent event) {
@@ -177,45 +193,83 @@ public class PageOeuvre implements Initializable {
         }
     }
 
-    // Méthode pour créer une carte représentant une œuvre d'art
     private VBox createArtworkCard(OeuvreArt oeuvreArt) {
         VBox card = new VBox();
-        card.getStyleClass().add("hbox"); // Ajouter la classe de style pour la carte
+        card.getStyleClass().add("hbox");
 
-        // Image de l'œuvre d'art
+        // Créer une StackPane pour superposer l'image et l'icône de like
+        StackPane imageContainer = new StackPane();
         ImageView imageView = new ImageView(new Image(oeuvreArt.getImage()));
         imageView.setFitWidth(136);
         imageView.setFitHeight(174);
 
-        // Titre de l'œuvre d'art
-        Label titleLabel = new Label(oeuvreArt.getTitre());
-        titleLabel.getStyleClass().add("title-label"); // Ajouter la classe de style pour le titre
+        // Bouton pour liker ou disliker l'œuvre
+        ToggleButton likeButton = new ToggleButton();
+        likeButton.setStyle("-fx-background-color: transparent ; -fx-padding: 5 15 0 0 ; ");
+        ImageView likeIcon = new ImageView();
+        likeIcon.setFitWidth(24);
+        likeIcon.setFitHeight(24);
 
-        // Artiste
+        // Vérifier si l'utilisateur a aimé cette œuvre
+        try {
+            LikesService likesService = new LikesService();
+            boolean isLiked = likesService.isLikedByUser(idClient, oeuvreArt.getId());
+            likeButton.setSelected(isLiked); // Définir l'état initial du bouton en fonction de l'état de like dans la base de données
+            if (isLiked) {
+                likeIcon.setImage(new Image("/image/coeurlike.png")); // Afficher l'icône de like
+            } else {
+                likeIcon.setImage(new Image("/image/coeurDislike.png")); // Afficher l'icône de dislike
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs
+        }
+
+        likeButton.setGraphic(likeIcon);
+
+        // Action à effectuer lors du clic sur le bouton
+        likeButton.setOnAction(event -> {
+            try {
+                LikesService likesService = new LikesService();
+                boolean isLiked = likesService.isLikedByUser(idClient, oeuvreArt.getId());
+                if (isLiked) {
+                    // L'utilisateur a déjà liké cette œuvre, effectuer un dislike
+                    likesService.removeLike(idClient, oeuvreArt.getId());
+                    likeIcon.setImage(new Image("/image/coeurDislike.png")); // Changer l'icône en dislike
+                } else {
+                    // L'utilisateur n'a pas encore liké cette œuvre, effectuer un like
+                    likesService.addLike(idClient, oeuvreArt.getId());
+                    likeIcon.setImage(new Image("/image/coeurlike.png")); // Changer l'icône en like
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Gérer les erreurs
+            }
+        });
+
+        // Ajouter l'image et l'icône de like à la StackPane
+        imageContainer.getChildren().addAll(imageView, likeButton);
+        StackPane.setAlignment(likeButton, Pos.TOP_RIGHT); // Positionner le bouton en haut à droite de l'image
+
+        // Ajouter les autres détails de l'œuvre à la VBox
+        Label titleLabel = new Label(oeuvreArt.getTitre());
+        titleLabel.getStyleClass().add("title-label");
         Label artistLabel = new Label("Artiste: " + oeuvreArt.getArtiste().getNom() + " " + oeuvreArt.getArtiste().getPrenom());
         artistLabel.setPadding(new Insets(0, 0, 10, 0));
-        // Prix
         Label priceLabel = new Label("Prix: " + oeuvreArt.getPrixVente() + " DT ");
         priceLabel.setStyle("-fx-font-weight: bold;"); // Mettre le prix en gras
-
-        // Icône panier
-        ImageView panierIcon = new ImageView(new Image("/image/panier.png"));
-        panierIcon.setFitWidth(17);
-        panierIcon.setFitHeight(17);
-
 
         // Regrouper le prix et l'icône du panier dans une HBox
         HBox pricePanierBox = new HBox(priceLabel);
         pricePanierBox.setSpacing(10); // Espacement entre le prix et l'icône du panier
 
-        // Ajout des éléments à la carte
-        card.getChildren().addAll(imageView, titleLabel, artistLabel, pricePanierBox);
+        // Ajouter les éléments à la carte
+        card.getChildren().addAll(imageContainer, titleLabel, artistLabel, pricePanierBox);
         return card;
     }
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOeuvre.fxml"));
             Parent registerParent = loader.load();
@@ -227,9 +281,9 @@ public class PageOeuvre implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void To_Accueil(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
             Parent registerParent = loader.load();
@@ -243,13 +297,25 @@ public class PageOeuvre implements Initializable {
     }
 
     public void To_Apropos(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Apropos.fxml"));
             Parent registerParent = loader.load();
             Apropos apropos = loader.getController();
             apropos.setParametre(idClient);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void to_Page_Panier(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanier.fxml"));
+            Parent registerParent = loader.load();
+            Acceuil acceuil = loader.getController();
+            acceuil.setParametre(idClient);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(registerParent));
         } catch (IOException e) {
             e.printStackTrace();

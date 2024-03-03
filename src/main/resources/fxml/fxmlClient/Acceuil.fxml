@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,8 +15,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.FXCollections?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Acceuil">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="915.0" BorderPane.alignment="CENTER">
@@ -63,7 +63,7 @@
                   <String fx:value="Btn" />
                </styleClass>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="106.0" stylesheets="@../../css/StyleMenu.css" text="Evénements">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#event" prefHeight="37.0" prefWidth="106.0" stylesheets="@../../css/StyleMenu.css" text="Evénements">
                <font>
                   <Font size="16.0" />
                </font>
@@ -94,6 +94,15 @@
                   <TextField prefHeight="19.0" prefWidth="139.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
                </children>
             </HBox>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#to_Page_Panier" prefHeight="21.0" prefWidth="25.0" style="-fx-background-color: transparent;" stylesheets="@../../css/StyleMenu.css">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/panier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <ImageView fitHeight="46.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/userimg.png" />

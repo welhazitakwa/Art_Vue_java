@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #e5e5e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Addevent">
+   <children>
+      <Label layoutX="377.0" layoutY="100.0" prefHeight="90.0" prefWidth="646.0" text="Ajouter un Evenement" textFill="#50383a">
+         <font>
+            <Font name="System Bold" size="61.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="104.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/0.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="376.0" layoutY="246.0" prefHeight="438.0" prefWidth="635.0" style="-fx-background-color: #f9f9f9; -fx-background-radius: 30;">
+         <children>
+            <Label layoutX="74.0" layoutY="81.0" text="Nom" textFill="#404141">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="73.0" layoutY="159.0" text="Lieu" textFill="#404141">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="231.0" text="Date" textFill="#404141">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="74.0" layoutY="300.0" text="Prix" textFill="#404141">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="74.0" layoutY="368.0" text="capacité" textFill="#404141">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nom" layoutX="287.0" layoutY="80.0" prefHeight="26.0" prefWidth="175.0" />
+            <TextField fx:id="lieu" layoutX="287.0" layoutY="158.0" prefHeight="26.0" prefWidth="175.0" />
+            <TextField fx:id="prix" layoutX="287.0" layoutY="299.0" prefHeight="26.0" prefWidth="175.0" />
+            <TextField fx:id="cap" layoutX="287.0" layoutY="367.0" prefHeight="26.0" prefWidth="175.0" />
+            <DatePicker fx:id="date" layoutX="287.0" layoutY="231.0" />
+            <Label fx:id="ccnom" layoutX="287.0" layoutY="122.0" prefHeight="18.0" prefWidth="175.0" textFill="RED" />
+            <Label fx:id="cclieu" layoutX="287.0" layoutY="200.0" prefHeight="18.0" prefWidth="175.0" textFill="RED" />
+            <Label fx:id="ccdate" layoutX="287.0" layoutY="268.0" prefHeight="18.0" prefWidth="175.0" textFill="RED" />
+            <Label fx:id="ccprix" layoutX="287.0" layoutY="337.0" prefHeight="18.0" prefWidth="175.0" textFill="RED" />
+            <Label fx:id="cccap" layoutX="287.0" layoutY="405.0" prefHeight="18.0" prefWidth="175.0" textFill="RED" />
+            <Button fx:id="confirmer" layoutX="506.0" layoutY="231.0" mnemonicParsing="false" onAction="#ajout" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #937968; -fx-background-radius: 30;" text="Confirmer">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button fx:id="ret" layoutX="643.0" layoutY="701.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #937968; -fx-background-radius: 30;" text="Retour">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
