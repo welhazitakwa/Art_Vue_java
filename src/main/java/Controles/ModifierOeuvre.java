@@ -1,5 +1,8 @@
 package Controles;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -144,6 +147,8 @@ public class ModifierOeuvre {
             notifications.hideAfter(Duration.seconds(4.0));
             notifications.show();
 
+            sendSMSNotification("Nouvelle mise à jour l'œuvre d'art : " + titre);
+
             // Charger la page OeuvreArtArtiste.fxml après la fermeture de l'alerte
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
@@ -193,6 +198,20 @@ public class ModifierOeuvre {
     }
     private boolean isValidImagePath(String imagePath) {
         return imagePath.startsWith("file:/") && (imagePath.endsWith(".jpg") || imagePath.endsWith(".png") || imagePath.endsWith(".gif"));
+    }
+    private void sendSMSNotification(String message) {
+        String ACCOUNT_SID = "ACdd5e61831be43b8a8a0f7a636fd661e9";
+        String AUTH_TOKEN = "3dbfc4ca8da735662ba37b0a5eb66ee7";
+        String TWILIO_PHONE_NUMBER = "+1 862 267 0495";
+        String USER_PHONE_NUMBER = "+21658044443";
+
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        Message.creator(
+                        new PhoneNumber(USER_PHONE_NUMBER),
+                        new PhoneNumber(TWILIO_PHONE_NUMBER),
+                        message)
+                .create();
     }
 
     private void showAlert(String title, String message) {

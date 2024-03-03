@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import models.Categorie;
 import models.OeuvreArt;
 import services.categorie.CategorieService;
+import services.likes.LikesService;
 import services.oeuvreArt.OeuvreArtService;
 
 import java.io.IOException;
@@ -38,6 +39,8 @@ public class OeuvresPageArtiste implements Initializable {
     private GridPane gridPane;
     @FXML
     private ComboBox<String> categorieComboBox;
+    @FXML
+    private TextField idRecherche;
 
     private OeuvreArtService oeuvreArtService;
     private CategorieService categorieService;
@@ -96,7 +99,7 @@ public class OeuvresPageArtiste implements Initializable {
             editIcon.setFitHeight(20);
             modifierButton.setGraphic(editIcon);
 
-            modifierButton.setStyle("-fx-background-color: white; -fx-text-fill: white; -fx-padding: 2px 5px; -fx-font-size: 10px; -fx-background-radius: 5;");
+            modifierButton.setStyle("-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 2px 5px; -fx-font-size: 10px; -fx-background-radius: 5;");
             modifierButton.setPrefWidth(20);
             modifierButton.setPrefHeight(20);
 
@@ -122,7 +125,7 @@ public class OeuvresPageArtiste implements Initializable {
             deleteIcon.setFitHeight(20);
             deleteButton.setGraphic(deleteIcon);
 
-            deleteButton.setStyle("-fx-background-color: white; -fx-text-fill: white; -fx-padding: 2px 5px; -fx-font-size: 10px; -fx-background-radius: 5;");
+            deleteButton.setStyle("-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 2px 5px; -fx-font-size: 10px; -fx-background-radius: 5;");
             deleteButton.setPrefWidth(20);
             deleteButton.setPrefHeight(20);
 
@@ -169,15 +172,27 @@ public class OeuvresPageArtiste implements Initializable {
     @FXML
     void handleCategorySelection(ActionEvent event) {
         try {
-            String selectedCategory = categorieComboBox.getValue();
-            List<OeuvreArt> oeuvres;
-            if (selectedCategory != null && !selectedCategory.equals("Tous")) {
-                oeuvres = oeuvreArtService.getAllOeuvreArtByArtisteAndCategory(idArtiste, selectedCategory);
+            String selectedCategory = categorieComboBox.getValue(); // Récupérer la catégorie sélectionnée
+            String recherche = idRecherche.getText(); // Récupérer le texte saisi dans le champ de recherche
+            if (!recherche.isEmpty()) { // Vérifier si le champ de recherche n'est pas vide
+                List<OeuvreArt> oeuvres;
+                if (selectedCategory != null && !selectedCategory.equals("Tous")) {
+                    // Si une catégorie est sélectionnée (autre que "Tous"), récupérer les œuvres d'art correspondantes à cette catégorie et à cet artiste
+                    oeuvres = oeuvreArtService.rechercherParTitreEtCategorie(recherche, selectedCategory);
+                } else {
+                    // Sinon, récupérer les œuvres d'art correspondant uniquement à cet artiste
+                    oeuvres = oeuvreArtService.rechercherParTitre(recherche);
+                }
+                afficherOeuvres(oeuvres); // Afficher les œuvres correspondantes
             } else {
-                afficherToutesOeuvres();
-                return;
+                // Si le champ de recherche est vide, afficher toutes les œuvres de la catégorie sélectionnée
+                if (selectedCategory != null && !selectedCategory.equals("Tous")) {
+                    List<OeuvreArt> oeuvres = oeuvreArtService.getAllOeuvreArtByCategorie(selectedCategory);
+                    afficherOeuvres(oeuvres);
+                } else {
+                    afficherToutesOeuvres(); // Afficher toutes les œuvres
+                }
             }
-            afficherOeuvres(oeuvres);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -198,9 +213,39 @@ public class OeuvresPageArtiste implements Initializable {
 
         Label priceLabel = new Label("Prix: " + oeuvreArt.getPrixVente() + " DT ");
 
-        card.getChildren().addAll(imageView, titleLabel, artistLabel, priceLabel);
+        // Ajout d'un label pour afficher le nombre total de likes
+        Label likesLabel = new Label("Likes:   " + countTotalLikes(oeuvreArt.getId()) );
+        likesLabel.setStyle("-fx-font-weight: bold;"); // Appliquer le style CSS pour le gras
+
+        card.getChildren().addAll(imageView, titleLabel, artistLabel, priceLabel, likesLabel);
         return card;
     }
+    private int countTotalLikes(int idOeuvre) {
+        int totalLikes = 0;
+        try {
+            LikesService likesService = new LikesService();
+            totalLikes = likesService.countLikesForArtwork(idOeuvre);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalLikes;
+    }
+
+    public void Rechercher(ActionEvent event) {
+        String recherche = idRecherche.getText();
+        if (!recherche.isEmpty()) { // Vérifier si le champ de recherche n'est pas vide
+            try {
+                List<OeuvreArt> oeuvres = oeuvreArtService.rechercherParTitre(recherche); // Appeler le service pour rechercher les œuvres par artiste
+                afficherOeuvres(oeuvres); // Afficher les œuvres correspondantes
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Si le champ de recherche est vide, afficher toutes les œuvres
+            afficherToutesOeuvres();
+        }
+    }
+
 
     @FXML
     void To_Oeuvre_Art(ActionEvent event) {
