@@ -35,8 +35,8 @@ public class Home extends Application {
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
 
 
-         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AfficheEventAdmin.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
+       //  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AfficheEventAdmin.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
          //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
        // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Eventclient.fxml"));
 

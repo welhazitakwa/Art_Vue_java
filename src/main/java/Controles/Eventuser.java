@@ -53,16 +53,16 @@ public class Eventuser {
             document.addPage(page);
             PDPageContentStream contentStream = new PDPageContentStream(document, page, AppendMode.APPEND, true);
 
-            String imagePath = Eventuser.class.getResource("/image/0.png").getPath();
-            File imageFile = new File(imagePath);
-            PDImageXObject badgeImage = PDImageXObject.createFromFileByContent(imageFile, document);
+//            String imagePath = Eventuser.class.getResource("/image/artVue.png").getPath();
+//            File imageFile = new File(imagePath);
+//            PDImageXObject badgeImage = PDImageXObject.createFromFileByContent(imageFile, document);
             float x = 50;
             float yy = 650;
             float width = 80;
             float height = 80;
 
 
-            contentStream.drawImage(badgeImage, x, yy, width, height);
+           // contentStream.drawImage(badgeImage, x, yy, width, height);
             EventService es = new EventService();
             evenement e=es.getEventById(id);
 
