@@ -1,0 +1,68 @@
+.editbtn{
+     -fx-background-color: transparent;
+
+}
+.suppbtn{
+     -fx-background-color: transparent;
+}
+.addbtn{
+    -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: #a0d9d9;
+    -fx-background-radius: 20px;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #a0d9d9;
+    -fx-background-radius: 20px;
+}
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: #bfbfbf;
+    -fx-background-radius: 20px;
+}
+
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: #bfbfbf;
+    -fx-background-radius: 20px;
+}
+
+
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+    -fx-background-color: #888888;
+}
+
+
+.scroll-pane .scroll-bar .increment-button:hover,
+.scroll-pane .scroll-bar .decrement-button:hover {
+    -fx-background-color: #666666;
+}
+
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #666666;
+}
+
+.table-view {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+}
+
+.table-column {
+    -fx-alignment: center-left; /* Alignement du texte dans les cellules */
+}
+
+.table-column-header {
+    -fx-font-weight: bold; /* Texte en gras dans l'en-tête des colonnes */
+    -fx-background-color: #d0d0d0; /* Couleur de fond de l'en-tête des colonnes */
+}
+
+.table-row-cell {
+    -fx-background-color: #ffffff; /* Couleur de fond des cellules */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #e0e0e0; /* Couleur de fond au survol des cellules */
+}
+

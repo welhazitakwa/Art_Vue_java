@@ -19,11 +19,10 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
 
 
-        //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
+     //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterCategorie.fxml"));
     //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
-  //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+   // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
     // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/ClassementConcours.fxml"));
-
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
@@ -35,6 +34,11 @@ public class Home extends Application {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
 
+
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AfficheEventAdmin.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
+         //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+       // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Eventclient.fxml"));
 
 
         try {
