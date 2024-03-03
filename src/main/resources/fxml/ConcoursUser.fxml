@@ -14,15 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1400.0" stylesheets="/css/concour.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AfficherConcoursUser">
+<AnchorPane prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AfficherConcoursUser">
    <children>
-      <FlowPane fx:id="flowPane" layoutX="243.0" layoutY="210.0" prefHeight="574.0" prefWidth="961.0" style="-fx-border-color: #000000; -fx-background-radius: 7px;" />
-      <Label layoutX="499.0" layoutY="125.0" text="Liste des Concours :" textFill="#8a5b5b">
-         <font>
-            <Font name="Broadway" size="40.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="21.0" prefHeight="77.0" prefWidth="1413.0">
+      <HBox alignment="CENTER_LEFT" layoutX="8.0" layoutY="8.0" prefHeight="77.0" prefWidth="1413.0">
          <children>
             <ImageView fitHeight="77.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -121,6 +115,11 @@
             <Insets left="15.0" />
          </padding>
       </HBox>
-      <Label layoutX="131.0" layoutY="383.0" />
+      <Label layoutX="509.0" layoutY="135.0" text="Liste des Concours :" textFill="#8a5b5b">
+         <font>
+            <Font name="Broadway" size="40.0" />
+         </font>
+      </Label>
+      <FlowPane fx:id="flowPane" layoutX="253.0" layoutY="221.0" prefHeight="573.0" prefWidth="961.0" style="-fx-border-color: #000000; -fx-background-radius: 7px;" />
    </children>
 </AnchorPane>

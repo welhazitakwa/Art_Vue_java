@@ -151,7 +151,7 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageconcoursmenu" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Jeux Concours">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#pageconcoursmenu" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Ajouter un Concours">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -175,7 +175,31 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Statistiques">
+                  <Button fx:id="Statistiques" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#Statistiques" prefHeight="26.0" prefWidth="149.0" stylesheets="@../../css/StyleMenu.css" text="Statistiques Concours">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="9.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/trophy-35-256.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="consulterConcours" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#consulterConcours" prefHeight="35.0" prefWidth="168.0" stylesheets="@../../css/StyleMenu.css" text="Consulter les Concours">
                      <font>
                         <Font size="16.0" />
                      </font>

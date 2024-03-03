@@ -1,7 +1,10 @@
 package Controles;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import models.Concours;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,7 +51,7 @@ public class ModifierConcours {
     }
 
     public void initData(Concours concours) {
-        this.concours = concours;
+       this.concours = concours;
 
         // Initialisez les champs avec les données actuelles du concours
         titreTextField.setText(concours.getTitre());
@@ -72,12 +75,13 @@ public class ModifierConcours {
             ObservableList<OeuvreArt> observableList = FXCollections.observableArrayList(toutesLesOeuvres);
             oeuvresListView.setItems(observableList);
         }
+
     }
 
     // Méthode appelée lorsque l'utilisateur confirme les modifications
     @FXML
     private void confirmerModification() {
-        // Récupérez les nouvelles informations saisies par l'utilisateur
+       // Récupérez les nouvelles informations saisies par l'utilisateur
         String nouveauTitre = titreTextField.getText();
         LocalDate nouvelleDateDebut = dateDebutPicker.getValue();
         LocalDate nouvelleDateFin = dateFinPicker.getValue();
@@ -114,5 +118,6 @@ public class ModifierConcours {
         // ...
         Stage stage = (Stage) confirmerButton.getScene().getWindow();
         stage.close();
+
     }
 }

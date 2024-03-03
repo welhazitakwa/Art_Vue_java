@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Concours;
@@ -77,7 +80,7 @@ public class AfficherConcoursUser {
     }
 
     public void initialiserListeConcours(List<Concours> concoursList) {
-        // Supprimez tous les éléments existants de la liste
+        /*// Supprimez tous les éléments existants de la liste
         flowPane.getChildren().clear(); // Assurez-vous d'avoir une instance de FlowPane
 
         // Configurez le FlowPane
@@ -97,7 +100,40 @@ public class AfficherConcoursUser {
 ;
             // Ajoutez chaque VBox à la FlowPane
             flowPane.getChildren().add(vbox);
-        });
+        });*/
+
+
+            // Supprimez tous les éléments existants de la liste
+            flowPane.getChildren().clear();
+
+            // Configurez le FlowPane
+            flowPane.setAlignment(Pos.CENTER);
+            flowPane.setHgap(20); // Espacement horizontal entre les concours
+            flowPane.setVgap(20); // Espacement vertical entre les concours
+
+            // Ajoutez chaque concours à la liste avec le bouton "Voir Œuvres"
+            concoursList.forEach(concours -> {
+                Button btnVoirOeuvres = new Button("Voir Œuvres");
+                btnVoirOeuvres.setOnAction(event -> afficherOeuvres(concours));
+
+                // Ajoutez un espace entre le bouton et le texte du concours avec une taille de police et un style spécifiques
+                Label concoursLabel = new Label(" " + concours.toString1());
+                concoursLabel.setStyle("-fx-font-size: 16; -fx-font-weight: bold;"); // Ajustez la taille et le style de la police
+
+                HBox concoursBox = new HBox(
+                        concoursLabel,
+                        btnVoirOeuvres
+                );
+                concoursBox.setAlignment(Pos.CENTER); // Ajustez l'alignement selon vos besoins
+
+                // Ajoutez chaque HBox à la FlowPane
+                flowPane.getChildren().add(concoursBox);
+            });
+
+
+
+
     }
+
 
 }

@@ -48,6 +48,7 @@ public class AfficherConcours {
     @FXML
     void initialize() {
 
+
     }
 
 
@@ -60,6 +61,11 @@ public class AfficherConcours {
 
         // Ajoutez chaque concours à la liste avec des boutons associés
         concoursList.forEach(concours -> {
+
+            Label titleLabel = new Label(concours.toString());
+            titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+            titleLabel.setAlignment(Pos.CENTER);
+
             Button btnSupprimer = new Button("Supprimer");
             btnSupprimer.setOnAction(event -> supprimerConcours(concours));
 
@@ -78,11 +84,12 @@ public class AfficherConcours {
             // Créez un HBox pour les boutons avec un espacement
             HBox buttonBox = new HBox(10); // Espacement de 10 pixels
             buttonBox.getChildren().addAll(btnSupprimer, btnModifier, btnVoirOeuvres);
+            buttonBox.setAlignment(Pos.CENTER);
+            // Créez une VBox pour chaque concours avec le titre et les boutons
+            VBox vbox = new VBox(titleLabel, buttonBox);
+            vbox.setAlignment(Pos.CENTER); // Alignez la VBox au centre
+            vbox.setSpacing(10); // Espacement entre le titre et les boutons
 
-            VBox vbox = new VBox(
-                    new Label(concours.toString()),
-                    buttonBox // Ajoutez le HBox à la VBox
-            );
 
             // Ajoutez chaque VBox à la liste
             vboxList.add(vbox);
