@@ -159,18 +159,7 @@ public class AcceuilArtiste {
     }
 
     public void PageventeEnchere(ActionEvent actionEvent) {
-        /*try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/PageVenteEnchere.fxml"));
-            Parent PageExposition = loader.load();
-            // Si nécessaire, vous pouvez également obtenir le contrôleur de la page de catégorie
-            PageExposition expositionController = loader.getController();
 
-            // Effacez le contenu existant et affichez la page de catégorie
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(PageExposition);
-        } catch (IOException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/PageVenteEnchere.fxml"));
