@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AdminDashboard">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" spacing="5.0" stylesheets="@../../css/StyleMenu.css" BorderPane.alignment="CENTER">
@@ -201,6 +200,30 @@
                      </HBox.margin>
                   </ImageView>
                   <Button fx:id="consulterConcours" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#consulterConcours" prefHeight="35.0" prefWidth="168.0" stylesheets="@../../css/StyleMenu.css" text="Consulter les Concours">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="loginBtn" />
+                        <String fx:value="Btn" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="9.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/panier.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="consulterPanier" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#consulterPanier" prefHeight="35.0" prefWidth="168.0" stylesheets="@../../css/StyleMenu.css" text="Paniers">
                      <font>
                         <Font size="16.0" />
                      </font>

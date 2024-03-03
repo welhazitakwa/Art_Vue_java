@@ -307,6 +307,18 @@ public class AdminDashboard implements Initializable {
             }
         }
 
+    public void consulterPanier(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PanierAdmin.fxml"));
+            Parent PanierPage = loader.load();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(PanierPage);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }
+}
 
 
