@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class  Modifierevent {
+public class Modifierevent {
     @FXML
     private Label ccnom;
     @FXML

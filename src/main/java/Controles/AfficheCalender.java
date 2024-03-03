@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class  AfficheCalender implements Initializable {
+public class AfficheCalender implements Initializable {
     @FXML
     private Button ajtbtn;
     @FXML

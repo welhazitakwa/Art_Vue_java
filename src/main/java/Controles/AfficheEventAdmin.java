@@ -21,7 +21,7 @@ public class AfficheEventAdmin implements Initializable {
 
 
     public void  gotocalendrier(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AfficheCalender.fxml"));
+         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AfficheCalender.fxml"));
         Parent root=loader.load();
         vbox.getScene().setRoot(root);
     }

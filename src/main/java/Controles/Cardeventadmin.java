@@ -14,7 +14,7 @@ import org.controlsfx.control.Notifications;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class  Cardeventadmin {
+public class Cardeventadmin {
     @FXML
     private Label nomevent;
     @FXML

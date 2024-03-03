@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane  prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #e5e5e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Addevent">
+<AnchorPane prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #e5e5e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Addevent">
    <children>
       <Label layoutX="377.0" layoutY="100.0" prefHeight="90.0" prefWidth="646.0" text="Ajouter un Evenement" textFill="#50383a">
          <font>

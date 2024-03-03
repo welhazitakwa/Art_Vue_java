@@ -4,7 +4,7 @@ package models;
 
 import java.util.Date;
 
-public class  Calendar {
+public class Calendar {
     
         private int id;
 

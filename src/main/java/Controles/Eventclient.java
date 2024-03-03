@@ -28,6 +28,10 @@ public class Eventclient implements Initializable {
     @FXML
     private TextField rechercher;
     private int idu=13;
+    public void setParametre(int idu) {
+        this.idu = idu;
+        System.out.println("ID de l'client connecté page evenement : " + idu);
+    }
     public void ok(ActionEvent actionEvent) throws SQLException, IOException {
 
         String text =rechercher.getText();
