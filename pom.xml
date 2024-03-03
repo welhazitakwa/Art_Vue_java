@@ -46,6 +46,12 @@
             <version>2.0.27</version> <!-- Utilisez la version la plus récente -->
         </dependency>
 
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
 
     </dependencies>
 

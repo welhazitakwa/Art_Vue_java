@@ -61,7 +61,10 @@ public class ForgetPassword {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OTP.fxml"));
                         Parent registerParent = loader.load();
-                          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        OTP otp = loader.getController();
+                        otp.setParametre(EmailField.getText());
+                        otp.initialize();
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(registerParent));
                     } catch (IOException e) {
                         e.printStackTrace();

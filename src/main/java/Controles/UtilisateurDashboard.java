@@ -177,7 +177,7 @@ public class UtilisateurDashboard implements Initializable {
         //List<Utilisateur> userList = null;// = List.of("Utilisateur 1", "Utilisateur 2", "Utilisateur 3");
         //generatePDF(userList, "C:\\Users\\Fatma Ouelhazi\\Downloads\\output.pdf");
         Alert dialogC = new Alert(Alert.AlertType.INFORMATION);
-        dialogC.setTitle(" Confirmation de suppression ");
+        dialogC.setTitle(" Confirmation de téléchargement ");
         dialogC.setHeaderText("Votre PDF est télécharger");
         dialogC.setContentText("Vous pouvez Consulter vos téléchargements");
         dialogC.show();
