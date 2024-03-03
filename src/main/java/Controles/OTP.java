@@ -1,14 +1,20 @@
 package Controles;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.mail.Message;
 import javax.mail.Session;
@@ -40,7 +46,17 @@ public class OTP {
     @FXML
     void valider(ActionEvent event) {
             if(hide.getText().equals(verifOTP.getText())){
-                errorLabel.setText("s7ii7 rw ");
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RecupMdp.fxml"));
+                    Parent registerParent = loader.load();
+                    RecupMdp recupMdp = loader.getController();
+                    recupMdp.setParametre(mail); // Passage de l'ID au contrôleur AcceuilArtiste
+                    recupMdp.initialize();
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(registerParent));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }else {
                 errorLabel.setText("OTP incorrecte ! ");
             }
@@ -48,6 +64,8 @@ public class OTP {
     private String mail;
     public void setParametre(String text) {
         mail = text ;
+        System.out.println("mail fel OTP mdp : " + mail);
+
     }
 
     public void sendOTP() {
@@ -105,7 +123,8 @@ public class OTP {
         @FXML
         void initialize () {
             Random();
-            System.out.println("dfdfdfdfdfdf"+mail);
+            System.out.println(hide.getText());
+            System.out.println("mail fel otp 2 initialise : "+mail);
            // sendOTP();
     }
 
