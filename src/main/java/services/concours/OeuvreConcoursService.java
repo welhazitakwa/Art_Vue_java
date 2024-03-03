@@ -238,4 +238,27 @@ private voteServices voteService=new voteServices();  // Assurez-vous que la cla
 
         return null; // Ou lancez une exception si l'email n'est pas trouvé
     }
+    public int getArtistePhoneNumber(int oeuvreId) {
+        // Préparez la requête SQL
+        String sql = "SELECT u.numTel FROM utilisateur u JOIN oeuvreart o ON u.id = o.id_artiste WHERE o.idOeuvreArt = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            // Définissez les paramètres de la requête
+            preparedStatement.setInt(1, oeuvreId);
+
+            // Exécutez la requête
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Traitez les résultats
+            if (resultSet.next()) {
+                return resultSet.getInt("numTel");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérer les exceptions correctement dans une application réelle
+        }
+
+        return 0; // Ou lancez une exception si le numéro de téléphone n'est pas trouvé
+    }
+
+
 }

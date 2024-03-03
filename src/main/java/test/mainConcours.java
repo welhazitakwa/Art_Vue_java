@@ -132,7 +132,7 @@ public class mainConcours {
 
         // Appelez la méthode getArtisteEmail avec un exemple d'ID d'œuvre
         int exempleOeuvreId = 15; // Remplacez par l'ID réel que vous souhaitez tester
-        String emailArtiste = oeuvreConcoursService.getArtisteEmail(exempleOeuvreId);
+        int emailArtiste = oeuvreConcoursService.getArtistePhoneNumber(exempleOeuvreId);
 
         // Affichez le résultat dans la console
         System.out.println("Email de l'artiste : " + emailArtiste);
