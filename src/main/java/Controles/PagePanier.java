@@ -13,20 +13,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import models.Commande;
-import models.OeuvreArt;
-import models.Panier;
-import models.panieroeuvre;
+import models.*;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.HtmlEmail;
 import services.Panier.PanierService;
 import services.panieroeuvre.PanieroeuvreService;
 
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
@@ -34,6 +34,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.TextInputDialog;
 import services.Commande.CommandeService;
+import org.apache.commons.mail.EmailException;
+import services.utilisateur.UtilisateurService;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 public class PagePanier implements Initializable {
     @FXML
     private ListView<OeuvreArt> listeOeuvresPanier;
@@ -50,13 +60,16 @@ public class PagePanier implements Initializable {
     private Button trierParPrixButton;
     private CommandeService commandeService;
     private PanierService panierService = new PanierService();
-private int idClient;
+    private UtilisateurService utilisateurService = new UtilisateurService();
+    private int idClient;
+
     public void setParametre(int idClient) {
         this.idClient = idClient;
         System.out.println("ID de l'client connecté page panier : " + idClient);
         chargerOeuvresDuPanier();
         afficherMontantTotal();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         panieroeuvreService = new PanieroeuvreService();
@@ -192,15 +205,15 @@ private int idClient;
             int idPanier = panierService.getPanierIdByClientId(idClient);// Remplacez 19 par l'ID du panier actuel
             float montantTotal = panieroeuvreService.calculerMontantTotal(idPanier);
             montantTotalLabel.setText(String.format("%.2f DT", montantTotal));
-            if(montantTotal==0)
-            { BtnCommande.setVisible(false);}
-            else {BtnCommande.setVisible(true);}
+            if (montantTotal == 0) {
+                BtnCommande.setVisible(false);
+            } else {
+                BtnCommande.setVisible(true);
+            }
         } catch (SQLException e) {
             e.printStackTrace(); // Gérer les erreurs de récupération du montant total
         }
     }
-
-
 
 
     @FXML
@@ -243,6 +256,7 @@ private int idClient;
             e.printStackTrace();
         }
     }
+
     @FXML
 
     public void ajouter_commande(ActionEvent actionEvent) {
@@ -253,8 +267,16 @@ private int idClient;
             nouvelleCommande.setDate(new Date());
             Panier panier = panierService.getPanierById(idPanier);
             commandeService.creerCommande(nouvelleCommande, panier);
+            // Envoyer un e-mail de confirmation de commande
+            Utilisateur client = utilisateurService.getUtilisateurById(idClient);
 
+            // Récupérer l'adresse e-mail du client
+            String recipientEmail = client.getEmail();
+            String subject = "Confirmation de commande";
+            String message = "Votre commande a été créée avec succès et en cours de traitement .";
 
+            sendEmail(recipientEmail, subject, message);
+            System.out.println("envoyé avec succes");
 
             // Afficher une alerte de succès si la commande est créée avec succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -262,6 +284,7 @@ private int idClient;
             alert.setHeaderText(null);
             alert.setContentText("La commande a été créée avec succès.");
             alert.showAndWait();
+
 
             // Cacher le bouton "Commander"
             BtnCommande.setVisible(false);
@@ -295,14 +318,37 @@ private int idClient;
             e.printStackTrace();
         }
     }
+
     @FXML
     void trierParPrix(ActionEvent event) {
-        List<OeuvreArt> oeuvres =   listeOeuvresPanier.getItems();
+        List<OeuvreArt> oeuvres = listeOeuvresPanier.getItems();
         oeuvres.sort(Comparator.comparingDouble(OeuvreArt::getPrixVente));
         listeOeuvresPanier.setItems(FXCollections.observableArrayList(oeuvres));
         listeOeuvresPanier.refresh();
         System.out.println("tri fait");
     }
+    // Méthode pour envoyer l'e-mail
+    public void sendEmail(String recipientEmail, String subject, String message) {
+        try {
 
+            Email email = new HtmlEmail();
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(587); // Port SMTP
+            email.setStartTLSEnabled(true); // Utiliser STARTTLS
+            email.setAuthenticator(new DefaultAuthenticator("oumeyma.benkram@esprit.tn", "211JFT4900"));
+            //email.setSSLOnConnect(true); // Utiliser SSL
+            email.setFrom("oumeyma.benkram@esprit.tn");
+            email.setSubject(subject);
+            email.setMsg(message);
+            email.addTo(recipientEmail);
+            email.send();
+            System.out.println("Email sent successfully.");
+        } catch (EmailException e) {
+            System.out.println("Error sending email: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 }
+
+

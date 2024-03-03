@@ -130,6 +130,7 @@ public class PageOeuvre implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/DetailsOeuvreClient.fxml"));
                     Parent detailsOeuvre = loader.load();
                     DetailsOeuvreClient controller = loader.getController();
+                    controller.setParametre(idClient);
                     controller.initData(oeuvre);
                     Scene currentScene = ((Node) e.getSource()).getScene();
                     currentScene.setRoot(detailsOeuvre);
@@ -302,6 +303,19 @@ public class PageOeuvre implements Initializable {
             Apropos apropos = loader.getController();
             apropos.setParametre(idClient);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void to_Page_Panier(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanier.fxml"));
+            Parent registerParent = loader.load();
+            Acceuil acceuil = loader.getController();
+            acceuil.setParametre(idClient);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(registerParent));
         } catch (IOException e) {
             e.printStackTrace();

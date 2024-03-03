@@ -92,7 +92,7 @@
                                 <Image url="@../../image/search-934-128.png" />
                             </image>
                         </ImageView>
-                        <TextField fx:id="idRecherche" onAction="#Rechercher" prefHeight="26.0" prefWidth="256.0" promptText="Rechercher Artiste" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
+                        <TextField fx:id="idRecherche" prefHeight="26.0" prefWidth="256.0" promptText="Rechercher Artiste" styleClass="transparent" stylesheets="@../../css/StyleMenu.css" />
                     </children>
                     <padding>
                         <Insets right="10.0" />
