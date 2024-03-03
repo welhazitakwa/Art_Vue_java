@@ -21,94 +21,52 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class PageOffreEnchere implements Initializable {
-@FXML
-    private TableView<OffreEnchere> offreEnchere_tableView;
 
-    @FXML
-    private TableColumn<OffreEnchere,Integer> idO_tableO;
+        @FXML
+        private TextField montantTextField;
 
-    @FXML
-    private TextField idO_textFile;
 
-    @FXML
-    private TableColumn<OffreEnchere, Date> DateO_tableO;
 
-    @FXML
-    private DatePicker DateO_textFile;
-
-    @FXML
-    private TableColumn<OffreEnchere, Float> montantO_tableO;
-
-    @FXML
-    private TextField montantO_textFile;
+    private int venteEncheresId;
 
     private OffreEnchereService offreEnchereService;
-    public void ajouter_exposition(ActionEvent actionEvent) throws SQLException {
-        OffreEnchereService cs = new OffreEnchereService();
-        LocalDate date = DateO_textFile.getValue();
-        // Convertir en java.sql.Date si nécessaire
-        Date dateSQL = Date.valueOf(date);
-        cs.AjouterOffreEnchere(new OffreEnchere(Integer.parseInt(idO_textFile.getText()),Float.parseFloat(montantO_textFile.getText()),dateSQL));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("OffreEnchere ajoutée");
-        alert.setContentText("OffreEnchere ajoutée !");
-        alert.show();
-        idO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,Integer>("id_offreEncheres"));
-        montantO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,Float>("Montant"));
-        DateO_tableO.setCellValueFactory(new PropertyValueFactory<OffreEnchere,java.sql.Date>("Date"));
-        ObservableList<OffreEnchere> list = FXCollections.observableArrayList();
-        chargerDonnees();
-        /*list.addAll(cs.AfficherExposition());
-        exposition_tableView.setItems(list);
-        exposition_tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                Exposition selectedUser = exposition_tableView.getSelectionModel().getSelectedItem();
-                idE_textFile.setText(String.valueOf(selectedUser.getId()));
-                NomE_textFile.setText(selectedUser.getNom());
-                DateDebutE_textFile.setValue(selectedUser.getDateDebut());
-            }
-        });*/
+
+    public void initData(int venteEncheresId) {
+        this.venteEncheresId = venteEncheresId;
+        System.out.println("ID de la vente aux enchères : " + venteEncheresId);
+        // Initialisez la date avec la date actuelle
+       // dateLabel.setText(LocalDate.now().toString());
     }
+
     @FXML
-    public void initialize(URL location, ResourceBundle resources){
-        System.out.println("Méthode initialize appelée.");
-        offreEnchereService = new OffreEnchereService();
-        initialiserTableView();
-        chargerDonnees();
-    }
-
-    public void modifier_exposition(ActionEvent actionEvent) {
-    }
-
-    public void supprimer_exposition(ActionEvent actionEvent) {
-    }
-
-    private void initialiserTableView() {
-        idO_tableO.setCellValueFactory(new PropertyValueFactory<>("id"));
-        montantO_tableO.setCellValueFactory(new PropertyValueFactory<>("montant"));
-        DateO_tableO.setCellValueFactory(new PropertyValueFactory<>("date"));
-    }
-
-    private void chargerDonnees() {
-       /* try {
-            List<Exposition> expositions = expositionService.AfficherExposition();
-            ObservableList<Exposition> observableList = FXCollections.observableArrayList(expositions);
-            exposition_tableView.setItems(observableList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-
+    void submitOffer(ActionEvent event) {
+        String montantText = montantTextField.getText();
+        // Vérifiez que le montant est valide
         try {
-            if (offreEnchereService != null) { // Vérifier si categorieService est initialisé
-                List<OffreEnchere> offreEnchere = offreEnchereService.AfficherOffreEnchere();
-                ObservableList<OffreEnchere> offreEnchereObservableList = FXCollections.observableArrayList(offreEnchere);
-                offreEnchere_tableView.setItems(offreEnchereObservableList);
-                System.out.println("OffreEnchere affichées avec succès : " + offreEnchere.size());
-            } else {
-                System.err.println("OffreEnchereService n'est pas initialisé.");
-            }
+            float montant = Float.parseFloat(montantText);
+            System.out.println("ID de la vente aux enchères : " + venteEncheresId);
+            // Utilisez le service OffreEnchereService pour ajouter l'offre
+            offreEnchereService = new OffreEnchereService();
+            OffreEnchere offreEnchere = new OffreEnchere();
+            offreEnchere.setId_VenteEnchere(venteEncheresId);
+            System.out.println("ID de la vente aux enchères : " + offreEnchere.getId_VenteEnchere());
+            offreEnchere.setMontant(montant);
+            offreEnchere.setDate(Date.valueOf(LocalDate.now()));
+            offreEnchereService.ajouterOffreEnchere(offreEnchere);
+            // Fermez la fenêtre modale après soumission de l'offre
+            montantTextField.getScene().getWindow().hide();
+        } catch (NumberFormatException e) {
+            // Gérez l'erreur si le montant n'est pas un nombre valide
+            // Affichez un message d'erreur à l'utilisateur par exemple
+            System.out.println("Montant invalide : " + montantText);
         } catch (SQLException e) {
+            // Gérez les erreurs liées à la base de données
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

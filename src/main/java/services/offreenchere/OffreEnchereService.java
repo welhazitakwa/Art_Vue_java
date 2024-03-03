@@ -62,4 +62,34 @@ public class OffreEnchereService implements IOffreEnchere<OffreEnchere> {
         }
         return listeOffreEnchere;
     }
+
+    public void ajouterOffreEnchere(OffreEnchere o) throws SQLException {
+        String sql = "INSERT INTO OffreEnchere (id_VenteEnchere, montant, date) VALUES (?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, o.getId_VenteEnchere());
+            preparedStatement.setDouble(2, o.getMontant());
+            preparedStatement.setDate(3, new java.sql.Date(o.getDate().getTime()));
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public List<OffreEnchere> getOffresEncheresForVenteEncheres(int idVenteEnchere) throws SQLException {
+        String sql = "SELECT * FROM OffreEnchere WHERE id_VenteEnchere = ?";
+        List<OffreEnchere> listeOffreEnchere = new ArrayList<>();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, idVenteEnchere);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    OffreEnchere offreEnchere = new OffreEnchere();
+                    offreEnchere.setId(rs.getInt("id"));
+                    offreEnchere.setMontant(rs.getFloat("montant"));
+                    offreEnchere.setDate(rs.getDate("date"));
+                    listeOffreEnchere.add(offreEnchere);
+                }
+            }
+        }
+        return listeOffreEnchere;
+    }
+
 }
