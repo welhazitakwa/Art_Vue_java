@@ -91,9 +91,9 @@ public class PanierService implements Ipanier<Panier> {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
-Panier panier = new Panier();
-panier.setId(rs.getInt("id"));
-panier.setDateAjout(rs.getDate("DateAjout"));
+                Panier panier = new Panier();
+                panier.setId(rs.getInt("id"));
+                panier.setDateAjout(rs.getDate("DateAjout"));
                 Utilisateur client = new Utilisateur();
                 client.setId(rs.getInt("clientId"));
                 client.setNom(rs.getString("clientNom"));
@@ -145,6 +145,24 @@ panier.setDateAjout(rs.getDate("DateAjout"));
         }
         return clients;
     }
+    public int getPanierIdByClientId(int clientId) {
+        String sql = "SELECT id FROM panier WHERE client = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, clientId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
+            } else {
+                // Aucun panier trouvé pour cet ID client
+                return -1;
+            }
+        } catch (SQLException e) {
+            // Gérer les exceptions SQL
+            System.err.println("Erreur lors de la récupération de l'ID du panier pour le client " + clientId + ": " + e.getMessage());
+            return -1; // Par exemple, renvoyer -1 en cas d'erreur
+        }
+    }
+
 }
 
 
