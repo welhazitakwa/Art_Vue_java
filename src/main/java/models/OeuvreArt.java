@@ -184,4 +184,5 @@ public class OeuvreArt {
                 ", artiste='" + artiste + '\'' +
                 '}';
     }
+
 }

@@ -7,6 +7,7 @@ import java.net.URL;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,6 +46,14 @@ public class AfficherOeuvreConcoursUser {
     @FXML
     public void initialize() {
         assert vboxDetails != null : "fx:id=\"vboxDetails\" was not injected: check your FXML file 'AfficherOeuvreUser.fxml'.";
+        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'AfficherOeuvreUser.fxml'.";
+
+        // Configurez la ScrollPane pour centrer le contenu
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
+
+        // Configurez le VBox pour centrer le contenu vertical et horizontal
+        vboxDetails.setAlignment(Pos.CENTER);
     }
 
     private RatingBar createRatingBar(OeuvreArt oeuvre) {
