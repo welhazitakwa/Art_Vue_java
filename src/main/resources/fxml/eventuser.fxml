@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #e5e5e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.Eventuser">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/0.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="384.0" layoutY="94.0" text="les utilisateurs inscrits" textFill="#50383a">
+         <font>
+            <Font name="System Bold" size="61.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="372.0" layoutY="299.0" prefHeight="200.0" prefWidth="657.0" stylesheets="@/css/style.css">
+        <columns>
+          <TableColumn fx:id="numero" prefWidth="75.0" text="Numero" />
+          <TableColumn fx:id="nom" prefWidth="580.7998962402344" text="Nom d'utilisateur" />
+        </columns>
+      </TableView>
+      <Button fx:id="pdfbtn" layoutX="650.0" layoutY="660.0" mnemonicParsing="false" onAction="#pdf" prefHeight="31.0" prefWidth="100.0" style="-fx-background-radius: 30; -fx-background-color: #b0958c;" text="Voir plus" textFill="#50383a">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -186,4 +186,32 @@ public  class voteServices implements Ivote <Vote>{
             return false;
         }
     }
+    /*________________________________________*/
+    public double getNoteMoyenneOeuvre(int oeuvreId, int concoursId) {
+        String query = "SELECT note FROM vote WHERE oeuvre = ? AND concours = ?";
+        int totalVotes = 0;
+        int sumOfVotes = 0;
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, oeuvreId);
+            statement.setInt(2, concoursId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    int note = resultSet.getInt("note");
+                    sumOfVotes += note;
+                    totalVotes++;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+        }
+
+        // Assurez-vous de ne pas diviser par zéro
+        if (totalVotes > 0) {
+            return (double) sumOfVotes / totalVotes;
+        } else {
+            return 0.0; // Ou une autre valeur par défaut
+        }
+    }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: #e5e5e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.AfficheEventAdmin">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/0.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="474.0" layoutY="115.0" text="Les Evenements" textFill="#50383a">
+         <font>
+            <Font name="System Bold" size="61.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="235.0" layoutY="243.0" prefHeight="434.0" prefWidth="958.0" stylesheets="@/css/style.css">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="4000.0" prefWidth="950.0">
+               <children>
+                  <VBox fx:id="vbox" layoutX="174.0" layoutY="14.0" prefHeight="4000.0" prefWidth="558.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="btncalen" layoutX="76.0" layoutY="447.0" mnemonicParsing="false" onAction="#gotocalendrier" style="-fx-background-color: #557178; -fx-background-radius: 30;" text="Voir Les Calendrier" textFill="#a1d9d8" />
+   </children>
+</AnchorPane>

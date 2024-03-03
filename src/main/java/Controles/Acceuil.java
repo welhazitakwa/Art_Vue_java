@@ -17,10 +17,9 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.Concours;
 import services.concours.ConcoursService;
+
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Acceuil {
 
@@ -28,6 +27,7 @@ public class Acceuil {
     private Button BtnToOeuvreArt;
 
     private int idClient ;
+    int idu;
     @FXML
     private ComboBox<String> comboBoxOptions;
 
@@ -59,7 +59,7 @@ public class Acceuil {
     void tocompetition(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AfficherConcoursUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConcoursUser.fxml"));
             Parent registerParent = loader.load();
             AfficherConcoursUser page = loader.getController();
             page.setParametre(idClient);
@@ -80,6 +80,22 @@ public class Acceuil {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void event(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/eventclient.fxml"));
+            Parent Eventclient = loader.load();
+            Eventclient eventclient = loader.getController();
+            eventclient.setParametre(idu);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(Eventclient));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @FXML
     void initialize() {
@@ -201,4 +217,18 @@ public class Acceuil {
             System.out.println("Le ComboBox n'est pas correctement initialisé ou aucune valeur n'est sélectionnée.");
         }
     }
+    @FXML
+    public void to_Page_Panier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PagePanier.fxml"));
+            Parent registerParent = loader.load();
+            PagePanier pagePanier = loader.getController();
+            pagePanier.setParametre(idClient);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(registerParent));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

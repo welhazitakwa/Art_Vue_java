@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-radius: 30; -fx-background-color: #e4e4e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.CardEventClient">
+    <children>
+        <AnchorPane layoutX="-1.0" layoutY="1.0" prefHeight="300.0" prefWidth="194.0" style="-fx-background-radius: 30; -fx-background-color: #d9cfc6;">
+            <children>
+                <Label layoutX="23.0" layoutY="39.0" text="Nom d'evenement" textFill="#352d27">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nomevent" layoutX="28.0" layoutY="81.0" prefHeight="18.0" prefWidth="137.0" textFill="#8c8d8c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="63.0" layoutY="137.0" text="capacité" textFill="#352d27">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="nomcalender" layoutX="28.0" layoutY="175.0" prefHeight="18.0" prefWidth="137.0" textFill="#8c8d8c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="80.0" layoutY="214.0" text="Lieu" textFill="#352d27">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lieu" layoutX="28.0" layoutY="250.0" prefHeight="18.0" prefWidth="137.0" textFill="#8c8d8c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            <Label fx:id="capa" layoutX="28.0" layoutY="175.0" prefHeight="18.0" prefWidth="137.0" textFill="#8c8d8c">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="225.0" layoutY="28.0" prefHeight="204.0" prefWidth="330.0" style="-fx-background-radius: 30; -fx-background-color: #f8f8f9;">
+            <children>
+                <Label layoutX="37.0" layoutY="37.0" text="Date" textFill="#bcbdbd">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="date" layoutX="37.0" layoutY="69.0" prefHeight="18.0" prefWidth="90.0" textFill="#bcbdbd" />
+                <Label layoutX="235.0" layoutY="37.0" text="Prix" textFill="#bcbdbd">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="prix" layoutX="225.0" layoutY="69.0" prefHeight="18.0" prefWidth="90.0" textFill="#bcbdbd" />
+                <Label layoutX="122.0" layoutY="92.0" text="Place disponible" textFill="#bcbdbd">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="place" layoutX="127.0" layoutY="123.0" prefHeight="18.0" prefWidth="90.0" textFill="#bcbdbd" />
+            </children>
+        </AnchorPane>
+      <ImageView fitHeight="41.0" fitWidth="49.0" layoutX="370.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/png-clipart-computer-icons-add-button-logo-number-thumbnail-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btninscrit" layoutX="335.0" layoutY="232.0" mnemonicParsing="false" onAction="#inscrit" prefHeight="63.0" prefWidth="112.0" style="-fx-background-color: transparent;" />
+    </children>
+</AnchorPane>

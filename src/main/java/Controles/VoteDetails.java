@@ -81,32 +81,28 @@ public class VoteDetails {
 
             // Ajoutez le code pour charger et afficher l'image de l'œuvre
             String imagePath = vote.getImageOeuvre();
-            File file = new File(imagePath);
-            URL imageUrl;
-            try {
-                imageUrl = file.toURI().toURL();
-                ImageView imageView = new ImageView(new Image(imageUrl.toString()));
-                imageView.setFitWidth(300);
-                imageView.setFitHeight(300);
-              //  imageView.setPreserveRatio(true);
+           // File file = new File(imagePath);
+           // URL imageUrl;
+            //   imageUrl = file.toURI().toURL();
+            ImageView imageView = new ImageView(new Image(imagePath.toString()));
+            imageView.setFitWidth(300);
+            imageView.setFitHeight(300);
+            //  imageView.setPreserveRatio(true);
 
-                // Ajoutez les éléments au GridPane
-                gridPane.add(labeltitreconcours, 0, 0);
-                gridPane.add(labelTitre, 0, 1);
-                gridPane.add(labelNote, 0, 2);
-                gridPane.add(imageView, 0, 3, 1, 1);
+            // Ajoutez les éléments au GridPane
+            gridPane.add(labeltitreconcours, 0, 0);
+            gridPane.add(labelTitre, 0, 1);
+            gridPane.add(labelNote, 0, 2);
+            gridPane.add(imageView, 0, 3, 1, 1);
 
-                // Centrez les éléments dans le GridPane
-                GridPane.setHalignment(labeltitreconcours, HPos.CENTER);
-                GridPane.setHalignment(labelTitre, HPos.CENTER);
-                GridPane.setHalignment(labelNote, HPos.CENTER);
-                GridPane.setHalignment(imageView, HPos.CENTER);
+            // Centrez les éléments dans le GridPane
+            GridPane.setHalignment(labeltitreconcours, HPos.CENTER);
+            GridPane.setHalignment(labelTitre, HPos.CENTER);
+            GridPane.setHalignment(labelNote, HPos.CENTER);
+            GridPane.setHalignment(imageView, HPos.CENTER);
 
-                // Ajoutez le GridPane et les boutons au VBox
-                voteBox.getChildren().addAll(gridPane, createButtonBar(vote));
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+            // Ajoutez le GridPane et les boutons au VBox
+            voteBox.getChildren().addAll(gridPane, createButtonBar(vote));
 
             return voteBox;
         }

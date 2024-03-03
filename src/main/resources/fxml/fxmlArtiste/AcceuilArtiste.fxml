@@ -163,7 +163,7 @@
                               </HBox>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="105.0" styleClass="DecBtn" stylesheets="@../../css/styleDashClient.css" text="Voir plus">
+                                    <Button mnemonicParsing="false" onAction="#ToApropos" prefHeight="34.0" prefWidth="105.0" styleClass="DecBtn" stylesheets="@../../css/styleDashClient.css" text="Voir plus">
                                        <HBox.margin>
                                           <Insets left="150.0" />
                                        </HBox.margin>
