@@ -32,6 +32,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -71,6 +72,8 @@ public class PageVenteEnchere implements Initializable {
 
     @FXML
     private TextField StatueV_textFile;
+    @FXML
+    private DatePicker Daterecherche;
     private VenteEncheresService venteEncheresService;
     private int idArtiste;
     @FXML
@@ -151,6 +154,8 @@ public class PageVenteEnchere implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        Exposition tousExposition = new Exposition(-1, "Tous", Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now()), 0);
+        expositions.add(0, tousExposition);
         expositionComboBox.setItems(FXCollections.observableArrayList(expositions));
         // Définir un convertisseur pour le ComboBox
         expositionComboBox.setConverter(new StringConverter<Exposition>() {
@@ -184,10 +189,6 @@ public class PageVenteEnchere implements Initializable {
         expositionComboBox.setItems(FXCollections.observableArrayList(expositions));
     }
 
-    public void modifier_exposition(ActionEvent actionEvent) {
-    }
-
-
 
     private void initialiserTableView() {
         idV_tableV.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -220,28 +221,29 @@ public class PageVenteEnchere implements Initializable {
 
                 editButton.setOnAction(event -> {
                     VenteEncheres venteEnchere = getTableView().getItems().get(getIndex());
+                    System.out.println("Données de la ligne : " + venteEnchere);
                     try {
-                        // Charger la nouvelle fenêtre FXML de modification
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/ModificationController.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/modificationController.fxml"));
                         Parent root = loader.load();
-
-                        // Récupérer le contrôleur de la fenêtre de modification
                         ModificationController controller = loader.getController();
-
-                        // Passer la vente aux enchères sélectionnée au contrôleur de modification
                         controller.setVenteEnchere(venteEnchere);
-
-                        // Afficher la fenêtre de modification
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
-                        stage.show();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                        stage.showAndWait();
+                        // Mettre à jour la table après la modification de la vente aux enchères
+                        Exposition expositionSelectionnee = expositionComboBox.getValue();
+                        if (expositionSelectionnee != null) {
+                            int idExpositionSelectionnee = expositionSelectionnee.getId();
+                            chargerDonnees(idExpositionSelectionnee);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                     // Ajoutez ici le code pour modifier la VenteEnchere
                     System.out.println("Modifier VenteEnchere : " + venteEnchere);
                 });
             }
+
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -264,18 +266,6 @@ public class PageVenteEnchere implements Initializable {
     private void chargerDonnees(int idExposition) {
 
 
-       /* try {
-            if (venteEncheresService != null) { // Vérifier si categorieService est initialisé
-                List<VenteEncheres> venteEncheres = venteEncheresService.AfficherVenteEncheres();
-                ObservableList<VenteEncheres> venteEncheresObservableList = FXCollections.observableArrayList(venteEncheres);
-                venteEnchere_tableView.setItems(venteEncheresObservableList);
-                System.out.println("VenteEncheres affichées avec succès : " + venteEncheres.size());
-            } else {
-                System.err.println("VenteEncheresService n'est pas initialisé.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
         try {
             if (venteEncheresService != null) { // Vérifier si venteEncheresService est initialisé
                 List<VenteEncheres> venteEncheres = venteEncheresService.AfficherVenteEncheresParExposition(idExposition);
@@ -289,14 +279,75 @@ public class PageVenteEnchere implements Initializable {
             e.printStackTrace();
         }
     }
+    private void chargerDonneesPourTous() {
+        try {
+            if (venteEncheresService != null) {
+                List<VenteEncheres> venteEncheres = venteEncheresService.AfficherVenteEncheres();
+                ObservableList<VenteEncheres> venteEncheresObservableList = FXCollections.observableArrayList(venteEncheres);
+                venteEnchere_tableView.setItems(venteEncheresObservableList);
+                System.out.println("VenteEncheres affichées avec succès : " + venteEncheres.size());
+            } else {
+                System.err.println("VenteEncheresService n'est pas initialisé.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void handleExpositionSelection(ActionEvent actionEvent) {
-        Exposition expositionSelectionnee = expositionComboBox.getValue();
+       /* Exposition expositionSelectionnee = expositionComboBox.getValue();
         if (expositionSelectionnee != null) {
+            int idExpositionSelectionnee = expositionSelectionnee.getId();
+            chargerDonnees(idExpositionSelectionnee);
+        }*/
+        Exposition expositionSelectionnee = expositionComboBox.getValue();
+        if (expositionSelectionnee != null && expositionSelectionnee.getId() == -1) {
+            // If "Tous" is selected, load all auctions
+            chargerDonneesPourTous();
+        } else if (expositionSelectionnee != null) {
             int idExpositionSelectionnee = expositionSelectionnee.getId();
             chargerDonnees(idExpositionSelectionnee);
         }
 
+    }
+    public void searchAuctions(ActionEvent actionEvent) {
+        Date selectedDate = Date.valueOf(Daterecherche.getValue());
+
+        if (selectedDate != null) {
+            filterAuctionsByDate(selectedDate);
+        } else {
+            // Show an alert or error message indicating that a date is required
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez sélectionner une date.");
+            alert.show();
+        }
+    }
+    private void filterAuctionsByDate(Date selectedDate) {
+        try {
+            if (venteEncheresService != null) {
+                List<VenteEncheres> toutesLesVentes = venteEncheresService.AfficherVenteEncheres();
+                List<VenteEncheres> ventesFiltrees = new ArrayList<>();
+
+                for (VenteEncheres vente : toutesLesVentes) {
+                    Date dateDebut = (Date) vente.getDateDebut();
+                    Date dateFin = (Date) vente.getDateFin();
+
+                    if ((selectedDate.equals(dateDebut) || selectedDate.after(dateDebut)) &&
+                            (selectedDate.equals(dateFin) || selectedDate.before(dateFin))) {
+                        ventesFiltrees.add(vente);
+                    }
+                }
+
+                ObservableList<VenteEncheres> listeObservableVentes = FXCollections.observableArrayList(ventesFiltrees);
+                venteEnchere_tableView.setItems(listeObservableVentes);
+                System.out.println("Ventes filtrées par la date : " + ventesFiltrees.size());
+            } else {
+                System.err.println("Service de ventes aux enchères non initialisé.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void To_Accueil(ActionEvent actionEvent) {
@@ -431,4 +482,6 @@ public class PageVenteEnchere implements Initializable {
             System.out.println("Le ComboBox n'est pas correctement initialisé ou aucune valeur n'est sélectionnée.");
         }
     }
+
+
 }

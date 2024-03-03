@@ -142,7 +142,7 @@
                                     <Insets left="100.0" top="30.0" />
                                  </VBox.margin>
                               </Text>
-                              <Label fx:id="parametreField" />
+                              <Label fx:id="parametreField" prefHeight="17.0" prefWidth="0.0" />
                               <HBox alignment="CENTER_RIGHT" prefHeight="151.0" prefWidth="601.0">
                                  <VBox.margin>
                                     <Insets top="30.0" />

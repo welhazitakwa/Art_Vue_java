@@ -23,9 +23,9 @@ public class Home extends Application {
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/AfficherConcoursUser.fxml"));
 
-       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
+        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/Acceuil.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/AdminDashboard.fxml"));
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/OeuvrePageArtiste.fxml"));
 
@@ -35,6 +35,7 @@ public class Home extends Application {
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlAdmin/PageExposition.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/PageVenteEnchere.fxml"));
        // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlClient/PageOffreEnchere.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/ModificationController.fxml"));
 
 
 

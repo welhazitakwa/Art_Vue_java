@@ -28,7 +28,7 @@
                 <HBox spacing="5.0">
                     <children>
                         <Label text="Statut :" />
-                        <ComboBox fx:id="statutComboBox" prefHeight="26.0" prefWidth="122.0" />
+                        <ComboBox fx:id="statutComboBox" prefHeight="26.0" prefWidth="160.0" />
                     </children>
                 </HBox>
             </children>

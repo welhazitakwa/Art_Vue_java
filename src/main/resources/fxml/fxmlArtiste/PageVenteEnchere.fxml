@@ -60,7 +60,6 @@
             </TableColumn>
         </columns>
     </TableView>
-    <Button layoutX="453.0" layoutY="246.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update" />
    <HBox alignment="CENTER_LEFT" layoutY="-2.0" prefHeight="89.0" prefWidth="1400.0">
       <children>
          <ImageView fitHeight="77.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
@@ -160,9 +159,11 @@
          <Insets left="15.0" />
       </padding>
    </HBox>
-   <ComboBox fx:id="expositionComboBox" layoutX="635.0" layoutY="140.0" onAction="#handleExpositionSelection" prefHeight="39.0" prefWidth="411.0" promptText="Exposition" style="-fx-background-color: transparent;" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
+   <ComboBox fx:id="expositionComboBox" layoutX="495.0" layoutY="142.0" onAction="#handleExpositionSelection" prefHeight="39.0" prefWidth="411.0" promptText="Exposition" style="-fx-background-color: transparent;" styleClass="textField" stylesheets="@../../css/styleAjouterOeuvre.css">
       <padding>
          <Insets right="20.0" />
       </padding>
    </ComboBox>
+   <Button layoutX="1098.0" layoutY="340.0" mnemonicParsing="false" onAction="#searchAuctions" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #91615d;" styleClass="ajouter-button" text="recherche" />
+   <DatePicker fx:id="Daterecherche" layoutX="1091.0" layoutY="375.0" />
 </AnchorPane>

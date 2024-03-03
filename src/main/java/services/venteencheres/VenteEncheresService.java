@@ -30,14 +30,13 @@ public class VenteEncheresService implements IVenteEncheres<VenteEncheres>{
 
     @Override
     public void ModifierVenteEncheres(VenteEncheres venteEncheres) throws SQLException {
-        String sql = "update venteencheres set dateDebut = ? ,dateFin = ? , prixDepart = ?, Statue = ? where id = ?";
+        String sql = "update venteencheres set dateFin = ? , prixDepart = ?, Statue = ? where id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            preparedStatement.setDate(1, new java.sql.Date(venteEncheres.getDateDebut().getTime()));
-            preparedStatement.setDate(2, new java.sql.Date(venteEncheres.getDateFin().getTime()));
-            preparedStatement.setFloat(3, venteEncheres.getPrixDepart());
-            preparedStatement.setString(4, venteEncheres.getStatue());
-            preparedStatement.setInt(5, venteEncheres.getId());
+            preparedStatement.setDate(1, new java.sql.Date(venteEncheres.getDateFin().getTime()));
+            preparedStatement.setFloat(2, venteEncheres.getPrixDepart());
+            preparedStatement.setString(3, venteEncheres.getStatue());
+            preparedStatement.setInt(4, venteEncheres.getId());
             preparedStatement.executeUpdate();
         }
     }

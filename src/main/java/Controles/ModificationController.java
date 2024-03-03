@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.VenteEncheres;
 import services.venteencheres.VenteEncheresService;
+import javafx.fxml.FXMLLoader;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
@@ -33,41 +34,42 @@ public class ModificationController implements Initializable {
 
     public void setVenteEnchere(VenteEncheres venteEnchere) {
         this.venteEnchere = venteEnchere;
+        System.out.println("Données de la ligne : " + venteEnchere);
     }
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         if (venteEnchere != null && venteEnchere.getDateFin() != null) {
-            // Initialiser les champs avec les valeurs de la vente aux enchères sélectionnée
             java.sql.Date dateFinSQL = new java.sql.Date(venteEnchere.getDateFin().getTime());
-
-            // Ensuite, vous pouvez utiliser la méthode toLocalDate()
             LocalDate dateFinLocalDate = dateFinSQL.toLocalDate();
             dateFinPicker.setValue(dateFinLocalDate);
             prixDepartField.setText(String.valueOf(venteEnchere.getPrixDepart()));
-
-            // Remplir le ComboBox avec les options "disponible" et "indisponible"
-            statutComboBox.setItems(FXCollections.observableArrayList("disponible", "indisponible"));
-            statutComboBox.setValue(venteEnchere.getStatue());
         }
+        else {
+            System.err.println("Erreur : venteEncheres n'est pas initialisé.");
+        }
+
+        // Ajouter les options à la ComboBox statutComboBox
+        statutComboBox.getItems().addAll("disponible", "indisponible");
+
+        // Définir la valeur par défaut de la ComboBox
+        statutComboBox.setValue("disponible");
     }
 
 
     public void modifierVenteEnchere(javafx.event.ActionEvent actionEvent) throws SQLException {
+        venteEncheresService = new VenteEncheresService();
         // Récupérer les valeurs modifiées
         LocalDate nouvelleDateFin = dateFinPicker.getValue();
         float nouveauPrixDepart = Float.parseFloat(prixDepartField.getText());
         String nouveauStatut = statutComboBox.getValue();
 
-        // Modifier la vente aux enchères
         venteEnchere.setDateFin(Date.valueOf(nouvelleDateFin));
         venteEnchere.setPrixDepart(nouveauPrixDepart);
         venteEnchere.setStatue(nouveauStatut);
 
-        // Appeler la méthode de modification de la vente aux enchères
         venteEncheresService.ModifierVenteEncheres(venteEnchere);
 
-        // Fermer la fenêtre de modification
         ((Stage)((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 }
