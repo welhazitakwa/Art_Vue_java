@@ -7,8 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import models.Categorie;
 import models.OeuvreArt;
+import org.controlsfx.control.Notifications;
 import services.categorie.CategorieService;
 import services.oeuvreArt.OeuvreArtService;
 
@@ -127,5 +131,22 @@ public class OeuvresArtController {
                 e.printStackTrace();
             }
         }
+    }
+    @FXML
+    void printPDF(ActionEvent event) {
+        System.out.println("Print PDF button clicked");
+        ObservableList<OeuvreArt> oeuvres = oeuvresTableView.getItems();
+        System.out.println("Nombre d'oeuvres : " + oeuvres.size());
+        PDFGeneratorNour.generatePDF(oeuvres);
+        Image image1 = new Image("/image/succes.png");
+        ImageView imageView = new ImageView(image1);
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+        Notifications notifications = Notifications.create();
+        notifications.graphic(imageView);
+        notifications.text("Votre tableau des oeuvres d'art a été imprimé avec succès.");
+        notifications.title("Success Message");
+        notifications.hideAfter(Duration.seconds(4.0));
+        notifications.show();
     }
 }

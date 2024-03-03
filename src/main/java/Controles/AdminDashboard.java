@@ -10,6 +10,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -19,7 +28,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
+import models.Concours;
+import services.concours.ConcoursService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +54,8 @@ public class AdminDashboard implements Initializable {
 
     @FXML
     private Button id_pageconcoursmenu;
+    @FXML
+    private Button consulterConcours;
 
     @FXML
     private Label parametreField;
@@ -112,6 +124,52 @@ public class AdminDashboard implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
 
+        }
+    }
+
+    @FXML
+    void Statistiques(ActionEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ClassementConcours.fxml"));
+            Parent ClassementConcours = loader.load();
+
+            ClassementConcours ConcoursController = loader.getController();
+
+            // Effacez le contenu existant et affichez la page de catégorie
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(ClassementConcours);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+    @FXML
+    void consulterConcours(ActionEvent event) {
+
+        try {
+            // Obtenez la liste des concours depuis votre service
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AfficherConcours.fxml"));
+            Parent AfficherConcours = loader.load();
+
+            AfficherConcours Controller = loader.getController();
+
+
+            contentArea.getChildren().clear();
+
+            contentArea.getChildren().add(AfficherConcours);
+
+            ConcoursService concoursService =new ConcoursService();
+            List<Concours> concoursList = concoursService.AfficherConcours();
+            Controller.initialiserListeConcours(concoursList);
+
+
+        } catch (IOException ex) {
+            Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

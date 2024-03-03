@@ -59,7 +59,7 @@ public class Acceuil {
     void tocompetition(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AfficherConcoursUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConcoursUser.fxml"));
             Parent registerParent = loader.load();
             AfficherConcoursUser page = loader.getController();
             page.setParametre(idClient);

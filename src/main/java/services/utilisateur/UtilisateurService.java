@@ -73,6 +73,20 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
         }
         return userLogin ;
     }
+
+    public int checkEmail (String mailFourni )throws SQLException{
+
+        String reqVerif = "SELECT count(*) from utilisateur WHERE email = '"+ mailFourni +"'";
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(reqVerif) ;
+        int exist = 0 ;
+        while (rs.next()) {
+            if ( rs.getInt(1) == 1 ){
+                exist =1;
+            }
+        }
+        return exist ;
+    }
     public int validateLogin (String loginFourni, String mdpFourni )throws SQLException{
 
         String reqVerif = "SELECT count(*) from utilisateur WHERE login = '"+ loginFourni +"'";
@@ -146,6 +160,13 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
              statement.executeUpdate(req) ;
          }
 
+
+    }
+    public void nouveauMDP(String pwd, String mail) throws SQLException{
+        String mdp_hashed = BCrypt.hashpw(pwd , BCrypt.gensalt()) ;
+        String sql= "update utilisateur set mdp= '"+ mdp_hashed +"'"+ "where email= '" + mail +"'";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.executeUpdate();
 
     }
     @Override
@@ -317,9 +338,10 @@ public class UtilisateurService implements IUtilisateur<Utilisateur>{
             return null;
         }
     }
-
     public static boolean checkExistingUser(String enteredPassword, String hashedPasswordFromDatabase) {
         return  BCrypt.checkpw(enteredPassword, hashedPasswordFromDatabase);
     }
-
+//    public int checkCAPTCHA (){
+//
+//    }
 }

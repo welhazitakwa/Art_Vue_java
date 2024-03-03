@@ -12,6 +12,7 @@ public interface IOeuvreArt <T>{
     void SupprimerOeuvreArt (int id ) throws SQLException;
     List<OeuvreArt> getAllOeuvreArtByCategorie(String categorie) throws SQLException;
     List<OeuvreArt> getAllOeuvreArtByArtistes(int idArtiste) throws SQLException;
+    List<OeuvreArt> rechercherParArtiste(String nomArtiste) throws SQLException;
     List<OeuvreArt> getOeuvresByTitre(String titre) throws SQLException;
     List<OeuvreArt> AfficherOeuvreArt() throws SQLException;
     int nombreOeuvresArt() throws SQLException;

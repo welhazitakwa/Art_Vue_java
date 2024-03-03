@@ -3,6 +3,7 @@ package Controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -13,11 +14,14 @@ import services.utilisateur.UtilisateurService;
 import javafx.scene.control.Label;
 //import java.awt.Label;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import static Controles.PDFGenerator.generatePDF;
 
 public class UtilisateurDashboard implements Initializable {
     @FXML
@@ -26,13 +30,10 @@ public class UtilisateurDashboard implements Initializable {
     private URL location;
     @FXML
     private Label txt1;
-
     @FXML
     private Label txt2;
-
     @FXML
     private Label txt3;
-
     @FXML
     private Label txt4;
     @FXML
@@ -169,6 +170,48 @@ public class UtilisateurDashboard implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public void telecharger(ActionEvent actionEvent) {
+        //List<Utilisateur> userList = null;// = List.of("Utilisateur 1", "Utilisateur 2", "Utilisateur 3");
+        //generatePDF(userList, "C:\\Users\\Fatma Ouelhazi\\Downloads\\output.pdf");
+        Alert dialogC = new Alert(Alert.AlertType.INFORMATION);
+        dialogC.setTitle(" Confirmation de téléchargement ");
+        dialogC.setHeaderText("Votre PDF est télécharger");
+        dialogC.setContentText("Vous pouvez Consulter vos téléchargements");
+        dialogC.show();
+        // dialogC.setContentText(parametreField.getText());
+
+        List<String> artistList = new ArrayList<>();
+        List<String> clientList = new ArrayList<>();
+        UtilisateurService user1 = new UtilisateurService();
+        try {
+            List <Utilisateur> users = user1.listAll() ;
+
+            System.out.println(users);
+            for (int i=0; i<users.size();i++) {
+                System.out.println(users.size());
+                if (users.get(i).getProfil() == 1) {
+                    artistList.add(users.get(i).getNom()+" "+users.get(i).getPrenom());
+                } else if (users.get(i).getProfil()==2) {
+                    clientList.add(users.get(i).getNom()+" "+users.get(i).getPrenom());
+                }
+            }
+            generatePDF(artistList, clientList,"C:\\Users\\Fatma Ouelhazi\\Downloads\\output.pdf");
+
+
+            System.out.println("aww fel tryy");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
+
+
+
 
     }
 }

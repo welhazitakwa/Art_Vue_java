@@ -19,7 +19,7 @@
             <Insets bottom="40.0" top="40.0" />
         </VBox.margin>
       <font>
-         <Font name="Broadway" size="17.0" />
+         <Font name="Broadway" size="18.0" />
       </font>
     </Label>
 
@@ -48,7 +48,7 @@
             </VBox.margin>
         </Button>
       <VBox.margin>
-         <Insets left="20.0" right="20.0" />
+         <Insets left="40.0" right="60.0" />
       </VBox.margin>
     </VBox>
 
@@ -62,7 +62,7 @@
       </padding></Label>
 
                 <!-- Tableau personnalisé pour afficher les catégories existantes -->
-    <TableView fx:id="tableCategories" prefHeight="300.0" prefWidth="100.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px;">
+    <TableView fx:id="tableCategories" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px;">
         <columns>
             <TableColumn fx:id="idColumn" text="ID Catégorie">
                 <cellValueFactory>
