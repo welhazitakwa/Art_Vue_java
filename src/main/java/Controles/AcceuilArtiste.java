@@ -158,4 +158,17 @@ public class AcceuilArtiste {
         }
     }
 
+    public void ToApropos(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AproposArtiste.fxml"));
+            Parent newPage = loader.load();
+            AproposArtiste aproposArtiste = loader.getController();
+            aproposArtiste.setParametre(idArtiste);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
