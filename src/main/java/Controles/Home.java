@@ -24,7 +24,7 @@ public class Home extends Application {
 
         try {
             Parent root = loader.load();
-            primaryStage.setTitle("Ligin");
+            primaryStage.setTitle("Bienvenue");
             //Scene scene = new Scene(root, 930,700);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
