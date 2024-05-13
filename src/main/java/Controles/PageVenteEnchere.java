@@ -82,6 +82,7 @@ public class PageVenteEnchere implements Initializable {
     private ComboBox<String> comboBoxOptions;
     private ExpositionService expositionService;
 
+
     public void setParametre(int idArtiste) { // Modifier le type du paramètre
         this.idArtiste = idArtiste;
         System.out.println("ID de l'artiste dans page Acceuil : " + idArtiste);
@@ -164,8 +165,13 @@ public class PageVenteEnchere implements Initializable {
                 if (exposition == null) {
                     return "";
                 }
-                return exposition.getId() + " - " + exposition.getNom();
-            }
+                float prixTotal = 0;
+                try {
+                    prixTotal = PrixTotalVentesEncheresService(exposition.getId());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return exposition.getId() + " - " + exposition.getNom() + " (Prix total des ventes aux enchères : " + prixTotal + " €)";            }
 
             @Override
             public Exposition fromString(String string) {
@@ -187,6 +193,14 @@ public class PageVenteEnchere implements Initializable {
         });
 
         expositionComboBox.setItems(FXCollections.observableArrayList(expositions));
+    }
+    private float PrixTotalVentesEncheresService(int idExposition) throws SQLException {
+        float prixTotal = 0;
+        List<VenteEncheres> ventesEncheres = venteEncheresService.AfficherVenteEncheresParExposition(idExposition);
+        for (VenteEncheres venteEnchere : ventesEncheres) {
+            prixTotal += venteEnchere.getPrixDepart();
+        }
+        return prixTotal;
     }
 
 
@@ -294,7 +308,7 @@ public class PageVenteEnchere implements Initializable {
         }
     }
 
-    public void handleExpositionSelection(ActionEvent actionEvent) {
+    public void handleExpositionSelection(ActionEvent actionEvent) throws SQLException {
        /* Exposition expositionSelectionnee = expositionComboBox.getValue();
         if (expositionSelectionnee != null) {
             int idExpositionSelectionnee = expositionSelectionnee.getId();
@@ -310,6 +324,9 @@ public class PageVenteEnchere implements Initializable {
         }
 
     }
+
+
+
     public void searchAuctions(ActionEvent actionEvent) {
         Date selectedDate = Date.valueOf(Daterecherche.getValue());
 

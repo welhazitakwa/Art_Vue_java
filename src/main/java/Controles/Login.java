@@ -70,10 +70,14 @@ public class Login {
           //  System.out.println(mdpTextField.getText());
 
         } catch (SQLException e) {
-            Alert alert2 = new Alert(Alert.AlertType.ERROR);
-            alert2.setContentText(e.getMessage());
-            alert2.show();
-            labelError.setText(" ");
+            if (validateCaptcha.getText().equals(a)) {
+                System.out.println("haw el a :" + a);
+                System.out.println(" s7iiii7");
+
+            }else {
+                labelError.setText("CAPTCHA code invalide !");
+                System.out.println("mouuuchhhh s7iiii7");
+            }
         }
         if (validLogin == 0) {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);

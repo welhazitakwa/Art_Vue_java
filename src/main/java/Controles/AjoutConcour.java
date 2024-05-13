@@ -174,7 +174,7 @@ public class AjoutConcour {
         serviceConcours.ajouterConcoursAvecOeuvres(concours, oeuvresSelectionnees);
 
         LocalDateTime dateFinConcours = concours.getDate_fin().atStartOfDay();
-        LocalTime heureNotification = LocalTime.of(21, 02); // Remplacez cela par l'heure de notification souhaitée
+        LocalTime heureNotification = LocalTime.of(9, 00); // Remplacez cela par l'heure de notification souhaitée
         OeuvreConcoursService oeuvreConcoursService = new OeuvreConcoursService();
         List<OeuvreArt> meilleuresOeuvres = oeuvreConcoursService.getTop3ClassementConcours(concours.getId());
         planifierNotification(dateFinConcours, heureNotification, meilleuresOeuvres);

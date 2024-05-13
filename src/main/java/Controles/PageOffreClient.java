@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -29,6 +30,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PageOffreClient implements Initializable {
     public ComboBox comboBoxOptions;
@@ -43,6 +46,17 @@ public class PageOffreClient implements Initializable {
 
     }
     public void To_Accueil(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/fxmlArtiste/AcceuilArtiste.fxml"));
+            Parent newPage = loader.load();
+            AcceuilArtiste acceuilArtiste = loader.getController();
+            acceuilArtiste.setParametre(idClient);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(newPage);
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void To_Apropos(ActionEvent actionEvent) {

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -11,25 +10,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="573.0" prefWidth="920.0" stylesheets="@../../css/styleExposition.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controles.PageExposition">
-   <Label layoutX="27.0" layoutY="60.0" text="id_exposition" />
-   <Label layoutX="21.0" layoutY="107.0" text="nom_expostion" />
-   <Label layoutX="5.0" layoutY="156.0" text="datedebut_exposition" />
-   <Label layoutX="5.0" layoutY="201.0" text="dateFin_exposition" />
-   <TextField fx:id="NbrOeuvreE_textFile" layoutX="135.0" layoutY="236.0" />
-   <TextField fx:id="NomE_textFile" layoutX="135.0" layoutY="103.0" />
-   <TextField fx:id="idE_textFile" layoutX="135.0" layoutY="56.0" />
-   <DatePicker fx:id="DateDebutE_textFile" layoutX="135.0" layoutY="152.0" />
-   <DatePicker fx:id="DateFinE_textFile" layoutX="135.0" layoutY="197.0" />
-   <Label layoutX="5.0" layoutY="240.0" text="nbroeuvre_exposition" />
-   <Button layoutX="423.0" layoutY="65.0" mnemonicParsing="false" onAction="#ajouter_exposition" text="create" />
-   <TableView fx:id="exposition_tableView" layoutX="5.0" layoutY="300.0" prefHeight="229.0" prefWidth="442.0">
+   <Label layoutX="46.0" layoutY="107.0" text="nom_expostion" />
+   <Label layoutX="20.0" layoutY="156.0" text="datedebut_exposition" />
+   <Label layoutX="28.0" layoutY="201.0" text="dateFin_exposition" />
+   <TextField fx:id="NbrOeuvreE_textFile" layoutX="151.0" layoutY="236.0" />
+   <TextField fx:id="NomE_textFile" layoutX="151.0" layoutY="103.0" />
+   <DatePicker fx:id="DateDebutE_textFile" layoutX="151.0" layoutY="152.0" />
+   <DatePicker fx:id="DateFinE_textFile" layoutX="151.0" layoutY="197.0" />
+   <Label layoutX="20.0" layoutY="240.0" text="nbroeuvre_exposition" />
+   <Button layoutX="423.0" layoutY="65.0" mnemonicParsing="false" onAction="#ajouter_exposition" text="create" styleClass="ajouter-button" />
+   <TableView fx:id="exposition_tableView" layoutX="28.0" layoutY="300.0" prefHeight="229.0" prefWidth="442.0">
       <columns>
          <!-- Définir les colonnes sans spécifier les types de données -->
          <TableColumn fx:id="idE_tableE" text="ID">
-         <cellValueFactory>
-            <PropertyValueFactory property="idE_tableE" />
-         </cellValueFactory>
-      </TableColumn>
+            <cellValueFactory>
+               <PropertyValueFactory property="idE_tableE" />
+            </cellValueFactory>
+         </TableColumn>
          <TableColumn fx:id="NomE_tableE" text="Nom">
             <cellValueFactory>
                <PropertyValueFactory property="NomE_tableE" />
@@ -47,8 +44,8 @@
          </TableColumn>
          <TableColumn fx:id="NbrOeuvreE_tableE" prefWidth="121.0" text="Nombre d'oeuvres">
             <cellValueFactory>
-            <PropertyValueFactory property="NbrOeuvreE_tableE" />
-         </cellValueFactory>
+               <PropertyValueFactory property="NbrOeuvreE_tableE" />
+            </cellValueFactory>
          </TableColumn>
       </columns>
    </TableView>
@@ -84,9 +81,9 @@
    </TableView>
 
    <ComboBox fx:id="expositionComboBox" layoutX="545.0" layoutY="56.0" promptText="Sélectionner une exposition" />
-   <Button layoutX="421.0" layoutY="112.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update" />
-   <Button layoutX="421.0" layoutY="161.0" mnemonicParsing="false" onAction="#supprimer_exposition" text="delete" />
-   <Button layoutX="579.0" layoutY="129.0" mnemonicParsing="false" onAction="#associerVenteExposition" text="Associer à l'exposition" />
+   <Button layoutX="421.0" layoutY="112.0" mnemonicParsing="false" onAction="#modifier_exposition" text="update" styleClass="ajouter-button" />
+   <Button layoutX="421.0" layoutY="161.0" mnemonicParsing="false" onAction="#supprimer_exposition" text="delete" styleClass="ajouter-button" />
+   <Button layoutX="579.0" layoutY="129.0" mnemonicParsing="false" onAction="#associerVenteExposition" text="Associer à l'exposition" styleClass="ajouter-button" />
 
 
 </AnchorPane>

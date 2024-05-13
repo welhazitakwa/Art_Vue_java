@@ -34,8 +34,7 @@ public class PageExposition implements Initializable{
     @FXML
     private TableColumn<Exposition,Integer> idE_tableE;
 
-    @FXML
-    private TextField idE_textFile;
+
 
     @FXML
     private TableColumn<Exposition,Date> DateDebutE_tableE;
@@ -105,7 +104,7 @@ public class PageExposition implements Initializable{
         // Convertir en java.sql.Date si nécessaire
         Date dateDebutSQL = Date.valueOf(dateDebut);
         Date dateFinSQL = Date.valueOf(dateFin);
-        cs.AjouterExposition(new Exposition(Integer.parseInt(idE_textFile.getText()),NomE_textFile.getText(),dateDebutSQL,dateFinSQL,Integer.parseInt(NbrOeuvreE_textFile.getText())));
+        cs.AjouterExposition(new Exposition(-1,NomE_textFile.getText(),dateDebutSQL,dateFinSQL,Integer.parseInt(NbrOeuvreE_textFile.getText())));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Exposition ajoutée");
         alert.setContentText("Exposition ajoutée !");
@@ -115,7 +114,9 @@ public class PageExposition implements Initializable{
         DateDebutE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,java.sql.Date>("DateDebut"));
         DateFinE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,java.sql.Date>("DateFin"));
         NbrOeuvreE_tableE.setCellValueFactory(new PropertyValueFactory<Exposition,Integer>("NbrOeuvreE"));
-        ObservableList<Exposition> list = FXCollections.observableArrayList();
+        //ObservableList<Exposition> list = FXCollections.observableArrayList();
+        expositionService = new ExpositionService();
+        initialiserTableView();
         chargerDonnees();
         /*list.addAll(cs.AfficherExposition());
         exposition_tableView.setItems(list);
@@ -161,14 +162,14 @@ public class PageExposition implements Initializable{
         }
 
         // Récupérer les nouvelles valeurs depuis les champs de texte
-        int idExposition = Integer.parseInt(idE_textFile.getText());
+
         String nomExposition = NomE_textFile.getText();
         LocalDate dateDebut = DateDebutE_textFile.getValue();
         LocalDate dateFin = DateFinE_textFile.getValue();
         int nbrOeuvre = Integer.parseInt(NbrOeuvreE_textFile.getText());
 
         // Mettre à jour l'exposition sélectionnée avec les nouvelles valeurs
-        expositionSelectionnee.setId(idExposition);
+
         expositionSelectionnee.setNom(nomExposition);
         expositionSelectionnee.setDateDebut(Date.valueOf(dateDebut));
         expositionSelectionnee.setDateFin(Date.valueOf(dateFin));
@@ -351,6 +352,5 @@ public class PageExposition implements Initializable{
             errorAlert.setContentText("Une erreur est survenue lors de l'association de la vente aux enchères à l'exposition : " + e.getMessage());
             errorAlert.showAndWait();
         }
-        }
     }
-
+}

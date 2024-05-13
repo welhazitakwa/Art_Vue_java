@@ -15,13 +15,13 @@ public class ExpositionService implements  IExposition<Exposition>{
 
     @Override
     public void AjouterExposition(Exposition exposition) throws SQLException {
-        String sql = "INSERT INTO exposition ( id, nom, dateDebut, dateFin, nbrOeuvre) VALUES ( ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO exposition ( nom, dateDebut, dateFin, nbrOeuvre) VALUES ( ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, exposition.getId());
-            preparedStatement.setString(2, exposition.getNom());
-            preparedStatement.setDate(3, new java.sql.Date(exposition.getDateDebut().getTime()));
-            preparedStatement.setDate(4, new java.sql.Date(exposition.getDateFin().getTime()));
-            preparedStatement.setInt(5, exposition.getNbrOeuvre());
+            //preparedStatement.setInt(1, exposition.getId());
+            preparedStatement.setString(1, exposition.getNom());
+            preparedStatement.setDate(2, new java.sql.Date(exposition.getDateDebut().getTime()));
+            preparedStatement.setDate(3, new java.sql.Date(exposition.getDateFin().getTime()));
+            preparedStatement.setInt(4, exposition.getNbrOeuvre());
             preparedStatement.executeUpdate();
         }
     }

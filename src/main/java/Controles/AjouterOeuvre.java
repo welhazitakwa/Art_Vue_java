@@ -223,7 +223,7 @@ public class AjouterOeuvre {
     }
 
     private void sendSMSNotification(String message) {
-       /* String ACCOUNT_SID = "ACdd5e61831be43b8a8a0f7a636fd661e9";
+        String ACCOUNT_SID = "ACdd5e61831be43b8a8a0f7a636fd661e9";
         String AUTH_TOKEN = "3dbfc4ca8da735662ba37b0a5eb66ee7";
         String TWILIO_PHONE_NUMBER = "+1 862 267 0495";
         String USER_PHONE_NUMBER = "+21658044443";
@@ -234,7 +234,7 @@ public class AjouterOeuvre {
                         new PhoneNumber(USER_PHONE_NUMBER),
                         new PhoneNumber(TWILIO_PHONE_NUMBER),
                         message)
-                .create();*/
+                .create();
     }
 
     private void loadNewPage(String fxmlFilePath, ActionEvent event) {

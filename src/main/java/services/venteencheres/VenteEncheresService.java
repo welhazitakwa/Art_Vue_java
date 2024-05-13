@@ -91,4 +91,19 @@ public class VenteEncheresService implements IVenteEncheres<VenteEncheres>{
 
         return listeVenteEncheres;
     }
+    public float getPrixDepart(int venteEncheresId) throws SQLException {
+        String sql = "SELECT prixDepart FROM venteencheres WHERE id = ?";
+        float prixDepart = 0;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, venteEncheresId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                prixDepart = rs.getFloat("prixDepart");
+            }
+        }
+
+        return prixDepart;
+    }
 }

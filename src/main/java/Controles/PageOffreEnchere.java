@@ -22,8 +22,8 @@ import java.util.ResourceBundle;
 
 public class PageOffreEnchere implements Initializable {
 
-        @FXML
-        private TextField montantTextField;
+    @FXML
+    private TextField montantTextField;
 
 
 
@@ -35,26 +35,39 @@ public class PageOffreEnchere implements Initializable {
         this.venteEncheresId = venteEncheresId;
         System.out.println("ID de la vente aux enchères : " + venteEncheresId);
         // Initialisez la date avec la date actuelle
-       // dateLabel.setText(LocalDate.now().toString());
+        // dateLabel.setText(LocalDate.now().toString());
     }
 
     @FXML
     void submitOffer(ActionEvent event) {
+
         String montantText = montantTextField.getText();
         // Vérifiez que le montant est valide
         try {
             float montant = Float.parseFloat(montantText);
-            System.out.println("ID de la vente aux enchères : " + venteEncheresId);
-            // Utilisez le service OffreEnchereService pour ajouter l'offre
-            offreEnchereService = new OffreEnchereService();
-            OffreEnchere offreEnchere = new OffreEnchere();
-            offreEnchere.setId_VenteEnchere(venteEncheresId);
-            System.out.println("ID de la vente aux enchères : " + offreEnchere.getId_VenteEnchere());
-            offreEnchere.setMontant(montant);
-            offreEnchere.setDate(Date.valueOf(LocalDate.now()));
-            offreEnchereService.ajouterOffreEnchere(offreEnchere);
-            // Fermez la fenêtre modale après soumission de l'offre
-            montantTextField.getScene().getWindow().hide();
+            // Récupérer le prix de départ de la vente aux enchères correspondante
+            VenteEncheresService venteEncheresService = new VenteEncheresService();
+            float prixDepart = venteEncheresService.getPrixDepart(venteEncheresId);
+
+            // Vérifier si le montant de l'offre est supérieur ou égal au prix de départ
+            if (montant >= prixDepart) {
+                // Le montant de l'offre est valide, continuez avec l'ajout de l'offre
+                OffreEnchereService offreEnchereService = new OffreEnchereService();
+                OffreEnchere offreEnchere = new OffreEnchere();
+                offreEnchere.setId_VenteEnchere(venteEncheresId);
+                offreEnchere.setMontant(montant);
+                offreEnchere.setDate(Date.valueOf(LocalDate.now()));
+                offreEnchereService.ajouterOffreEnchere(offreEnchere);
+                // Fermez la fenêtre modale après soumission de l'offre
+                montantTextField.getScene().getWindow().hide();
+            } else {
+                // Affichez un message d'erreur indiquant que le montant est inférieur au prix de départ
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Le montant de l'offre doit être supérieur ou égal au prix de départ (" + prixDepart + ")");
+                alert.showAndWait();
+            }
         } catch (NumberFormatException e) {
             // Gérez l'erreur si le montant n'est pas un nombre valide
             // Affichez un message d'erreur à l'utilisateur par exemple

@@ -106,8 +106,12 @@ public class UtilisateurTest {
         }*/
 
 
-        //  System.out.println(user1.validateLogin("hamdzaa","123."));
-        //  user1.validateLogin("hamza2","1888823.");
+        try {
+            System.out.println(user1.validateLogin("Allahhh","Allahhh"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+//        user1.validateLogin("hamza2","1888823.");
 /*
         try {
             user1.register(new Utilisateur( "hamza","ouelhazi","hamzaa@gmail.com", "hamzaa", "123."),"artiste");
