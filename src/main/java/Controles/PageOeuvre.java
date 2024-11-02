@@ -210,7 +210,7 @@ public class PageOeuvre implements Initializable {
 
         // Créer une StackPane pour superposer l'image et l'icône de like
         StackPane imageContainer = new StackPane();
-        ImageView imageView = new ImageView(new Image(oeuvreArt.getImage()));
+        ImageView imageView = new ImageView(new Image("file:///C:/Users/LENOVO/Desktop/Esprit-2024/PIDEV/Partie_Symfony/Art_Vue_Symfony/public/oeuvre/" + oeuvreArt.getImage()));
         imageView.setFitWidth(136);
         imageView.setFitHeight(174);
 

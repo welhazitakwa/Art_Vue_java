@@ -56,7 +56,7 @@ public class DetailsOeuvreAdmin {
         idTelArtiste.setText(String.valueOf(oeuvreArt.getArtiste().getNumTel()));
         idEmailArtiste.setText(oeuvreArt.getArtiste().getEmail());
 
-        String imageUrl = oeuvreArt.getImage();
+        String imageUrl = "file:///C:/Users/LENOVO/Desktop/Esprit-2024/PIDEV/Partie_Symfony/Art_Vue_Symfony/public/oeuvre/" + oeuvreArt.getImage();
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Image image = new Image(imageUrl);
             idImage.setImage(image);

@@ -23,6 +23,7 @@ import services.categorie.CategorieService;
 import services.likes.LikesService;
 import services.oeuvreArt.OeuvreArtService;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -47,6 +48,8 @@ public class OeuvresPageArtiste implements Initializable {
 
 
     private int idArtiste;
+
+
 
     public void setParametre(int idArtiste) {
         this.idArtiste = idArtiste;
@@ -202,7 +205,8 @@ public class OeuvresPageArtiste implements Initializable {
         VBox card = new VBox();
         card.getStyleClass().add("hbox");
 
-        ImageView imageView = new ImageView(new Image(oeuvreArt.getImage()));
+        ImageView imageView = new ImageView(new Image("file:///C:/Users/LENOVO/Desktop/Esprit-2024/PIDEV/Partie_Symfony/Art_Vue_Symfony/public/oeuvre/" + oeuvreArt.getImage()));
+
         imageView.setFitWidth(136);
         imageView.setFitHeight(174);
 
@@ -307,4 +311,6 @@ public class OeuvresPageArtiste implements Initializable {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 }

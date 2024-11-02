@@ -25,10 +25,14 @@ import services.oeuvreArt.OeuvreArtService;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -150,11 +154,33 @@ public class AjouterOeuvre {
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
-            imageField.setText(selectedFile.toURI().toString());
+            // Générer un nom de fichier unique
+            String uniqueFileName = UUID.randomUUID().toString() + "_" + selectedFile.getName();
+
+            // Chemin de destination
+            String destinationPath = "C:/Users/LENOVO/Desktop/Esprit-2024/PIDEV/Partie_Symfony/Art_Vue_Symfony/public/oeuvre/";
+
+            try {
+                // Copier le fichier sélectionné dans le répertoire de destination
+                Files.copy(selectedFile.toPath(), Path.of(destinationPath + uniqueFileName), StandardCopyOption.REPLACE_EXISTING);
+
+                // Enregistrer uniquement le nom de l'image dans la base de données
+                String imageName = uniqueFileName;
+
+                // Tu peux faire ce que tu veux avec le nom de l'image ici
+
+                // Afficher le nom de l'image dans le champ texte
+                imageField.setText(imageName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Gérer l'erreur
+            }
         } else {
             System.out.println("Aucun fichier sélectionné.");
         }
     }
+
+
 
     private boolean containsBadWords(String text) {
         try {
@@ -197,10 +223,7 @@ public class AjouterOeuvre {
             return false;
         }
 
-        if (!isValidImagePath(imageField.getText())) {
-            showAlert("Erreur de saisie", "Le chemin d'image est invalide.");
-            return false;
-        }
+
         // Vérifier les mots inappropriés dans la description
         if (containsBadWords(descriptionField.getText())) {
             showAlert("Erreur", "La description contient des mots inappropriés.");
@@ -218,9 +241,7 @@ public class AjouterOeuvre {
         alert.showAndWait();
     }
 
-    private boolean isValidImagePath(String imagePath) {
-        return imagePath.startsWith("file:/") && (imagePath.endsWith(".jpg") || imagePath.endsWith(".png") || imagePath.endsWith(".gif"));
-    }
+
 
     private void sendSMSNotification(String message) {
        /* String ACCOUNT_SID = "ACdd5e61831be43b8a8a0f7a636fd661e9";

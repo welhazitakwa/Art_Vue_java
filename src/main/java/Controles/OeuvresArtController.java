@@ -99,7 +99,12 @@ public class OeuvresArtController {
         dateAjoutColumn.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
         prixVenteColumn.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+        imageColumn.setCellValueFactory(cellData -> {
+            String imageName = cellData.getValue().getImage();
+            String imageUrl = "file:///C:/Users/LENOVO/Desktop/Esprit-2024/PIDEV/Partie_Symfony/Art_Vue_Symfony/public/oeuvre/" + imageName;
+            return new SimpleStringProperty(imageUrl);
+        });
+
         imageColumn.setCellFactory(param -> new ImageCell());
         initializeCategorieColumn();
         initializeArtisteColumn();
@@ -115,6 +120,9 @@ public class OeuvresArtController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public void afficher (){
+        String selectedCategory = categorieComboBox.getValue();
     }
 
     public void handleCategorySelection(ActionEvent actionEvent) {
